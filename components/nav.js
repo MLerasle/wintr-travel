@@ -1,55 +1,31 @@
 import React from 'react'
 import Link from 'next/link'
 
+import '../assets/style.css'
+
 const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' },
+  { href: '', label: 'English' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/help', label: 'Help' }
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
   return link
 })
 
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </li>
+const Nav = props => (
+  <nav className={"flex items-center justify-between " + (props.background && 'bg-primary-blue')}>
+    <div className="text-white pl-6">
+      <a href="/">WINTR TRAVEL</a>
+    </div>
+    <ul className="flex items-center pr-6">
       {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
+        <li key={key} className="inline-block ml-8 py-6 border-b-2 border-transparent hover:border-white">
+          <Link href={href}>
+            <a className="text-white tracking-wide">{label}</a>
+          </Link>
         </li>
       ))}
     </ul>
-
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
   </nav>
 )
 
