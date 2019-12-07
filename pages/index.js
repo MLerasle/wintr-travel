@@ -1,85 +1,35 @@
 import React from 'react'
-import Head from 'next/head'
-import Nav from '../components/nav'
+
+import '../assets/style.css'
+import Nav from '../components/Nav'
 
 const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-
+  <div className="cover w-full h-full absolute top-0 left-0">
     <Nav />
-
-    <div className="hero">
-      <h1 className="title">Welcome to Next.js!</h1>
-      <p className="description">
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
-
-      <div className="row">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Learn more about Next.js in the documentation.</p>
-        </a>
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Next.js Learn &rarr;</h3>
-          <p>Learn about Next.js by following an interactive tutorial!</p>
-        </a>
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Find other example boilerplates on the Next.js GitHub.</p>
-        </a>
-      </div>
+    <div className="bg-white rounded-lg shadow-xl p-8 sm:ml-16 md:ml-24 my-10 max-w-lg">
+      <h2 className="text-3xl leading-tight font-semibold text-gray-800">
+        Réservez votre matériel de ski.<br/>
+        Et votre forfait.
+      </h2>
+      <form className="flex flex-col mt-4">
+        <input type="text" className="border border-gray-300 rounded-lg mt-8 p-2" />
+        <input type="text" className="border border-gray-300 rounded-lg mt-8 p-2" />
+        <input type="text" className="border border-gray-300 rounded-lg mt-8 p-2" />
+        <div className="flex flex-col items-end">
+          <button type="submit" className="bg-secondary-blue text-white font-bold py-3 px-4 mt-8 w-1/2 rounded-lg">
+            Search
+          </button>
+        </div>
+      </form>
     </div>
-
     <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
+      .cover {
+        background-image: url(/wintr-travel-home.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: transparent;
       }
     `}</style>
   </div>
