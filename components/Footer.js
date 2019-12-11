@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Icon from '@mdi/react'
-import { mdiTwitter, mdiFacebook, mdiInstagram } from '@mdi/js';
+import { mdiTwitter, mdiFacebook, mdiInstagram } from '@mdi/js'
 
 import '../assets/style.css'
 
