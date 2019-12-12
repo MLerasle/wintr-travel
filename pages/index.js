@@ -3,6 +3,7 @@ import React from 'react'
 import '../assets/style.css'
 import Nav from '../components/Nav'
 import SelectInput from '../components/SelectInput'
+import SkierInput from '../components/SkierInput'
 
 const resorts = [
   { value: 1, label: 'Avoriaz' },
@@ -39,7 +40,7 @@ const Home = () => (
           placeholder="À la montagne"
           handleChange={handleResortChange} />
         <input type="text" id="dateFromInput" className="border border-gray-300 rounded-lg mt-8 p-2" />
-        <input type="text" className="border border-gray-300 rounded-lg mt-8 p-2" />
+        <SkierInput />
         <div className="flex flex-col items-end">
           <button
             type="submit"
