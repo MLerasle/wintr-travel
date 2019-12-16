@@ -23,7 +23,8 @@ const customStyles = {
   menu: base => ({
     ...base,
     marginTop: '0.5rem'
-  })
+  }),
+  indicatorSeparator: () => {}
 }
 
 const SelectInput = (props) => (

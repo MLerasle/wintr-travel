@@ -54,7 +54,6 @@ const SkierInput = () => {
         className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-secondary-blue w-full text-gray-800"
         style={{paddingLeft: '10px' }}
         onFocus={() => setIsOpen(true)}
-        onBlur={() => setIsOpen(false)}
         defaultValue={inputValue()}
       />
       <div className={"bg-white rounded-lg shadow-md px-4 py-6 border border-gray-300 mt-2 w-full absolute " + (isOpen ? 'block' : 'hidden')}>
