@@ -6,10 +6,11 @@ import { mdiCheckCircleOutline } from '@mdi/js'
 import '../assets/style.css'
 import Nav from '../components/Nav'
 import SelectInput from '../components/SelectInput'
+import DatesInput from '../components/DatesInput'
 import SkierInput from '../components/SkierInput'
 
 const handleResortChange = () => {
-  document.getElementById('dateFromInput').focus()
+  document.querySelector('.InputDates-from input').focus()
 }
 
 const Index = props => (
@@ -30,7 +31,7 @@ const Index = props => (
           label="Où"
           placeholder="À la montagne"
           handleChange={handleResortChange} />
-        <input type="text" id="dateFromInput" className="border border-gray-300 rounded-lg mt-8 p-2" />
+        <DatesInput />
         <SkierInput />
         <div className="flex flex-col items-end">
           <button
