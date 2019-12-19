@@ -1,45 +1,18 @@
-import React, { useState, useReducer } from 'react'
+import React, { useState } from 'react'
 import onClickOutside from "react-onclickoutside";
 import Label from './Label'
-import SkierCounter from './SkierCounter'
+import Counter from './Counter'
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'incrementAdults':
-      return { ...state, adultsCount: state.adultsCount + 1 }
-    case 'incrementChildren':
-      return { ...state, childrenCount: state.childrenCount + 1 }
-    case 'decrementAdults':
-      if (state.adultsCount > 0) {
-        return { ...state, adultsCount: state.adultsCount - 1 }
-      }
-    case 'decrementChildren':
-      if (state.childrenCount > 0) {
-        return { ...state, childrenCount: state.childrenCount - 1 }
-      }
-    case 'reset':
-      return { ...state, adultsCount: 2, childrenCount: 0 }
-    default:
-      return state
-  }
-}
-
-const SkierInput = () => {
+const SkierInput = props => {
   const [isOpen, setIsOpen] = useState(false)
-  const initialState = {
-    adultsCount: 2,
-    childrenCount: 0
-  }
-  const [state, dispatch] = useReducer(reducer, initialState)
-
   SkierInput.handleClickOutside = () => setIsOpen(false)
 
   const inputValue = () => {
-    const adultsLabel = state.adultsCount > 1 ? 'Adultes' : 'Adulte';
-    const childrenLabel = state.childrenCount > 1 ? 'Enfants' : 'Enfant';
-    let skiers = `${state.adultsCount} ${adultsLabel}`;
-    if (state.childrenCount > 0) {
-      skiers += ` - ${state.childrenCount} ${childrenLabel}`;
+    const adultsLabel = props.adultsCount > 1 ? 'Adultes' : 'Adulte';
+    const childrenLabel = props.childrenCount > 1 ? 'Enfants' : 'Enfant';
+    let skiers = `${props.adultsCount} ${adultsLabel}`;
+    if (props.childrenCount > 0) {
+      skiers += ` - ${props.childrenCount} ${childrenLabel}`;
     }
     return skiers;
   };
@@ -61,15 +34,15 @@ const SkierInput = () => {
           <label className="text-gray-800 text-md tracking-wide">
             Adultes
           </label>
-          <SkierCounter
-            value={state.adultsCount}
+          <Counter
+            value={props.adultsCount}
             onIncrement={e => {
               e.preventDefault()
-              dispatch({type: 'incrementAdults'})
+              props.onChange('increment', 'adult')
             }}
             onDecrement={e => {
               e.preventDefault()
-              dispatch({type: 'decrementAdults'})
+              props.onChange('decrement', 'adult')
             }}
           />
         </div>
@@ -77,15 +50,15 @@ const SkierInput = () => {
           <label className="text-gray-800 text-md tracking-wide">
             Enfants
           </label>
-          <SkierCounter
-            value={state.childrenCount}
+          <Counter
+            value={props.childrenCount}
             onIncrement={e => {
               e.preventDefault()
-              dispatch({type: 'incrementChildren'})
+              props.onChange('increment', 'child')
             }}
             onDecrement={e => {
               e.preventDefault()
-              dispatch({type: 'decrementChildren'})
+              props.onChange('decrement', 'child')
             }}
           />
         </div>
@@ -94,7 +67,7 @@ const SkierInput = () => {
             className="text-gray-600 font-semibold hover:underline text-sm focus:outline-none focus:shadow-outline"
             onClick={e => {
               e.preventDefault()
-              dispatch({type: 'reset'})
+              props.onChange('reset')
               setIsOpen(false)
             }}>
             Annuler

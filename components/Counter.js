@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '@mdi/react'
 import { mdiPlus, mdiMinus } from '@mdi/js'
 
-const SkierCounter = props => {
+const Counter = props => {
   return (
     <div className="flex justify-between items-center w-32">
       <button
@@ -24,4 +24,4 @@ const SkierCounter = props => {
   );
 };
 
-export default SkierCounter;
+export default Counter;

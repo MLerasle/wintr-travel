@@ -31,9 +31,11 @@ const SelectInput = (props) => (
   <div>
     <Label title={props.label} />
     <Select
+      instanceId={props.label}
       autofocus
       options={props.options}
       placeholder={props.placeholder}
+      defaultValue={props.resort.value}
       isClearable={true}
       styles={customStyles}
       onChange={props.handleChange}
