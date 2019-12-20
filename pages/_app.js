@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
 import store from '../stores'
+import { appWithTranslation } from '../i18n'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -20,4 +21,4 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(store)(MyApp)
+export default withRedux(store)(appWithTranslation(MyApp))
