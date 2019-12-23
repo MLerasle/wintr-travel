@@ -22,10 +22,10 @@ const SkierInput = props => {
       <Label title="Skieurs" />
       <input
         type="text"
-        placeholder="Skieurs"
+        readOnly
         id="skiersInput"
         className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-secondary-blue w-full text-gray-800"
-        style={{paddingLeft: '10px' }}
+        style={{ paddingLeft: '10px' }}
         onFocus={() => setIsOpen(true)}
         defaultValue={inputValue()}
       />

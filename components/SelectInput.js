@@ -35,7 +35,7 @@ const SelectInput = (props) => (
       autofocus
       options={props.options}
       placeholder={props.placeholder}
-      defaultValue={props.resort.value}
+      defaultValue={props.defaultValue}
       isClearable={true}
       styles={customStyles}
       onChange={props.handleChange}
