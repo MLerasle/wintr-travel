@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import fetch from 'isomorphic-unfetch'
+import { connect } from 'react-redux'
 
 import '../assets/style.css'
 import Nav from '../components/Nav'
@@ -19,8 +19,12 @@ const Index = props => {
       <div className="mobile-image md:hidden h-64">
         <Nav />
       </div>
-      <BookingForm resorts={props.resorts} />
-      <PackContent />
+      <div className="flex flex-col items-start sm:items-center md:pt-6">
+        <BookingForm resorts={props.resorts} />
+      </div>
+      <div className="md:hidden">
+        <PackContent />
+      </div>
       <style jsx>{`
         .mobile-image {
           background-image: url(/wintr-travel-home-sm.jpg);
@@ -45,15 +49,20 @@ const Index = props => {
   )
 }
 
-Index.getInitialProps = async function() {
-  const res = await fetch('https://catalog.wintr.travel/v1/catalog.json')
-  const data = await res.json()
+Index.getInitialProps = async function({ req, store }) {
+  if (req) {
+    await store.dispatch({ type: 'SET_CATALOG' })
+  }
 
   return {
-    resorts: data.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
-      return { value: r.id, label: r.name }
-    })
+    namespacesRequired: ['common']
   }
 }
 
-export default Index
+const mapStateToProps = state => ({
+  resorts: state.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
+    return { value: r.id, label: r.name }
+  })
+})
+
+export default connect(mapStateToProps)(Index)

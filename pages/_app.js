@@ -2,12 +2,18 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
-import store from '../stores'
+import withReduxSaga from 'next-redux-saga'
+import configureStore from '../stores'
 import { appWithTranslation } from '../i18n'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}
+    let pageProps = {}
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+
     return { pageProps }
   }
 
@@ -21,4 +27,4 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(store)(appWithTranslation(MyApp))
+export default withRedux(configureStore)(withReduxSaga(appWithTranslation(MyApp)))
