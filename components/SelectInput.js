@@ -22,7 +22,8 @@ const customStyles = {
   }),
   menu: base => ({
     ...base,
-    marginTop: '0.5rem'
+    marginTop: '0.5rem',
+    zIndex: '70'
   }),
   indicatorSeparator: () => {}
 }

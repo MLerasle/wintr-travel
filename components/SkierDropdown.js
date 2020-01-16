@@ -18,7 +18,7 @@ const SkierInput = props => {
   };
 
   return (
-    <div className="relative w-full mt-4">
+    <div className="relative w-full mt-4 z-50">
       <Label title="Skieurs" />
       <input
         type="text"

@@ -125,11 +125,13 @@ export default class DateRangeInput extends React.Component {
             }
             .InputDates-from .DayPickerInput-OverlayWrapper {
               top: 8px;
+              z-index: 60;
             }
             .InputDates-to .DayPickerInput-OverlayWrapper {
               position: absolute;
               top: 50px;
               right: 267px;
+              z-index: 60;
             }
             .DayPickerInput-Overlay {
               box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);

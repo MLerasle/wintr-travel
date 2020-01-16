@@ -69,7 +69,7 @@ const BookingForm = props => {
   return (
     <div className="bg-white md:rounded-lg md:shadow-xl px-6 py-4 sm:p-8 w-full md:max-w-lg">
       <h2 className="text-2xl sm:text-3xl leading-tight font-semibold text-gray-800">
-        Réservez votre matériel de ski.<br className="hidden sm:block" /> Et votre forfait.
+        Réservez vos skis et votre forfait.
       </h2>
       <form className="flex flex-col mt-4 mb-8">
         <SelectInput
