@@ -8,8 +8,11 @@ import DateRangeInput from './DateRangeInput'
 import SkierDropdown from './SkierDropdown'
 import Button from '../components/Button'
 
+import { calcBookingPrice } from '../helpers/pricing'
+
 const BookingForm = props => {
   const booking = useSelector(state => state.booking)
+  const catalog = useSelector(state => state.catalog)
   const dispatch = useDispatch()
 
   const handleResortChange = (resort, triggeredAction) => {
@@ -25,9 +28,9 @@ const BookingForm = props => {
     const { firstDay, lastDay } = booking
     const { setDates } = BookingActions
     if (type === 'from') {
-      dispatch(setDates(null, date, lastDay))
+      dispatch(setDates(catalog, date, lastDay))
     } else {
-      dispatch(setDates(null, firstDay, date))
+      dispatch(setDates(catalog, firstDay, date))
     }
   }
 
@@ -52,6 +55,14 @@ const BookingForm = props => {
   const validateSearch = e => {
     e.preventDefault()
     if (!booking.isValid) { return }
+    const { resortId, weekId, duration, adultsCount, childrenCount } = booking
+    const bookingPrice = calcBookingPrice(catalog, resortId, weekId, duration, adultsCount, childrenCount)
+    if (bookingPrice.error) {
+      // TODO: Raise error and do something useful for the user :)
+      console.log('ERROR in bookingPrice calculation', bookingPrice)
+      return
+    }
+    dispatch(BookingActions.setAmount(bookingPrice.adults, bookingPrice.children, bookingPrice.total))
     Router.push('/cart')
   }
 
@@ -83,9 +94,9 @@ const BookingForm = props => {
       <Button
         id="searchButton"
         disabled={!booking.isValid}
-        onClick={validateSearch}
-        label="Valider"
-      />
+        onClick={validateSearch} >
+        Valider
+      </Button>
     </div>
   )
 }

@@ -3,7 +3,9 @@ import { INITIAL_STATE } from './InitialState'
 import { createReducer } from 'reduxsauce'
 import { BookingTypes } from './Actions'
 
-// import { diffDays, weekForDay } from '../../helpers/dates';
+const weekForDay = (catalog, day) => {
+  return catalog.weeks.find(week => week.first_day <= day && week.last_day >= day)
+}
 
 export const setResort = (state, { resortId, resortName }) => ({
   ...state,
@@ -17,7 +19,7 @@ export const setDates = (state, { catalog, firstDay, lastDay }) => ({
   firstDay,
   lastDay,
   duration: moment(lastDay).diff(moment(firstDay), 'days') + 1,
-  // weekId: weekForDay(catalog, firstDay).id,
+  weekId: weekForDay(catalog, firstDay).id,
   isValid: firstDay && state.resortId && state.adultsCount > 0
 })
 

@@ -85,7 +85,7 @@ const Cart = () => {
                   }}
                 />
               </div>
-              <div className="flex items-center text-lg text-secondary-blue font-bold">135 €</div>
+              <div className="flex items-center text-lg text-secondary-blue font-bold">{booking.adultsAmount} €</div>
             </div>
 
             {
@@ -105,7 +105,7 @@ const Cart = () => {
                     }}
                   />
                 </div>
-                <div className="flex items-center text-lg text-secondary-blue font-bold">95 €</div>
+                <div className="flex items-center text-lg text-secondary-blue font-bold">{booking.childrenAmount} €</div>
               </div>
               :
               <button
@@ -117,9 +117,9 @@ const Cart = () => {
 
             <Button
               disabled={!booking.isValid}
-              onClick={validateCart}
-              label="Payer"
-            />
+              onClick={validateCart}>
+              Payer {booking.totalAmount} €
+            </Button>
             <div className="bg-white sm:max-w-xl w-full -mx-6 mt-6 md:mt-10">
               <PackContent />
             </div>
