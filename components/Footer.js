@@ -13,17 +13,17 @@ const Footer = () => (
     <section>
       <ul className="flex items-center">
         <li className="mr-3 md:mr-4 tracking-wide">
-          <Link href="/">
+          <Link href="/about">
             <a className="text-sm md:text-base hover:underline">About</a>
           </Link>
         </li>
         <li className="mr-3 md:mr-4 tracking-wide">
-          <Link href="/">
+          <Link href="/terms">
             <a className="text-sm md:text-base hover:underline">Terms</a>
           </Link>
         </li>
         <li className="mr-3 md:mr-4 tracking-wide">
-          <Link href="/">
+          <Link href="/privacy">
             <a className="text-sm md:text-base hover:underline">Privacy</a>
           </Link>
         </li>
