@@ -10,9 +10,13 @@ import PackContent from '../components/PackContent'
 import Counter from '../components/Counter'
 import Button from '../components/Button'
 
+import { calcBookingPrice } from '../helpers/pricing'
+
 const Cart = () => {
   const booking = useSelector(state => state.booking)
+  const catalog = useSelector(state => state.catalog)
   const dispatch = useDispatch()
+  const { setPeople, setAmount } = BookingActions
 
   useEffect(() => {
     if (!booking.isValid) {
@@ -20,9 +24,13 @@ const Cart = () => {
     }
   }, [])
 
+  const updateAmounts = (adults, children) => {
+    const bookingPrice = calcBookingPrice(catalog, booking.resortId, booking.weekId, booking.duration, adults, children);
+    return bookingPrice;
+  };
+
   const handleSkierChange = (action, age = null) => {
     let { adultsCount, childrenCount } = booking
-    const { setPeople } = BookingActions
     if (action === 'increment' && age === 'adult') {
       adultsCount += 1
     } else if (action === 'increment' && age === 'child') {
@@ -36,10 +44,16 @@ const Cart = () => {
       childrenCount = 0
     }
     dispatch(setPeople(adultsCount, childrenCount))
+    const amount = updateAmounts(adultsCount, childrenCount)
+    if (Object.keys(amount).length > 0) {
+      dispatch(setAmount(amount.adults, amount.children, amount.total))
+    }
   }
 
   const addChildToBooking = () => {
-    dispatch(BookingActions.setPeople(booking.adultsCount, 1))
+    dispatch(setPeople(booking.adultsCount, 1))
+    const amount = updateAmounts(booking.adultsCount, 1)
+    dispatch(setAmount(amount.adults, amount.children, amount.total))
   }
 
   const validateCart = () => {
@@ -48,14 +62,14 @@ const Cart = () => {
 
   return (
     <>
-      <div className="cover w-full h-full absolute top-0 left-0">
+      <div className="cover w-full absolute top-0 left-0">
         <div className="hidden md:block">
           <Nav />
         </div>
         <div className="md:hidden">
           <Nav background="primary" />
         </div>
-        <div className="flex flex-col items-start sm:items-center md:pt-6">
+        <div className="flex flex-col items-start sm:items-center md:py-6">
           <div className="px-6 pt-8 pb-6 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-xl">
             <h1 className="mb-6 text-2xl leading-tight font-semibold text-gray-800">Votre réservation</h1>
 
@@ -135,6 +149,12 @@ const Cart = () => {
             background-attachment: fixed;
             background-size: cover;
             background-color: transparent;
+          }
+        }
+
+        @media (min-height: 800px) {
+          .cover {
+            height: 100%;
           }
         }
       `}</style>
