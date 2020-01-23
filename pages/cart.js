@@ -5,7 +5,7 @@ import Icon from '@mdi/react'
 import { mdiMapMarker, mdiCalendar } from '@mdi/js'
 
 import BookingActions from '../stores/Booking/Actions'
-import Nav from '../components/Nav'
+import Nav from '../components/nav'
 import PackContent from '../components/PackContent'
 import Counter from '../components/Counter'
 import Button from '../components/Button'

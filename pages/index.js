@@ -3,13 +3,13 @@ import Head from 'next/head'
 import { connect } from 'react-redux'
 
 import '../assets/style.css'
-import Nav from '../components/Nav'
+import Nav from '../components/nav'
 import BookingForm from '../components/BookingForm'
 import PackContent from '../components/PackContent'
 
 const Index = props => {
   return (
-    <div className="cover w-full h-full absolute top-0 left-0">
+    <div className="cover w-full absolute top-0 left-0">
       <Head>
         <title>Ski Rental & Ski Pass - Wintr Travel</title>
       </Head>
@@ -19,7 +19,7 @@ const Index = props => {
       <div className="mobile-image md:hidden h-64">
         <Nav />
       </div>
-      <div className="flex flex-col items-start sm:items-center md:pt-6">
+      <div className="booking-form flex flex-col items-start sm:items-center md:py-6">
         <BookingForm resorts={props.resorts} />
       </div>
       <div className="md:hidden">
@@ -42,6 +42,18 @@ const Index = props => {
             background-attachment: fixed;
             background-size: cover;
             background-color: transparent;
+          }
+        }
+
+        @media (min-height: 550px) {
+          .cover {
+            height: 100%;
+          }
+        }
+
+        @media (min-width: 1024px) and (min-height: 768px) {
+          .booking-form {
+            padding: 3rem 0;
           }
         }
       `}</style>
