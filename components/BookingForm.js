@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Router from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 
 import BookingActions from '../stores/Booking/Actions'
 import SelectInput from '../components/SelectInput'
@@ -14,6 +15,7 @@ const BookingForm = props => {
   const booking = useSelector(state => state.booking)
   const catalog = useSelector(state => state.catalog)
   const dispatch = useDispatch()
+  const { t, lang } = useTranslation()
 
   const handleResortChange = (resort, triggeredAction) => {
     const { setResort } = BookingActions
@@ -63,27 +65,27 @@ const BookingForm = props => {
       return
     }
     dispatch(BookingActions.setAmount(bookingPrice.adults, bookingPrice.children, bookingPrice.total))
-    Router.push('/cart')
+    Router.push(`/${lang}/cart`)
   }
 
   return (
     <div className="bg-white md:rounded-lg md:shadow-xl px-6 py-4 sm:p-8 w-full md:max-w-lg">
       <h2 className="text-2xl sm:text-3xl leading-tight font-semibold text-gray-800">
-        Réservez vos skis et votre forfait.
+        {t('home:form.title')}
       </h2>
       <form className="flex flex-col mt-4 mb-8">
         <SelectInput
           options={props.resorts}
-          label="Où"
-          placeholder="Choisissez la station"
+          label={t('home:form.resortLabel')}
+          placeholder={t('home:form.resortPlaceholder')}
           defaultValue={booking.resortId ? { label: booking.resortName, value: booking.resortId } : ''}
           resort={{value: booking.resortId, label: booking.resortName}}
           handleChange={handleResortChange} />
         <DateRangeInput
           from={booking.firstDay}
           to={booking.lastDay}
-          fromLabel="Arrivée"
-          toLabel="Départ"
+          fromLabel={t('home:form.dateFromLabel')}
+          toLabel={t('home:form.dateToLabel')}
           onChange={(type, date) => handleDateChange(type, date)}
           onChangeToDate={() => document.getElementById('skiersInput').focus()} />
         <SkierDropdown
@@ -95,7 +97,7 @@ const BookingForm = props => {
         id="searchButton"
         disabled={!booking.isValid}
         onClick={validateSearch} >
-        Valider
+        {t('common:button.validate')}
       </Button>
     </div>
   )

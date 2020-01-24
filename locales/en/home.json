@@ -1,0 +1,11 @@
+{
+  "title": "Ski Rental & Ski Pass - Wintr Travel",
+  "form": {
+    "title": "Book your skis and your ski pass.",
+    "resortLabel": "Where",
+    "resortPlaceholder": "Choose the resort",
+    "dateFromLabel": "Check-In",
+    "dateToLabel": "Checkout",
+    "skiersLabel": "Skiers"
+  }
+}

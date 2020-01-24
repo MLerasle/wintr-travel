@@ -1,21 +1,24 @@
 import React from 'react'
+import useTranslation from 'next-translate/useTranslation'
 
 import '../assets/style.css'
 import PackItem from './PackItem'
 
 const PackContent = () => {
+  const { t } = useTranslation()
+
   const items = [
-    'Skis ou Snowboard',
-    'Chaussures',
-    'Casque',
-    'Assurance casse / vol',
-    'Forfait remontées mécaniques'
+    t('common:pack.skis'),
+    t('common:pack.shoes'),
+    t('common:pack.helmet'),
+    t('common:pack.insurance'),
+    t('common:pack.skipass')
   ]
 
   return (
     <div className="py-3 sm:py-0 px-6 bg-white w-full">
       <h2 className="text-2xl leading-tight font-semibold text-gray-800">
-        Contenu d'un pack:
+        {t('common:pack.content')}:
       </h2>
       <ul className="text-gray-600 px-2 py-4">
         {

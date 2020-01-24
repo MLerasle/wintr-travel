@@ -1,0 +1,25 @@
+{
+  "help": "Help",
+  "button": {
+    "validate": "Validate",
+    "cancel": "Cancel",
+    "save": "Save",
+    "pay": "Pay"
+  },
+  "label": {
+    "adult": "Adult",
+    "adult_plural": "Adults",
+    "child": "Child",
+    "child_plural": "Children"
+  },
+  "pack": {
+    "content": "Pack content",
+    "skis": "Skis or Snowboard",
+    "shoes": "Shoes",
+    "helmet": "Helmet",
+    "insurance": "Insurance breakage and theft",
+    "skipass": "Ski Pass",
+    "adult": "Adult Pack",
+    "child": "Child Pack"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Location de skis & forfaits - Wintr Travel",
+  "form": {
+    "title": "Réservez vos skis et votre forfait.",
+    "resortLabel": "Où",
+    "resortPlaceholder": "Choisissez la station",
+    "dateFromLabel": "Arrivée",
+    "dateToLabel": "Départ",
+    "skiersLabel": "Skieurs"
+  }
+}

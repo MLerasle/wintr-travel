@@ -1,0 +1,25 @@
+{
+  "help": "Aide",
+  "button": {
+    "validate": "Valider",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "pay": "Payer"
+  },
+  "label": {
+    "adult": "Adulte",
+    "adult_plural": "Adultes",
+    "child": "Enfant",
+    "child_plural": "Enfants"
+  },
+  "pack": {
+    "content": "Contenu d'un pack",
+    "skis": "Skis ou Snowboard",
+    "shoes": "Chaussures",
+    "helmet": "Casque",
+    "insurance": "Assurance Casse / Vol",
+    "skipass": "Forfait remontées mécaniques",
+    "adult": "Pack Adulte",
+    "child": "Pack Enfant"
+  }
+}

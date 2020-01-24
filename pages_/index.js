@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { connect } from 'react-redux'
+import useTranslation from 'next-translate/useTranslation'
 
 import '../assets/style.css'
 import Nav from '../components/nav'
@@ -8,10 +9,12 @@ import BookingForm from '../components/BookingForm'
 import PackContent from '../components/PackContent'
 
 const Index = props => {
+  const { t } = useTranslation()
+
   return (
     <div className="cover w-full absolute top-0 left-0">
       <Head>
-        <title>Ski Rental & Ski Pass - Wintr Travel</title>
+      <title>{t('home:title')}</title>
       </Head>
       <div className="hidden md:block">
         <Nav />
