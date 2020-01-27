@@ -12,6 +12,7 @@ import Counter from '../components/Counter'
 import Button from '../components/Button'
 
 import { calcBookingPrice } from '../helpers/pricing'
+import { formattedDates } from '../helpers/dates'
 
 const Cart = () => {
   const booking = useSelector(state => state.booking)
@@ -82,7 +83,7 @@ const Cart = () => {
               </div>
               <div className="flex items-center py-1">
                 <Icon path={mdiCalendar} size={1} color="#0CB3FA" />
-                <span className="ml-2 text-gray-700 tracking-wide">{booking.firstDay} - {booking.lastDay}</span>
+                <span className="ml-2 text-gray-700 tracking-wide formatted-dates">{formattedDates(booking.firstDay, booking.lastDay, t, lang)}</span>
               </div>
             </div>
 
@@ -158,6 +159,10 @@ const Cart = () => {
           .cover {
             height: 100%;
           }
+        }
+
+        .formatted-dates {
+          text-transform: capitalize;
         }
       `}</style>
     </>
