@@ -1,5 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import Router from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 import Icon from '@mdi/react'
 import { mdiCheck } from '@mdi/js'
 
@@ -8,22 +10,28 @@ import Layout from '../components/Layout'
 
 const Confirmation = () => {
   const dispatch = useDispatch()
+  const { t, lang } = useTranslation()
 
   const resetBooking = () => {
     dispatch(BookingActions.resetBooking())
+    Router.push(`/${lang}`)
   }
 
   return (
     <Layout>
-      <div className="flex justify-center items-center">
-        <div className="flex flex-col justify-center items-center mt-16 p-10 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-3xl text-center ">
-          <Icon path={mdiCheck} size={6} color="#0CB3FA" />
-          <h1 className="mb-6 text-2xl sm:text-3xl leading-tight font-semibold text-gray-800">Commande validée!</h1>
-          <p className="mb-2 text-gray-700">Votre réservation et votre paiement ont bien été enregistrés.</p>
-          <p className="mb-2 text-gray-700">Vous allez recevoir un email contenant les détails de votre réservation et les instructions pour récupérer votre matériel.</p>
-          <p className="mb-2 text-gray-800 font-semibold">Bon séjour!</p>
-          <a href="/" onClick={resetBooking} className="bg-secondary-blue text-white font-bold py-3 px-4 mt-6 w-32 rounded-lg shadow-md focus:outline-none focus:shadow-outline hover:opacity-90">
-            OK
+      <div className="flex justify-center items-center w-full">
+        <div className="flex flex-col justify-between items-center px-4 py-8 sm:p-10 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-3xl text-center h-full md:h-auto">
+          <div className="flex flex-col items-center">
+            <Icon path={mdiCheck} size={4} color="#0CB3FA" />
+            <h1 className="mb-8 text-2xl sm:text-3xl leading-tight font-semibold text-gray-800">{t('confirmation:title')}</h1>
+          </div>
+          <div>
+            <p className="my-8 md:my-0 md:mb-2 text-gray-700">{t('confirmation:infos1')}</p>
+            <p className="my-8 md:my-0 md:mb-2 text-gray-700">{t('confirmation:infos2')}</p>
+            <p className="my-8 md:my-0 md:mb-2 text-gray-800 font-semibold">{t('confirmation:infos3')}</p>
+          </div>
+          <a href="/" onClick={resetBooking} className="bg-secondary-blue text-white font-bold py-3 px-4 mt-8 w-32 rounded-lg shadow-md focus:outline-none focus:shadow-outline hover:opacity-90">
+            {t('common:button.ok')}
           </a>
         </div>
       </div>

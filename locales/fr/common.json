@@ -4,13 +4,16 @@
     "validate": "Valider",
     "cancel": "Annuler",
     "save": "Enregistrer",
-    "pay": "Payer"
+    "pay": "Payer",
+    "ok": "Ok"
   },
   "label": {
     "adult": "Adulte",
     "adult_plural": "Adultes",
     "child": "Enfant",
-    "child_plural": "Enfants"
+    "child_plural": "Enfants",
+    "day": "jour",
+    "days": "jours"
   },
   "pack": {
     "content": "Contenu d'un pack",
