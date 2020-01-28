@@ -87,7 +87,8 @@ const BookingForm = props => {
           fromLabel={t('home:form.dateFromLabel')}
           toLabel={t('home:form.dateToLabel')}
           onChange={(type, date) => handleDateChange(type, date)}
-          onChangeToDate={() => document.getElementById('skiersInput').focus()} />
+          onChangeToDate={() => document.getElementById('skiersInput').focus()}
+          locale={lang} />
         <SkierDropdown
           childrenCount={booking.childrenCount}
           adultsCount={booking.adultsCount}

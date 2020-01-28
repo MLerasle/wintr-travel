@@ -1,11 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
 import moment from 'moment'
+import 'moment/locale/fr'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 
-import { formatDate, parseDate } from 'react-day-picker/moment'
+import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment'
 
 import Label from './Label'
 
@@ -53,7 +54,8 @@ export default class DateRangeInput extends React.Component {
     this.handleToChange = this.handleToChange.bind(this)
     this.state = {
       from: this.props.from ? new Date(this.props.from) : null,
-      to: this.props.to ? new Date(this.props.to) : null
+      to: this.props.to ? new Date(this.props.to) : null,
+      locale: this.props.locale
     }
   }
 
@@ -77,7 +79,7 @@ export default class DateRangeInput extends React.Component {
   }
 
   render() {
-    const { from, to } = this.state;
+    const { from, to, locale } = this.state;
     const modifiers = { start: from, end: to }
     const format = "DD/MM/YYYY"
     const fromValue = from ? formatDate(from, format) : null
@@ -186,6 +188,8 @@ export default class DateRangeInput extends React.Component {
             formatDate={formatDate}
             parseDate={parseDate}
             dayPickerProps={{
+              localeUtils: MomentLocaleUtils,
+              locale,
               selectedDays: [from, { from, to }],
               toMonth: to,
               modifiers,
@@ -207,6 +211,8 @@ export default class DateRangeInput extends React.Component {
             formatDate={formatDate}
             parseDate={parseDate}
             dayPickerProps={{
+              localeUtils: MomentLocaleUtils,
+              locale,
               selectedDays: [from, { from, to }],
               disabledDays: { before: from },
               modifiers,
