@@ -193,6 +193,7 @@ export default class DateRangeInput extends React.Component {
               navbarElement: <Navbar />,
               onDayClick: () => this.to.getInput().focus(),
             }}
+            inputProps={{ readOnly: true }}
             onDayChange={this.handleFromChange}
           />
         </span>
@@ -214,6 +215,7 @@ export default class DateRangeInput extends React.Component {
               numberOfMonths: 1,
               navbarElement: <Navbar />
             }}
+            inputProps={{ readOnly: true }}
             onDayChange={this.handleToChange}
           />
         </span>

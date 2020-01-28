@@ -19,7 +19,7 @@ const SkierInput = props => {
       skiers += ` - ${props.childrenCount} ${childrenLabel}`
     }
     return skiers
-  };
+  }
 
   return (
     <div className="relative w-full mt-4 z-50">
