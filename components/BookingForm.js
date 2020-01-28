@@ -65,7 +65,7 @@ const BookingForm = props => {
       return
     }
     dispatch(BookingActions.setAmount(bookingPrice.adults, bookingPrice.children, bookingPrice.total))
-    Router.push(`/${lang}/cart`)
+    Router.push(`/${lang}/cart`).then(() => window.scrollTo(0, 0))
   }
 
   return (
