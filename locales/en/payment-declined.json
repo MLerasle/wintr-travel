@@ -1,0 +1,5 @@
+{
+  "title": "Payment declined",
+  "infos1": "We are unable to process your payment. The decline could be due to insufficient funds, card expired, etc.",
+  "infos2": "Please make sure that everything is correct and try again?"
+}

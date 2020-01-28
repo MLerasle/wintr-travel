@@ -5,7 +5,8 @@
     "cancel": "Annuler",
     "save": "Enregistrer",
     "pay": "Payer",
-    "ok": "Ok"
+    "ok": "Ok",
+    "retry": "Réessayer"
   },
   "label": {
     "adult": "Adulte",

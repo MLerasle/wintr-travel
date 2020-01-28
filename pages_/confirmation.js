@@ -19,7 +19,7 @@ const Confirmation = () => {
 
   return (
     <Layout>
-      <div className="flex justify-center items-center w-full">
+      <div className="bg-gray-100 flex justify-center items-center w-full">
         <div className="flex flex-col justify-between items-center px-4 py-8 sm:p-10 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-3xl text-center h-full md:h-auto">
           <div className="flex flex-col items-center">
             <Icon path={mdiCheck} size={4} color="#0CB3FA" />
