@@ -14,7 +14,11 @@
     "child": "Child",
     "child_plural": "Children",
     "day": "day",
-    "days": "days"
+    "days": "days",
+    "about": "About",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "rights": "All rights reserved"
   },
   "pack": {
     "content": "Pack content",

@@ -14,7 +14,11 @@
     "child": "Enfant",
     "child_plural": "Enfants",
     "day": "jour",
-    "days": "jours"
+    "days": "jours",
+    "about": "À propos",
+    "terms": "CGV",
+    "privacy": "Données personnelles",
+    "rights": "Tous droits réservés"
   },
   "pack": {
     "content": "Contenu d'un pack",

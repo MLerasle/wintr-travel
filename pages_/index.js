@@ -14,7 +14,7 @@ const Index = props => {
   return (
     <div className="cover w-full absolute top-0 left-0">
       <Head>
-      <title>{t('home:title')}</title>
+        <title>{t('home:title')}</title>
       </Head>
       <div className="hidden md:block">
         <Nav />
