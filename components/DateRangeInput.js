@@ -101,6 +101,8 @@ export default class DateRangeInput extends React.Component {
               width: 100%;
             }
             .DayPickerInput input {
+              -moz-appearance: none;
+              -webkit-appearance: none;
               padding: 2px 10px;
               height: 42px;
               width: 100%;

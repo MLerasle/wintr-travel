@@ -28,7 +28,7 @@ const SkierInput = props => {
         type="text"
         readOnly
         id="skiersInput"
-        className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-secondary-blue w-full text-gray-800"
+        className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-secondary-blue w-full text-gray-800 appearance-none"
         style={{ paddingLeft: '10px' }}
         onFocus={() => setIsOpen(true)}
         value={inputValue()}
