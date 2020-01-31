@@ -1,5 +1,6 @@
 import React from 'react'
 import Router from 'next/router'
+import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import Icon from '@mdi/react'
 import { mdiClose } from '@mdi/js'
@@ -15,6 +16,9 @@ const PaymentDeclined = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>{t('confirmation:title')} - Wintr Travel</title>
+      </Head>
       <div className="bg-gray-100 flex justify-center items-center w-full">
         <div className="flex flex-col justify-between items-center px-4 py-8 sm:p-10 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-3xl text-center h-full md:h-auto">
           <div className="flex flex-col items-center">

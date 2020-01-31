@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Router from 'next/router'
+import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import Icon from '@mdi/react'
 import { mdiMapMarker, mdiCalendar } from '@mdi/js'
@@ -65,6 +66,9 @@ const Cart = () => {
 
   return (
     <>
+      <Head>
+        <title>{t('cart:title')} - Wintr Travel</title>
+      </Head>
       <div className="cover w-full absolute top-0 left-0">
         <div className="hidden md:block">
           <Nav />
