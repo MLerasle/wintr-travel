@@ -3,7 +3,9 @@ import { Provider } from 'react-redux'
 import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
+
 import configureStore from '../stores'
+import '../assets/style.css'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

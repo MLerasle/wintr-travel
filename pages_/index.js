@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { connect } from 'react-redux'
 import useTranslation from 'next-translate/useTranslation'
 
-import '../assets/style.css'
 import Nav from '../components/nav'
 import BookingForm from '../components/BookingForm'
 import PackContent from '../components/PackContent'
@@ -75,9 +74,9 @@ Index.getInitialProps = async function({ req, store }) {
 }
 
 const mapStateToProps = state => ({
-  resorts: state.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
+  resorts: state.catalog.resorts ? state.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
     return { value: r.id, label: r.name }
-  })
+  }) : []
 })
 
 export default connect(mapStateToProps)(Index)
