@@ -2,7 +2,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary-blue': '#05445E',
+        'primary-blue': '#245688',
         'secondary-blue': '#0CB3FA'
       },
       opacity: {
@@ -26,6 +26,10 @@ module.exports = {
         '14xl': '12rem',
         '15xl': '13rem',
         '16xl': '14rem',
+      },
+      fontFamily: {
+        'sans': ['Montserrat', 'Roboto', 'Open Sans'],
+        'title': ['Montserrat']
       }
     }
   }

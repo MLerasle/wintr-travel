@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import configureStore from '../stores'
 import '../assets/style.css'
@@ -22,7 +23,9 @@ class MyApp extends App {
     const { Component, pageProps, store } = this.props
     return (
       <Provider store={store}>
-        <Component {...pageProps} />
+        <PersistGate persistor={store.__PERSISTOR} loading={null}>
+          <Component {...pageProps} />
+        </PersistGate>
       </Provider>
     )
   }

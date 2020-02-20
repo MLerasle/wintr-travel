@@ -49,8 +49,8 @@ const Nav = props => {
   return (
     <nav className={"sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 " + (props.background && 'bg-primary-blue')}>
       <div className="flex items-center justify-between px-6 py-3 sm:p-0">
-        <div className="text-white">
-          <a href="/">WINTR TRAVEL</a>
+        <div className="text-white font-title font-semibold text-2xl tracking-wide">
+          <a href="/">Wintr Travel</a>
         </div>
         <div className="sm:hidden flex items-center">
           <button type="button" className="text-white hover:text-white focus:text-white focus:outline-none" onClick={toggleIsMenuOpen}>
