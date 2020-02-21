@@ -53,7 +53,7 @@ const Nav = props => {
           <a href="/">Wintr Travel</a>
         </div>
         <div className="sm:hidden flex items-center">
-          <button type="button" className="text-white hover:text-white focus:text-white focus:outline-none" onClick={toggleIsMenuOpen}>
+          <button type="button" aria-label={isMenuOpen ? "close menu" : "open menu"} className="text-white hover:text-white focus:text-white focus:outline-none" onClick={toggleIsMenuOpen}>
             <svg className="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path d={menuIconPath} />
             </svg>

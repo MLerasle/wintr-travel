@@ -31,13 +31,13 @@ function Navbar({
   }
   return (
     <div className={className}>
-      <button style={{...style, ...styleLeft}} onClick={e => {
+      <button aria-label="previous month" style={{...style, ...styleLeft}} onClick={e => {
         e.preventDefault()
         onPreviousClick()
       }}>
         ←
       </button>
-      <button style={{...style, ...styleRight}} onClick={e => {
+      <button aria-label="next month" style={{...style, ...styleRight}} onClick={e => {
         e.preventDefault()
         onNextClick()
       }}>
@@ -182,7 +182,7 @@ export default class DateRangeInput extends React.Component {
         `}</style>
         </Head>
         <span className="InputDates-from">
-          <Label title={this.props.fromLabel} />
+          <Label title={this.props.fromLabel} for="InputDates-from" />
           <DayPickerInput
             value={fromValue}
             placeholder="dd/mm/yyyy"
@@ -199,12 +199,12 @@ export default class DateRangeInput extends React.Component {
               navbarElement: <Navbar />,
               onDayClick: () => this.to.getInput().focus(),
             }}
-            inputProps={{ readOnly: true }}
+            inputProps={{ readOnly: true, id: "InputDates-from" }}
             onDayChange={this.handleFromChange}
           />
         </span>
         <span className="InputDates-to">
-          <Label title={this.props.toLabel} />
+          <Label title={this.props.toLabel} for="InputDates-to" />
           <DayPickerInput
             ref={el => (this.to = el)}
             value={toValue}
@@ -223,7 +223,7 @@ export default class DateRangeInput extends React.Component {
               numberOfMonths: 1,
               navbarElement: <Navbar />
             }}
-            inputProps={{ readOnly: true }}
+            inputProps={{ readOnly: true, id: "InputDates-to" }}
             onDayChange={this.handleToChange}
           />
         </span>

@@ -14,6 +14,8 @@ const Button = (props) => {
   return (
     <button
       id={props.id}
+      name={props.name}
+      aria-label={props.ariaLabel}
       className={classes}
       onClick={props.onClick}>
       {props.children}

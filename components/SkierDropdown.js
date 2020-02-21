@@ -23,7 +23,7 @@ const SkierInput = props => {
 
   return (
     <div className="relative w-full mt-4 z-50">
-      <Label title={t('home:form.skiersLabel')} />
+      <Label title={t('home:form.skiersLabel')} for="skiersInput" />
       <input
         type="text"
         readOnly
@@ -40,6 +40,7 @@ const SkierInput = props => {
           </label>
           <Counter
             value={props.adultsCount}
+            label="adults"
             onIncrement={e => {
               e.preventDefault()
               props.onChange('increment', 'adult')
@@ -56,6 +57,7 @@ const SkierInput = props => {
           </label>
           <Counter
             value={props.childrenCount}
+            label="children"
             onIncrement={e => {
               e.preventDefault()
               props.onChange('increment', 'child')
@@ -68,6 +70,7 @@ const SkierInput = props => {
         </div>
         <div className="flex justify-between items-center mt-8">
           <button
+            name={t('common:button.cancel')}
             className="text-gray-600 font-semibold hover:underline text-sm focus:outline-none focus:shadow-outline"
             onClick={e => {
               e.preventDefault()
@@ -77,6 +80,7 @@ const SkierInput = props => {
             {t('common:button.cancel')}
           </button>
           <button
+            name={t('common:button.save')}
             className="text-secondary-blue font-semibold hover:underline text-sm focus:outline-none focus:shadow-outline"
             onClick={e => {
               e.preventDefault()

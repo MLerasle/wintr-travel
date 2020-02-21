@@ -96,6 +96,7 @@ const Cart = () => {
                 <span className="text-gray-800 text-md font-semibold uppercase tracking-wide sm:mr-12 mb-2 sm:mb-0">{t('common:pack.adult')}</span>
                 <Counter
                   value={booking.adultsCount}
+                  label="adults"
                   onIncrement={e => {
                     e.preventDefault()
                     handleSkierChange('increment', 'adult')
@@ -116,6 +117,7 @@ const Cart = () => {
                   <span className="text-gray-800 text-md font-semibold uppercase tracking-wide sm:mr-12 mb-2 sm:mb-0">{t('common:pack.child')}</span>
                   <Counter
                     value={booking.childrenCount}
+                    label="children"
                     onIncrement={e => {
                       e.preventDefault()
                       handleSkierChange('increment', 'child')
@@ -130,6 +132,7 @@ const Cart = () => {
               </div>
               :
               <button
+                name={t('cart:addChildren')}
                 className="text-secondary-blue cursor-pointer mb-6 px-2 focus:outline-none focus:shadow-outline hover:underline"
                 onClick={addChildToBooking}>
                 {t('cart:addChildren')}
@@ -137,6 +140,7 @@ const Cart = () => {
             }
 
             <Button
+              name={t('common:button.pay')}
               disabled={!booking.isValid}
               onClick={validateCart}>
               {t('common:button.pay')} {booking.totalAmount} €

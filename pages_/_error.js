@@ -39,6 +39,7 @@ class CustomError extends Error {
           <h3 className="text-xl text-center text-gray-500 mb-4">Looks like you're not in the right place.</h3>
           <div className="w-auto">
             <Button
+              name="backHome"
               classes="mt-4 "
               onClick={this.goHome}>
               Go back home

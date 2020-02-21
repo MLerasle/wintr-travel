@@ -30,7 +30,7 @@ const customStyles = {
 
 const SelectInput = (props) => (
   <div>
-    <Label title={props.label} />
+    <Label title={props.label} for="react-select-Where-input" />
     <Select
       instanceId={props.label}
       autofocus

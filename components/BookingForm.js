@@ -96,6 +96,7 @@ const BookingForm = props => {
       </form>
       <Button
         id="searchButton"
+        name={t('common:button.validate')}
         disabled={!booking.isValid}
         onClick={validateSearch} >
         {t('common:button.validate')}
