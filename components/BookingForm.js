@@ -29,10 +29,14 @@ const BookingForm = props => {
   const handleDateChange = (type, date) => {
     const { firstDay, lastDay } = booking
     const { setDates } = BookingActions
-    if (type === 'from') {
-      dispatch(setDates(catalog, date, lastDay))
-    } else {
-      dispatch(setDates(catalog, firstDay, date))
+    try {
+      if (type === 'from') {
+        dispatch(setDates(catalog, date, lastDay))
+      } else {
+        dispatch(setDates(catalog, firstDay, date))
+      }
+    } catch (error) {
+      console.log('ERROR', error)
     }
   }
 
@@ -88,7 +92,9 @@ const BookingForm = props => {
           toLabel={t('home:form.dateToLabel')}
           onChange={(type, date) => handleDateChange(type, date)}
           onChangeToDate={() => document.getElementById('skiersInput').focus()}
-          locale={lang} />
+          locale={lang}
+          minDate={catalog.weeks[0].first_day}
+          maxDate={catalog.weeks[catalog.weeks.length - 1].last_day} />
         <SkierDropdown
           childrenCount={booking.childrenCount}
           adultsCount={booking.adultsCount}

@@ -55,6 +55,8 @@ export default class DateRangeInput extends React.Component {
     this.state = {
       from: this.props.from ? new Date(this.props.from) : null,
       to: this.props.to ? new Date(this.props.to) : null,
+      minDate: this.props.minDate ? new Date(this.props.minDate) : null,
+      maxDate: this.props.maxDate ? new Date(this.props.maxDate) : null,
       locale: this.props.locale
     }
   }
@@ -79,7 +81,7 @@ export default class DateRangeInput extends React.Component {
   }
 
   render() {
-    const { from, to, locale } = this.state;
+    const { from, to, minDate, maxDate, locale } = this.state;
     const modifiers = { start: from, end: to }
     const format = "DD/MM/YYYY"
     const fromValue = from ? formatDate(from, format) : null
@@ -192,12 +194,19 @@ export default class DateRangeInput extends React.Component {
             dayPickerProps={{
               localeUtils: MomentLocaleUtils,
               locale,
+              disabledDays: { before: minDate, after: maxDate },
               selectedDays: [from, { from, to }],
               toMonth: to,
               modifiers,
               numberOfMonths: 1,
               navbarElement: <Navbar />,
-              onDayClick: () => this.to.getInput().focus(),
+              onDayClick: (day) => {
+                const formattedDay = moment(day, 'YYYY-MM-DD')
+                if (formattedDay < minDate || formattedDay > maxDate) {
+                  return
+                }
+                this.to.getInput().focus()
+              },
             }}
             inputProps={{ readOnly: true, id: "InputDates-from" }}
             onDayChange={this.handleFromChange}
@@ -216,12 +225,18 @@ export default class DateRangeInput extends React.Component {
               localeUtils: MomentLocaleUtils,
               locale,
               selectedDays: [from, { from, to }],
-              disabledDays: { before: from },
+              disabledDays: { before: from || minDate, after: maxDate },
               modifiers,
               month: from,
               fromMonth: from,
               numberOfMonths: 1,
-              navbarElement: <Navbar />
+              navbarElement: <Navbar />,
+              onDayClick: (day) => {
+                const formattedDay = moment(day, 'YYYY-MM-DD')
+                if (formattedDay < minDate || formattedDay > maxDate) {
+                  return
+                }
+              },
             }}
             inputProps={{ readOnly: true, id: "InputDates-to" }}
             onDayChange={this.handleToChange}

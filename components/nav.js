@@ -50,7 +50,7 @@ const Nav = props => {
     <nav className={"sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 " + (props.background && 'bg-primary-blue')}>
       <div className="flex items-center justify-between px-6 py-3 sm:p-0">
         <div className="text-white font-title font-semibold text-2xl tracking-wide">
-          <a href="/">Wintr Travel</a>
+          <a href={`/${lang}`}>Wintr Travel</a>
         </div>
         <div className="sm:hidden flex items-center">
           <button type="button" aria-label={isMenuOpen ? "close menu" : "open menu"} className="text-white hover:text-white focus:text-white focus:outline-none" onClick={toggleIsMenuOpen}>

@@ -28,7 +28,6 @@ module.exports = {
         '16xl': '14rem',
       },
       fontFamily: {
-        'sans': ['Montserrat', 'Roboto', 'Open Sans'],
         'title': ['Montserrat']
       }
     }
