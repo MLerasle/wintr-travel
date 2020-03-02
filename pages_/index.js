@@ -29,21 +29,29 @@ const Index = props => {
       </div>
       <style jsx>{`
         .mobile-image {
-          background-image: url(/wintr-travel-home-sm.jpg);
+          background-image: url(/wintr-travel-home-sm.webp);
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;
           background-color: transparent;
         }
 
+        .no-webp .mobile-image {
+          background-image: url(/wintr-travel-home-sm.jpg);
+        }
+
         @media (min-width: 640px) {
           .cover {
-            background-image: url(/wintr-travel-home.jpg);
+            background-image: url(/wintr-travel-home.webp);
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             background-color: transparent;
+          }
+
+          .no-webp .cover {
+            background-image: url(/wintr-travel-home.jpg);
           }
         }
 

@@ -13,7 +13,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script src="/scripts/tawkto.js"></script>
+          <script src="/scripts/tawkto.js" defer></script>
         </body>
       </Html>
     )
