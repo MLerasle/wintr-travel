@@ -2,6 +2,7 @@ import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
 import '../assets/style.css'
+import Header from './Header'
 import PackItem from './PackItem'
 
 const PackContent = () => {
@@ -17,9 +18,7 @@ const PackContent = () => {
 
   return (
     <div className="bg-white w-full">
-      <h2 className="text-2xl leading-tight font-semibold text-gray-800">
-        {t('common:pack.content')}:
-      </h2>
+      <Header>{t('common:pack.content')}:</Header>
       <ul className="text-gray-600 pt-4">
         {
           items.map(item => (

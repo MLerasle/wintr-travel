@@ -7,6 +7,7 @@ import BookingActions from '../stores/Booking/Actions'
 import SelectInput from '../components/SelectInput'
 import DateRangeInput from './DateRangeInput'
 import SkierDropdown from './SkierDropdown'
+import Header from '../components/Header'
 import Button from '../components/Button'
 
 import { calcBookingPrice } from '../helpers/pricing'
@@ -74,9 +75,9 @@ const BookingForm = props => {
 
   return (
     <div className="bg-white md:rounded-lg md:shadow-xl px-6 py-4 sm:p-8 w-full md:max-w-lg">
-      <h2 className="text-2xl sm:text-3xl leading-tight font-semibold text-gray-800">
+      <Header className="sm:text-3xl">
         {t('home:form.title')}
-      </h2>
+      </Header>
       <form className="flex flex-col mt-4 mb-8">
         <SelectInput
           options={props.resorts}

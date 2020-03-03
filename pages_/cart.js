@@ -10,6 +10,7 @@ import BookingActions from '../stores/Booking/Actions'
 import Nav from '../components/nav'
 import PackContent from '../components/PackContent'
 import Counter from '../components/Counter'
+import Header from '../components/Header'
 import Button from '../components/Button'
 
 import { calcBookingPrice } from '../helpers/pricing'
@@ -78,7 +79,9 @@ const Cart = () => {
         </div>
         <div className="flex flex-col items-start sm:items-center md:py-6">
           <div className="px-6 py-8 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-xl">
-            <h1 className="mb-6 text-2xl leading-tight font-semibold text-gray-800">{t('cart:title')}</h1>
+            <Header className="sm:text-3xl">
+              {t('cart:title')}
+            </Header>
 
             <div className="w-full border border-gray-300 rounded-lg px-4 py-3 my-6">
               <div className="flex items-center py-1">
