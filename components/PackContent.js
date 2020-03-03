@@ -16,11 +16,11 @@ const PackContent = () => {
   ]
 
   return (
-    <div className="py-3 sm:py-0 px-6 bg-white w-full">
+    <div className="bg-white w-full">
       <h2 className="text-2xl leading-tight font-semibold text-gray-800">
         {t('common:pack.content')}:
       </h2>
-      <ul className="text-gray-600 px-2 py-4">
+      <ul className="text-gray-600 pt-4">
         {
           items.map(item => (
             <PackItem item={item} key={item} />

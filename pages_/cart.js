@@ -77,7 +77,7 @@ const Cart = () => {
           <Nav background="primary" />
         </div>
         <div className="flex flex-col items-start sm:items-center md:py-6">
-          <div className="px-6 pt-8 pb-6 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-xl">
+          <div className="px-6 py-8 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-xl">
             <h1 className="mb-6 text-2xl leading-tight font-semibold text-gray-800">{t('cart:title')}</h1>
 
             <div className="w-full border border-gray-300 rounded-lg px-4 py-3 my-6">
@@ -145,7 +145,7 @@ const Cart = () => {
               onClick={validateCart}>
               {t('common:button.pay')} {booking.totalAmount} €
             </Button>
-            <div className="bg-white sm:max-w-xl w-full -mx-6 mt-6 md:mt-10">
+            <div className="mt-6">
               <PackContent />
             </div>
           </div>
