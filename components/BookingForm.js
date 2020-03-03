@@ -14,7 +14,6 @@ import { calcBookingPrice } from '../helpers/pricing'
 
 const BookingForm = props => {
   const booking = useSelector(state => state.booking)
-  const catalog = useSelector(state => state.catalog)
   const dispatch = useDispatch()
   const { t, lang } = useTranslation()
 
@@ -32,9 +31,9 @@ const BookingForm = props => {
     const { setDates } = BookingActions
     try {
       if (type === 'from') {
-        dispatch(setDates(catalog, date, lastDay))
+        dispatch(setDates(props.catalog, date, lastDay))
       } else {
-        dispatch(setDates(catalog, firstDay, date))
+        dispatch(setDates(props.catalog, firstDay, date))
       }
     } catch (error) {
       console.log('ERROR', error)
@@ -63,7 +62,7 @@ const BookingForm = props => {
     e.preventDefault()
     if (!booking.isValid) { return }
     const { resortId, weekId, duration, adultsCount, childrenCount } = booking
-    const bookingPrice = calcBookingPrice(catalog, resortId, weekId, duration, adultsCount, childrenCount)
+    const bookingPrice = calcBookingPrice(props.catalog, resortId, weekId, duration, adultsCount, childrenCount)
     if (bookingPrice.error) {
       // TODO: Raise error and do something useful for the user :)
       console.log('ERROR in bookingPrice calculation', bookingPrice)
@@ -94,8 +93,8 @@ const BookingForm = props => {
           onChange={(type, date) => handleDateChange(type, date)}
           onChangeToDate={() => document.getElementById('skiersInput').focus()}
           locale={lang}
-          minDate={catalog.weeks[0].first_day}
-          maxDate={catalog.weeks[catalog.weeks.length - 1].last_day} />
+          minDate={props.catalog.weeks[0].first_day}
+          maxDate={props.catalog.weeks[props.catalog.weeks.length - 1].last_day} />
         <SkierDropdown
           childrenCount={booking.childrenCount}
           adultsCount={booking.adultsCount}

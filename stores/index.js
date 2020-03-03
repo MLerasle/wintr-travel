@@ -1,11 +1,9 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import createSagaMiddleware from 'redux-saga'
+import { createStore, combineReducers } from 'redux'
 import { persistStore } from 'redux-persist'
 
 import { reducer as BookingReducer } from './Booking/Reducers'
 import { reducer as CatalogReducer } from './Catalog/Reducers'
 import { reducer as LocaleReducer } from './Locale/Reducers'
-import rootSaga from './Sagas'
 
 const rootReducer = combineReducers({
   booking: BookingReducer,
@@ -16,9 +14,6 @@ const rootReducer = combineReducers({
 const configureStore = (preloadedState) => {
   let store
   const isClient = typeof window !== 'undefined'
-  const composeEnhancers = (isClient && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
-
-  const sagaMiddleware = createSagaMiddleware()
 
   if (isClient) {
     const { persistReducer } = require('redux-persist')
@@ -32,20 +27,16 @@ const configureStore = (preloadedState) => {
 
     store = createStore(
       persistReducer(persistConfig, rootReducer),
-      preloadedState,
-      composeEnhancers(applyMiddleware(sagaMiddleware))
+      preloadedState
     )
 
     store.__PERSISTOR = persistStore(store);
   } else {
     store = createStore(
       rootReducer,
-      preloadedState,
-      composeEnhancers(applyMiddleware(sagaMiddleware))
+      preloadedState
     )
   }
-
-  store.sagaTask = sagaMiddleware.run(rootSaga)
 
   return store
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import App from 'next/app'
 import withRedux from 'next-redux-wrapper'
-import withReduxSaga from 'next-redux-saga'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import configureStore from '../stores'
@@ -31,4 +30,4 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(configureStore)(withReduxSaga(MyApp))
+export default withRedux(configureStore)(MyApp)
