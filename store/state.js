@@ -1,4 +1,4 @@
-export const INITIAL_STATE = {
+export const INITIAL_BOOKING = {
   resortId: null,
   resortName: null,
   firstDay: null,

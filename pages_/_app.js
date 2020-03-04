@@ -1,33 +1,14 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import App from 'next/app'
-import withRedux from 'next-redux-wrapper'
-import { PersistGate } from 'redux-persist/integration/react'
 
-import configureStore from '../stores'
+import LocaleContextProvider from '../context/LocaleContext'
 import '../assets/style.css'
 
-class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
-
-    return { pageProps }
-  }
-
-  render() {
-    const { Component, pageProps, store } = this.props
-    return (
-      <Provider store={store}>
-        <PersistGate persistor={store.__PERSISTOR} loading={null}>
-          <Component {...pageProps} />
-        </PersistGate>
-      </Provider>
-    )
-  }
+const MyApp = ({ Component, pageProps }) => {
+  return(
+    <LocaleContextProvider>
+      <Component {...pageProps} />
+    </LocaleContextProvider>
+  )
 }
 
-export default withRedux(configureStore)(MyApp)
+export default MyApp

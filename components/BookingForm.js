@@ -1,9 +1,7 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useReducer } from 'react'
 import Router from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
-import BookingActions from '../stores/Booking/Actions'
 import SelectInput from '../components/SelectInput'
 import DateRangeInput from './DateRangeInput'
 import SkierDropdown from './SkierDropdown'
@@ -11,29 +9,28 @@ import Header from '../components/Header'
 import Button from '../components/Button'
 
 import { calcBookingPrice } from '../helpers/pricing'
+import { INITIAL_BOOKING } from '../store/state'
+import { reducer } from '../store/reducer'
 
 const BookingForm = props => {
-  const booking = useSelector(state => state.booking)
-  const dispatch = useDispatch()
   const { t, lang } = useTranslation()
+  const [booking, dispatch] = useReducer(reducer, INITIAL_BOOKING)
 
   const handleResortChange = (resort, triggeredAction) => {
-    const { setResort } = BookingActions
     if (triggeredAction.action === 'clear') {
-      return dispatch(setResort(null, null))
+      return dispatch({ type: 'SET_RESORT', resortId: null, resortName: null })
     }
-    dispatch(setResort(resort.value, resort.label))
+    dispatch({ type: 'SET_RESORT', resortId: resort.value, resortName: resort.label })
     document.querySelector('.InputDates-from input').focus()
   }
 
   const handleDateChange = (type, date) => {
     const { firstDay, lastDay } = booking
-    const { setDates } = BookingActions
     try {
       if (type === 'from') {
-        dispatch(setDates(props.catalog, date, lastDay))
+        dispatch({ type: 'SET_DATES', catalog: props.catalog, firstDay: date, lastDay })
       } else {
-        dispatch(setDates(props.catalog, firstDay, date))
+        dispatch({ type: 'SET_DATES', catalog: props.catalog, firstDay, lastDay: date })
       }
     } catch (error) {
       console.log('ERROR', error)
@@ -42,7 +39,6 @@ const BookingForm = props => {
 
   const handleSkierChange = (action, age = null) => {
     let { adultsCount, childrenCount } = booking
-    const { setPeople } = BookingActions
     if (action === 'increment' && age === 'adult') {
       adultsCount += 1
     } else if (action === 'increment' && age === 'child') {
@@ -55,7 +51,7 @@ const BookingForm = props => {
       adultsCount = 2
       childrenCount = 0
     }
-    dispatch(setPeople(adultsCount, childrenCount))
+    dispatch({ type: 'SET_PEOPLE', adultsCount, childrenCount })
   }
 
   const validateSearch = e => {
@@ -68,7 +64,7 @@ const BookingForm = props => {
       console.log('ERROR in bookingPrice calculation', bookingPrice)
       return
     }
-    dispatch(BookingActions.setAmount(bookingPrice.adults, bookingPrice.children, bookingPrice.total))
+    dispatch({ type: 'SET_AMOUNT', adultsAmount: bookingPrice.adults, childrenAmount: bookingPrice.children, totalAmount: bookingPrice.total })
     Router.push(`/${lang}/cart`).then(() => window.scrollTo(0, 0))
   }
 

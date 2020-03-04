@@ -1,20 +1,20 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useReducer } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import Icon from '@mdi/react'
 import { mdiCheck } from '@mdi/js'
 
-import BookingActions from '../stores/Booking/Actions'
 import Layout from '../components/Layout'
+import { INITIAL_BOOKING } from '../store/state'
+import { reducer } from '../store/reducer'
 
 const Confirmation = () => {
-  const dispatch = useDispatch()
+  const [_, dispatch] = useReducer(reducer, INITIAL_BOOKING)
   const { t, lang } = useTranslation()
 
   const resetBooking = () => {
-    dispatch(BookingActions.resetBooking())
+    dispatch({ type: 'RESET_BOOKING' })
     Router.push(`/${lang}`)
   }
 

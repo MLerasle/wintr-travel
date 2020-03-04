@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useReducer } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import Icon from '@mdi/react'
 import { mdiMapMarker, mdiCalendar } from '@mdi/js'
 
-import BookingActions from '../stores/Booking/Actions'
 import Nav from '../components/nav'
 import PackContent from '../components/PackContent'
 import Counter from '../components/Counter'
@@ -16,11 +14,12 @@ import Button from '../components/Button'
 import { calcBookingPrice } from '../helpers/pricing'
 import { formattedDates } from '../helpers/dates'
 
+import { reducer } from '../store/reducer'
+
 const Cart = () => {
-  const booking = useSelector(state => state.booking)
+  const storedBooking = JSON.parse(sessionStorage.getItem('booking'))
   const catalog = JSON.parse(sessionStorage.getItem('catalog'))
-  const dispatch = useDispatch()
-  const { setPeople, setAmount } = BookingActions
+  const [booking, dispatch] = useReducer(reducer, storedBooking)
   const { t, lang } = useTranslation()
 
   useEffect(() => {
@@ -48,17 +47,17 @@ const Cart = () => {
       adultsCount = 2
       childrenCount = 0
     }
-    dispatch(setPeople(adultsCount, childrenCount))
+    dispatch({ type: 'SET_PEOPLE', adultsCount, childrenCount })
     const amount = updateAmounts(adultsCount, childrenCount)
     if (Object.keys(amount).length > 0) {
-      dispatch(setAmount(amount.adults, amount.children, amount.total))
+      dispatch({ type: 'SET_AMOUNT', adultsAmount: amount.adults, childrenAmount: amount.children, totalAmount: amount.total })
     }
   }
 
   const addChildToBooking = () => {
-    dispatch(setPeople(booking.adultsCount, 1))
+    dispatch({ type: 'SET_PEOPLE', adultsCount: booking.adultsCount, childrenCount: 1 })
     const amount = updateAmounts(booking.adultsCount, 1)
-    dispatch(setAmount(amount.adults, amount.children, amount.total))
+    dispatch({ type: 'SET_AMOUNT', adultsAmount: amount.adults, childrenAmount: amount.children, totalAmount: amount.total })
   }
 
   const validateCart = () => {
@@ -178,6 +177,10 @@ const Cart = () => {
       `}</style>
     </>
   )
+}
+
+Cart.getInitialProps = async () => {
+  return {}
 }
 
 export default Cart

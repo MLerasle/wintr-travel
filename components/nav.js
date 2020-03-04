@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
 import '../assets/style.css'
-import LocaleActions from '../stores/Locale/Actions'
+import { LocaleContext } from '../context/LocaleContext'
 
 const Nav = props => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [menuIconPath, setMenuIconPath] = useState("M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z")
-  const dispatch = useDispatch()
+  const { locale, storeLocale } = useContext(LocaleContext)
   const { t, lang } = useTranslation()
   const router = useRouter()
 
@@ -29,11 +28,6 @@ const Nav = props => {
     // Remove locale part of the current url
     currentPath = currentPath.replace('/en', '').replace('/fr', '')
     return `/${locale}${currentPath}`
-  }
-
-  const setLocale = locale => {
-    if (!locale) { return }
-    dispatch(LocaleActions.setLocale(locale))
   }
 
   const toggleIsMenuOpen = () => {
@@ -65,7 +59,7 @@ const Nav = props => {
           <Link href={href || localizedPath(locale)} key={key}>
             <a
               className="mt-1 block py-1 text-white tracking-wide hover:text-gray-300 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer"
-              onClick={() => setLocale(locale)}>
+              onClick={() => storeLocale(locale)}>
               {label}
             </a>
           </Link>

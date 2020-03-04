@@ -89,7 +89,7 @@ const Index = props => {
 }
 
 Index.getInitialProps = async function({ req }) {
-  if (!req) { return }
+  if (!req) { return {} }
   const response = await fetch('https://catalog.wintr.travel/v1/catalog.json')
   const catalog = await response.json()
   return {
