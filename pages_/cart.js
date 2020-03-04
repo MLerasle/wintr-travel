@@ -18,7 +18,7 @@ import { formattedDates } from '../helpers/dates'
 
 const Cart = () => {
   const booking = useSelector(state => state.booking)
-  const catalog = useSelector(state => state.catalog)
+  const catalog = JSON.parse(sessionStorage.getItem('catalog'))
   const dispatch = useDispatch()
   const { setPeople, setAmount } = BookingActions
   const { t, lang } = useTranslation()

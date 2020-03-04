@@ -9,17 +9,16 @@ import PackContent from '../components/PackContent'
 
 const Index = props => {
   const { t } = useTranslation()
-  const [resorts, setResorts] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [catalog, setCatalog] = useState([])
 
   useEffect(() => {
     if (props.catalog) {
       sessionStorage.setItem('catalog', JSON.stringify(props.catalog))
     }
-    const catalogResorts = JSON.parse(sessionStorage.getItem('catalog')).resorts
-    const selectableResorts = catalogResorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
-      return { value: r.id, label: r.name }
-    })
-    setResorts(selectableResorts)
+    const storedCatalog = JSON.parse(sessionStorage.getItem('catalog'))
+    setCatalog(storedCatalog)
+    setIsLoading(false)
   }, [])
 
   return (
@@ -33,12 +32,18 @@ const Index = props => {
       <div className="mobile-image md:hidden h-64">
         <Nav />
       </div>
-      <div className="booking-form flex flex-col items-start sm:items-center md:py-6">
-        <BookingForm catalog={props.catalog} resorts={resorts} />
-      </div>
-      <div className="md:hidden mx-6 mt-2 mb-6">
-        <PackContent />
-      </div>
+      {
+        !isLoading ?
+        <>
+          <div className="booking-form flex flex-col items-start sm:items-center md:py-6">
+            <BookingForm catalog={catalog} />
+          </div>
+          <div className="md:hidden mx-6 mt-2 mb-6">
+            <PackContent />
+          </div>
+        </>
+        : null
+      }
       <style jsx>{`
         .mobile-image {
           background-image: url(/wintr-travel-home-sm.webp);
@@ -83,9 +88,8 @@ const Index = props => {
   )
 }
 
-Index.getInitialProps = async function({ req, store }) {
+Index.getInitialProps = async function({ req }) {
   if (!req) { return }
-
   const response = await fetch('https://catalog.wintr.travel/v1/catalog.json')
   const catalog = await response.json()
   return {

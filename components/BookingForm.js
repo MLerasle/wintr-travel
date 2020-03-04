@@ -79,7 +79,9 @@ const BookingForm = props => {
       </Header>
       <form className="flex flex-col mt-4 mb-8">
         <SelectInput
-          options={props.resorts}
+          options={props.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
+            return { value: r.id, label: r.name }
+          })}
           label={t('home:form.resortLabel')}
           placeholder={t('home:form.resortPlaceholder')}
           defaultValue={booking.resortId ? { label: booking.resortName, value: booking.resortId } : ''}
