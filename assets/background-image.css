@@ -1,0 +1,29 @@
+.webp .mobile-image {
+  background-image: url("/wintr-travel-home-sm.webp");
+}
+
+.no-webp .mobile-image {
+  background-image: url("/wintr-travel-home-sm.jpg");
+}
+
+@media (min-width: 640px) {
+  .webp .cover {
+    background-image: url("/wintr-travel-home.webp");
+  }
+
+  .no-webp .cover {
+    background-image: url("/wintr-travel-home.jpg");
+  }
+}
+
+@media (min-height: 550px) {
+  .cover {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1024px) and (min-height: 768px) {
+  .booking-form {
+    padding: 3rem 0;
+  }
+}

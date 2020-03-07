@@ -4,7 +4,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <script src="/scripts/modernizr-webp.js" defer></script>
+        </Head>
         <body>
           <Main />
           <NextScript />

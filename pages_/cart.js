@@ -11,6 +11,8 @@ import Counter from '../components/Counter'
 import Header from '../components/Header'
 import Button from '../components/Button'
 
+import '../assets/background-image.css'
+
 import { calcBookingPrice } from '../helpers/pricing'
 import { formattedDates } from '../helpers/dates'
 
@@ -69,7 +71,7 @@ const Cart = () => {
       <Head>
         <title>{t('cart:title')} - Wintr Travel</title>
       </Head>
-      <div className="cover w-full absolute top-0 left-0">
+      <div className="cover sm:bg-center sm:bg-no-repeat sm:bg-fixed sm:bg-cover sm:bg-transparent w-full absolute top-0 left-0">
         <div className="hidden md:block">
           <Nav />
         </div>
@@ -89,7 +91,7 @@ const Cart = () => {
               </div>
               <div className="flex items-center py-1">
                 <Icon path={mdiCalendar} size={1} color="#0CB3FA" />
-                <span className="ml-2 text-gray-700 tracking-wide formatted-dates">{formattedDates(booking.firstDay, booking.lastDay, t, lang)}</span>
+                <span className="ml-2 text-gray-700 tracking-wide capitalize">{formattedDates(booking.firstDay, booking.lastDay, t, lang)}</span>
               </div>
             </div>
 
@@ -154,25 +156,10 @@ const Cart = () => {
         </div>
       </div>
       <style jsx>{`
-        @media (min-width: 768px) {
-          .cover {
-            background-image: url(/wintr-travel-home.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            background-color: transparent;
-          }
-        }
-
         @media (min-height: 800px) {
           .cover {
             height: 100%;
           }
-        }
-
-        .formatted-dates {
-          text-transform: capitalize;
         }
       `}</style>
     </>

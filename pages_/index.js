@@ -7,6 +7,8 @@ import Nav from '../components/nav'
 import BookingForm from '../components/BookingForm'
 import PackContent from '../components/PackContent'
 
+import '../assets/background-image.css'
+
 const Index = props => {
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(true)
@@ -22,14 +24,14 @@ const Index = props => {
   }, [])
 
   return (
-    <div className="cover w-full absolute top-0 left-0">
+    <div className="cover sm:bg-center sm:bg-no-repeat sm:bg-fixed sm:bg-cover sm:bg-transparent w-full absolute top-0 left-0">
       <Head>
         <title>{t('home:title')}</title>
       </Head>
       <div className="hidden md:block">
         <Nav />
       </div>
-      <div className="mobile-image md:hidden h-64">
+      <div className="mobile-image bg-center bg-no-repeat bg-cover bg-transparent md:hidden h-64">
         <Nav />
       </div>
       {
@@ -44,46 +46,6 @@ const Index = props => {
         </>
         : null
       }
-      <style jsx>{`
-        .mobile-image {
-          background-image: url(/wintr-travel-home-sm.webp);
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-color: transparent;
-        }
-
-        .no-webp .mobile-image {
-          background-image: url(/wintr-travel-home-sm.jpg);
-        }
-
-        @media (min-width: 640px) {
-          .cover {
-            background-image: url(/wintr-travel-home.webp);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            background-color: transparent;
-          }
-
-          .no-webp .cover {
-            background-image: url(/wintr-travel-home.jpg);
-          }
-        }
-
-        @media (min-height: 550px) {
-          .cover {
-            height: 100%;
-          }
-        }
-
-        @media (min-width: 1024px) and (min-height: 768px) {
-          .booking-form {
-            padding: 3rem 0;
-          }
-        }
-      `}</style>
     </div>
   )
 }
