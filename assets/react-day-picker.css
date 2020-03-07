@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 .InputDates {
   margin-top: 1rem;
   width: 100%;
@@ -92,3 +93,4 @@
   background-color: #0CB3FA !important;
   color: white;
 }
+/* purgecss end ignore */
