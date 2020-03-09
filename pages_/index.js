@@ -24,14 +24,14 @@ const Index = props => {
   }, [])
 
   return (
-    <div className="cover sm:bg-center sm:bg-no-repeat sm:bg-fixed sm:bg-cover sm:bg-transparent w-full absolute top-0 left-0">
+    <div className="cover background-image w-full absolute top-0 left-0">
       <Head>
         <title>{t('home:title')}</title>
       </Head>
       <div className="hidden md:block">
         <Nav />
       </div>
-      <div className="mobile-image bg-center bg-no-repeat bg-cover bg-transparent md:hidden h-64">
+      <div className="mobile-image background-image md:hidden h-64">
         <Nav />
       </div>
       {

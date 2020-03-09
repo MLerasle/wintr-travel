@@ -71,7 +71,7 @@ const Cart = () => {
       <Head>
         <title>{t('cart:title')} - Wintr Travel</title>
       </Head>
-      <div className="cover sm:bg-center sm:bg-no-repeat sm:bg-fixed sm:bg-cover sm:bg-transparent w-full absolute top-0 left-0">
+      <div className="cover background-image w-full absolute top-0 left-0">
         <div className="hidden md:block">
           <Nav />
         </div>
