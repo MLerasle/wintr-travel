@@ -1,15 +1,26 @@
-import React, { useState } from 'react'
-import onClickOutside from "react-onclickoutside";
+import React, { useState, useRef, useEffect } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
 import Label from './Label'
 import Counter from './Counter'
 
 const SkierInput = props => {
+  const node = useRef()
   const [isOpen, setIsOpen] = useState(false)
   const { t } = useTranslation()
 
-  SkierInput.handleClickOutside = () => setIsOpen(false)
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClick)
+
+    return () => {
+      document.removeEventListener("mousedown", handleClick)
+    }
+  }, [])
+
+  const handleClick = e => {
+    if (node.current.contains(e.target)) { return }
+    setIsOpen(false)
+  }
 
   const inputValue = () => {
     const adultsLabel = props.adultsCount > 1 ? `${t('common:label.adult_plural')}` : `${t('common:label.adult')}`
@@ -22,7 +33,7 @@ const SkierInput = props => {
   }
 
   return (
-    <div className="relative w-full mt-4 z-50">
+    <div ref={node} className="relative w-full mt-4 z-50">
       <Label title={t('home:form.skiersLabel')} for="skiersInput" />
       <input
         type="text"
@@ -95,10 +106,4 @@ const SkierInput = props => {
   )
 }
 
-SkierInput.prototype = {}
-
-const clickOutsideConfig = {
-  handleClickOutside: () => SkierInput.handleClickOutside
-}
-
-export default onClickOutside(SkierInput, clickOutsideConfig)
+export default SkierInput

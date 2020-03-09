@@ -17,7 +17,6 @@
     "react": "16.13.0",
     "react-day-picker": "^7.4.0",
     "react-dom": "16.13.0",
-    "react-onclickoutside": "^6.9.0",
     "react-select": "^3.0.8"
   },
   "devDependencies": {
