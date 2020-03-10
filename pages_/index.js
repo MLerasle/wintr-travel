@@ -38,7 +38,7 @@ const Index = props => {
           <div className="booking-form flex flex-col items-start sm:items-center md:py-6">
             <BookingForm catalog={catalog} />
           </div>
-          <div className="md:hidden mx-6 mt-2 mb-6">
+          <div className="md:hidden bg-white px-6 pt-2 pb-6">
             <PackContent />
           </div>
         </>

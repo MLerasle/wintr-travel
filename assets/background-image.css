@@ -18,16 +18,12 @@
   .webp .cover {
     background-attachment: fixed;
     background-image: url("/wintr-travel-home.webp");
+    height: 100%;
   }
 
   .no-webp .cover {
     background-attachment: fixed;
     background-image: url("/wintr-travel-home.jpg");
-  }
-}
-
-@media (min-height: 550px) {
-  .cover {
     height: 100%;
   }
 }
