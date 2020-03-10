@@ -7,8 +7,6 @@ import Nav from '../components/nav'
 import BookingForm from '../components/BookingForm'
 import PackContent from '../components/PackContent'
 
-import '../assets/background-image.css'
-
 const Index = props => {
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(true)

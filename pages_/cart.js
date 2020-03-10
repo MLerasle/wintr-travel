@@ -11,8 +11,6 @@ import Counter from '../components/Counter'
 import Header from '../components/Header'
 import Button from '../components/Button'
 
-import '../assets/background-image.css'
-
 import { calcBookingPrice } from '../helpers/pricing'
 import { formattedDates } from '../helpers/dates'
 

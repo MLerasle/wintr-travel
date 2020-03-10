@@ -4,8 +4,6 @@ import useTranslation from 'next-translate/useTranslation'
 import Icon from '@mdi/react'
 import { mdiTwitter, mdiFacebook, mdiInstagram } from '@mdi/js'
 
-import '../assets/style.css'
-
 const Footer = () => {
   const { t, lang } = useTranslation()
 

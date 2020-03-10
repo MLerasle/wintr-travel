@@ -1,7 +1,6 @@
 import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
-import '../assets/style.css'
 import Header from './Header'
 import PackItem from './PackItem'
 

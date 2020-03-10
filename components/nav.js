@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
-import '../assets/style.css'
 import { LocaleContext } from '../context/LocaleContext'
 
 const Nav = props => {

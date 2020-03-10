@@ -4,8 +4,6 @@ import 'moment/locale/fr'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment'
-import 'react-day-picker/lib/style.css'
-import '../assets/react-day-picker.css'
 
 import Navbar from './DateRangeNavbar'
 import Label from './Label'
