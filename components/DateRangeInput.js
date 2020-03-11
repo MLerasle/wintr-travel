@@ -1,10 +1,9 @@
 import React from 'react'
-import moment from 'moment'
-import 'moment/locale/fr'
+import dayjs from 'dayjs'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput'
-import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment'
 
+import { localeUtils, formatDate, parseDate } from '../helpers/react-day-picker'
 import Navbar from './DateRangeNavbar'
 import Label from './Label'
 
@@ -25,19 +24,19 @@ export default class DateRangeInput extends React.Component {
   showFromMonth() {
     const { from, to } = this.state
     if (!from) { return }
-    if (moment(to).diff(moment(from), 'months') < 2) {
+    if (dayjs(to).diff(dayjs(from), 'month') < 2) {
       this.to.getDayPicker().showMonth(from)
     }
   }
 
   handleFromChange(from) {
     this.setState({ from })
-    this.props.onChange('from', moment(from).format('YYYY-MM-DD'))
+    this.props.onChange('from', dayjs(from).format('YYYY-MM-DD'))
   }
 
   handleToChange(to) {
     this.setState({ to }, this.showFromMonth)
-    this.props.onChange('to', moment(to).format('YYYY-MM-DD'))
+    this.props.onChange('to', dayjs(to).format('YYYY-MM-DD'))
     this.props.onChangeToDate()
   }
 
@@ -58,7 +57,7 @@ export default class DateRangeInput extends React.Component {
             formatDate={formatDate}
             parseDate={parseDate}
             dayPickerProps={{
-              localeUtils: MomentLocaleUtils,
+              localeUtils: localeUtils,
               locale,
               disabledDays: { before: minDate, after: maxDate },
               selectedDays: [from, { from, to }],
@@ -67,7 +66,7 @@ export default class DateRangeInput extends React.Component {
               numberOfMonths: 1,
               navbarElement: <Navbar />,
               onDayClick: (day) => {
-                const formattedDay = moment(day, 'YYYY-MM-DD')
+                const formattedDay = dayjs(day, 'YYYY-MM-DD')
                 if (formattedDay < minDate || formattedDay > maxDate) {
                   return
                 }
@@ -88,7 +87,7 @@ export default class DateRangeInput extends React.Component {
             formatDate={formatDate}
             parseDate={parseDate}
             dayPickerProps={{
-              localeUtils: MomentLocaleUtils,
+              localeUtils: localeUtils,
               locale,
               selectedDays: [from, { from, to }],
               disabledDays: { before: from || minDate, after: maxDate },
@@ -98,7 +97,7 @@ export default class DateRangeInput extends React.Component {
               numberOfMonths: 1,
               navbarElement: <Navbar />,
               onDayClick: (day) => {
-                const formattedDay = moment(day, 'YYYY-MM-DD')
+                const formattedDay = dayjs(day, 'YYYY-MM-DD')
                 if (formattedDay < minDate || formattedDay > maxDate) {
                   return
                 }

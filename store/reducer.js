@@ -1,4 +1,4 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 export const reducer = (state, action) => {
   let updatedBooking
@@ -17,7 +17,7 @@ export const reducer = (state, action) => {
         ...state,
         firstDay: action.firstDay,
         lastDay: action.lastDay,
-        duration: moment(action.lastDay).diff(moment(action.firstDay), 'days') + 1,
+        duration: dayjs(action.lastDay).diff(dayjs(action.firstDay), 'day') + 1,
         weekId: weekForDay(action.catalog, action.firstDay).id,
         isValid: action.firstDay && state.resortId && state.adultsCount > 0
       }
