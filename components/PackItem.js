@@ -1,4 +1,3 @@
-import React from 'react'
 import Icon from '@mdi/react'
 import { mdiCheckCircleOutline } from '@mdi/js'
 

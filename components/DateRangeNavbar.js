@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Navbar = ({ onPreviousClick, onNextClick, className }) => {
   const style = {
     position: 'absolute',

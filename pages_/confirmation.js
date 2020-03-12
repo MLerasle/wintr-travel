@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import { useReducer } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'

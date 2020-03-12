@@ -1,4 +1,3 @@
-import React from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
