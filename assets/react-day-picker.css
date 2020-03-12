@@ -93,4 +93,12 @@
   background-color: #0CB3FA !important;
   color: white;
 }
+@media (min-width: 342px) {
+  .InputDates-to .DayPickerInput-OverlayWrapper {
+    right: 294px;
+  }
+  .DayPicker-Day {
+    padding: 0.6rem;
+  }
+}
 /* purgecss end ignore */
