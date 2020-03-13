@@ -1,10 +1,9 @@
-import React from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
 import Header from './Header'
 import PackItem from './PackItem'
 
-const PackContent = () => {
+const PackContent = props => {
   const { t } = useTranslation()
 
   const items = [
@@ -16,7 +15,7 @@ const PackContent = () => {
   ]
 
   return (
-    <div className="bg-white w-full">
+    <div className={`bg-white w-full ${props.className}`}>
       <Header>{t('common:pack.content')}:</Header>
       <ul className="text-gray-600 pt-4">
         {
@@ -29,4 +28,4 @@ const PackContent = () => {
   )
 }
 
-export default PackContent;
+export default PackContent

@@ -1,16 +1,17 @@
-import React, { useReducer } from 'react'
+import { useReducer } from 'react'
 import Router from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
-import SelectInput from '../components/SelectInput'
+import SelectInput from './SelectInput'
 import DateRangeInput from './DateRangeInput'
 import SkierDropdown from './SkierDropdown'
-import Header from '../components/Header'
-import Button from '../components/Button'
+import Header from './Header'
+import Button from './Button'
 
 import { calcBookingPrice } from '../helpers/pricing'
 import { INITIAL_BOOKING } from '../store/state'
 import { reducer } from '../store/reducer'
+import { updateSkiersNumber } from '../store/action'
 
 const BookingForm = props => {
   const { t, lang } = useTranslation()
@@ -38,26 +39,14 @@ const BookingForm = props => {
   }
 
   const handleSkierChange = (action, age = null) => {
-    let { adultsCount, childrenCount } = booking
-    if (action === 'increment' && age === 'adult') {
-      adultsCount += 1
-    } else if (action === 'increment' && age === 'child') {
-      childrenCount += 1
-    } else if (action === 'decrement' && age === 'adult' && adultsCount > 0) {
-      adultsCount -= 1
-    } else if (action === 'decrement' && age === 'child' && childrenCount > 0) {
-      childrenCount -= 1
-    } else if (action === 'reset') {
-      adultsCount = 2
-      childrenCount = 0
-    }
+    const { adultsCount, childrenCount } = updateSkiersNumber(booking, action, age)
     dispatch({ type: 'SET_PEOPLE', adultsCount, childrenCount })
   }
 
   const validateSearch = e => {
     e.preventDefault()
     if (!booking.isValid) { return }
-    const { resortId, weekId, duration, adultsCount, childrenCount } = booking
+    const { resortId, resortName, firstDay, lastDay, weekId, duration, adultsCount, childrenCount } = booking
     const bookingPrice = calcBookingPrice(props.catalog, resortId, weekId, duration, adultsCount, childrenCount)
     if (bookingPrice.error) {
       // TODO: Raise error and do something useful for the user :)
@@ -65,46 +54,63 @@ const BookingForm = props => {
       return
     }
     dispatch({ type: 'SET_AMOUNT', adultsAmount: bookingPrice.adults, childrenAmount: bookingPrice.children, totalAmount: bookingPrice.total })
-    Router.push(`/${lang}/cart`).then(() => window.scrollTo(0, 0))
+    Router.push({
+      pathname: `/${lang}/cart`,
+      query: {
+        resort_id: resortId,
+        resort_name: resortName,
+        checkin: firstDay,
+        checkout: lastDay,
+        week_id: weekId,
+        duration: duration,
+        adults: adultsCount,
+        children: childrenCount,
+        adults_amount: bookingPrice.adults,
+        children_amount: bookingPrice.children,
+        total_amount: bookingPrice.total
+      }
+    }).then(() => window.scrollTo(0, 0))
   }
 
   return (
-    <div className="bg-white md:rounded-lg md:shadow-xl px-6 py-4 sm:p-8 w-full md:max-w-lg">
-      <Header className="sm:text-3xl">
-        {t('home:form.title')}
-      </Header>
-      <form className="flex flex-col mt-4 mb-8">
-        <SelectInput
-          options={props.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
-            return { value: r.id, label: r.name }
-          })}
-          label={t('home:form.resortLabel')}
-          placeholder={t('home:form.resortPlaceholder')}
-          defaultValue={booking.resortId ? { label: booking.resortName, value: booking.resortId } : ''}
-          resort={{value: booking.resortId, label: booking.resortName}}
-          handleChange={handleResortChange} />
-        <DateRangeInput
-          from={booking.firstDay}
-          to={booking.lastDay}
-          fromLabel={t('home:form.dateFromLabel')}
-          toLabel={t('home:form.dateToLabel')}
-          onChange={(type, date) => handleDateChange(type, date)}
-          onChangeToDate={() => document.getElementById('skiersInput').focus()}
-          locale={lang}
-          minDate={props.catalog.weeks[0].first_day}
-          maxDate={props.catalog.weeks[props.catalog.weeks.length - 1].last_day} />
-        <SkierDropdown
-          childrenCount={booking.childrenCount}
-          adultsCount={booking.adultsCount}
-          onChange={(age, action) => handleSkierChange(age, action)} />
-      </form>
-      <Button
-        id="searchButton"
-        name={t('common:button.validate')}
-        disabled={!booking.isValid}
-        onClick={validateSearch} >
-        {t('common:button.validate')}
-      </Button>
+    <div className="booking-form flex flex-col items-start sm:items-center md:py-6">
+      <div className="bg-white md:rounded-lg md:shadow-xl px-6 py-4 sm:p-8 w-full md:max-w-lg">
+        <Header className="sm:text-3xl">
+          {t('home:form.title')}
+        </Header>
+        <form className="flex flex-col mt-4 mb-8">
+          <SelectInput
+            options={props.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
+              return { value: r.id, label: r.name }
+            })}
+            label={t('home:form.resortLabel')}
+            placeholder={t('home:form.resortPlaceholder')}
+            defaultValue={booking.resortId ? { label: booking.resortName, value: booking.resortId } : ''}
+            resort={{value: booking.resortId, label: booking.resortName}}
+            handleChange={handleResortChange} />
+          <DateRangeInput
+            from={booking.firstDay}
+            to={booking.lastDay}
+            fromLabel={t('home:form.dateFromLabel')}
+            toLabel={t('home:form.dateToLabel')}
+            onChange={(type, date) => handleDateChange(type, date)}
+            onChangeToDate={() => document.getElementById('skiersInput').focus()}
+            locale={lang}
+            minDate={props.catalog.weeks[0].first_day}
+            maxDate={props.catalog.weeks[props.catalog.weeks.length - 1].last_day} />
+          <SkierDropdown
+            childrenCount={booking.childrenCount}
+            adultsCount={booking.adultsCount}
+            onChange={(age, action) => handleSkierChange(age, action)} />
+        </form>
+        <Button
+          id="searchButton"
+          name={t('common:button.validate')}
+          disabled={!booking.isValid}
+          onClick={validateSearch} >
+          {t('common:button.validate')}
+        </Button>
+      </div>
     </div>
   )
 }

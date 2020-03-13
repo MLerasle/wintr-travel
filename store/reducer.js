@@ -1,19 +1,16 @@
 import dayjs from 'dayjs'
 
 export const reducer = (state, action) => {
-  let updatedBooking
   switch (action.type) {
     case 'SET_RESORT':
-      updatedBooking = {
+      return {
         ...state,
         resortId: action.resortId,
         resortName: action.resortName,
         isValid: action.resortId && state.firstDay && state.adultsCount > 0
       }
-      sessionStorage.setItem('booking', JSON.stringify(updatedBooking))
-      return updatedBooking
     case 'SET_DATES':
-      updatedBooking = {
+      return {
         ...state,
         firstDay: action.firstDay,
         lastDay: action.lastDay,
@@ -21,30 +18,22 @@ export const reducer = (state, action) => {
         weekId: weekForDay(action.catalog, action.firstDay).id,
         isValid: action.firstDay && state.resortId && state.adultsCount > 0
       }
-      sessionStorage.setItem('booking', JSON.stringify(updatedBooking))
-      return updatedBooking
     case 'SET_PEOPLE':
-      updatedBooking = {
+      return {
         ...state,
         adultsCount: action.adultsCount,
         childrenCount: action.childrenCount,
         isValid: action.adultsCount > 0 && state.firstDay && state.resortId
       }
-      sessionStorage.setItem('booking', JSON.stringify(updatedBooking))
-      return updatedBooking
     case 'SET_AMOUNT':
-      updatedBooking = {
+      return {
         ...state,
         adultsAmount: action.adultsAmount,
         childrenAmount: action.childrenAmount,
         totalAmount: action.totalAmount
       }
-      sessionStorage.setItem('booking', JSON.stringify(updatedBooking))
-      return updatedBooking
     case 'RESET_BOOKING':
-      updatedBooking = INITIAL_BOOKING
-      sessionStorage.setItem('booking', JSON.stringify(updatedBooking))
-      return updatedBooking
+      return INITIAL_BOOKING
     default:
       return {
         ...state

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
@@ -40,8 +40,8 @@ const Nav = props => {
   }
 
   return (
-    <nav className={"sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 " + (props.background && 'bg-primary-blue')}>
-      <div className="flex items-center justify-between px-6 py-3 sm:p-0">
+    <nav className={`sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 ${props.classes}`}>
+      <div className="flex items-center justify-between px-6 py-3 sm:p-0 w-full">
         <div className="text-white font-title font-semibold text-2xl tracking-wide">
           <a href={`/${lang}`}>Wintr Travel</a>
         </div>
@@ -55,7 +55,12 @@ const Nav = props => {
       </div>
       <div className={"mobile-menu px-6 py-2 sm:flex sm:p-0 " + (isMenuOpen ? 'block' : 'hidden')}>
         {links.map(({ label, href, key, locale }) => (
-          <Link href={href || localizedPath(locale)} key={key}>
+          <Link
+            href={{
+              pathname: href || localizedPath(locale),
+              query: router.query
+            }}
+            key={key}>
             <a
               className="mt-1 block py-1 text-white tracking-wide hover:text-gray-300 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer"
               onClick={() => storeLocale(locale)}>
