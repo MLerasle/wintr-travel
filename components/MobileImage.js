@@ -1,5 +1,15 @@
-const MobileImage = () => (
-  <div className="mobile-image background-image md:hidden h-64"></div>
-)
+import useTranslation from 'next-translate/useTranslation'
+import Header from './Header'
+
+const MobileImage = () => {
+  const { t } = useTranslation()
+
+  return (
+    <div className="md:hidden relative">
+      <div className="mobile-image background-image h-64"></div>
+      <Header className="homeTitle">{t('home:form.title')}</Header>
+    </div>
+  )
+}
 
 export default MobileImage

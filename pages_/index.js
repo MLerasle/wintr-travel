@@ -15,7 +15,7 @@ const Index = ({ catalog }) => {
       <Head><title>{t('home:title')}</title></Head>
       <MobileImage />
       <BookingForm catalog={catalog} />
-      <PackContent className="md:hidden bg-white px-6 sm:px-8 pt-2 pb-6" />
+      <PackContent className="md:hidden px-6 md:px-8 pt-2 pb-6" />
     </LayoutCover>
   )
 }

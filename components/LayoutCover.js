@@ -6,7 +6,7 @@ const LayoutCover = props => {
 
   let navStyles = "bg-primary-blue md:bg-transparent"
   if (['/', '/en', '/fr'].includes(router.route)) {
-    navStyles = "absolute top-0 left-0 w-full md:relative"
+    navStyles = "absolute top-0 left-0 w-full z-50 md:relative"
   }
 
   return (

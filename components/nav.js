@@ -8,7 +8,7 @@ import { LocaleContext } from '../context/LocaleContext'
 const Nav = props => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [menuIconPath, setMenuIconPath] = useState("M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z")
-  const { locale, storeLocale } = useContext(LocaleContext)
+  const { storeLocale } = useContext(LocaleContext)
   const { t, lang } = useTranslation()
   const router = useRouter()
 
@@ -43,7 +43,9 @@ const Nav = props => {
     <nav className={`sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 ${props.classes}`}>
       <div className="flex items-center justify-between px-6 py-3 sm:p-0 w-full">
         <div className="text-white font-title font-semibold text-2xl tracking-wide">
-          <a href={`/${lang}`}>Wintr Travel</a>
+          <Link href={`/${lang}`} prefetch={false}>
+            <a>Wintr Travel</a>
+          </Link>
         </div>
         <div className="sm:hidden flex items-center">
           <button type="button" aria-label={isMenuOpen ? "close menu" : "open menu"} className="text-white hover:text-white focus:text-white focus:outline-none" onClick={toggleIsMenuOpen}>
@@ -53,7 +55,7 @@ const Nav = props => {
           </button>
         </div>
       </div>
-      <div className={"mobile-menu px-6 py-2 sm:flex sm:p-0 " + (isMenuOpen ? 'block' : 'hidden')}>
+      <div className={"mobile-menu px-6 pb-2 sm:flex sm:p-0 " + (isMenuOpen ? 'block' : 'hidden')}>
         {links.map(({ label, href, key, locale }) => (
           <Link
             href={{

@@ -73,12 +73,12 @@ const BookingForm = props => {
   }
 
   return (
-    <div className="booking-form flex flex-col items-start sm:items-center md:py-6">
-      <div className="bg-white md:rounded-lg md:shadow-xl px-6 py-4 sm:p-8 w-full md:max-w-lg">
-        <Header className="sm:text-3xl">
+    <div className="booking-form flex flex-col items-start md:items-center md:py-6">
+      <div className="bg-white md:rounded-lg md:shadow-xl px-6 py-4 md:p-8 w-full md:max-w-lg">
+        <Header className="hidden md:block sm:text-3xl">
           {t('home:form.title')}
         </Header>
-        <form className="flex flex-col mt-4 mb-8">
+        <form className="flex flex-col md:mt-4 mb-8">
           <SelectInput
             options={props.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
               return { value: r.id, label: r.name }

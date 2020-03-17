@@ -14,7 +14,7 @@
   background-image: url("/wintr-travel-home-sm.jpg");
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .cover {
     background-attachment: fixed;
     height: 100%;
@@ -26,12 +26,6 @@
 
   .no-webp .cover {
     background-image: url("/wintr-travel-home.jpg");
-  }
-}
-
-@media (min-width: 1024px) and (min-height: 768px) {
-  .booking-form {
-    padding: 3rem 0;
   }
 }
 /* purgecss end ignore */
