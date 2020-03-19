@@ -72,9 +72,9 @@ const Cart = ({ catalog }) => {
       <Head>
         <title>{t('cart:title')} - Wintr Travel</title>
       </Head>
-      <div className="flex flex-col items-start sm:items-center md:py-6">
+      <div className="flex flex-col items-start md:items-center md:py-6">
         <div className="px-6 py-8 bg-white md:rounded-lg md:shadow-xl w-full sm:max-w-xl">
-          <Header className="sm:text-3xl">
+          <Header className="text-2xl sm:text-3xl">
             {t('cart:title')}
           </Header>
 
@@ -109,7 +109,7 @@ const Cart = ({ catalog }) => {
           </div>
 
           {
-            booking.childrenCount > 0 ?
+            +booking.childrenCount > 0 ?
             <div className="flex justify-between w-full border border-gray-300 rounded-lg p-4 my-6">
               <div className="flex flex-col items-start sm:flex-row sm:items-center">
                 <span className="text-gray-800 text-md font-semibold uppercase tracking-wide sm:mr-12 mb-2 sm:mb-0">{t('common:pack.child')}</span>

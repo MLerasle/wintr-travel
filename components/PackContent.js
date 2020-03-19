@@ -16,7 +16,7 @@ const PackContent = props => {
 
   return (
     <div className={`bg-white w-full ${props.className}`}>
-      <Header>{t('common:pack.content')}:</Header>
+      <Header className="text-lg">{t('common:pack.content')}:</Header>
       <ul className="text-gray-600 pt-4">
         {
           items.map(item => (
