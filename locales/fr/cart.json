@@ -1,4 +1,8 @@
 {
   "title": "Votre réservation",
-  "addChildren": "Ajouter des enfants"
+  "location": "Lieu et Dates",
+  "resort": "Station",
+  "checkin": "Arrivée",
+  "checkout": "Départ",
+  "skiers": "Skieurs"
 }

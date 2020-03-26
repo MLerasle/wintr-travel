@@ -14,10 +14,15 @@ const PackContent = props => {
     t('common:pack.skipass')
   ]
 
+  let header = null;
+  if (props.title) {
+    header = <Header className="text-lg pb-4">{t('common:pack.content')}:</Header>
+  }
+
   return (
-    <div className={`bg-white w-full ${props.className}`}>
-      <Header className="text-lg">{t('common:pack.content')}:</Header>
-      <ul className="text-gray-600 pt-4">
+    <div className={`bg-white border border-gray-200 rounded-lg shadow-md p-4 ${props.className}`}>
+      {header}
+      <ul className="text-gray-600">
         {
           items.map(item => (
             <PackItem item={item} key={item} />

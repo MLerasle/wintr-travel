@@ -73,8 +73,8 @@ const BookingForm = props => {
   }
 
   return (
-    <div className="booking-form flex flex-col items-start md:items-center md:py-6">
-      <div className="bg-white md:rounded-lg md:shadow-xl px-6 py-4 md:p-8 w-full md:max-w-lg">
+    <div className="flex flex-col items-start md:items-center md:py-6">
+      <div className="bg-white md:rounded-lg md:shadow-xl p-6 md:p-8 w-full md:max-w-lg">
         <Header className="hidden md:block sm:text-3xl">
           {t('home:form.title')}
         </Header>

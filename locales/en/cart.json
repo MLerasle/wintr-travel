@@ -1,4 +1,8 @@
 {
   "title": "Your booking",
-  "addChildren": "Add children"
+  "location": "Location and Dates",
+  "resort": "Resort",
+  "checkin": "Check-In",
+  "checkout": "Checkout",
+  "skiers": "Skiers"
 }
