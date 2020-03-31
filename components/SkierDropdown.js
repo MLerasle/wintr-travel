@@ -34,12 +34,12 @@ const SkierInput = props => {
 
   return (
     <div ref={node} className="relative w-full mt-4 z-50">
-      <Label title={t('home:form.skiersLabel')} for="skiersInput" />
+      <Label title={t('common:form.skiersLabel')} for="skiersInput" />
       <input
         type="text"
         readOnly
         id="skiersInput"
-        className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-secondary-blue w-full text-gray-800 appearance-none"
+        className="border border-gray-300 rounded-lg px-2 py-2 h-12 focus:outline-none focus:border-secondary-blue w-full text-gray-800 appearance-none"
         style={{ paddingLeft: '10px' }}
         onFocus={() => setIsOpen(true)}
         value={inputValue()}

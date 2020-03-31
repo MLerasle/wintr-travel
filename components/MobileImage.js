@@ -7,7 +7,7 @@ const MobileImage = () => {
   return (
     <div className="md:hidden relative">
       <div className="mobile-image background-image h-64"></div>
-      <Header className="homeTitle">{t('home:form.title')}</Header>
+      <Header className="homeTitle">{t('common:form.title')}</Header>
     </div>
   )
 }

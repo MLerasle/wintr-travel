@@ -1,12 +1,22 @@
 {
   "help": "Aide",
   "button": {
-    "validate": "Valider",
     "cancel": "Annuler",
-    "save": "Enregistrer",
-    "pay": "Payer",
+    "edit": "Modifier",
     "ok": "Ok",
-    "retry": "Réessayer"
+    "pay": "Payer",
+    "retry": "Réessayer",
+    "save": "Enregistrer",
+    "validate": "Valider"
+  },
+  "form": {
+    "editTitle": "Modifier votre réservation",
+    "title": "Réservez vos skis et votre forfait.",
+    "resortLabel": "Où",
+    "resortPlaceholder": "Choisissez la station",
+    "dateFromLabel": "Arrivée",
+    "dateToLabel": "Départ",
+    "skiersLabel": "Skieurs"
   },
   "label": {
     "adult": "Adulte",

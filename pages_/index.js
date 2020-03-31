@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
-import fetch from 'isomorphic-unfetch'
+import fetch from 'node-fetch'
 
 import LayoutCover from '../components/LayoutCover'
 import MobileImage from '../components/MobileImage'
@@ -15,7 +15,7 @@ const Index = ({ catalog }) => {
       <Head><title>{t('home:title')}</title></Head>
       <MobileImage />
       <BookingForm catalog={catalog} />
-      <PackContent className="md:hidden m-6" title />
+      <PackContent className="md:hidden mx-6 mt-2 mb-8" title />
     </LayoutCover>
   )
 }

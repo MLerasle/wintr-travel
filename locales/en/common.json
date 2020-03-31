@@ -1,12 +1,22 @@
 {
   "help": "Help",
   "button": {
-    "validate": "Validate",
     "cancel": "Cancel",
-    "save": "Save",
-    "pay": "Pay",
+    "edit": "Edit",
     "ok": "Ok",
-    "retry": "Try again"
+    "pay": "Pay",
+    "retry": "Try again",
+    "save": "Save",
+    "validate": "Validate"
+  },
+  "form": {
+    "editTitle": "Edit your booking",
+    "title": "Book your skis and your ski pass.",
+    "resortLabel": "Where",
+    "resortPlaceholder": "Choose the resort",
+    "dateFromLabel": "Check-In",
+    "dateToLabel": "Checkout",
+    "skiersLabel": "Skiers"
   },
   "label": {
     "adult": "Adult",

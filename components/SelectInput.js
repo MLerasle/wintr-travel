@@ -7,7 +7,7 @@ const customStyles = {
     ...base,
     '&:hover': { borderColor: 'none' },
     boxShadow: 'none',
-    height: '42px'
+    height: '48px'
   }),
   placeholder: (defaultStyles) => {
     return {

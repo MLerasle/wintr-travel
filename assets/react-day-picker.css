@@ -15,7 +15,7 @@
   -moz-appearance: none;
   -webkit-appearance: none;
   padding: 2px 10px;
-  height: 42px;
+  height: 48px;
   width: 100%;
   color: #2D3748;
 }
@@ -44,8 +44,7 @@
 }
 .InputDates-to .DayPickerInput-OverlayWrapper {
   position: absolute;
-  top: 50px;
-  right: 257px;
+  top: 56px;
   z-index: 60;
 }
 .DayPickerInput-Overlay {
@@ -99,6 +98,11 @@
   }
   .DayPicker-Day {
     padding: 0.6rem;
+  }
+}
+@media(min-width: 768px) {
+  .InputDates-to .DayPickerInput-OverlayWrapper {
+    left: -65px;
   }
 }
 /* purgecss end ignore */

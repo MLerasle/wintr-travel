@@ -55,7 +55,7 @@ const Nav = props => {
           </button>
         </div>
       </div>
-      <div className={"mobile-menu px-6 pb-2 sm:flex sm:p-0 " + (isMenuOpen ? 'block' : 'hidden')}>
+      <div className={`px-6 pb-2 sm:flex sm:p-0 ${isMenuOpen ? 'block' : 'hidden'}`}>
         {links.map(({ label, href, key, locale }) => (
           <Link
             href={{

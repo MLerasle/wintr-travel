@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 import Router from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
+import Card from './Card'
 import SelectInput from './SelectInput'
 import DateRangeInput from './DateRangeInput'
 import SkierDropdown from './SkierDropdown'
@@ -15,7 +16,7 @@ import { updateSkiersNumber } from '../store/action'
 
 const BookingForm = props => {
   const { t, lang } = useTranslation()
-  const [booking, dispatch] = useReducer(reducer, INITIAL_BOOKING)
+  const [booking, dispatch] = useReducer(reducer, props.booking || INITIAL_BOOKING)
 
   const handleResortChange = (resort, triggeredAction) => {
     if (triggeredAction.action === 'clear') {
@@ -69,30 +70,45 @@ const BookingForm = props => {
         children_amount: bookingPrice.children,
         total_amount: bookingPrice.total
       }
-    }).then(() => window.scrollTo(0, 0))
+    }).then(() => {
+      props.onUpdate && props.onUpdate()
+      window.scrollTo(0, 0)
+    })
   }
 
+  const validateButton = <Button
+    id="searchButton"
+    name={t('common:button.validate')}
+    disabled={!booking.isValid}
+    onClick={validateSearch}>
+    {t('common:button.validate')}
+  </Button>
+
   return (
-    <div className="flex flex-col items-start md:items-center md:py-6">
-      <div className="bg-white md:rounded-lg md:shadow-xl p-6 md:p-8 w-full md:max-w-lg">
-        <Header className="hidden md:block sm:text-3xl">
-          {t('home:form.title')}
+    <>
+      <Card>
+        <Header className={`${props.booking ? 'border-b border-gray-300 mb-6 pb-6' : 'hidden'} md:block text-2xl sm:text-3xl`}>
+          {
+            props.booking
+            ? t('common:form.editTitle')
+            : t('common:form.title')
+          }
         </Header>
-        <form className="flex flex-col md:mt-4 mb-8">
+        <form className="flex flex-col -mt-2 md:mt-4 mb-8">
           <SelectInput
             options={props.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {
               return { value: r.id, label: r.name }
             })}
-            label={t('home:form.resortLabel')}
-            placeholder={t('home:form.resortPlaceholder')}
+            label={t('common:form.resortLabel')}
+            placeholder={t('common:form.resortPlaceholder')}
             defaultValue={booking.resortId ? { label: booking.resortName, value: booking.resortId } : ''}
             resort={{value: booking.resortId, label: booking.resortName}}
             handleChange={handleResortChange} />
           <DateRangeInput
             from={booking.firstDay}
             to={booking.lastDay}
-            fromLabel={t('home:form.dateFromLabel')}
-            toLabel={t('home:form.dateToLabel')}
+            fromLabel={t('common:form.dateFromLabel')}
+            toLabel={t('common:form.dateToLabel')}
             onChange={(type, date) => handleDateChange(type, date)}
             onChangeToDate={() => document.getElementById('skiersInput').focus()}
             locale={lang}
@@ -103,15 +119,17 @@ const BookingForm = props => {
             adultsCount={booking.adultsCount}
             onChange={(age, action) => handleSkierChange(age, action)} />
         </form>
-        <Button
-          id="searchButton"
-          name={t('common:button.validate')}
-          disabled={!booking.isValid}
-          onClick={validateSearch} >
-          {t('common:button.validate')}
-        </Button>
-      </div>
-    </div>
+        <section className={`${props.booking && 'hidden'} md:block`}>
+          {validateButton}
+        </section>
+      </Card>
+      {
+        props.booking &&
+        <div className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white md:hidden">
+          {validateButton}
+        </div>
+      }
+    </>
   )
 }
 
