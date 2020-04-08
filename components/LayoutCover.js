@@ -12,7 +12,7 @@ const LayoutCover = props => {
   return (
     <div className="cover background-image w-full absolute top-0 left-0">
       <Nav classes={navStyles} />
-      <div className="md:mt-20">
+      <div className="md:mt-10">
         {props.children}
       </div>
     </div>

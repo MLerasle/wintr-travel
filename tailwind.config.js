@@ -15,6 +15,9 @@ module.exports = {
       },
       fontFamily: {
         'title': ['Montserrat']
+      },
+      inset: {
+        '1/2': '0.5rem'
       }
     }
   }

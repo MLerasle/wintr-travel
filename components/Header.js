@@ -1,5 +1,5 @@
 const Header = (props) => (
-  <h1 className={`leading-tight font-semibold text-gray-800 ${props.className}`}>
+  <h1 className={`flex items-center leading-tight font-semibold text-gray-800 ${props.className}`}>
     {props.children}
     <style jsx>{`
       .homeTitle {

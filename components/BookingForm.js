@@ -87,13 +87,26 @@ const BookingForm = props => {
   return (
     <>
       <Card>
-        <Header className={`${props.booking ? 'border-b border-gray-300 mb-6 pb-6' : 'hidden'} md:block text-2xl sm:text-3xl`}>
+        <header className={`${props.booking ? 'border-b border-gray-300 mb-6 pb-6' : 'border-none mb-0 pb-0'} flex justify-between items-center`}>
+          <Header className={`${!props.booking && 'hidden'} md:block text-2xl sm:text-3xl`}>
+            {
+              props.booking
+              ? t('common:form.editTitle')
+              : t('common:form.title')
+            }
+          </Header>
           {
             props.booking
-            ? t('common:form.editTitle')
-            : t('common:form.title')
+            ?
+              <button
+                name={t('common:button.cancel')}
+                className="text-secondary-blue font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
+                onClick={props.onUpdate}>
+                {t('common:button.cancel')}
+              </button>
+            : null
           }
-        </Header>
+        </header>
         <form className="flex flex-col -mt-2 md:mt-4 mb-8">
           <SelectInput
             options={props.catalog.resorts.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).map(r => {

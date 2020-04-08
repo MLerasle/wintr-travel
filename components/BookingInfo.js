@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
 import Card from './Card'
@@ -5,11 +6,17 @@ import CartSection from './CartSection'
 import CartItem from './CartItem'
 import Header from './Header'
 import Button from './Button'
+import PackContent from './PackContent'
 
 import { formatDate } from '../helpers/dates'
 
 const BookingInfo = ({ booking, onValidate, onEdit }) => {
   const { t, lang } = useTranslation()
+  const [showPackInfos, setShowPackInfos] = useState(false)
+
+  const onInfoSkierDisplay = () => setShowPackInfos(true)
+  const onInfoSkierHide = () => setShowPackInfos(false)
+  const onInfoSkierToggleDisplay = () => setShowPackInfos(!showPackInfos)
 
   const payButton = <Button
     name={t('common:button.pay')}
@@ -20,7 +27,7 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
 
   return (
     <>
-      <Card classes="overflow-auto mb-20">
+      <Card classes="overflow-auto pb-20">
         <header className="flex justify-between items-center">
           <Header className="text-2xl sm:text-3xl">
             {t('cart:title')}
@@ -37,11 +44,23 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
           <CartItem title={t('cart:checkin')} value={formatDate(booking.firstDay, lang)} classes="my-3" />
           <CartItem title={t('cart:checkout')} value={formatDate(booking.lastDay, lang)} classes="my-3" />
         </CartSection>
-        <CartSection title={t('cart:skiers')}>
-          <CartItem title={`${t('common:pack.adult')} X ${booking.adultsCount}`} value={`${booking.adultsAmount.toFixed(2)} €`} classes="my-3" />
+        <CartSection
+          title={t('cart:skiers')}
+          icon
+          onIconClicked={onInfoSkierToggleDisplay}
+          onIconMouseEnter={onInfoSkierDisplay}
+          onIconMouseLeave={onInfoSkierHide}
+        >
+          {
+            showPackInfos &&
+            <div className="relative">
+              <PackContent className="absolute z-50 top-1/2" />
+            </div>
+          }
+          <CartItem title={`${t('common:pack.adult')} x ${booking.adultsCount}`} value={`${booking.adultsAmount.toFixed(2)} €`} classes="my-3" />
           {
             booking.childrenCount > 0 &&
-            <CartItem title={`${t('common:pack.child')} X ${booking.childrenCount}`} value={`${booking.childrenAmount.toFixed(2)} €`} classes="my-3" />
+            <CartItem title={`${t('common:pack.child')} x ${booking.childrenCount}`} value={`${booking.childrenAmount.toFixed(2)} €`} classes="my-3" />
           }
         </CartSection>
         <CartSection>
