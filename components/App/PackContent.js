@@ -1,6 +1,6 @@
 import useTranslation from 'next-translate/useTranslation'
 
-import Header from './Header'
+import Header from '../UI/Header'
 import PackItem from './PackItem'
 
 const PackContent = props => {

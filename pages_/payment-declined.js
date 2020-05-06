@@ -4,7 +4,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Icon from '@mdi/react'
 import { mdiClose } from '@mdi/js'
 
-import Layout from '../components/Layout'
+import Layout from '../components/Layout/Layout'
 
 const PaymentDeclined = () => {
   const { t, lang } = useTranslation()

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
-import { LocaleContext } from '../context/LocaleContext'
+import { LocaleContext } from '../../context/LocaleContext'
 
 const Nav = props => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -43,6 +43,7 @@ const Nav = props => {
     <nav className={`sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 ${props.classes}`}>
       <div className="flex items-center justify-between px-6 py-3 sm:p-0 w-full">
         <div className="text-white font-title font-semibold text-2xl tracking-wide">
+          {/* <img src="/logo.png" alt="Logo" className="mr-2" /> */}
           <Link href={`/${lang}`} prefetch={false}>
             <a>Wintr Travel</a>
           </Link>

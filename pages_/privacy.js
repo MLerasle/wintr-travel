@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 
-import Layout from '../components/Layout'
+import Layout from '../components/Layout/Layout'
 
 const Privacy = () => {
   const { t } = useTranslation()

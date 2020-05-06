@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
-import Label from './Label'
-import Counter from './Counter'
+import Label from '../UI/Label'
+import Counter from '../UI/Counter'
 
 const SkierInput = props => {
   const node = useRef()

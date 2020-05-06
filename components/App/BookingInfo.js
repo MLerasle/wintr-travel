@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
-import Card from './Card'
+import Card from '../UI/Card'
 import CartSection from './CartSection'
 import CartItem from './CartItem'
-import Header from './Header'
-import Button from './Button'
+import Header from '../UI/Header'
+import Button from '../UI/Button'
 import PackContent from './PackContent'
 
-import { formatDate } from '../helpers/dates'
+import { formatDate } from '../../helpers/dates'
 
 const BookingInfo = ({ booking, onValidate, onEdit }) => {
   const { t, lang } = useTranslation()

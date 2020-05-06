@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 
-import { localeUtils, formatDate, parseDate } from '../helpers/react-day-picker'
+import { localeUtils, formatDate, parseDate } from '../../helpers/react-day-picker'
 import Navbar from './DateRangeNavbar'
 import Label from './Label'
 

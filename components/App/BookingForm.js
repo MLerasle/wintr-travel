@@ -2,17 +2,17 @@ import { useReducer } from 'react'
 import Router from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
-import Card from './Card'
-import SelectInput from './SelectInput'
-import DateRangeInput from './DateRangeInput'
+import Card from '../UI/Card'
+import SelectInput from '../UI/SelectInput'
+import DateRangeInput from '../UI/DateRangeInput'
 import SkierDropdown from './SkierDropdown'
-import Header from './Header'
-import Button from './Button'
+import Header from '../UI/Header'
+import Button from '../UI/Button'
 
-import { calcBookingPrice } from '../helpers/pricing'
-import { INITIAL_BOOKING } from '../store/state'
-import { reducer } from '../store/reducer'
-import { updateSkiersNumber } from '../store/action'
+import { calcBookingPrice } from '../../helpers/pricing'
+import { INITIAL_BOOKING } from '../../store/state'
+import { reducer } from '../../store/reducer'
+import { updateSkiersNumber } from '../../store/action'
 
 const BookingForm = props => {
   const { t, lang } = useTranslation()

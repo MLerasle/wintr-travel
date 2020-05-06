@@ -4,9 +4,9 @@ import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import fetch from 'node-fetch'
 
-import LayoutCover from '../components/LayoutCover'
-import BookingInfo from '../components/BookingInfo'
-import BookingForm from '../components/BookingForm'
+import LayoutCover from '../components/Layout/LayoutCover'
+import BookingInfo from '../components/App/BookingInfo'
+import BookingForm from '../components/App/BookingForm'
 
 const Cart = ({ catalog }) => {
   const router = useRouter()
