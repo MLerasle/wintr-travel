@@ -1,4 +1,9 @@
 module.exports = {
+  purge: [
+    './pages/**/*.js',
+    './components/**/*.js',
+    './node_modules/react-day-picker/**/*.css'
+  ],
   theme: {
     extend: {
       colors: {

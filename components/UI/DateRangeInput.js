@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 
-import { localeUtils, formatDate, parseDate } from '../../helpers/react-day-picker'
-import Navbar from './DateRangeNavbar'
-import Label from './Label'
+import { localeUtils, formatDate, parseDate } from 'helpers/react-day-picker'
+import Navbar from '@/UI/DateRangeNavbar'
+import Label from '@/UI/Label'
 
 export default class DateRangeInput extends React.Component {
   constructor(props) {

@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
-import fetch from 'node-fetch'
 
-import LayoutCover from '../components/Layout/LayoutCover'
-import MobileImage from '../components/UI/MobileImage'
-import BookingForm from '../components/App/BookingForm'
-import PackContent from '../components/App/PackContent'
+import LayoutCover from 'components/Layout/LayoutCover'
+import MobileImage from 'components/UI/MobileImage'
+import BookingForm from 'components/App/BookingForm'
+import PackContent from 'components/App/PackContent'
 
 const Index = ({ catalog }) => {
   const { t } = useTranslation()

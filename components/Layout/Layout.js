@@ -1,5 +1,5 @@
-import Nav from '../App/nav'
-import Footer from '../App/Footer'
+import Nav from '@/App/nav'
+import Footer from '@/App/Footer'
 
 const Layout = props => (
   <div className="relative min-h-screen flex flex-col justify-between">

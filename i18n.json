@@ -1,6 +1,7 @@
 {
   "allLanguages": ["en", "fr"],
   "defaultLanguage": "en",
+  "redirectToDefaultLang": true,
   "currentPagesDir": "pages_",
   "finalPagesDir": "pages",
   "localesPath": "locales",

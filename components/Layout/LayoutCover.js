@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import Nav from '../App/nav'
+import Nav from '@/App/nav'
 
 const LayoutCover = props => {
   const router = useRouter()

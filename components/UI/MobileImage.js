@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation'
-import Header from './Header'
+import Header from '@/UI/Header'
 
 const MobileImage = () => {
   const { t } = useTranslation()

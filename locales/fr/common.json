@@ -10,7 +10,7 @@
     "validate": "Valider"
   },
   "form": {
-    "editTitle": "Modifier votre réservation",
+    "editTitle": "Modifier la réservation",
     "title": "Réservez vos skis et votre forfait.",
     "resortLabel": "Où",
     "resortPlaceholder": "Choisissez la station",

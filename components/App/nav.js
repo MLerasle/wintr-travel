@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
-import { LocaleContext } from '../../context/LocaleContext'
+import { LocaleContext } from 'context/LocaleContext'
 
 const Nav = props => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

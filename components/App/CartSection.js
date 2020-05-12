@@ -1,4 +1,4 @@
-import Header from '../UI/Header'
+import Header from '@/UI/Header'
 import Icon from '@mdi/react'
 import { mdiInformationOutline } from '@mdi/js'
 

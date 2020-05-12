@@ -1,6 +1,6 @@
 import Select from 'react-select'
 
-import Label from './Label'
+import Label from '@/UI/Label'
 
 const customStyles = {
   control: base => ({

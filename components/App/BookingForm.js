@@ -2,17 +2,17 @@ import { useReducer } from 'react'
 import Router from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 
-import Card from '../UI/Card'
-import SelectInput from '../UI/SelectInput'
-import DateRangeInput from '../UI/DateRangeInput'
-import SkierDropdown from './SkierDropdown'
-import Header from '../UI/Header'
-import Button from '../UI/Button'
+import SkierDropdown from '@/App/SkierDropdown'
+import Card from '@/UI/Card'
+import SelectInput from '@/UI/SelectInput'
+import DateRangeInput from '@/UI/DateRangeInput'
+import Header from '@/UI/Header'
+import Button from '@/UI/Button'
 
-import { calcBookingPrice } from '../../helpers/pricing'
-import { INITIAL_BOOKING } from '../../store/state'
-import { reducer } from '../../store/reducer'
-import { updateSkiersNumber } from '../../store/action'
+import { calcBookingPrice } from 'helpers/pricing'
+import { INITIAL_BOOKING } from 'store/state'
+import { reducer } from 'store/reducer'
+import { updateSkiersNumber } from 'store/action'
 
 const BookingForm = props => {
   const { t, lang } = useTranslation()
@@ -87,8 +87,8 @@ const BookingForm = props => {
   return (
     <>
       <Card>
-        <header className={`${props.booking ? 'border-b border-gray-300 mb-6 pb-6' : 'border-none mb-0 pb-0'} flex justify-between items-center`}>
-          <Header className={`${!props.booking && 'hidden'} md:block text-2xl sm:text-3xl`}>
+        <header className={`${props.booking ? 'border-b border-gray-300 mb-6 pb-6' : 'border-none mb-0 pb-0'} flex justify-between items-baseline`}>
+          <Header className={`${!props.booking && 'hidden'} md:block text-xl sm:text-3xl`}>
             {
               props.booking
               ? t('common:form.editTitle')
@@ -100,7 +100,7 @@ const BookingForm = props => {
             ?
               <button
                 name={t('common:button.cancel')}
-                className="text-secondary-blue font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
+                className="text-secondary-blue text-sm sm:text-base font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
                 onClick={props.onUpdate}>
                 {t('common:button.cancel')}
               </button>

@@ -5,9 +5,9 @@ import useTranslation from 'next-translate/useTranslation'
 import Icon from '@mdi/react'
 import { mdiCheck } from '@mdi/js'
 
-import Layout from '../components/Layout/Layout'
-import { INITIAL_BOOKING } from '../store/state'
-import { reducer } from '../store/reducer'
+import Layout from 'components/Layout/Layout'
+import { INITIAL_BOOKING } from 'store/state'
+import { reducer } from 'store/reducer'
 
 const Confirmation = () => {
   const [_, dispatch] = useReducer(reducer, INITIAL_BOOKING)

@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 
-import Card from '../UI/Card'
-import CartSection from './CartSection'
-import CartItem from './CartItem'
-import Header from '../UI/Header'
-import Button from '../UI/Button'
-import PackContent from './PackContent'
+import CartSection from '@/App/CartSection'
+import CartItem from '@/App/CartItem'
+import PackContent from '@/App/PackContent'
+import Card from '@/UI/Card'
+import Header from '@/UI/Header'
+import Button from '@/UI/Button'
 
-import { formatDate } from '../../helpers/dates'
+import { formatDate } from 'helpers/dates'
 
 const BookingInfo = ({ booking, onValidate, onEdit }) => {
   const { t, lang } = useTranslation()
@@ -28,13 +28,13 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
   return (
     <>
       <Card classes="overflow-auto pb-20">
-        <header className="flex justify-between items-center">
-          <Header className="text-2xl sm:text-3xl">
+        <header className="flex justify-between items-baseline">
+          <Header className="text-xl sm:text-3xl">
             {t('cart:title')}
           </Header>
           <button
             name={t('common:button.edit')}
-            className="text-secondary-blue font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
+            className="text-secondary-blue text-sm sm:text-base font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
             onClick={onEdit}>
             {t('common:button.edit')}
           </button>
