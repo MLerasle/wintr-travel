@@ -1,12 +1,13 @@
 const Button = (props) => {
-  let classes = "bg-secondary-blue text-white font-bold py-3 px-4 w-full rounded-lg shadow-md focus:outline-none focus:shadow-outline z-0 "
+  let classes =
+    'bg-secondary-blue text-white font-bold py-3 px-4 w-full rounded-lg shadow-md focus:outline-none focus:shadow-outline z-0 ';
   if (props.classes) {
-    classes += props.classes
+    classes += props.classes;
   }
   if (props.disabled) {
-    classes += "opacity-40 cursor-not-allowed"
+    classes += 'opacity-40 cursor-not-allowed';
   } else {
-    classes += "hover:opacity-90"
+    classes += 'hover:opacity-90';
   }
 
   return (
@@ -15,10 +16,11 @@ const Button = (props) => {
       name={props.name}
       aria-label={props.ariaLabel}
       className={classes}
-      onClick={props.onClick}>
+      onClick={props.onClick}
+    >
       {props.children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

@@ -1,49 +1,52 @@
-import dayjs from 'dayjs'
-import DayPickerInput from 'react-day-picker/DayPickerInput'
+import { Component } from 'react';
+import dayjs from 'dayjs';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 
-import { localeUtils, formatDate, parseDate } from 'helpers/react-day-picker'
-import Navbar from '@/UI/DateRangeNavbar'
-import Label from '@/UI/Label'
+import { localeUtils, formatDate, parseDate } from 'helpers/react-day-picker';
+import Navbar from '@/UI/DateRangeNavbar';
+import Label from '@/UI/Label';
 
-export default class DateRangeInput extends React.Component {
+export default class DateRangeInput extends Component {
   constructor(props) {
-    super(props)
-    this.handleFromChange = this.handleFromChange.bind(this)
-    this.handleToChange = this.handleToChange.bind(this)
+    super(props);
+    this.handleFromChange = this.handleFromChange.bind(this);
+    this.handleToChange = this.handleToChange.bind(this);
     this.state = {
       from: this.props.from ? new Date(this.props.from) : null,
       to: this.props.to ? new Date(this.props.to) : null,
       minDate: this.props.minDate ? new Date(this.props.minDate) : null,
       maxDate: this.props.maxDate ? new Date(this.props.maxDate) : null,
-      locale: this.props.locale
-    }
+      locale: this.props.locale,
+    };
   }
 
   showFromMonth() {
-    const { from, to } = this.state
-    if (!from) { return }
+    const { from, to } = this.state;
+    if (!from) {
+      return;
+    }
     if (dayjs(to).diff(dayjs(from), 'month') < 2) {
-      this.to.getDayPicker().showMonth(from)
+      this.to.getDayPicker().showMonth(from);
     }
   }
 
   handleFromChange(from) {
-    this.setState({ from })
-    this.props.onChange('from', dayjs(from).format('YYYY-MM-DD'))
+    this.setState({ from });
+    this.props.onChange('from', dayjs(from).format('YYYY-MM-DD'));
   }
 
   handleToChange(to) {
-    this.setState({ to }, this.showFromMonth)
-    this.props.onChange('to', dayjs(to).format('YYYY-MM-DD'))
-    this.props.onChangeToDate()
+    this.setState({ to }, this.showFromMonth);
+    this.props.onChange('to', dayjs(to).format('YYYY-MM-DD'));
+    this.props.onChangeToDate();
   }
 
   render() {
     const { from, to, minDate, maxDate, locale } = this.state;
-    const modifiers = { start: from, end: to }
-    const format = "DD/MM/YYYY"
-    const fromValue = from ? formatDate(from, format) : null
-    const toValue = to ? formatDate(to, format) : null
+    const modifiers = { start: from, end: to };
+    const format = 'DD/MM/YYYY';
+    const fromValue = from ? formatDate(from, format) : null;
+    const toValue = to ? formatDate(to, format) : null;
     return (
       <div className="InputDates">
         <span className="InputDates-from">
@@ -64,21 +67,21 @@ export default class DateRangeInput extends React.Component {
               numberOfMonths: 1,
               navbarElement: <Navbar />,
               onDayClick: (day) => {
-                const formattedDay = dayjs(day, 'YYYY-MM-DD')
+                const formattedDay = dayjs(day, 'YYYY-MM-DD');
                 if (formattedDay < minDate || formattedDay > maxDate) {
-                  return
+                  return;
                 }
-                this.to.getInput().focus()
+                this.to.getInput().focus();
               },
             }}
-            inputProps={{ readOnly: true, id: "InputDates-from" }}
+            inputProps={{ readOnly: true, id: 'InputDates-from' }}
             onDayChange={this.handleFromChange}
           />
         </span>
         <span className="InputDates-to">
           <Label title={this.props.toLabel} for="InputDates-to" />
           <DayPickerInput
-            ref={el => (this.to = el)}
+            ref={(el) => (this.to = el)}
             value={toValue}
             placeholder="dd/mm/yyyy"
             format={format}
@@ -95,17 +98,17 @@ export default class DateRangeInput extends React.Component {
               numberOfMonths: 1,
               navbarElement: <Navbar />,
               onDayClick: (day) => {
-                const formattedDay = dayjs(day, 'YYYY-MM-DD')
+                const formattedDay = dayjs(day, 'YYYY-MM-DD');
                 if (formattedDay < minDate || formattedDay > maxDate) {
-                  return
+                  return;
                 }
               },
             }}
-            inputProps={{ readOnly: true, id: "InputDates-to" }}
+            inputProps={{ readOnly: true, id: 'InputDates-to' }}
             onDayChange={this.handleToChange}
           />
         </span>
       </div>
-    )
+    );
   }
 }

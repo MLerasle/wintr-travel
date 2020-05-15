@@ -1,31 +1,31 @@
-import Select from 'react-select'
+import Select from 'react-select';
 
-import Label from '@/UI/Label'
+import Label from '@/UI/Label';
 
 const customStyles = {
-  control: base => ({
+  control: (base) => ({
     ...base,
     '&:hover': { borderColor: 'none' },
     boxShadow: 'none',
-    height: '48px'
+    height: '48px',
   }),
   placeholder: (defaultStyles) => {
     return {
       ...defaultStyles,
-      color: '#A0AEC0'
-    }
+      color: '#A0AEC0',
+    };
   },
-  singleValue: base => ({
+  singleValue: (base) => ({
     ...base,
-    color: '#2D3748'
+    color: '#2D3748',
   }),
-  menu: base => ({
+  menu: (base) => ({
     ...base,
     marginTop: '0.5rem',
-    zIndex: '70'
+    zIndex: '70',
   }),
-  indicatorSeparator: () => {}
-}
+  indicatorSeparator: () => {},
+};
 
 const SelectInput = (props) => (
   <div>
@@ -39,7 +39,7 @@ const SelectInput = (props) => (
       isClearable={true}
       styles={customStyles}
       onChange={props.handleChange}
-      theme={theme => ({
+      theme={(theme) => ({
         ...theme,
         borderRadius: '0.5rem',
         colors: {
@@ -60,11 +60,11 @@ const SelectInput = (props) => (
           neutral50: '#718096',
           neutral60: '#4A5568',
           neutral70: '#2D3748',
-          neutral80: '#1A202C'
-        }
+          neutral80: '#1A202C',
+        },
       })}
     />
   </div>
-)
+);
 
-export default SelectInput
+export default SelectInput;

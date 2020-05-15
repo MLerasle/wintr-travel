@@ -1,10 +1,10 @@
-import Head from 'next/head'
-import useTranslation from 'next-translate/useTranslation'
+import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
-import Layout from 'components/Layout/Layout'
+import Layout from 'components/Layout/Layout';
 
 const Privacy = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Layout>
@@ -13,27 +13,51 @@ const Privacy = () => {
       </Head>
       <div className="bg-gray-100 w-full flex justify-center">
         <div className="page px-4 py-10 tracking-wide">
-          <h1 className="pb-6 text-center text-3xl font-bold text-gray-900">Politique de confidentialité</h1>
+          <h1 className="pb-6 text-center text-3xl font-bold text-gray-900">
+            Politique de confidentialité
+          </h1>
           <p className="py-3 text-gray-600 text-lg">
-            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum faucibus mi vel mollis. Donec eu mi metus. In gravida sollicitudin lacus, ac hendrerit lorem rutrum eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque
+            ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget
+            tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum
+            faucibus mi vel mollis. Donec eu mi metus. In gravida sollicitudin
+            lacus, ac hendrerit lorem rutrum eget. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.
           </p>
           <p className="py-3 text-gray-600 text-lg">
-            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum faucibus mi vel mollis. Donec eu mi metus. In gravida sollicitudin lacus, ac hendrerit lorem rutrum eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque
+            ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget
+            tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum
+            faucibus mi vel mollis. Donec eu mi metus. In gravida sollicitudin
+            lacus, ac hendrerit lorem rutrum eget. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.
           </p>
           <p className="py-3 text-gray-600 text-lg">
-            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque ligula.
+            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque
+            ligula.
           </p>
           <p className="py-3 text-gray-600 text-lg">
-            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum faucibus mi vel mollis. Donec eu mi metus.
+            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque
+            ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget
+            tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum
+            faucibus mi vel mollis. Donec eu mi metus.
           </p>
           <p className="py-3 text-gray-600 text-lg">
-            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum faucibus mi vel mollis. Donec eu mi metus. In gravida sollicitudin lacus, ac hendrerit lorem rutrum eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque
+            ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget
+            tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum
+            faucibus mi vel mollis. Donec eu mi metus. In gravida sollicitudin
+            lacus, ac hendrerit lorem rutrum eget. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.
           </p>
-          <h2 className="py-4 text-2xl font-bold text-gray-900">
-            Lorem Ipsum
-          </h2>
+          <h2 className="py-4 text-2xl font-bold text-gray-900">Lorem Ipsum</h2>
           <p className="py-3 text-gray-600 text-lg">
-            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum faucibus mi vel mollis. Donec eu mi metus. In gravida sollicitudin lacus, ac hendrerit lorem rutrum eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque
+            ligula. In placerat vulputate luctus. Cras velit mi, ultrices eget
+            tempus sed, porttitor a dolor. Aenean eu magna ante. Morbi elementum
+            faucibus mi vel mollis. Donec eu mi metus. In gravida sollicitudin
+            lacus, ac hendrerit lorem rutrum eget. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.
           </p>
         </div>
       </div>
@@ -45,7 +69,7 @@ const Privacy = () => {
         }
       `}</style>
     </Layout>
-  )
-}
+  );
+};
 
-export default Privacy
+export default Privacy;

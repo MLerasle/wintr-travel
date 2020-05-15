@@ -1,15 +1,13 @@
-import Header from '@/UI/Header'
-import Icon from '@mdi/react'
-import { mdiInformationOutline } from '@mdi/js'
+import Header from '@/UI/Header';
+import Icon from '@mdi/react';
+import { mdiInformationOutline } from '@mdi/js';
 
-const cartSection = props => (
+const cartSection = (props) => (
   <section className="my-6 pt-6 border-t border-gray-300">
-    {
-      props.title &&
+    {props.title && (
       <Header className="text-xs sm:text-sm uppercase tracking-wide">
         {props.title}
-        {
-          props.icon &&
+        {props.icon && (
           <Icon
             path={mdiInformationOutline}
             size={0.8}
@@ -19,11 +17,11 @@ const cartSection = props => (
             onMouseEnter={props.onIconMouseEnter}
             onMouseLeave={props.onIconMouseLeave}
           />
-        }
+        )}
       </Header>
-    }
+    )}
     {props.children}
   </section>
-)
+);
 
-export default cartSection
+export default cartSection;

@@ -1,5 +1,7 @@
 const Header = (props) => (
-  <h1 className={`flex items-center leading-tight font-semibold text-gray-800 ${props.className}`}>
+  <h1
+    className={`flex items-center leading-tight font-semibold text-gray-800 ${props.className}`}
+  >
     {props.children}
     <style jsx>{`
       .homeTitle {
@@ -18,6 +20,6 @@ const Header = (props) => (
       }
     `}</style>
   </h1>
-)
+);
 
-export default Header
+export default Header;

@@ -1,48 +1,62 @@
-import { useState } from 'react'
-import useTranslation from 'next-translate/useTranslation'
+import { useState } from 'react';
+import useTranslation from 'next-translate/useTranslation';
 
-import CartSection from '@/App/CartSection'
-import CartItem from '@/App/CartItem'
-import PackContent from '@/App/PackContent'
-import Card from '@/UI/Card'
-import Header from '@/UI/Header'
-import Button from '@/UI/Button'
+import CartSection from '@/App/CartSection';
+import CartItem from '@/App/CartItem';
+import PackContent from '@/App/PackContent';
+import Card from '@/UI/Card';
+import Header from '@/UI/Header';
+import Button from '@/UI/Button';
 
-import { formatDate } from 'helpers/dates'
+import { formatDate } from 'helpers/dates';
 
 const BookingInfo = ({ booking, onValidate, onEdit }) => {
-  const { t, lang } = useTranslation()
-  const [showPackInfos, setShowPackInfos] = useState(false)
+  const { t, lang } = useTranslation();
+  const [showPackInfos, setShowPackInfos] = useState(false);
 
-  const onInfoSkierDisplay = () => setShowPackInfos(true)
-  const onInfoSkierHide = () => setShowPackInfos(false)
-  const onInfoSkierToggleDisplay = () => setShowPackInfos(!showPackInfos)
+  const onInfoSkierDisplay = () => setShowPackInfos(true);
+  const onInfoSkierHide = () => setShowPackInfos(false);
+  const onInfoSkierToggleDisplay = () => setShowPackInfos(!showPackInfos);
 
-  const payButton = <Button
-    name={t('common:button.pay')}
-    disabled={!booking.isValid}
-    onClick={onValidate}>
-    {t('common:button.pay')} {booking.totalAmount.toFixed(2)} €
-  </Button>
+  const payButton = (
+    <Button
+      name={t('common:button.pay')}
+      disabled={!booking.isValid}
+      onClick={onValidate}
+    >
+      {t('common:button.pay')} {booking.totalAmount.toFixed(2)} €
+    </Button>
+  );
 
   return (
     <>
       <Card classes="overflow-auto pb-20">
         <header className="flex justify-between items-baseline">
-          <Header className="text-xl sm:text-3xl">
-            {t('cart:title')}
-          </Header>
+          <Header className="text-xl sm:text-3xl">{t('cart:title')}</Header>
           <button
             name={t('common:button.edit')}
             className="text-secondary-blue text-sm sm:text-base font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
-            onClick={onEdit}>
+            onClick={onEdit}
+          >
             {t('common:button.edit')}
           </button>
         </header>
         <CartSection title={t('cart:location')}>
-          <CartItem title={t('cart:resort')} value={booking.resortName} classes="my-3" />
-          <CartItem title={t('cart:checkin')} value={formatDate(booking.firstDay, lang)} classes="my-3" />
-          <CartItem title={t('cart:checkout')} value={formatDate(booking.lastDay, lang)} classes="my-3" />
+          <CartItem
+            title={t('cart:resort')}
+            value={booking.resortName}
+            classes="my-3"
+          />
+          <CartItem
+            title={t('cart:checkin')}
+            value={formatDate(booking.firstDay, lang)}
+            classes="my-3"
+          />
+          <CartItem
+            title={t('cart:checkout')}
+            value={formatDate(booking.lastDay, lang)}
+            classes="my-3"
+          />
         </CartSection>
         <CartSection
           title={t('cart:skiers')}
@@ -51,30 +65,37 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
           onIconMouseEnter={onInfoSkierDisplay}
           onIconMouseLeave={onInfoSkierHide}
         >
-          {
-            showPackInfos &&
+          {showPackInfos && (
             <div className="relative">
               <PackContent className="absolute z-50 top-1/2" />
             </div>
-          }
-          <CartItem title={`${t('common:pack.adult')} x ${booking.adultsCount}`} value={`${booking.adultsAmount.toFixed(2)} €`} classes="my-3" />
-          {
-            booking.childrenCount > 0 &&
-            <CartItem title={`${t('common:pack.child')} x ${booking.childrenCount}`} value={`${booking.childrenAmount.toFixed(2)} €`} classes="my-3" />
-          }
+          )}
+          <CartItem
+            title={`${t('common:pack.adult')} x ${booking.adultsCount}`}
+            value={`${booking.adultsAmount.toFixed(2)} €`}
+            classes="my-3"
+          />
+          {booking.childrenCount > 0 && (
+            <CartItem
+              title={`${t('common:pack.child')} x ${booking.childrenCount}`}
+              value={`${booking.childrenAmount.toFixed(2)} €`}
+              classes="my-3"
+            />
+          )}
         </CartSection>
         <CartSection>
-          <CartItem title="Total" value={`${booking.totalAmount.toFixed(2)} €`} />
+          <CartItem
+            title="Total"
+            value={`${booking.totalAmount.toFixed(2)} €`}
+          />
         </CartSection>
-        <section className="hidden md:block">
-          {payButton}
-        </section>
+        <section className="hidden md:block">{payButton}</section>
       </Card>
       <div className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white md:hidden">
         {payButton}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default BookingInfo
+export default BookingInfo;

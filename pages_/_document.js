@@ -1,20 +1,21 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      // Changing lang will be available in next-translate 0.16
+      <Html lang="en">
         <Head>
           <script src="/scripts/modernizr-webp.js" defer></script>
+          {/* <script src="/scripts/tawkto.js" defer></script> */}
         </Head>
-        <body>
+        <body className="font-body">
           <Main />
           <NextScript />
-          <script src="/scripts/tawkto.js" defer></script>
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
