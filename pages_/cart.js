@@ -50,6 +50,9 @@ const Cart = ({ catalog }) => {
 
   const validateCart = () => {
     console.log('Validate cart and redirect to Stripe checkout page');
+    Router.push({
+      pathname: `/${lang}/checkout`,
+    });
   };
 
   return (

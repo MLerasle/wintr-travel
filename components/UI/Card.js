@@ -4,7 +4,7 @@ const Card = (props) => (
       props.classes && props.classes
     }`}
   >
-    <div className="bg-white md:rounded-lg md:shadow-xl p-6 md:p-8 w-full md:max-w-lg">
+    <div className="bg-white md:rounded-lg md:shadow-xl p-4 md:p-8 w-full md:max-w-lg">
       {props.children}
     </div>
   </div>

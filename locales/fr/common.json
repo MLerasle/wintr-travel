@@ -16,7 +16,11 @@
     "resortPlaceholder": "Choisissez la station",
     "dateFromLabel": "Arrivée",
     "dateToLabel": "Départ",
-    "skiersLabel": "Skieurs"
+    "skiersLabel": "Skieurs",
+    "countryLabel": "Pays",
+    "countryPlaceholder": "Choisissez le pays",
+    "nameLabel": "Nom",
+    "emailLabel": "Email"
   },
   "label": {
     "adult": "Adulte",

@@ -7,7 +7,7 @@ const Header = (props) => (
       .homeTitle {
         position: absolute;
         bottom: 16px;
-        left: 24px;
+        left: 16px;
         color: white;
         font-weight: 700;
         font-size: 1.5rem;

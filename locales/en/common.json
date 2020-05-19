@@ -16,7 +16,11 @@
     "resortPlaceholder": "Choose the resort",
     "dateFromLabel": "Check-In",
     "dateToLabel": "Checkout",
-    "skiersLabel": "Skiers"
+    "skiersLabel": "Skiers",
+    "countryLabel": "Country",
+    "countryPlaceholder": "Choose the country",
+    "nameLabel": "Name",
+    "emailLabel": "Email"
   },
   "label": {
     "adult": "Adult",

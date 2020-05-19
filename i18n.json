@@ -9,6 +9,7 @@
     "*": ["common"],
     "/": ["home"],
     "/cart": ["cart"],
+    "/checkout": ["checkout"],
     "/confirmation": ["confirmation"],
     "/payment-declined": ["payment-declined"]
   }
