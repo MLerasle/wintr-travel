@@ -6,7 +6,9 @@ import CartItem from '@/App/CartItem';
 import PackContent from '@/App/PackContent';
 import Card from '@/UI/Card';
 import Header from '@/UI/Header';
+import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
+import Separator from '@/UI/Separator';
 
 import { formatDate } from 'helpers/dates';
 
@@ -31,8 +33,8 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
   return (
     <>
       <Card classes="overflow-auto pb-20">
-        <header className="flex justify-between items-baseline">
-          <Header className="text-xl sm:text-3xl">{t('cart:title')}</Header>
+        <Header>
+          <Heading className="text-xl sm:text-3xl">{t('cart:title')}</Heading>
           <button
             name={t('common:button.edit')}
             className="text-secondary-blue text-sm sm:text-base font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
@@ -40,7 +42,8 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
           >
             {t('common:button.edit')}
           </button>
-        </header>
+        </Header>
+        <Separator className="my-6" />
         <CartSection title={t('cart:location')}>
           <CartItem
             title={t('cart:resort')}
@@ -58,6 +61,7 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
             classes="my-3"
           />
         </CartSection>
+        <Separator className="my-6" />
         <CartSection
           title={t('cart:skiers')}
           icon
@@ -83,13 +87,14 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
             />
           )}
         </CartSection>
+        <Separator className="my-6" />
         <CartSection>
           <CartItem
             title="Total"
             value={`${booking.totalAmount.toFixed(2)} €`}
           />
         </CartSection>
-        <section className="hidden md:block">{payButton}</section>
+        <section className="hidden md:block mt-6">{payButton}</section>
       </Card>
       <div className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white md:hidden">
         {payButton}

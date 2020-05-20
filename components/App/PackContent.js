@@ -1,6 +1,6 @@
 import useTranslation from 'next-translate/useTranslation';
 
-import Header from '@/UI/Header';
+import Heading from '@/UI/Heading';
 import PackItem from '@/App/PackItem';
 
 const PackContent = (props) => {
@@ -14,10 +14,10 @@ const PackContent = (props) => {
     t('common:pack.skipass'),
   ];
 
-  let header = null;
+  let heading = null;
   if (props.title) {
-    header = (
-      <Header className="text-lg pb-4">{t('common:pack.content')}:</Header>
+    heading = (
+      <Heading className="text-lg pb-4">{t('common:pack.content')}:</Heading>
     );
   }
 
@@ -25,7 +25,7 @@ const PackContent = (props) => {
     <div
       className={`bg-white border border-gray-200 rounded-lg shadow-md p-4 ${props.className}`}
     >
-      {header}
+      {heading}
       <ul className="text-gray-600">
         {items.map((item) => (
           <PackItem item={item} key={item} />

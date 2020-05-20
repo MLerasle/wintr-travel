@@ -2,13 +2,17 @@ import { useState } from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { CardElement } from '@stripe/react-stripe-js';
 
-import { countries } from 'data/countries';
+import { isoCountries } from 'data/countries';
 
 import Card from '@/UI/Card';
 import Header from '@/UI/Header';
+import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
+import FormRow from '@/UI/FormRow';
 import Label from '@/UI/Label';
+import Input from '@/UI/Input';
 import SelectInput from '@/UI/SelectInput';
+import Separator from '@/UI/Separator';
 
 const CARD_ELEMENT_OPTIONS = {
   classes: {
@@ -19,12 +23,10 @@ const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
       color: '#2D3748',
-      // fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-      fontSmoothing: 'antialiased',
+      fontFamily: 'system-ui, sans-serif',
       fontSize: '16px',
       '::placeholder': {
         color: '#A0AEC0',
-        fontWeight: '500',
       },
     },
     invalid: {
@@ -35,7 +37,10 @@ const CARD_ELEMENT_OPTIONS = {
 };
 
 const CheckoutForm = () => {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
+  const countries = Object.entries(isoCountries(lang)).sort((a, b) =>
+    a[1] > b[1] ? 1 : b[1] > a[1] ? -1 : 0
+  );
   const [error, setError] = useState(null);
 
   // Handle real-time validation errors from the card Element.
@@ -88,45 +93,33 @@ const CheckoutForm = () => {
   return (
     <>
       <Card>
-        <header className="flex justify-between items-baseline">
-          <Header className="text-xl sm:text-3xl">{t('checkout:title')}</Header>
-        </header>
-        <form
-          className="flex flex-col mt-6 pt-6 border-t border-gray-300 mb-8"
-          onSubmit={handleSubmit}
-        >
-          <div className="form-row">
+        <Header>
+          <Heading className="text-xl sm:text-3xl">
+            {t('checkout:title')}
+          </Heading>
+        </Header>
+        <Separator className="my-6" />
+        <form className="flex flex-col mb-4" onSubmit={handleSubmit}>
+          <FormRow>
             <Label title={t('common:form.nameLabel')} for="name" />
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Chandler Bing"
-              className="border border-gray-300 rounded-lg px-2 py-2 h-12 focus:outline-none focus:border-secondary-blue w-full text-gray-800 appearance-none"
-            />
-          </div>
-          <div className="form-row mt-4 mt-4">
+            <Input type="text" id="name" name="name" />
+          </FormRow>
+          <FormRow>
             <Label title={t('common:form.emailLabel')} for="email" />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="chandler@bing.com"
-              className="border border-gray-300 rounded-lg px-2 py-2 h-12 focus:outline-none focus:border-secondary-blue w-full text-gray-800 appearance-none"
-            />
-          </div>
-          <div className="form-row mt-4">
+            <Input type="email" id="email" name="email" />
+          </FormRow>
+          <FormRow>
             <SelectInput
               options={countries.map((c) => {
-                return { value: c, label: c };
+                return { value: c[0], label: c[1] };
               })}
               label={t('common:form.countryLabel')}
               placeholder={t('common:form.countryPlaceholder')}
               defaultValue={{ label: 'France', value: 'France' }}
               handleChange={handleCountryChange}
             />
-          </div>
-          <div className="form-row mt-4">
+          </FormRow>
+          <FormRow>
             <Label title={t('checkout:creditCardLabel')} for="card-element" />
             <CardElement
               id="card-element"
@@ -136,7 +129,7 @@ const CheckoutForm = () => {
             <div className="card-errors" role="alert">
               {error}
             </div>
-          </div>
+          </FormRow>
         </form>
         <section className={`hidden md:block`}>{payButton}</section>
       </Card>

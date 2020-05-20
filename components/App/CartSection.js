@@ -1,11 +1,11 @@
-import Header from '@/UI/Header';
+import Heading from '@/UI/Heading';
 import Icon from '@mdi/react';
 import { mdiInformationOutline } from '@mdi/js';
 
 const cartSection = (props) => (
-  <section className="my-6 pt-6 border-t border-gray-300">
+  <section>
     {props.title && (
-      <Header className="text-xs sm:text-sm uppercase tracking-wide">
+      <Heading className="text-xs sm:text-sm uppercase tracking-wide">
         {props.title}
         {props.icon && (
           <Icon
@@ -18,7 +18,7 @@ const cartSection = (props) => (
             onMouseLeave={props.onIconMouseLeave}
           />
         )}
-      </Header>
+      </Heading>
     )}
     {props.children}
   </section>

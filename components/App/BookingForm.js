@@ -4,10 +4,13 @@ import useTranslation from 'next-translate/useTranslation';
 
 import SkierDropdown from '@/App/SkierDropdown';
 import Card from '@/UI/Card';
+import FormRow from '@/UI/FormRow';
 import SelectInput from '@/UI/SelectInput';
 import DateRangeInput from '@/UI/DateRangeInput';
 import Header from '@/UI/Header';
+import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
+import Separator from '@/UI/Separator';
 
 import { calcBookingPrice } from 'helpers/pricing';
 import { INITIAL_BOOKING } from 'store/state';
@@ -134,69 +137,73 @@ const BookingForm = (props) => {
   return (
     <>
       <Card>
-        <header
-          className={`${
-            props.booking
-              ? 'border-b border-gray-300 mb-6 pb-6'
-              : 'border-none mb-0 pb-0'
-          } flex justify-between items-baseline`}
-        >
-          <Header
-            className={`${
-              !props.booking && 'hidden'
-            } md:block text-xl sm:text-3xl`}
-          >
-            {props.booking
-              ? t('common:form.editTitle')
-              : t('common:form.title')}
-          </Header>
+        <Header>
           {props.booking ? (
-            <button
-              name={t('common:button.cancel')}
-              className="text-secondary-blue text-sm sm:text-base font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
-              onClick={props.onUpdate}
-            >
-              {t('common:button.cancel')}
-            </button>
-          ) : null}
-        </header>
-        <form className="flex flex-col -mt-2 md:mt-4 mb-8">
-          <SelectInput
-            options={props.catalog.resorts
-              .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
-              .map((r) => {
-                return { value: r.id, label: r.name };
-              })}
-            label={t('common:form.resortLabel')}
-            placeholder={t('common:form.resortPlaceholder')}
-            defaultValue={
-              booking.resortId
-                ? { label: booking.resortName, value: booking.resortId }
-                : ''
-            }
-            resort={{ value: booking.resortId, label: booking.resortName }}
-            handleChange={handleResortChange}
-          />
-          <DateRangeInput
-            from={booking.firstDay}
-            to={booking.lastDay}
-            fromLabel={t('common:form.dateFromLabel')}
-            toLabel={t('common:form.dateToLabel')}
-            onChange={(type, date) => handleDateChange(type, date)}
-            onChangeToDate={() =>
-              document.getElementById('skiersInput').focus()
-            }
-            locale={lang}
-            minDate={props.catalog.weeks[0].first_day}
-            maxDate={
-              props.catalog.weeks[props.catalog.weeks.length - 1].last_day
-            }
-          />
-          <SkierDropdown
-            childrenCount={booking.childrenCount}
-            adultsCount={booking.adultsCount}
-            onChange={(age, action) => handleSkierChange(age, action)}
-          />
+            <>
+              <Heading className="md:block text-xl sm:text-3xl">
+                {t('common:form.editTitle')}
+              </Heading>
+              <button
+                name={t('common:button.cancel')}
+                className="text-secondary-blue text-sm sm:text-base font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
+                onClick={props.onUpdate}
+              >
+                {t('common:button.cancel')}
+              </button>
+            </>
+          ) : (
+            <Heading className="hidden md:block text-xl sm:text-3xl">
+              {t('common:form.title')}
+            </Heading>
+          )}
+        </Header>
+        <Separator
+          className={`my-6 ${!props.booking ? 'hidden' : ''} md:block`}
+        />
+        <form className="flex flex-col -mt-2 md:mt-4 mb-4">
+          <FormRow>
+            <SelectInput
+              options={props.catalog.resorts
+                .sort((a, b) =>
+                  a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+                )
+                .map((r) => {
+                  return { value: r.id, label: r.name };
+                })}
+              label={t('common:form.resortLabel')}
+              placeholder={t('common:form.resortPlaceholder')}
+              defaultValue={
+                booking.resortId
+                  ? { label: booking.resortName, value: booking.resortId }
+                  : ''
+              }
+              handleChange={handleResortChange}
+            />
+          </FormRow>
+          <FormRow>
+            <DateRangeInput
+              from={booking.firstDay}
+              to={booking.lastDay}
+              fromLabel={t('common:form.dateFromLabel')}
+              toLabel={t('common:form.dateToLabel')}
+              onChange={(type, date) => handleDateChange(type, date)}
+              onChangeToDate={() =>
+                document.getElementById('skiersInput').focus()
+              }
+              locale={lang}
+              minDate={props.catalog.weeks[0].first_day}
+              maxDate={
+                props.catalog.weeks[props.catalog.weeks.length - 1].last_day
+              }
+            />
+          </FormRow>
+          <FormRow>
+            <SkierDropdown
+              childrenCount={booking.childrenCount}
+              adultsCount={booking.adultsCount}
+              onChange={(age, action) => handleSkierChange(age, action)}
+            />
+          </FormRow>
         </form>
         <section className={`${props.booking && 'hidden'} md:block`}>
           {validateButton}
