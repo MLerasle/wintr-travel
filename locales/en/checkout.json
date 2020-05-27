@@ -1,4 +1,5 @@
 {
   "title": "Checkout",
-  "creditCardLabel": "Credit card details"
+  "creditCardLabel": "Credit card details",
+  "acceptTerms": "I agree to the Terms of Service."
 }

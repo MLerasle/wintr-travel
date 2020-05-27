@@ -11,6 +11,7 @@ import Button from '@/UI/Button';
 import FormRow from '@/UI/FormRow';
 import Label from '@/UI/Label';
 import Input from '@/UI/Input';
+import Checkbox from '@/UI/Checkbox';
 import SelectInput from '@/UI/SelectInput';
 import Separator from '@/UI/Separator';
 
@@ -36,12 +37,13 @@ const CARD_ELEMENT_OPTIONS = {
   },
 };
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ booking }) => {
   const { t, lang } = useTranslation();
   const countries = Object.entries(isoCountries(lang)).sort((a, b) =>
     a[1] > b[1] ? 1 : b[1] > a[1] ? -1 : 0
   );
   const [error, setError] = useState(null);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   // Handle real-time validation errors from the card Element.
   const handleChange = (event) => {
@@ -54,6 +56,10 @@ const CheckoutForm = () => {
 
   const handleCountryChange = (event) => {
     console.log('Country select changed', event);
+  };
+
+  const handleAcceptTerms = (event) => {
+    setAcceptTerms(!acceptTerms);
   };
 
   // Handle form submission.
@@ -86,7 +92,7 @@ const CheckoutForm = () => {
 
   const payButton = (
     <Button name={t('common:button.pay')} onClick={handleSubmit}>
-      {t('common:button.pay')}
+      {`${t('common:button.pay')} ${booking.totalAmount} €`}
     </Button>
   );
 
@@ -129,6 +135,15 @@ const CheckoutForm = () => {
             <div className="card-errors" role="alert">
               {error}
             </div>
+          </FormRow>
+          <FormRow>
+            <Checkbox
+              name="acceptTerms"
+              value={acceptTerms}
+              onChange={handleAcceptTerms}
+            >
+              {t('checkout:acceptTerms')}
+            </Checkbox>
           </FormRow>
         </form>
         <section className={`hidden md:block`}>{payButton}</section>
