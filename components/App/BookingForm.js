@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useState, useRef, useEffect } from 'react';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 
@@ -16,13 +16,22 @@ import { calcBookingPrice } from 'helpers/pricing';
 import { INITIAL_BOOKING } from 'store/state';
 import { reducer } from 'store/reducer';
 import { updateSkiersNumber } from 'store/action';
+import Loader from '@/UI/Loader';
 
 const BookingForm = (props) => {
+  const _isMounted = useRef(true);
   const { t, lang } = useTranslation();
   const [booking, dispatch] = useReducer(
     reducer,
     props.booking || INITIAL_BOOKING
   );
+  const [loading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
 
   const handleResortChange = (resort, triggeredAction) => {
     if (triggeredAction.action === 'clear') {
@@ -73,6 +82,7 @@ const BookingForm = (props) => {
     if (!booking.isValid) {
       return;
     }
+    setIsLoading(true);
     const {
       resortId,
       resortName,
@@ -118,6 +128,9 @@ const BookingForm = (props) => {
         total_amount: bookingPrice.total,
       },
     }).then(() => {
+      if (_isMounted.current) {
+        setIsLoading(false);
+      }
       props.onUpdate && props.onUpdate();
       window.scrollTo(0, 0);
     });
@@ -130,7 +143,7 @@ const BookingForm = (props) => {
       disabled={!booking.isValid}
       onClick={validateSearch}
     >
-      {t('common:button.validate')}
+      {loading ? <Loader /> : t('common:button.validate')}
     </Button>
   );
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
@@ -8,8 +8,10 @@ import BookingInfo from 'components/App/BookingInfo';
 import BookingForm from 'components/App/BookingForm';
 
 const Cart = ({ catalog }) => {
+  const _isMounted = useRef(true);
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setIsLoading] = useState(false);
   const {
     resort_id,
     resort_name,
@@ -45,14 +47,40 @@ const Cart = ({ catalog }) => {
     }
   }, []);
 
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
+
   const editBooking = () => setIsEditing(true);
   const onBookingUpdate = () => setIsEditing(false);
 
   const validateCart = () => {
-    console.log('Validate cart and redirect to Stripe checkout page');
-    Router.push({
-      pathname: `/${lang}/checkout`,
-    });
+    setIsLoading(true);
+    if (booking.isValid) {
+      Router.push({
+        pathname: `/${lang}/checkout`,
+        query: {
+          resort_id: booking.resortId,
+          resort_name: booking.resortName,
+          checkin: booking.firstDay,
+          checkout: booking.lastDay,
+          week_id: booking.weekId,
+          duration: booking.duration,
+          adults: booking.adultsCount,
+          children: booking.childrenCount,
+          adults_amount: booking.adultsAmount,
+          children_amount: booking.childrenAmount,
+          total_amount: booking.totalAmount,
+        },
+      }).then(() => {
+        if (_isMounted.current) {
+          setIsLoading(false);
+        }
+        window.scrollTo(0, 0);
+      });
+    }
   };
 
   return (
@@ -69,6 +97,7 @@ const Cart = ({ catalog }) => {
       ) : (
         <BookingInfo
           booking={booking}
+          loading={loading}
           onValidate={validateCart}
           onEdit={editBooking}
         />

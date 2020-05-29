@@ -9,10 +9,11 @@ import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import Separator from '@/UI/Separator';
+import Loader from '@/UI/Loader';
 
 import { formatDate } from 'helpers/dates';
 
-const BookingInfo = ({ booking, onValidate, onEdit }) => {
+const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
   const { t, lang } = useTranslation();
   const [showPackInfos, setShowPackInfos] = useState(false);
 
@@ -23,10 +24,14 @@ const BookingInfo = ({ booking, onValidate, onEdit }) => {
   const payButton = (
     <Button
       name={t('common:button.pay')}
-      disabled={!booking.isValid}
+      disabled={!booking.isValid || loading}
       onClick={onValidate}
     >
-      {t('common:button.pay')} {booking.totalAmount.toFixed(2)} €
+      {loading ? (
+        <Loader />
+      ) : (
+        `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
+      )}
     </Button>
   );
 

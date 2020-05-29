@@ -1,4 +1,5 @@
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import { INITIAL_BOOKING } from './state';
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -7,8 +8,8 @@ export const reducer = (state, action) => {
         ...state,
         resortId: action.resortId,
         resortName: action.resortName,
-        isValid: action.resortId && state.firstDay && state.adultsCount > 0
-      }
+        isValid: action.resortId && state.firstDay && state.adultsCount > 0,
+      };
     case 'SET_DATES':
       return {
         ...state,
@@ -16,31 +17,33 @@ export const reducer = (state, action) => {
         lastDay: action.lastDay,
         duration: dayjs(action.lastDay).diff(dayjs(action.firstDay), 'day') + 1,
         weekId: weekForDay(action.catalog, action.firstDay).id,
-        isValid: action.firstDay && state.resortId && state.adultsCount > 0
-      }
+        isValid: action.firstDay && state.resortId && state.adultsCount > 0,
+      };
     case 'SET_PEOPLE':
       return {
         ...state,
         adultsCount: action.adultsCount,
         childrenCount: action.childrenCount,
-        isValid: action.adultsCount > 0 && state.firstDay && state.resortId
-      }
+        isValid: action.adultsCount > 0 && state.firstDay && state.resortId,
+      };
     case 'SET_AMOUNT':
       return {
         ...state,
         adultsAmount: action.adultsAmount,
         childrenAmount: action.childrenAmount,
-        totalAmount: action.totalAmount
-      }
+        totalAmount: action.totalAmount,
+      };
     case 'RESET_BOOKING':
-      return INITIAL_BOOKING
+      return INITIAL_BOOKING;
     default:
       return {
-        ...state
-      }
+        ...state,
+      };
   }
-}
+};
 
 const weekForDay = (catalog, day) => {
-  return catalog.weeks.find(week => week.first_day <= day && week.last_day >= day)
-}
+  return catalog.weeks.find(
+    (week) => week.first_day <= day && week.last_day >= day
+  );
+};

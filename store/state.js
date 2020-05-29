@@ -10,5 +10,5 @@ export const INITIAL_BOOKING = {
   adultsAmount: 0,
   childrenAmount: 0,
   totalAmount: 0,
-  isValid: false
-}
+  isValid: false,
+};

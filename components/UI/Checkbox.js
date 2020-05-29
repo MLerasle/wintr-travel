@@ -1,12 +1,6 @@
 const Checkbox = (props) => (
   <label className="custom-label flex mt-2 text-gray-700">
-    <div
-      className={`border border-gray-300 rounded w-6 h-6 p-1 flex justify-center items-center mr-3 ${
-        props.value
-          ? 'bg-secondary-blue border-secondary-blue'
-          : 'bg-white border-gray-300'
-      }`}
-    >
+    <div className="border bg-white border-gray-300 rounded w-6 h-6 p-1 flex justify-center items-center mr-3">
       <input
         type="checkbox"
         className="hidden"
@@ -14,7 +8,7 @@ const Checkbox = (props) => (
         onChange={props.onChange}
       />
       <svg
-        className="hidden w-4 h-4 text-white pointer-events-none"
+        className="hidden w-4 h-4 text-secondary-blue pointer-events-none"
         viewBox="0 0 172 172"
       >
         <g
