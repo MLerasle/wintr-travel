@@ -36,8 +36,12 @@ const SelectInput = (props) => (
       options={props.options}
       placeholder={props.placeholder}
       defaultValue={props.defaultValue}
+      name={props.name}
       isClearable={true}
-      styles={customStyles}
+      styles={{
+        ...customStyles,
+        ...props.styles,
+      }}
       onChange={props.handleChange}
       theme={(theme) => ({
         ...theme,

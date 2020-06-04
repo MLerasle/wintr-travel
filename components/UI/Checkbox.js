@@ -1,10 +1,15 @@
 const Checkbox = (props) => (
   <label className="custom-label flex mt-2 text-gray-700">
-    <div className="border bg-white border-gray-300 rounded w-6 h-6 p-1 flex justify-center items-center mr-3">
+    <div
+      className={`border bg-white border-gray-300 rounded w-6 h-6 p-1 flex justify-center items-center mr-3 ${
+        props.error && 'bg-red-100 border-red-600'
+      }`}
+    >
       <input
         type="checkbox"
         className="hidden"
         value={props.value}
+        name={props.name}
         onChange={props.onChange}
       />
       <svg
@@ -30,7 +35,9 @@ const Checkbox = (props) => (
         </g>
       </svg>
     </div>
-    <span className="select-none">{props.children}</span>
+    <span className={`select-none ${props.error && 'text-red-600'}`}>
+      {props.children}
+    </span>
     <style jsx>
       {`
         .custom-label input:checked + svg {
