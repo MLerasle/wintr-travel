@@ -21,20 +21,6 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
   const onInfoSkierHide = () => setShowPackInfos(false);
   const onInfoSkierToggleDisplay = () => setShowPackInfos(!showPackInfos);
 
-  const payButton = (
-    <Button
-      name={t('common:button.pay')}
-      disabled={!booking.isValid || loading}
-      onClick={onValidate}
-    >
-      {loading ? (
-        <Loader />
-      ) : (
-        `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
-      )}
-    </Button>
-  );
-
   return (
     <>
       <Card classes="overflow-auto pb-20">
@@ -42,7 +28,7 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
           <Heading className="text-xl sm:text-3xl">{t('cart:title')}</Heading>
           <button
             name={t('common:button.edit')}
-            className="text-secondary-blue text-sm sm:text-base font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
+            className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
             onClick={onEdit}
           >
             {t('common:button.edit')}
@@ -99,11 +85,20 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
             value={`${booking.totalAmount.toFixed(2)} €`}
           />
         </CartSection>
-        <section className="hidden md:block mt-6">{payButton}</section>
+        <section className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white -mx-4 md:static md:m-0 md:p-0 md:border-none md:mt-6">
+          <Button
+            name={t('common:button.pay')}
+            disabled={!booking.isValid || loading}
+            onClick={onValidate}
+          >
+            {loading ? (
+              <Loader />
+            ) : (
+              `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
+            )}
+          </Button>
+        </section>
       </Card>
-      <div className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white md:hidden">
-        {payButton}
-      </div>
     </>
   );
 };

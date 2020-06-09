@@ -42,7 +42,9 @@ const BookingForm = (props) => {
       resortId: resort.value,
       resortName: resort.label,
     });
-    document.querySelector('.InputDates-from input').focus();
+    if (!booking.firstDay) {
+      document.querySelector('.InputDates-from input').focus();
+    }
   };
 
   const handleDateChange = (type, date) => {
@@ -136,17 +138,6 @@ const BookingForm = (props) => {
     });
   };
 
-  const validateButton = (
-    <Button
-      id="searchButton"
-      name={t('common:button.validate')}
-      disabled={!booking.isValid}
-      onClick={validateSearch}
-    >
-      {loading ? <Loader /> : t('common:button.validate')}
-    </Button>
-  );
-
   return (
     <>
       <Card>
@@ -158,7 +149,7 @@ const BookingForm = (props) => {
               </Heading>
               <button
                 name={t('common:button.cancel')}
-                className="text-secondary-blue text-sm sm:text-base font-semibold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
+                className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
                 onClick={props.onUpdate}
               >
                 {t('common:button.cancel')}
@@ -173,7 +164,7 @@ const BookingForm = (props) => {
         <Separator
           className={`my-6 ${!props.booking ? 'hidden' : ''} md:block`}
         />
-        <form className="flex flex-col -mt-2 md:mt-4 mb-4">
+        <form className="flex flex-col -mt-2 md:mt-4">
           <FormRow>
             <SelectInput
               options={props.catalog.resorts
@@ -200,9 +191,12 @@ const BookingForm = (props) => {
               fromLabel={t('common:form.dateFromLabel')}
               toLabel={t('common:form.dateToLabel')}
               onChange={(type, date) => handleDateChange(type, date)}
-              onChangeToDate={() =>
-                document.getElementById('skiersInput').focus()
-              }
+              onChangeToDate={() => {
+                console.log('Booking', booking);
+                if (booking.adultsCount === 0) {
+                  document.getElementById('skiersInput').focus();
+                }
+              }}
               locale={lang}
               minDate={props.catalog.weeks[0].first_day}
               maxDate={
@@ -217,16 +211,25 @@ const BookingForm = (props) => {
               onChange={(age, action) => handleSkierChange(age, action)}
             />
           </FormRow>
+          <section
+            className={`${
+              props.booking
+                ? 'fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white -mx-4 md:static md:m-0 md:p-0 md:border-none md:mt-4'
+                : 'mt-2 md:mt-4'
+            }`}
+          >
+            <Button
+              type="submit"
+              id="searchButton"
+              name={t('common:button.validate')}
+              disabled={!booking.isValid || loading}
+              onClick={validateSearch}
+            >
+              {loading ? <Loader /> : t('common:button.validate')}
+            </Button>
+          </section>
         </form>
-        <section className={`${props.booking && 'hidden'} md:block`}>
-          {validateButton}
-        </section>
       </Card>
-      {props.booking && (
-        <div className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white md:hidden">
-          {validateButton}
-        </div>
-      )}
     </>
   );
 };

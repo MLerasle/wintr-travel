@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -16,6 +16,7 @@ import Input from '@/UI/Input';
 import Checkbox from '@/UI/Checkbox';
 import SelectInput from '@/UI/SelectInput';
 import Separator from '@/UI/Separator';
+import Loader from '@/UI/Loader';
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -45,6 +46,7 @@ const CARD_ELEMENT_OPTIONS = {
 };
 
 const CheckoutForm = ({ booking, paymentIntent }) => {
+  const _isMounted = useRef(true);
   const { t, lang } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
@@ -64,7 +66,14 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     },
   });
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
+  const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
 
   const handleChange = (event) => {
     let name;
@@ -121,6 +130,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   // Handle form submission.
   const handlePaymentSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     setFormWasSubmitted(true);
 
     // Add checkout informations to booking data before sending it to the backend
@@ -167,22 +177,17 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         //     // See how to handle this...
         //     console.log(error);
         //   });
-        Router.push(`/${lang}/confirmation`);
+        Router.push(`/${lang}/confirmation`).then(() => {
+          if (_isMounted.current) {
+            setIsLoading(false);
+          }
+        });
       }
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   };
-
-  const payButton = (
-    <Button
-      type="submit"
-      name={t('common:button.pay')}
-      onClick={handlePaymentSubmit}
-    >
-      {`${t('common:button.pay')} ${booking.totalAmount} €`}
-    </Button>
-  );
 
   return (
     <>
@@ -193,7 +198,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
           </Heading>
         </Header>
         <Separator className="my-6" />
-        <form className="flex flex-col mb-4">
+        <form className="flex flex-col">
           <FormRow>
             <Label title={t('common:form.nameLabel')} for="name" />
             <Input
@@ -281,12 +286,22 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
               {t('checkout:acceptTerms')}
             </Checkbox>
           </FormRow>
+          <section className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white -mx-4 md:static md:m-0 md:p-0 md:border-none md:mt-6">
+            <Button
+              type="submit"
+              name={t('common:button.pay')}
+              onClick={handlePaymentSubmit}
+              disabled={loading}
+            >
+              {loading ? (
+                <Loader />
+              ) : (
+                `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
+              )}
+            </Button>
+          </section>
         </form>
-        <section className={`hidden md:block`}>{payButton}</section>
       </Card>
-      <div className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white md:hidden">
-        {payButton}
-      </div>
     </>
   );
 };

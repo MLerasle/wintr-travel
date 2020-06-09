@@ -2,7 +2,7 @@ import { Component } from 'react';
 import dayjs from 'dayjs';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 
-import { localeUtils, formatDate, parseDate } from 'helpers/react-day-picker';
+import { localeUtils, formatDate } from 'helpers/react-day-picker';
 import Navbar from '@/UI/DateRangeNavbar';
 import Label from '@/UI/Label';
 
@@ -54,14 +54,12 @@ export default class DateRangeInput extends Component {
           <DayPickerInput
             value={fromValue}
             placeholder="dd/mm/yyyy"
-            format={format}
-            formatDate={formatDate}
-            parseDate={parseDate}
             dayPickerProps={{
               localeUtils: localeUtils,
               locale,
               disabledDays: { before: minDate, after: maxDate },
               selectedDays: [from, { from, to }],
+              initialMonth: new Date(2019, 2),
               toMonth: to,
               modifiers,
               numberOfMonths: 1,
@@ -84,15 +82,13 @@ export default class DateRangeInput extends Component {
             ref={(el) => (this.to = el)}
             value={toValue}
             placeholder="dd/mm/yyyy"
-            format={format}
-            formatDate={formatDate}
-            parseDate={parseDate}
             dayPickerProps={{
               localeUtils: localeUtils,
               locale,
               selectedDays: [from, { from, to }],
               disabledDays: { before: from || minDate, after: maxDate },
               modifiers,
+              initialMonth: new Date(2019, 2),
               month: from,
               fromMonth: from,
               numberOfMonths: 1,
