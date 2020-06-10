@@ -79,6 +79,9 @@
   font-weight: normal;
   font-size: 90%;
 }
+.DayPicker-Day--disabled {
+  color: #e2e8f0;
+}
 .InputDates
   .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
   background-color: #96dfff;

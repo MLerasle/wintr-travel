@@ -47,6 +47,7 @@ export default class DateRangeInput extends Component {
     const format = 'DD/MM/YYYY';
     const fromValue = from ? formatDate(from, format) : null;
     const toValue = to ? formatDate(to, format) : null;
+    const today = new Date('2019-03-01'); // Hardcoded for testing purpose
     return (
       <div className="InputDates">
         <span className="InputDates-from">
@@ -57,9 +58,16 @@ export default class DateRangeInput extends Component {
             dayPickerProps={{
               localeUtils: localeUtils,
               locale,
-              disabledDays: { before: minDate, after: maxDate },
+              disabledDays: {
+                before:
+                  dayjs(today).add(3, 'days') > dayjs(minDate)
+                    ? new Date(dayjs(today).add(3, 'days'))
+                    : minDate,
+                after: maxDate,
+              },
               selectedDays: [from, { from, to }],
-              initialMonth: new Date(2019, 2),
+              initialMonth:
+                today < minDate ? new Date(minDate) : new Date(today),
               toMonth: to,
               modifiers,
               numberOfMonths: 1,
@@ -86,9 +94,17 @@ export default class DateRangeInput extends Component {
               localeUtils: localeUtils,
               locale,
               selectedDays: [from, { from, to }],
-              disabledDays: { before: from || minDate, after: maxDate },
+              disabledDays: {
+                before:
+                  from ||
+                  (dayjs(today).add(3, 'days') > dayjs(minDate)
+                    ? new Date(dayjs(today).add(3, 'days'))
+                    : minDate),
+                after: maxDate,
+              },
               modifiers,
-              initialMonth: new Date(2019, 2),
+              initialMonth:
+                today < minDate ? new Date(minDate) : new Date(today),
               month: from,
               fromMonth: from,
               numberOfMonths: 1,
