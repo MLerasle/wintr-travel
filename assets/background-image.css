@@ -6,24 +6,24 @@
 }
 
 .webp .mobile-image {
-  background-image: url("/wintr-travel-home-sm.webp");
+  background-image: url('/wintr-travel-home-sm.webp');
 }
 
 .no-webp .mobile-image {
-  background-image: url("/wintr-travel-home-sm.jpg");
+  background-image: url('/wintr-travel-home-sm.jpg');
 }
 
 @media (min-width: 768px) {
   .cover {
     background-attachment: fixed;
-    height: 100%;
+    min-height: 100%;
   }
 
   .webp .cover {
-    background-image: url("/wintr-travel-home.webp");
+    background-image: url('/wintr-travel-home.webp');
   }
 
   .no-webp .cover {
-    background-image: url("/wintr-travel-home.jpg");
+    background-image: url('/wintr-travel-home.jpg');
   }
 }

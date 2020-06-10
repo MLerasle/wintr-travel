@@ -1,4 +1,4 @@
-import Nav from '@/App/nav';
+import Nav from '@/App/Nav';
 import Footer from '@/App/Footer';
 
 const Layout = (props) => (

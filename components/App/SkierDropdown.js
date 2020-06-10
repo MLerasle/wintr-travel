@@ -41,7 +41,7 @@ const SkierInput = (props) => {
   };
 
   return (
-    <div ref={node} className="relative w-full z-50">
+    <div ref={node} className="relative w-full z-40">
       <Label title={t('common:form.skiersLabel')} for="skiersInput" />
       <input
         type="text"
