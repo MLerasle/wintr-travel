@@ -10,6 +10,7 @@ import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
+import BottomDrawer from '@/UI/BottomDrawer';
 
 import { formatDate } from 'helpers/dates';
 
@@ -17,13 +18,15 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
   const { t, lang } = useTranslation();
   const [showPackInfos, setShowPackInfos] = useState(false);
 
-  const onInfoSkierDisplay = () => setShowPackInfos(true);
+  const onInfoSkierDisplay = () => {
+    if (document.documentElement.clientWidth > 640) setShowPackInfos(true);
+  };
   const onInfoSkierHide = () => setShowPackInfos(false);
   const onInfoSkierToggleDisplay = () => setShowPackInfos(!showPackInfos);
 
   return (
     <>
-      <Card classes="overflow-auto pb-20">
+      <Card classes="overflow-auto pb-24">
         <Header>
           <Heading className="text-xl sm:text-3xl">{t('cart:title')}</Heading>
           <button
@@ -60,11 +63,14 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
           onIconMouseEnter={onInfoSkierDisplay}
           onIconMouseLeave={onInfoSkierHide}
         >
-          {showPackInfos && (
-            <div className="relative">
-              <PackContent className="absolute z-50 top-1/2" />
-            </div>
-          )}
+          <BottomDrawer open={showPackInfos} closed={onInfoSkierHide} />
+          <div className="relative hidden sm:block">
+            <PackContent
+              className={`${
+                showPackInfos ? 'block' : 'hidden'
+              } absolute z-50 top-1/2`}
+            />
+          </div>
           <CartItem
             title={`${t('common:pack.adult')} x ${booking.adultsCount}`}
             value={`${booking.adultsAmount.toFixed(2)} €`}

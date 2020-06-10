@@ -112,6 +112,13 @@ const SkierInput = (props) => {
               setIsOpen(false);
               document.getElementById('searchButton').focus();
             }}
+            onKeyDown={(e) => {
+              if (e.keyCode === 9 && !e.shiftKey) {
+                e.preventDefault();
+                setIsOpen(false);
+                document.getElementById('searchButton').focus();
+              }
+            }}
           >
             {t('common:button.save')}
           </button>
