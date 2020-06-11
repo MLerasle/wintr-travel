@@ -27,7 +27,7 @@ const NavItems = () => {
   };
 
   return (
-    <div className={`px-6 pb-2 sm:flex sm:p-0`}>
+    <div className={`sm:px-6 pb-2 sm:flex sm:p-0`}>
       {links.map(({ label, href, key, locale }) => (
         <Link
           href={{
@@ -37,7 +37,7 @@ const NavItems = () => {
           key={key}
         >
           <a
-            className="mt-1 block py-1 tracking-wide text-gray-800 hover:text-gray-600 sm:text-white sm:hover:text-gray-300 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer"
+            className="mt-1 block px-6 py-2 border-b border-gray-300 tracking-wide text-lg text-gray-800 hover:text-gray-600 sm:text-base sm:text-white sm:hover:text-gray-300 sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer"
             onClick={() => storeLocale(locale)}
           >
             {label}

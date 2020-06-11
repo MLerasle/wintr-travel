@@ -192,7 +192,6 @@ const BookingForm = (props) => {
               toLabel={t('common:form.dateToLabel')}
               onChange={(type, date) => handleDateChange(type, date)}
               onChangeToDate={() => {
-                console.log('Booking', booking);
                 if (booking.adultsCount === 0) {
                   document.getElementById('skiersInput').focus();
                 }

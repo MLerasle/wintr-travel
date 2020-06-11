@@ -1,9 +1,25 @@
 module.exports = {
-  purge: [
-    './pages/**/*.js',
-    './components/**/*.js',
-    './node_modules/react-day-picker/**/*.css',
-  ],
+  purge: {
+    enabled: true,
+    content: [
+      './pages/**/*.js',
+      './components/**/*.js',
+      './node_modules/react-day-picker/**/*.css',
+    ],
+    options: {
+      whitelist: [
+        'text-center',
+        'text-3xl',
+        'py-10',
+        'pb-6',
+        'mx-4',
+        'mb-6',
+        'border-b',
+        'w-56',
+        'sm:border-b-0',
+      ],
+    },
+  },
   theme: {
     extend: {
       colors: {

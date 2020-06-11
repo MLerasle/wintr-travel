@@ -16,7 +16,7 @@ const Index = ({ catalog }) => {
       </Head>
       <MobileImage />
       <BookingForm catalog={catalog} />
-      <PackContent className="md:hidden mx-4 md:mx-6 mt-2 mb-8" title />
+      <PackContent className="md:hidden mx-4 md:mx-6 mt-2 mb-6" title />
     </LayoutCover>
   );
 };

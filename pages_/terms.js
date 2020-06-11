@@ -13,7 +13,7 @@ const Terms = () => {
       </Head>
       <div className="bg-gray-100 w-full flex justify-center">
         <div className="page px-4 py-10 tracking-wide">
-          <h1 className="text-center text-3xl font-bold text-gray-900">
+          <h1 className="pb-6 text-center text-3xl font-bold text-gray-900">
             Conditions Générales de Vente
           </h1>
           <h2 className="pt-6 pb-3 text-2xl font-bold text-gray-900">

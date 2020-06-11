@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import {
+  CardElement,
+  PaymentRequestButtonElement,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
 
 import { isoCountries } from 'data/countries';
 
+import StripeCardElement from '@/App/StripeCardElement';
 import Card from '@/UI/Card';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
@@ -20,36 +26,12 @@ import Loader from '@/UI/Loader';
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const CARD_ELEMENT_OPTIONS = {
-  classes: {
-    base:
-      'border border-gray-300 rounded-lg px-2 py-3 h-12 w-full appearance-none',
-    focus: 'outline-none border-secondary-blue',
-    invalid:
-      'border border-red-600 bg-red-100 rounded-lg px-2 py-3 h-12 w-full appearance-none',
-  },
-  style: {
-    base: {
-      color: '#2D3748',
-      fontFamily: 'system-ui, sans-serif',
-      fontSize: '16px',
-      '::placeholder': {
-        color: '#A0AEC0',
-      },
-    },
-    invalid: {
-      color: '#E53E3E',
-      iconColor: '#E53E3E',
-    },
-  },
-  hidePostalCode: true,
-};
-
 const CheckoutForm = ({ booking, paymentIntent }) => {
   const _isMounted = useRef(true);
   const { t, lang } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
+  const [paymentRequest, setPaymentRequest] = useState(null);
   const countries = Object.entries(isoCountries(lang)).sort((a, b) =>
     a[1] > b[1] ? 1 : b[1] > a[1] ? -1 : 0
   );
@@ -67,13 +49,36 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   });
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
   const [loading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     return () => {
       _isMounted.current = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (stripe) {
+      const pr = stripe.paymentRequest({
+        country: 'CH', // country_code of Stripe Account
+        currency: 'eur',
+        total: {
+          label: 'Booking Wintr Travel',
+          // amount: +booking.totalAmount * 100,
+          amount: 1,
+        },
+        requestPayerName: true,
+        requestPayerEmail: true,
+      });
+
+      pr.canMakePayment()
+        .then((result) => {
+          if (result) {
+            setPaymentRequest(pr);
+          }
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [stripe]);
 
   const handleChange = (event) => {
     let name;
@@ -118,21 +123,55 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     });
   };
 
-  // Handle real-time validation errors from the card Element.
-  const handleCardChange = (event) => {
-    if (event.error) {
-      setError(event.error.message);
-    } else {
-      setError(null);
-    }
-  };
+  // Handle one click payment
+  if (paymentRequest) {
+    paymentRequest.on('paymentmethod', async (ev) => {
+      console.log('One click payment');
+
+      // Confirm the PaymentIntent without handling potential next actions (yet).
+      const { error: confirmError } = await stripe.confirmCardPayment(
+        paymentIntent.client_secret,
+        { payment_method: ev.paymentMethod.id },
+        { handleActions: false }
+      );
+
+      if (confirmError) {
+        // Report to the browser that the payment failed, prompting it to
+        // re-show the payment interface, or show an error message and close
+        // the payment interface.
+        console.log('confirm error', confirmError);
+        ev.complete('fail');
+      } else {
+        // Report to the browser that the confirmation was successful, prompting
+        // it to close the browser payment method collection interface.
+        ev.complete('success');
+        console.log('Successful one click payment');
+
+        // Let Stripe.js handle the rest of the payment flow.
+        const { error, paymentIntent } = await stripe.confirmCardPayment(
+          paymentIntent.client_secret
+        );
+
+        if (error) {
+          // The payment failed -- ask your customer for a new payment method.
+          // Redirect to checkout and display an error message
+          console.log('ERROR', error);
+        } else {
+          // The payment has succeeded.
+          console.log('SUCCESS', paymentIntent);
+          // Update booking with by retrieving name, email and country of the user
+          // Also add the paymentIntent id
+          // Redirect to /confirmation
+        }
+      }
+    });
+  }
 
   // Handle form submission.
   const handlePaymentSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
     setFormWasSubmitted(true);
-
     // Add checkout informations to booking data before sending it to the backend
     const updatedBooking = {
       ...booking,
@@ -142,9 +181,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       ...formState.acceptTerms,
       paymentIntentId: paymentIntent.id,
     };
-
     console.log(updatedBooking);
-
     try {
       const {
         error,
@@ -155,13 +192,10 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         },
         receipt_email: formState.email,
       });
-
       if (error) throw new Error(error.message);
-
       if (status === 'succeeded') {
         destroyCookie(null, 'paymentIntentId');
         // Cookie should also be destroyed when tab is closed (if we store booking in sessionStorage)
-
         // Send booking infos to the backend
         // fetch('https://wintr.travel/booking', {
         //   method: 'post',
@@ -189,6 +223,20 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     }
   };
 
+  let paymentRequestButton = null;
+  if (paymentRequest) {
+    paymentRequestButton = (
+      <PaymentRequestButtonElement
+        options={{
+          paymentRequest,
+          style: {
+            paymentRequestButton: { height: '48px' },
+          },
+        }}
+      />
+    );
+  }
+
   return (
     <>
       <Card>
@@ -198,6 +246,12 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
           </Heading>
         </Header>
         <Separator className="my-6" />
+        {paymentRequestButton ? (
+          <>
+            {paymentRequestButton}
+            <Separator label={t('common:or')} className="my-10" />
+          </>
+        ) : null}
         <form className="flex flex-col">
           <FormRow>
             <Label title={t('common:form.nameLabel')} for="name" />
@@ -264,17 +318,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
           </FormRow>
           <FormRow>
             <Label title={t('checkout:creditCardLabel')} for="card-element" />
-            <CardElement
-              id="card-element"
-              options={CARD_ELEMENT_OPTIONS}
-              onChange={handleCardChange}
-            />
-            <div
-              className="card-errors text-red-600 pt-1 pl-1 font-sans"
-              role="alert"
-            >
-              {error}
-            </div>
+            <StripeCardElement CardElement={CardElement} />
           </FormRow>
           <FormRow>
             <Checkbox
@@ -286,20 +330,19 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
               {t('checkout:acceptTerms')}
             </Checkbox>
           </FormRow>
-          <section className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white -mx-4 md:static md:m-0 md:p-0 md:border-none md:mt-6">
-            <Button
-              type="submit"
-              name={t('common:button.pay')}
-              onClick={handlePaymentSubmit}
-              disabled={loading}
-            >
-              {loading ? (
-                <Loader />
-              ) : (
-                `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
-              )}
-            </Button>
-          </section>
+          <Button
+            type="submit"
+            name={t('common:button.pay')}
+            onClick={handlePaymentSubmit}
+            disabled={loading}
+            classes="my-4"
+          >
+            {loading ? (
+              <Loader />
+            ) : (
+              `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
+            )}
+          </Button>
         </form>
       </Card>
     </>

@@ -84,6 +84,8 @@ export async function getServerSideProps(context) {
       amount: bookingAmount,
       currency: 'eur',
       payment_method_types: ['card'],
+      // Temp before verifying the integration
+      metadata: { integration_check: 'accept_a_payment' },
     });
 
     setCookie(context, 'paymentIntentId', paymentIntent.id);

@@ -22,7 +22,7 @@
     "react-day-picker": "7.4.8",
     "react-dom": "16.13.1",
     "react-select": "3.1.0",
-    "stripe": "^8.60.0"
+    "stripe": "^8.62.0"
   },
   "devDependencies": {
     "@mdi/react": "1.4.0",
