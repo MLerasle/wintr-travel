@@ -33,6 +33,9 @@ export default class DateRangeInput extends Component {
   handleFromChange(from) {
     this.setState({ from });
     this.props.onChange('from', dayjs(from).format('YYYY-MM-DD'));
+    if (this.state.to && from > this.state.to) {
+      this.handleToChange(from);
+    }
   }
 
   handleToChange(to) {

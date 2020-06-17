@@ -14,8 +14,12 @@ export const reducer = (state, action) => {
       return {
         ...state,
         firstDay: action.firstDay,
-        lastDay: action.lastDay,
-        duration: dayjs(action.lastDay).diff(dayjs(action.firstDay), 'day') + 1,
+        lastDay: action.lastDay || action.firstDay,
+        duration:
+          dayjs(action.lastDay || action.firstDay).diff(
+            dayjs(action.firstDay),
+            'day'
+          ) + 1,
         weekId: weekForDay(action.catalog, action.firstDay).id,
         isValid: action.firstDay && state.resortId && state.adultsCount > 0,
       };
