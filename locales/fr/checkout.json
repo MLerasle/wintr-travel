@@ -1,5 +1,11 @@
 {
   "title": "Paiement",
   "creditCardLabel": "Données de votre carte",
-  "acceptTerms": "J'accepte les Conditions Générales de Vente."
+  "acceptTerms": "J'accepte les Conditions Générales de Vente.",
+  "errors": {
+    "name": "Vous devez renseigner votre nom.",
+    "email": "Vous devez saisir une adresse email valide.",
+    "country": "Veuillez indiquer votre pays de résidence.",
+    "acceptTerms": "Invalide"
+  }
 }

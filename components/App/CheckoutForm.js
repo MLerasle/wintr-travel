@@ -41,10 +41,10 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     country: { value: 'FR', label: 'France' },
     acceptTerms: false,
     errors: {
-      name: 'Your name is required',
-      email: 'Your email is required and must be valid',
+      name: t('checkout:errors.name'),
+      email: t('checkout:errors.email'),
       country: '',
-      acceptTerms: 'Invalid',
+      acceptTerms: t('checkout:errors.acceptTerms'),
     },
   });
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
@@ -97,20 +97,20 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
 
     switch (name) {
       case 'name':
-        formErrors.name = value.trim() === '' ? 'Your name is required' : '';
+        formErrors.name = value.trim() === '' ? t('checkout:errors.name') : '';
         break;
       case 'email':
         formErrors.email =
           formState.email.trim() === '' || !EMAIL_PATTERN.test(formState.email)
-            ? 'Your email is required and must be valid'
+            ? t('checkout:errors.email')
             : '';
         break;
       case 'country':
-        formErrors.country = !value ? 'Country is required' : '';
+        formErrors.country = !value ? t('checkout:errors.country') : '';
         break;
       case 'acceptTerms':
         value = !formState.acceptTerms;
-        formErrors.acceptTerms = !value ? 'Invalid' : '';
+        formErrors.acceptTerms = !value ? t('checkout:errors.acceptTerms') : '';
         break;
       default:
         break;

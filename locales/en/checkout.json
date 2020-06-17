@@ -1,5 +1,11 @@
 {
   "title": "Checkout",
   "creditCardLabel": "Credit card details",
-  "acceptTerms": "I agree to the Terms of Service."
+  "acceptTerms": "I agree to the Terms of Service.",
+  "errors": {
+    "name": "Your name is required.",
+    "email": "Your email is required and must be valid.",
+    "country": "Country is required.",
+    "acceptTerms": "Invalid"
+  }
 }
