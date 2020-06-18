@@ -42,12 +42,6 @@ const Cart = ({ catalog }) => {
   const { t, lang } = useTranslation();
 
   useEffect(() => {
-    if (!booking.isValid) {
-      Router.push(`/${lang}`);
-    }
-  }, []);
-
-  useEffect(() => {
     return () => {
       _isMounted.current = false;
     };
