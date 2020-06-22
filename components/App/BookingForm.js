@@ -106,6 +106,7 @@ const BookingForm = (props) => {
     if (bookingPrice.error) {
       // TODO: Raise error and do something useful for the user :)
       console.log('ERROR in bookingPrice calculation', bookingPrice);
+      setIsLoading(false);
       return;
     }
     dispatch({
@@ -129,13 +130,17 @@ const BookingForm = (props) => {
         children_amount: bookingPrice.children,
         total_amount: bookingPrice.total,
       },
-    }).then(() => {
-      if (_isMounted.current) {
-        setIsLoading(false);
-      }
-      props.onUpdate && props.onUpdate();
-      window.scrollTo(0, 0);
-    });
+    })
+      .then(() => {
+        if (_isMounted.current) {
+          setIsLoading(false);
+        }
+        props.onUpdate && props.onUpdate();
+        window.scrollTo(0, 0);
+      })
+      .catch((error) => {
+        console.log('ERROR pushing new route', error);
+      });
   };
 
   return (

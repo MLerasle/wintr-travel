@@ -40,6 +40,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     email: '',
     country: { value: 'FR', label: 'France' },
     acceptTerms: false,
+    isValid: false,
     errors: {
       name: t('checkout:errors.name'),
       email: t('checkout:errors.email'),
@@ -120,6 +121,11 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       ...formState,
       [name]: value,
       errors: { ...formState.errors, ...formErrors },
+      isValid:
+        !formErrors.name &&
+        !formErrors.email &&
+        !formErrors.country &&
+        !formErrors.acceptTerms,
     });
   };
 
@@ -182,6 +188,10 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       paymentIntentId: paymentIntent.id,
     };
     console.log(updatedBooking);
+    if (!formState.isValid) {
+      setIsLoading(false);
+      return;
+    }
     try {
       const {
         error,
@@ -195,7 +205,6 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       if (error) throw new Error(error.message);
       if (status === 'succeeded') {
         destroyCookie(null, 'paymentIntentId');
-        // Cookie should also be destroyed when tab is closed (if we store booking in sessionStorage)
         // Send booking infos to the backend
         // fetch('https://wintr.travel/booking', {
         //   method: 'post',

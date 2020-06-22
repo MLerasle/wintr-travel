@@ -27,7 +27,7 @@ const NavItems = () => {
   };
 
   return (
-    <div className={`sm:px-6 pb-2 sm:flex sm:p-0`}>
+    <div className={`pb-2 sm:flex sm:p-0`}>
       {links.map(({ label, href, key, locale }) => (
         <Link
           href={{

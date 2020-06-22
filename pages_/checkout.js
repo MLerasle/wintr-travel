@@ -43,6 +43,10 @@ const Checkout = ({ paymentIntent }) => {
   };
 
   useEffect(() => {
+    const { paymentIntentId } = parseCookies();
+    if (!paymentIntentId) {
+      setCookie(null, 'paymentIntentId', paymentIntent.id);
+    }
     if (!booking.isValid) {
       Router.push(`/${lang}`);
     }
@@ -65,7 +69,9 @@ export async function getServerSideProps(context) {
 
   let paymentIntent;
 
-  const { paymentIntentId } = parseCookies(context);
+  const { paymentIntentId } = parseCookies(
+    typeof window === 'undefined' ? context : {}
+  );
 
   const booking = context.query;
   const bookingAmount = Math.round(+booking.total_amount * 100);
@@ -87,8 +93,6 @@ export async function getServerSideProps(context) {
       // Temp before verifying the integration
       metadata: { integration_check: 'accept_a_payment' },
     });
-
-    setCookie(context, 'paymentIntentId', paymentIntent.id);
   }
 
   return {
