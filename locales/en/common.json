@@ -10,6 +10,9 @@
     "save": "Save",
     "validate": "Validate"
   },
+  "error": {
+    "bookingPrice": "We are not able to fulfill your requirements at these dates in this resort. Please edit your search."
+  },
   "form": {
     "editTitle": "Edit your booking",
     "title": "Book your skis and your ski pass.",
@@ -31,7 +34,9 @@
     "about": "About",
     "terms": "Terms",
     "privacy": "Privacy",
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "legal": "Legal",
+    "language": "Languages"
   },
   "pack": {
     "content": "Pack content",

@@ -10,14 +10,34 @@ const NavItems = () => {
   const { t, lang } = useTranslation();
   const { storeLocale } = useContext(LocaleContext);
 
-  const links = [
-    { label: 'English', locale: 'en' },
-    { label: 'Français', locale: 'fr' },
-    { label: `${t('common:help')}`, href: `/${lang}/help` },
-  ].map((link) => {
-    link.key = `nav-link-${link.locale}`;
-    return link;
-  });
+  const sections = [
+    {
+      name: '',
+      key: 'other',
+      links: [
+        {
+          label: t('common:label.about'),
+          href: `/${lang}/about`,
+        },
+      ],
+    },
+    {
+      name: t('common:label.language'),
+      key: 'lang',
+      links: [
+        { label: 'English', locale: 'en' },
+        { label: 'Français', locale: 'fr' },
+      ],
+    },
+    {
+      name: t('common:label.legal'),
+      key: 'legal',
+      links: [
+        { label: t('common:label.privacy'), href: `/${lang}/privacy` },
+        { label: t('common:label.terms'), href: `/${lang}/terms` },
+      ],
+    },
+  ];
 
   const localizedPath = (locale) => {
     let currentPath = router.pathname;
@@ -28,21 +48,34 @@ const NavItems = () => {
 
   return (
     <div className={`pb-2 sm:flex sm:p-0`}>
-      {links.map(({ label, href, key, locale }) => (
-        <Link
-          href={{
-            pathname: href || localizedPath(locale),
-            query: router.query,
-          }}
-          key={key}
-        >
-          <a
-            className="mt-1 block px-6 py-2 border-b border-gray-300 tracking-wide text-lg text-gray-800 hover:text-gray-600 sm:text-base sm:text-white sm:hover:text-gray-300 sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer"
-            onClick={() => storeLocale(locale)}
+      {sections.map(({ name, key, links }) => (
+        <div className="sm:flex" key={key}>
+          <div
+            className={`sm:hidden py-2 px-4 uppercase tracking-wide text-sm text-gray-600 ${
+              key === 'other' ? '' : 'mt-4'
+            }`}
           >
-            {label}
-          </a>
-        </Link>
+            {name}
+          </div>
+          {links.map(({ label, locale, href }) => (
+            <Link
+              href={{
+                pathname: href || localizedPath(locale),
+                query: router.query,
+              }}
+              key={`nav-link-${label}`}
+            >
+              <a
+                className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide text-lg text-gray-800 transition duration-300 ease-in-out hover:text-gray-600 sm:hover:text-blue-200 sm:bg-transparent sm:text-base sm:text-white sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer ${
+                  key === 'legal' ? 'sm:hidden' : ''
+                }`}
+                onClick={() => storeLocale(locale)}
+              >
+                {label}
+              </a>
+            </Link>
+          ))}
+        </div>
       ))}
     </div>
   );

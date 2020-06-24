@@ -37,7 +37,7 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
           {booking.isValid && (
             <button
               name={t('common:button.edit')}
-              className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
+              className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
               onClick={onEdit}
             >
               {t('common:button.edit')}

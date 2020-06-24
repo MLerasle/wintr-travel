@@ -1,6 +1,8 @@
 import { useReducer, useState, useRef, useEffect } from 'react';
 import Router from 'next/router';
 import useTranslation from 'next-translate/useTranslation';
+import Icon from '@mdi/react';
+import { mdiClose } from '@mdi/js';
 
 import SkierDropdown from '@/App/SkierDropdown';
 import Card from '@/UI/Card';
@@ -26,6 +28,7 @@ const BookingForm = (props) => {
     props.booking || INITIAL_BOOKING
   );
   const [loading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     return () => {
@@ -106,6 +109,10 @@ const BookingForm = (props) => {
     if (bookingPrice.error) {
       // TODO: Raise error and do something useful for the user :)
       console.log('ERROR in bookingPrice calculation', bookingPrice);
+      setError({
+        error: bookingPrice.message,
+        message: t('common:error.bookingPrice'),
+      });
       setIsLoading(false);
       return;
     }
@@ -134,6 +141,7 @@ const BookingForm = (props) => {
       .then(() => {
         if (_isMounted.current) {
           setIsLoading(false);
+          setError(null);
         }
         props.onUpdate && props.onUpdate();
         window.scrollTo(0, 0);
@@ -146,6 +154,18 @@ const BookingForm = (props) => {
   return (
     <>
       <Card>
+        {error && (
+          <div className="relative mb-4 p-4 border border-red-600 rounded bg-red-100 text-red-600">
+            <Icon
+              path={mdiClose}
+              size={0.9}
+              className="absolute top-1/4 right-1/4 cursor-pointer"
+              color="#E53E3E"
+              onClick={() => setError(null)}
+            />
+            {error.message}
+          </div>
+        )}
         <Header>
           {props.booking ? (
             <>
@@ -154,7 +174,7 @@ const BookingForm = (props) => {
               </Heading>
               <button
                 name={t('common:button.cancel')}
-                className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide hover:underline focus:outline-none focus:shadow-outline"
+                className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
                 onClick={props.onUpdate}
               >
                 {t('common:button.cancel')}

@@ -10,6 +10,9 @@
     "save": "Enregistrer",
     "validate": "Valider"
   },
+  "error": {
+    "bookingPrice": "Nous n'avons malheureusement pas de matériel à vous proposer à ces dates dans cette station. Veuillez modifier votre recherche."
+  },
   "form": {
     "editTitle": "Modifier la réservation",
     "title": "Réservez vos skis et votre forfait.",
@@ -31,7 +34,9 @@
     "about": "À propos",
     "terms": "CGV",
     "privacy": "Confidentialité",
-    "rights": "Tous droits réservés"
+    "rights": "Tous droits réservés",
+    "legal": "Mentions légales",
+    "language": "Langues"
   },
   "pack": {
     "content": "Contenu d'un pack",

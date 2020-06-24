@@ -11,7 +11,7 @@ const cartSection = (props) => (
           <Icon
             path={mdiInformationOutline}
             size={0.8}
-            className="ml-2 cursor-pointer"
+            className="ml-2 cursor-pointer transition duration-300 ease-in-out transform hover:scale-110"
             color="#0CB3FA"
             onClick={props.onIconClicked}
             onMouseEnter={props.onIconMouseEnter}

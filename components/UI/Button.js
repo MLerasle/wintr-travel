@@ -7,7 +7,7 @@ const Button = (props) => {
   if (props.disabled) {
     classes += 'opacity-40 cursor-not-allowed';
   } else {
-    classes += 'hover:opacity-90';
+    classes += 'transition duration-300 ease-in-out hover:opacity-90';
   }
 
   return (
