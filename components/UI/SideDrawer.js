@@ -22,7 +22,7 @@ const SideDrawer = (props) => (
             onClick={props.closed}
           />
         </header>
-        <NavItems />
+        <NavItems onItemClick={props.closed} />
       </nav>
     </div>
   </>

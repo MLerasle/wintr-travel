@@ -5,7 +5,7 @@ import useTranslation from 'next-translate/useTranslation';
 
 import { LocaleContext } from 'context/LocaleContext';
 
-const NavItems = () => {
+const NavItems = (props) => {
   const router = useRouter();
   const { t, lang } = useTranslation();
   const { storeLocale } = useContext(LocaleContext);
@@ -46,6 +46,13 @@ const NavItems = () => {
     return `/${locale}${currentPath}`;
   };
 
+  const navItemClicked = (locale) => {
+    if (props.onItemClick) {
+      props.onItemClick();
+    }
+    storeLocale(locale);
+  };
+
   return (
     <div className={`pb-2 sm:flex sm:p-0`}>
       {sections.map(({ name, key, links }) => (
@@ -66,10 +73,12 @@ const NavItems = () => {
               key={`nav-link-${label}`}
             >
               <a
-                className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide text-lg text-gray-800 transition duration-300 ease-in-out hover:text-gray-600 sm:hover:text-blue-200 sm:bg-transparent sm:text-base sm:text-white sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer ${
+                className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide text-lg ${
+                  locale === lang ? 'text-secondary-blue' : 'text-gray-800'
+                } transition duration-300 ease-in-out hover:text-gray-600 sm:hover:text-blue-200 sm:bg-transparent sm:text-base sm:text-white sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer ${
                   key === 'legal' ? 'sm:hidden' : ''
                 }`}
-                onClick={() => storeLocale(locale)}
+                onClick={navItemClicked}
               >
                 {label}
               </a>

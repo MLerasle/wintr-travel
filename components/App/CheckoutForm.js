@@ -64,11 +64,19 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         currency: 'eur',
         total: {
           label: 'Booking Wintr Travel',
-          // amount: +booking.totalAmount * 100,
-          amount: 1,
+          amount: +booking.totalAmount * 100,
         },
         requestPayerName: true,
         requestPayerEmail: true,
+        requestShipping: true,
+        shippingOptions: [
+          {
+            id: 'free-shipping',
+            label: 'Free shipping',
+            detail: '',
+            amount: 0,
+          },
+        ],
       });
 
       pr.canMakePayment()
@@ -85,7 +93,10 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     let name;
     let value;
 
-    if (event === null || event.value) {
+    if (event === undefined) {
+      // Toggle acceptTerms with keyboard
+      name = 'acceptTerms';
+    } else if (event === null || event.value) {
       // Handle country react-select field
       name = 'country';
       value = event;
@@ -102,7 +113,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         break;
       case 'email':
         formErrors.email =
-          formState.email.trim() === '' || !EMAIL_PATTERN.test(formState.email)
+          value.trim() === '' || !EMAIL_PATTERN.test(value)
             ? t('checkout:errors.email')
             : '';
         break;
@@ -132,7 +143,11 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   // Handle one click payment
   if (paymentRequest) {
     paymentRequest.on('paymentmethod', async (ev) => {
-      console.log('One click payment');
+      console.log('One click payment', ev);
+
+      // This is necessary to work around a weird Stripe issue at the moment
+      // https://github.com/stripe/stripe-payments-demo/issues/101
+      const intent = paymentIntent;
 
       // Confirm the PaymentIntent without handling potential next actions (yet).
       const { error: confirmError } = await stripe.confirmCardPayment(
@@ -150,12 +165,12 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       } else {
         // Report to the browser that the confirmation was successful, prompting
         // it to close the browser payment method collection interface.
-        ev.complete('success');
         console.log('Successful one click payment');
+        ev.complete('success');
 
         // Let Stripe.js handle the rest of the payment flow.
         const { error, paymentIntent } = await stripe.confirmCardPayment(
-          paymentIntent.client_secret
+          intent.client_secret
         );
 
         if (error) {
@@ -165,9 +180,21 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         } else {
           // The payment has succeeded.
           console.log('SUCCESS', paymentIntent);
-          // Update booking with by retrieving name, email and country of the user
-          // Also add the paymentIntent id
-          // Redirect to /confirmation
+          const updatedBooking = {
+            ...booking,
+            name: ev.payerName,
+            email: ev.payerEmail,
+            countryCode: ev.paymentMethod.billing_details.address.country,
+            paymentIntentId: paymentIntent.id,
+            locale: lang,
+          };
+          console.log('Booking to send to the API', updatedBooking);
+          destroyCookie(null, 'paymentIntentId');
+          Router.push(`/${lang}/confirmation`).then(() => {
+            if (_isMounted.current) {
+              setIsLoading(false);
+            }
+          });
         }
       }
     });
@@ -181,13 +208,13 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     // Add checkout informations to booking data before sending it to the backend
     const updatedBooking = {
       ...booking,
-      ...formState.name,
-      ...formState.email,
-      ...formState.country,
-      ...formState.acceptTerms,
+      name: formState.name,
+      email: formState.email,
+      countryCode: formState.country.value,
       paymentIntentId: paymentIntent.id,
+      locale: lang,
     };
-    console.log(updatedBooking);
+    console.log('Booking to send to the API', updatedBooking);
     if (!formState.isValid) {
       setIsLoading(false);
       return;

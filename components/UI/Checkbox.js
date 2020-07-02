@@ -1,47 +1,38 @@
 const Checkbox = (props) => (
   <label className="custom-label flex mt-2 text-gray-700">
     <div
-      className={`border bg-white border-gray-300 rounded w-6 h-6 p-1 flex justify-center items-center mr-3 ${
+      className={`checkbox bg-white border rounded border-gray-300 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-3 focus-within:border-secondary-blue ${
         props.error && 'bg-red-100 border-red-600'
       }`}
     >
       <input
         type="checkbox"
-        className="hidden"
+        className="opacity-0 absolute"
         value={props.value}
+        checked={props.value}
         name={props.name}
         onChange={props.onChange}
+        onKeyDown={(e) => {
+          if (e.keyCode === 13 || e.keyCode === 32) {
+            e.preventDefault();
+            props.onChange();
+          }
+        }}
       />
       <svg
-        className="hidden w-4 h-4 text-secondary-blue pointer-events-none"
-        viewBox="0 0 172 172"
+        className="fill-current hidden w-4 h-4 text-secondary-blue pointer-events-none"
+        viewBox="0 0 20 20"
       >
-        <g
-          fill="none"
-          strokeWidth="none"
-          strokeMiterlimit="10"
-          fontFamily="none"
-          fontWeight="none"
-          fontSize="none"
-          textAnchor="none"
-          style={{ mixBlendMode: 'normal' }}
-        >
-          <path d="M0 172V0h172v172z" />
-          <path
-            d="M145.433 37.933L64.5 118.8658 33.7337 88.0996l-10.134 10.1341L64.5 139.1341l91.067-91.067z"
-            fill="currentColor"
-            strokeWidth="1"
-          />
-        </g>
+        <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
       </svg>
     </div>
-    <span className={`select-none ${props.error && 'text-red-600'}`}>
+    <div className={`select-none ${props.error && 'text-red-600'}`}>
       {props.children}
-    </span>
+    </div>
     <style jsx>
       {`
-        .custom-label input:checked + svg {
-          display: block !important;
+        input:checked + svg {
+          display: block;
         }
       `}
     </style>
