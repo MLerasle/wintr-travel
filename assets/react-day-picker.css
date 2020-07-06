@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
 }
-.InputDates span {
+.InputDates div {
   flex-grow: 1;
 }
 .DayPickerInput {
@@ -39,6 +39,23 @@
 .InputDates-from .DayPickerInput-OverlayWrapper {
   top: 8px;
   z-index: 60;
+}
+.InputDates-from,
+.InputDates-to {
+  position: relative;
+}
+.InputDates-from .resetFromDate,
+.InputDates-to .resetToDate {
+  position: absolute;
+  top: 41px;
+  right: 8px;
+  color: #e3e8ef;
+  font-weight: bold;
+}
+.InputDates-from .resetFromDate:hover,
+.InputDates-to .resetToDate:hover {
+  color: #a3aebe !important;
+  cursor: default;
 }
 .InputDates-to .DayPickerInput-OverlayWrapper {
   position: absolute;

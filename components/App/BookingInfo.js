@@ -31,7 +31,7 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
 
   return (
     <>
-      <Card classes="overflow-auto pb-24">
+      <Card classes="overflow-auto">
         <Header>
           <Heading className="text-xl sm:text-3xl">{t('cart:title')}</Heading>
           {booking.isValid && (
@@ -109,7 +109,7 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
             </CartSection>
           </>
         )}
-        <section className="fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white -mx-4 md:static md:m-0 md:p-0 md:border-none md:mt-6">
+        <section className="mt-12 md:mt-6">
           {!booking.isValid ? (
             <Button name="back" onClick={onBack}>
               {t('cart:newSearch')}

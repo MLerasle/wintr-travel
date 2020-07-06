@@ -107,8 +107,6 @@ const BookingForm = (props) => {
       childrenCount
     );
     if (bookingPrice.error) {
-      // TODO: Raise error and do something useful for the user :)
-      console.log('ERROR in bookingPrice calculation', bookingPrice);
       setError({
         error: bookingPrice.message,
         message: t('common:error.bookingPrice'),
@@ -236,11 +234,7 @@ const BookingForm = (props) => {
             />
           </FormRow>
           <section
-            className={`${
-              props.booking
-                ? 'fixed bottom-0 w-full p-4 border-t border-gray-300 z-10 bg-white -mx-4 md:static md:m-0 md:p-0 md:border-none md:mt-4'
-                : 'mt-2 md:mt-4'
-            }`}
+            className={`${props.booking ? 'mt-8 md:mt-4' : 'mt-2 md:mt-4'}`}
           >
             <Button
               type="submit"

@@ -1,14 +1,10 @@
-import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 
-import { LocaleContext } from 'context/LocaleContext';
-
 const NavItems = (props) => {
   const router = useRouter();
   const { t, lang } = useTranslation();
-  const { storeLocale } = useContext(LocaleContext);
 
   const sections = [
     {
@@ -46,11 +42,10 @@ const NavItems = (props) => {
     return `/${locale}${currentPath}`;
   };
 
-  const navItemClicked = (locale) => {
+  const navItemClicked = () => {
     if (props.onItemClick) {
       props.onItemClick();
     }
-    storeLocale(locale);
   };
 
   return (

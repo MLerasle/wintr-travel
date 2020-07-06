@@ -53,7 +53,7 @@ export default class DateRangeInput extends Component {
     const today = new Date('2019-03-01'); // Hardcoded for testing purpose
     return (
       <div className="InputDates">
-        <span className="InputDates-from">
+        <div className="InputDates-from">
           <Label title={this.props.fromLabel} for="InputDates-from" />
           <DayPickerInput
             value={fromValue}
@@ -83,11 +83,33 @@ export default class DateRangeInput extends Component {
                 this.to.getInput().focus();
               },
             }}
-            inputProps={{ readOnly: true, id: 'InputDates-from' }}
+            inputProps={{
+              readOnly: true,
+              id: 'InputDates-from',
+              onFocus: () =>
+                (document.querySelector('.resetFromDate').style.color =
+                  '#4a5568'),
+              onBlur: () =>
+                (document.querySelector('.resetFromDate').style.color =
+                  '#e3e8ef'),
+            }}
             onDayChange={this.handleFromChange}
           />
-        </span>
-        <span className="InputDates-to">
+          <svg
+            height="20"
+            width="20"
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            focusable="false"
+            className="css-6q0nyr-Svg resetFromDate"
+            type="reset"
+            onClick={() => this.setState({ from: null })}
+            style={{ display: this.state.from ? 'block' : 'none' }}
+          >
+            <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
+          </svg>
+        </div>
+        <div className="InputDates-to">
           <Label title={this.props.toLabel} for="InputDates-to" />
           <DayPickerInput
             ref={(el) => (this.to = el)}
@@ -119,10 +141,32 @@ export default class DateRangeInput extends Component {
                 }
               },
             }}
-            inputProps={{ readOnly: true, id: 'InputDates-to' }}
+            inputProps={{
+              readOnly: true,
+              id: 'InputDates-to',
+              onFocus: () =>
+                (document.querySelector('.resetToDate').style.color =
+                  '#4a5568'),
+              onBlur: () =>
+                (document.querySelector('.resetToDate').style.color =
+                  '#e3e8ef'),
+            }}
             onDayChange={this.handleToChange}
           />
-        </span>
+          <svg
+            height="20"
+            width="20"
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            focusable="false"
+            className="css-6q0nyr-Svg resetToDate"
+            type="reset"
+            onClick={() => this.setState({ to: null })}
+            style={{ display: this.state.to ? 'block' : 'none' }}
+          >
+            <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
+          </svg>
+        </div>
       </div>
     );
   }
