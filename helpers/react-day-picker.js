@@ -78,14 +78,7 @@ function getFirstDayOfWeek(locale = 'en') {
 
 // Next 2 methods are from react-day-picker/moment
 export function formatDate(date) {
-  var format =
-    arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'L';
-  var locale =
-    arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'en';
-
-  return dayjs(date)
-    .locale(locale)
-    .format(Array.isArray(format) ? format[0] : format);
+  return dayjs(date).format('DD/MM/YYYY');
 }
 
 export function parseDate(str) {

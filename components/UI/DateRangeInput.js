@@ -57,6 +57,7 @@ export default class DateRangeInput extends Component {
           <Label title={this.props.fromLabel} for="InputDates-from" />
           <DayPickerInput
             value={fromValue}
+            formatDate={formatDate}
             placeholder="dd/mm/yyyy"
             dayPickerProps={{
               localeUtils: localeUtils,
@@ -86,12 +87,14 @@ export default class DateRangeInput extends Component {
             inputProps={{
               readOnly: true,
               id: 'InputDates-from',
-              onFocus: () =>
-                (document.querySelector('.resetFromDate').style.color =
-                  '#4a5568'),
-              onBlur: () =>
-                (document.querySelector('.resetFromDate').style.color =
-                  '#e3e8ef'),
+              onFocus: () => {
+                document.querySelector('.resetFromDate path').style.fill =
+                  '#4a5568';
+              },
+              onBlur: () => {
+                document.querySelector('.resetFromDate path').style.fill =
+                  '#e3e8ef';
+              },
             }}
             onDayChange={this.handleFromChange}
           />
@@ -102,7 +105,6 @@ export default class DateRangeInput extends Component {
             aria-hidden="true"
             focusable="false"
             className="css-6q0nyr-Svg resetFromDate"
-            type="reset"
             onClick={() => this.setState({ from: null })}
             style={{ display: this.state.from ? 'block' : 'none' }}
           >
@@ -114,6 +116,7 @@ export default class DateRangeInput extends Component {
           <DayPickerInput
             ref={(el) => (this.to = el)}
             value={toValue}
+            formatDate={formatDate}
             placeholder="dd/mm/yyyy"
             dayPickerProps={{
               localeUtils: localeUtils,
@@ -144,12 +147,14 @@ export default class DateRangeInput extends Component {
             inputProps={{
               readOnly: true,
               id: 'InputDates-to',
-              onFocus: () =>
-                (document.querySelector('.resetToDate').style.color =
-                  '#4a5568'),
-              onBlur: () =>
-                (document.querySelector('.resetToDate').style.color =
-                  '#e3e8ef'),
+              onFocus: () => {
+                document.querySelector('.resetToDate path').style.fill =
+                  '#4a5568';
+              },
+              onBlur: () => {
+                document.querySelector('.resetToDate path').style.fill =
+                  '#e3e8ef';
+              },
             }}
             onDayChange={this.handleToChange}
           />
@@ -160,9 +165,10 @@ export default class DateRangeInput extends Component {
             aria-hidden="true"
             focusable="false"
             className="css-6q0nyr-Svg resetToDate"
-            type="reset"
             onClick={() => this.setState({ to: null })}
-            style={{ display: this.state.to ? 'block' : 'none' }}
+            style={{
+              display: this.state.to ? 'block' : 'none',
+            }}
           >
             <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
           </svg>

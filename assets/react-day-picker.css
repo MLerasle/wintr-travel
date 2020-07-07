@@ -49,13 +49,14 @@
   position: absolute;
   top: 41px;
   right: 8px;
-  color: #e3e8ef;
-  font-weight: bold;
 }
-.InputDates-from .resetFromDate:hover,
-.InputDates-to .resetToDate:hover {
-  color: #a3aebe !important;
-  cursor: default;
+.InputDates-from .resetFromDate path,
+.InputDates-to .resetToDate path {
+  color: #e3e8ef;
+}
+.InputDates-from .resetFromDate path:hover,
+.InputDates-to .resetToDate path:hover {
+  fill: #a3aebe !important;
 }
 .InputDates-to .DayPickerInput-OverlayWrapper {
   position: absolute;
