@@ -43,11 +43,14 @@
 .InputDates-from,
 .InputDates-to {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .InputDates-from .resetFromDate,
 .InputDates-to .resetToDate {
   position: absolute;
-  top: 41px;
+  top: 37px;
   right: 8px;
 }
 .InputDates-from .resetFromDate path,

@@ -68,7 +68,7 @@ const NavItems = (props) => {
               key={`nav-link-${label}`}
             >
               <a
-                className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide text-lg ${
+                className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide sm:text-lg ${
                   locale === lang ? 'text-secondary-blue' : 'text-gray-800'
                 } transition duration-300 ease-in-out hover:text-gray-600 sm:hover:text-blue-200 sm:bg-transparent sm:text-base sm:text-white sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer ${
                   key === 'legal' ? 'sm:hidden' : ''

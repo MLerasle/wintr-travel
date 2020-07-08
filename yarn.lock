@@ -1057,10 +1057,10 @@
   dependencies:
     prop-types "^15.7.2"
 
-"@stripe/stripe-js@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.7.0.tgz#870885e69b7627e59cd4777da558e494ba5cb698"
-  integrity sha512-/OreTnc8qWBsNrkpNTOxn67oRlqa+PZXukpiyZTcPo9/DRYyxtBZKvplFbH0C/qC/w0TpN8cueRl3h/dNYO4eg==
+"@stripe/stripe-js@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.8.0.tgz#100f102d757cd024f94635dba231993554c8cfba"
+  integrity sha512-VsIohJw70LIdB4b621RN6pTyw49ZMy+QjB81fl+Psu5X5ppiq/c+rG0F+XKHSVpp4JZRNDkQnsOGeuHow0aluA==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -5983,10 +5983,10 @@ strip-json-comments@^3.1.0:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.0.tgz#7638d31422129ecf4457440009fba03f9f9ac180"
   integrity sha512-e6/d0eBu7gHtdCqFt0xJr642LdToM5/cN4Qb9DbHjVx1CP5RyeM+zH7pbecEmDv/lBqb0QH+6Uqq75rxFPkM0w==
 
-stripe@^8.68.0:
-  version "8.68.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.68.0.tgz#936d449fe35dec382d44faf22f9bbf92992dbd44"
-  integrity sha512-NjVf4dA5ACCbE3susJH7KpT+4EbE1nBSwTjMhi9rT+xhrm9xEtx21lufoYWLkezuPN4O3LIPv4eXJQGaa6SrdQ==
+stripe@^8.69.0:
+  version "8.69.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.69.0.tgz#80a63fdceba82ef70c4f587d9beec856e9ca859b"
+  integrity sha512-RD/oW1cwMBHOYFN5gs8ehbEkMFg8tJPByQzVyibJxng5t6PxsEWtV+p5QM28aoT/XKSA7+EwCcDNmH1uPw4OMg==
   dependencies:
     "@types/node" ">=8.1.0"
     qs "^6.6.0"
