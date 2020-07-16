@@ -50,12 +50,8 @@
 .InputDates-from .resetFromDate,
 .InputDates-to .resetToDate {
   position: absolute;
-  top: 37px;
+  top: 36px;
   right: 8px;
-}
-.InputDates-from .resetFromDate path,
-.InputDates-to .resetToDate path {
-  color: #e3e8ef;
 }
 .InputDates-from .resetFromDate path:hover,
 .InputDates-to .resetToDate path:hover {
@@ -64,6 +60,7 @@
 .InputDates-to .DayPickerInput-OverlayWrapper {
   position: absolute;
   top: 56px;
+  right: 0;
   z-index: 60;
 }
 .DayPickerInput-Overlay {
@@ -71,6 +68,9 @@
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
+}
+.InputDates-to .DayPickerInput-Overlay {
+  position: relative;
 }
 .DayPicker-Caption {
   text-align: center;
@@ -117,15 +117,7 @@
   color: white;
 }
 @media (min-width: 342px) {
-  .InputDates-to .DayPickerInput-OverlayWrapper {
-    right: 294px;
-  }
   .DayPicker-Day {
     padding: 0.6rem;
-  }
-}
-@media (min-width: 768px) {
-  .InputDates-to .DayPickerInput-OverlayWrapper {
-    left: -65px;
   }
 }

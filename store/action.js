@@ -9,7 +9,7 @@ export const updateSkiersNumber = (booking, action, age = null) => {
   } else if (action === 'decrement' && age === 'child' && childrenCount > 0) {
     childrenCount -= 1;
   } else if (action === 'reset') {
-    adultsCount = 2;
+    adultsCount = 0;
     childrenCount = 0;
   }
   return {

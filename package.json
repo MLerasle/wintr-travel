@@ -22,7 +22,7 @@
     "react-day-picker": "7.4.8",
     "react-dom": "16.13.1",
     "react-select": "3.1.0",
-    "stripe": "^8.69.0"
+    "stripe": "^8.73.0"
   },
   "devDependencies": {
     "@mdi/react": "1.4.0",
@@ -33,6 +33,6 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "prettier": "^2.0.5",
-    "tailwindcss": "1.4.6"
+    "tailwindcss": "1.5.1"
   }
 }

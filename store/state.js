@@ -5,7 +5,7 @@ export const INITIAL_BOOKING = {
   lastDay: null,
   duration: null,
   weekId: null,
-  adultsCount: 2,
+  adultsCount: 0,
   childrenCount: 0,
   adultsAmount: 0,
   childrenAmount: 0,
