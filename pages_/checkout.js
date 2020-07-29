@@ -13,7 +13,7 @@ import CheckoutForm from '@/App/CheckoutForm';
 const Checkout = ({ paymentIntent }) => {
   const { t, lang } = useTranslation();
   const router = useRouter();
-  const stripePromise = loadStripe('pk_test_Wah9lA5G9KC0JfKICOBK0b7j');
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
   const {
     resort_id,
     resort_name,
@@ -65,7 +65,8 @@ const Checkout = ({ paymentIntent }) => {
 };
 
 export async function getServerSideProps(context) {
-  const stripe = new Stripe('sk_test_klYc0uPTKRpd0fvXFlQEUf9O');
+  console.log('Private key', process.env.STRIPE_PRIVATE_KEY);
+  const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
   let paymentIntent;
 

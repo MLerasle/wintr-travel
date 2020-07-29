@@ -7,7 +7,7 @@ const Footer = () => {
   const { t, lang } = useTranslation();
 
   return (
-    <footer className="flex justify-between items-center bg-primary-blue text-white px-6 py-4 absolute bottom-0 w-full h-10">
+    <footer className="flex justify-between items-center bg-gray-200 text-gray-700 px-6 py-6 absolute bottom-0 w-full border-t border-gray-500">
       <section className="hidden md:block">
         <p>
           © {new Date().getFullYear()} Wintr Travel, {t('common:label.rights')}.
@@ -40,13 +40,13 @@ const Footer = () => {
       </section>
       <section className="flex items-center">
         <a className="pl-2 md:pl-3" href="https://twitter.com">
-          <Icon path={mdiTwitter} size={1} color="white" />
+          <Icon path={mdiTwitter} size={1} color="black" />
         </a>
         <a className="pl-2 md:pl-3" href="https://facebook.com">
-          <Icon path={mdiFacebook} size={1} color="white" />
+          <Icon path={mdiFacebook} size={1} color="black" />
         </a>
         <a className="pl-2 md:pl-3" href="https://instagram.com">
-          <Icon path={mdiInstagram} size={1} color="white" />
+          <Icon path={mdiInstagram} size={1} color="black" />
         </a>
       </section>
     </footer>
