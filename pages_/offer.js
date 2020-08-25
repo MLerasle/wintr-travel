@@ -110,12 +110,6 @@ const Offer = () => (
         .helmet-description {
           grid-area: helmetdesc;
         }
-        .insurance-image {
-          grid-area: insuranceimg;
-        }
-        .insurance-description {
-          grid-area: insurancedesc;
-        }
         .skipass-image {
           grid-area: skipassimg;
         }

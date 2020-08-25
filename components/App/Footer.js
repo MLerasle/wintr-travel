@@ -7,7 +7,7 @@ const Footer = () => {
   const { t, lang } = useTranslation();
 
   return (
-    <footer className="flex justify-between items-center bg-gray-200 text-gray-700 px-6 py-6 w-full border-t border-gray-500">
+    <footer className="flex justify-between items-center text-gray-700 px-6 py-6 w-full border-t border-gray-500">
       <section className="hidden md:block">
         <p>
           © {new Date().getFullYear()} Wintr Travel, {t('common:label.rights')}.
