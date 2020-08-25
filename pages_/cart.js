@@ -3,7 +3,7 @@ import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
 
-import LayoutCover from 'components/Layout/LayoutCover';
+import Layout from 'components/Layout/Layout';
 import BookingInfo from 'components/App/BookingInfo';
 import BookingForm from 'components/App/BookingForm';
 
@@ -78,7 +78,7 @@ const Cart = ({ catalog }) => {
   };
 
   return (
-    <LayoutCover>
+    <Layout>
       <Head>
         <title>{t('cart:title')} - Wintr Travel</title>
       </Head>
@@ -96,7 +96,7 @@ const Cart = ({ catalog }) => {
           onEdit={editBooking}
         />
       )}
-    </LayoutCover>
+    </Layout>
   );
 };
 

@@ -274,7 +274,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   }
 
   return (
-    <>
+    <div className="cover background-image w-full flex-grow sm:py-10">
       <Card>
         <Header>
           <Heading className="text-xl sm:text-3xl">
@@ -381,7 +381,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
           </Button>
         </form>
       </Card>
-    </>
+    </div>
   );
 };
 

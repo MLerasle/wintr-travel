@@ -7,11 +7,11 @@ class MyDocument extends Document {
       <Html lang={documentLang(this.props)}>
         <Head>
           <script src="/scripts/modernizr-webp.js" defer></script>
-          {documentLang(this.props) === 'fr' ? (
+          {/* {documentLang(this.props) === 'fr' ? (
             <script src="/scripts/tawktofr.js" defer></script>
           ) : (
             <script src="/scripts/tawkto.js" defer></script>
-          )}
+          )} */}
         </Head>
         <body className="font-body" onUnload={this.onUnload}>
           <Main />

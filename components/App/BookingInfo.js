@@ -30,7 +30,7 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
   };
 
   return (
-    <>
+    <div className="cover background-image w-full flex-grow sm:py-10">
       <Card classes="overflow-auto">
         <Header>
           <Heading className="text-xl sm:text-3xl">{t('cart:title')}</Heading>
@@ -129,7 +129,7 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
           )}
         </section>
       </Card>
-    </>
+    </div>
   );
 };
 

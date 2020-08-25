@@ -7,7 +7,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { parseCookies, setCookie } from 'nookies';
 
-import LayoutCover from '@/Layout/LayoutCover';
+import Layout from '@/Layout/Layout';
 import CheckoutForm from '@/App/CheckoutForm';
 
 const Checkout = ({ paymentIntent }) => {
@@ -53,19 +53,18 @@ const Checkout = ({ paymentIntent }) => {
   }, []);
 
   return (
-    <LayoutCover>
+    <Layout>
       <Head>
         <title>{t('checkout:title')} - Wintr Travel</title>
       </Head>
       <Elements stripe={stripePromise} options={{ locale: lang }}>
         <CheckoutForm booking={booking} paymentIntent={paymentIntent} />
       </Elements>
-    </LayoutCover>
+    </Layout>
   );
 };
 
 export async function getServerSideProps(context) {
-  console.log('Private key', process.env.STRIPE_PRIVATE_KEY);
   const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
   let paymentIntent;

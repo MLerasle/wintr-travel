@@ -150,7 +150,7 @@ const BookingForm = (props) => {
   };
 
   return (
-    <>
+    <div className="cover background-image w-full flex-grow sm:py-10">
       <Card>
         {error && (
           <div className="relative mb-4 p-4 border border-red-600 rounded bg-red-100 text-red-600">
@@ -248,7 +248,7 @@ const BookingForm = (props) => {
           </section>
         </form>
       </Card>
-    </>
+    </div>
   );
 };
 

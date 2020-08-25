@@ -17,10 +17,10 @@ const Nav = (props) => {
 
   return (
     <nav
-      className={`sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 h-16 ${props.classes}`}
+      className={`shadow sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 h-16 ${props.classes}`}
     >
       <div className="flex items-center justify-between px-4 md:px-6 py-3 sm:p-0 w-full h-full">
-        <div className="text-white font-title font-semibold text-2xl tracking-wide">
+        <div className="text-gray-800 font-title font-semibold text-2xl tracking-wide">
           {/* <img src="/logo.png" alt="Logo" className="mr-2" /> */}
           <Link href={`/${lang}`} prefetch={false}>
             <a>Wintr Travel</a>
@@ -31,7 +31,7 @@ const Nav = (props) => {
             path={mdiMenu}
             size={1.5}
             className="cursor-pointer"
-            color="white"
+            color="#2d3748"
             onClick={toggleIsMenuOpen}
           />
           <SideDrawer open={isMenuOpen} closed={toggleIsMenuOpen} />
