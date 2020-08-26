@@ -12,6 +12,7 @@ module.exports = {
         'sm:flex-row',
         'text-center',
         'sm:items-start',
+        'sm:items-center',
         'font-medium',
         'text-3xl',
         'sm:text-4xl',
@@ -23,6 +24,7 @@ module.exports = {
         'sm:py-0',
         'md:px-6',
         'lg:px-10',
+        'p-6',
         'px-10',
         'pb-6',
         'sm:pb-6',
@@ -30,6 +32,7 @@ module.exports = {
         'mx-4',
         'mx-8',
         'sm:my-12',
+        'sm:mb-0',
         'mb-2',
         'mb-6',
         'mb-10',
@@ -63,15 +66,15 @@ module.exports = {
         'secondary-blue': '#0CB3FA',
       },
       opacity: {
-        '40': '.4',
-        '90': '.9',
+        40: '.4',
+        90: '.9',
       },
       fontSize: {
         '12xl': '10rem',
         '16xl': '14rem',
       },
       fontFamily: {
-        title: ['Montserrat'],
+        body: ['Source Sans Pro'],
       },
       inset: {
         '1/4': '0.25rem',
@@ -79,11 +82,11 @@ module.exports = {
         '3/4': '0.75rem',
       },
       height: {
-        '0.2': '0.05rem',
+        0.2: '0.05rem',
       },
       zIndex: {
-        '100': 100,
-        '200': 200,
+        100: 100,
+        200: 200,
       },
     },
   },

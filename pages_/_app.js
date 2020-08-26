@@ -1,6 +1,7 @@
 import React from 'react';
 
 import 'assets/style.css';
+import 'assets/fonts.css';
 import 'assets/background-image.css';
 import 'react-day-picker/lib/style.css';
 import 'assets/react-day-picker.css';

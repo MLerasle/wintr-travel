@@ -86,12 +86,12 @@ const SkierInput = (props) => {
       </svg>
       <div
         className={
-          'bg-white rounded-lg shadow-md px-4 py-6 border border-gray-300 mt-2 w-full absolute ' +
+          'bg-white rounded-lg shadow-md p-6 border border-gray-300 mt-2 w-full absolute ' +
           (isOpen ? 'block' : 'hidden')
         }
       >
         <div className="flex justify-between items-center">
-          <label className="text-gray-800 text-md tracking-wide">
+          <label className="text-gray-800 text-md font-semibold tracking-wide">
             {t('common:label.adult_plural')}
           </label>
           <Counter
@@ -108,7 +108,7 @@ const SkierInput = (props) => {
           />
         </div>
         <div className="flex justify-between items-center mt-6">
-          <label className="text-gray-800 text-md tracking-wide">
+          <label className="text-gray-800 text-md font-semibold tracking-wide">
             {t('common:label.child_plural')}
           </label>
           <Counter
@@ -123,36 +123,6 @@ const SkierInput = (props) => {
               props.onChange('decrement', 'child');
             }}
           />
-        </div>
-        <div className="flex justify-between items-center mt-8">
-          <button
-            name={t('common:button.cancel')}
-            className="text-gray-600 font-semibold hover:underline text-sm focus:outline-none focus:shadow-outline"
-            onClick={(e) => {
-              e.preventDefault();
-              props.onChange('reset');
-            }}
-          >
-            {t('common:button.cancel')}
-          </button>
-          <button
-            name={t('common:button.save')}
-            className="text-secondary-blue font-semibold hover:underline text-sm focus:outline-none focus:shadow-outline"
-            onClick={(e) => {
-              e.preventDefault();
-              setIsOpen(false);
-              document.getElementById('searchButton').focus();
-            }}
-            onKeyDown={(e) => {
-              if (e.keyCode === 9 && !e.shiftKey) {
-                e.preventDefault();
-                setIsOpen(false);
-                document.getElementById('searchButton').focus();
-              }
-            }}
-          >
-            {t('common:button.save')}
-          </button>
         </div>
       </div>
 

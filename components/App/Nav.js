@@ -20,8 +20,7 @@ const Nav = (props) => {
       className={`shadow sm:flex sm:justify-between sm:items-center sm:px-6 sm:py-3 h-16 ${props.classes}`}
     >
       <div className="flex items-center justify-between px-4 md:px-6 py-3 sm:p-0 w-full h-full">
-        <div className="text-gray-800 font-title font-semibold text-2xl tracking-wide">
-          {/* <img src="/logo.png" alt="Logo" className="mr-2" /> */}
+        <div className="text-gray-800 font-semibold text-2xl tracking-wide">
           <Link href={`/${lang}`} prefetch={false}>
             <a>Wintr Travel</a>
           </Link>

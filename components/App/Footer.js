@@ -7,46 +7,38 @@ const Footer = () => {
   const { t, lang } = useTranslation();
 
   return (
-    <footer className="flex justify-between items-center text-gray-700 px-6 py-6 w-full border-t border-gray-500">
-      <section className="hidden md:block">
-        <p>
-          © {new Date().getFullYear()} Wintr Travel, {t('common:label.rights')}.
+    <footer className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-gray-700 px-6 py-6 w-full border-t border-gray-500">
+      <section className="sm:flex sm:flex-row sm:items-center text-sm">
+        <p className="mb-1 sm:mb-0 md:mr-4">
+          © {new Date().getFullYear()} Wintr Travel, {t('common:label.rights')}{' '}
         </p>
-      </section>
-      <section>
-        <ul className="flex items-center">
+        <ul className="flex items-center mb-4 sm:mb-0">
           <li className="mr-3 md:mr-4 tracking-wide">
             <Link href={`/${lang}/about`}>
-              <a className="text-sm md:text-base hover:underline">
-                {t('common:label.about')}
-              </a>
+              <a className="hover:underline">{t('common:label.about')}</a>
             </Link>
           </li>
           <li className="mr-3 md:mr-4 tracking-wide">
             <Link href={`/${lang}/terms`}>
-              <a className="text-sm md:text-base hover:underline">
-                {t('common:label.terms')}
-              </a>
+              <a className="hover:underline">{t('common:label.terms')}</a>
             </Link>
           </li>
           <li className="mr-3 md:mr-4 tracking-wide">
             <Link href={`/${lang}/privacy`}>
-              <a className="text-sm md:text-base hover:underline">
-                {t('common:label.privacy')}
-              </a>
+              <a className="hover:underline">{t('common:label.privacy')}</a>
             </Link>
           </li>
         </ul>
       </section>
       <section className="flex items-center">
-        <a className="pl-2 md:pl-3" href="https://twitter.com">
-          <Icon path={mdiTwitter} size={1} color="black" />
+        <a className="sm:pl-4" href="https://twitter.com">
+          <Icon path={mdiTwitter} size={1} color="#2D3748" />
         </a>
-        <a className="pl-2 md:pl-3" href="https://facebook.com">
-          <Icon path={mdiFacebook} size={1} color="black" />
+        <a className="pl-4" href="https://facebook.com">
+          <Icon path={mdiFacebook} size={1} color="#2D3748" />
         </a>
-        <a className="pl-2 md:pl-3" href="https://instagram.com">
-          <Icon path={mdiInstagram} size={1} color="black" />
+        <a className="pl-4" href="https://instagram.com">
+          <Icon path={mdiInstagram} size={1} color="#2D3748" />
         </a>
       </section>
     </footer>
