@@ -30,106 +30,105 @@ const BookingInfo = ({ booking, loading, onValidate, onEdit }) => {
   };
 
   return (
-    <div className="cover background-image w-full flex-grow sm:py-10">
-      <Card classes="overflow-auto">
-        <Header>
-          <Heading className="text-xl sm:text-3xl">{t('cart:title')}</Heading>
-          {booking.isValid && (
-            <button
-              name={t('common:button.edit')}
-              className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
-              onClick={onEdit}
-            >
-              {t('common:button.edit')}
-            </button>
-          )}
-        </Header>
-        <Separator className="my-6" />
-        {!booking.isValid ? (
-          <>
-            <h3 className="text-lg sm:text-xl my-2">
-              {t('cart:invalidBooking.title')}
-            </h3>
-            <p>{t('cart:invalidBooking.description')}</p>
-          </>
-        ) : (
-          <>
-            <CartSection title={t('cart:location')}>
-              <CartItem
-                title={t('cart:resort')}
-                value={booking.resortName}
-                classes="my-3"
-              />
-              <CartItem
-                title={t('cart:checkin')}
-                value={formatDate(booking.firstDay, lang)}
-                classes="my-3"
-              />
-              <CartItem
-                title={t('cart:checkout')}
-                value={formatDate(booking.lastDay, lang)}
-                classes="my-3"
-              />
-            </CartSection>
-            <Separator className="my-6" />
-            <CartSection
-              title={t('cart:skiers')}
-              icon
-              onIconClicked={onInfoSkierToggleDisplay}
-              onIconMouseEnter={onInfoSkierDisplay}
-              onIconMouseLeave={onInfoSkierHide}
-            >
-              <BottomDrawer open={showPackInfos} closed={onInfoSkierHide} />
-              <div className="relative hidden sm:block">
-                <PackContent
-                  className={`${
-                    showPackInfos ? 'block' : 'hidden'
-                  } absolute z-50 top-1/2`}
-                />
-              </div>
-              <CartItem
-                title={`${t('common:pack.adult')} x ${booking.adultsCount}`}
-                value={`${booking.adultsAmount.toFixed(2)} €`}
-                classes="my-3"
-              />
-              {booking.childrenCount > 0 && (
-                <CartItem
-                  title={`${t('common:pack.child')} x ${booking.childrenCount}`}
-                  value={`${booking.childrenAmount.toFixed(2)} €`}
-                  classes="my-3"
-                />
-              )}
-            </CartSection>
-            <Separator className="my-6" />
-            <CartSection>
-              <CartItem
-                title="Total"
-                value={`${booking.totalAmount.toFixed(2)} €`}
-              />
-            </CartSection>
-          </>
+    <Card classes="overflow-auto">
+      <Header>
+        <Heading className="text-xl sm:text-3xl">{t('cart:title')}</Heading>
+        {booking.isValid && (
+          <button
+            name={t('common:button.edit')}
+            className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
+            onClick={onEdit}
+          >
+            {t('common:button.edit')}
+          </button>
         )}
-        <section className="mt-12 md:mt-6">
-          {!booking.isValid ? (
-            <Button name="back" onClick={onBack}>
-              {t('cart:newSearch')}
-            </Button>
-          ) : (
-            <Button
-              name={t('common:button.pay')}
-              disabled={!booking.isValid || loading}
-              onClick={onValidate}
-            >
-              {loading ? (
-                <Loader />
-              ) : (
-                `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
-              )}
-            </Button>
-          )}
-        </section>
-      </Card>
-    </div>
+      </Header>
+      <Separator className="my-6" />
+      {!booking.isValid ? (
+        <>
+          <h3 className="text-lg sm:text-xl my-2">
+            {t('cart:invalidBooking.title')}
+          </h3>
+          <p>{t('cart:invalidBooking.description')}</p>
+        </>
+      ) : (
+        <>
+          <CartSection title={t('cart:location')}>
+            <CartItem
+              title={t('cart:resort')}
+              value={booking.resortName}
+              classes="my-3"
+            />
+            <CartItem
+              title={t('cart:checkin')}
+              value={formatDate(booking.firstDay, lang)}
+              classes="my-3"
+            />
+            <CartItem
+              title={t('cart:checkout')}
+              value={formatDate(booking.lastDay, lang)}
+              classes="my-3"
+            />
+          </CartSection>
+          <Separator className="my-6" />
+          <CartSection
+            title={t('cart:skiers')}
+            icon
+            onIconClicked={onInfoSkierToggleDisplay}
+            onIconMouseEnter={onInfoSkierDisplay}
+            onIconMouseLeave={onInfoSkierHide}
+          >
+            <BottomDrawer open={showPackInfos} closed={onInfoSkierHide} />
+            <div className="relative hidden sm:block">
+              <PackContent
+                className={`${
+                  showPackInfos ? 'block' : 'hidden'
+                } absolute z-50 top-1/2`}
+              />
+            </div>
+            <CartItem
+              title={`${t('common:pack.adult')} x ${booking.adultsCount}`}
+              value={`${booking.adultsAmount.toFixed(2)} €`}
+              classes="my-3"
+            />
+            {booking.childrenCount > 0 && (
+              <CartItem
+                title={`${t('common:pack.child')} x ${booking.childrenCount}`}
+                value={`${booking.childrenAmount.toFixed(2)} €`}
+                classes="my-3"
+              />
+            )}
+          </CartSection>
+          <Separator className="my-6" />
+          <CartSection>
+            <CartItem
+              title="Total"
+              value={`${booking.totalAmount.toFixed(2)} €`}
+            />
+          </CartSection>
+        </>
+      )}
+      <section className="mt-12 md:mt-6">
+        {!booking.isValid ? (
+          <Button name="back" onClick={onBack}>
+            {t('cart:newSearch')}
+          </Button>
+        ) : (
+          <Button
+            classes="w-full uppercase tracking-wide"
+            name={t('common:button.pay')}
+            disabled={!booking.isValid || loading}
+            onClick={onValidate}
+          >
+            {loading ? (
+              <Loader />
+            ) : (
+              `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
+            )}
+          </Button>
+        )}
+      </section>
+    </Card>
   );
 };
 

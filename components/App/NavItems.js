@@ -74,7 +74,7 @@ const NavItems = (props) => {
               <a
                 className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide ${
                   locale === lang ? 'text-secondary-blue' : 'text-gray-800'
-                } transition duration-300 ease-in-out hover:text-gray-600 sm:hover:text-gray-600 sm:bg-transparent sm:text-base sm:text-gray-800 sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer ${
+                } transition duration-300 ease-in-out hover:text-gray-600 sm:hover:text-gray-600 sm:bg-transparent sm:text-md sm:text-gray-800 sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer ${
                   key === 'legal' ? 'sm:hidden' : ''
                 }`}
                 onClick={navItemClicked}

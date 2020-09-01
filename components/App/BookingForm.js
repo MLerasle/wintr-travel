@@ -150,7 +150,7 @@ const BookingForm = (props) => {
   };
 
   return (
-    <Card>
+    <Card subclasses="bg-white md:max-w-lg">
       {error && (
         <div className="relative mb-4 p-4 border border-red-600 rounded bg-red-100 text-red-600">
           <Icon
@@ -179,7 +179,7 @@ const BookingForm = (props) => {
           </>
         ) : (
           <Heading className="hidden md:block text-xl sm:text-3xl">
-            {t('common:form.title')}
+            Réservez vos skis et votre forfait.
           </Heading>
         )}
       </Header>
@@ -235,8 +235,7 @@ const BookingForm = (props) => {
         >
           <Button
             type="submit"
-            id="searchButton"
-            classes="w-full"
+            classes="w-full uppercase tracking-wide"
             name={t('common:button.validate')}
             disabled={!booking.isValid || loading}
             onClick={validateSearch}

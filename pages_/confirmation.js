@@ -7,6 +7,7 @@ import { mdiCheck } from '@mdi/js';
 
 import Layout from 'components/Layout/Layout';
 import Card from 'components/UI/Card';
+import Hero from 'components/UI/Hero';
 import { INITIAL_BOOKING } from 'store/state';
 import { reducer } from 'store/reducer';
 
@@ -24,7 +25,7 @@ const Confirmation = () => {
       <Head>
         <title>{t('confirmation:title')} - Wintr Travel</title>
       </Head>
-      <div className="cover background-image w-full flex-grow sm:py-10">
+      <Hero>
         <Card>
           <div className="flex flex-col items-center">
             <Icon path={mdiCheck} size={4} color="#0CB3FA" />
@@ -52,7 +53,7 @@ const Confirmation = () => {
             </a>
           </div>
         </Card>
-      </div>
+      </Hero>
     </Layout>
   );
 };

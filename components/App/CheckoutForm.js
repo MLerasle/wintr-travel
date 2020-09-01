@@ -14,6 +14,7 @@ import { isoCountries } from 'data/countries';
 import StripeCardElement from '@/App/StripeCardElement';
 import Card from '@/UI/Card';
 import Header from '@/UI/Header';
+import Hero from '@/UI/Hero';
 import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import FormRow from '@/UI/FormRow';
@@ -274,7 +275,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   }
 
   return (
-    <div className="cover background-image w-full flex-grow sm:py-10">
+    <Hero>
       <Card>
         <Header>
           <Heading className="text-xl sm:text-3xl">
@@ -381,7 +382,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
           </Button>
         </form>
       </Card>
-    </div>
+    </Hero>
   );
 };
 

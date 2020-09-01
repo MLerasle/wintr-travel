@@ -1,7 +1,7 @@
-const withImages = require('next-images')
+const withImages = require('next-images');
 
 module.exports = withImages({
   cssLoaderOptions: {
-    url: false
-  }
-})
+    url: false,
+  },
+});

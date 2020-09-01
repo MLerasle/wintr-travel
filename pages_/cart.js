@@ -4,6 +4,7 @@ import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
 
 import Layout from 'components/Layout/Layout';
+import Hero from 'components/UI/Hero';
 import BookingInfo from 'components/App/BookingInfo';
 import BookingForm from 'components/App/BookingForm';
 
@@ -82,20 +83,22 @@ const Cart = ({ catalog }) => {
       <Head>
         <title>{t('cart:title')} - Wintr Travel</title>
       </Head>
-      {isEditing ? (
-        <BookingForm
-          catalog={catalog}
-          booking={booking}
-          onUpdate={onBookingUpdate}
-        />
-      ) : (
-        <BookingInfo
-          booking={booking}
-          loading={loading}
-          onValidate={validateCart}
-          onEdit={editBooking}
-        />
-      )}
+      <Hero>
+        {isEditing ? (
+          <BookingForm
+            catalog={catalog}
+            booking={booking}
+            onUpdate={onBookingUpdate}
+          />
+        ) : (
+          <BookingInfo
+            booking={booking}
+            loading={loading}
+            onValidate={validateCart}
+            onEdit={editBooking}
+          />
+        )}
+      </Hero>
     </Layout>
   );
 };
