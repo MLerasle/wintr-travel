@@ -4,8 +4,8 @@ const HomeArgs = () => (
   <>
     <section className="text-center px-4 sm:px-10 pt-6 pb-10 sm:py-16">
       <GridArg title="Nous vous livrons dans votre résidence.">
-        Plus besoin de chercher un magasin, d'y attendre votre matériel puis de
-        le porter, nous nous occupons de tout.
+        Plus besoin de chercher un magasin, d'attendre son matériel, ni de le
+        porter. Nous nous occupons de tout.
       </GridArg>
     </section>
     <section>
@@ -23,7 +23,7 @@ const HomeArgs = () => (
           <div className="home-args-image-2 overflow-hidden img-container"></div>
           <div className="flex justify-center items-center">
             <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-2">
-              <GridArg title="Plus rapide, de la réservation au pied des pistes.">
+              <GridArg title="Un service confortable">
                 Réservez votre matériel en quelques clics. Nous vous livrons à
                 l'adresse de votre choix.
               </GridArg>

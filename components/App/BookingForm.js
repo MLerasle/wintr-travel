@@ -150,7 +150,11 @@ const BookingForm = (props) => {
   };
 
   return (
-    <Card subclasses="bg-white md:max-w-lg">
+    <Card
+      subclasses={`${
+        props.booking ? 'bg-gray-200 md:bg-white' : 'md:max-w-lg bg-white'
+      }`}
+    >
       {error && (
         <div className="relative mb-4 p-4 border border-red-600 rounded bg-red-100 text-red-600">
           <Icon
@@ -166,8 +170,8 @@ const BookingForm = (props) => {
       <Header>
         {props.booking ? (
           <>
-            <Heading className="md:block text-xl sm:text-3xl">
-              {t('common:form.editTitle')}
+            <Heading className="text-xl mb-2 md:mb-0">
+              Modifier votre séjour
             </Heading>
             <button
               name={t('common:button.cancel')}
@@ -183,59 +187,61 @@ const BookingForm = (props) => {
           </Heading>
         )}
       </Header>
-      <Separator
-        className={`my-6 ${!props.booking ? 'hidden' : ''} md:block`}
-      />
-      <form className="flex flex-col -mt-2 md:mt-4">
-        <FormRow>
-          <SelectInput
-            options={props.catalog.resorts
-              .sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
-              .map((r) => {
-                return { value: r.id, label: r.name };
-              })}
-            label={t('common:form.resortLabel')}
-            placeholder={t('common:form.resortPlaceholder')}
-            defaultValue={
-              booking.resortId
-                ? { label: booking.resortName, value: booking.resortId }
-                : ''
-            }
-            handleChange={handleResortChange}
-          />
-        </FormRow>
-        <FormRow>
-          <DateRangeInput
-            from={booking.firstDay}
-            to={booking.lastDay}
-            fromLabel={t('common:form.dateFromLabel')}
-            toLabel={t('common:form.dateToLabel')}
-            onChange={(type, date) => handleDateChange(type, date)}
-            onChangeToDate={() => {
-              if (booking.adultsCount === 0) {
-                document.getElementById('skiersInput').focus();
+      <Separator className="my-6 hidden md:block" />
+      <form className={`${props.booking && 'mt-2'} md:mt-4`}>
+        <section className={`${props.booking && 'md:flex md:items-center'}`}>
+          <FormRow className={`${props.booking && 'md:w-1/3'}`}>
+            <SelectInput
+              options={props.catalog.resorts
+                .sort((a, b) =>
+                  a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+                )
+                .map((r) => {
+                  return { value: r.id, label: r.name };
+                })}
+              label={t('common:form.resortLabel')}
+              placeholder={t('common:form.resortPlaceholder')}
+              defaultValue={
+                booking.resortId
+                  ? { label: booking.resortName, value: booking.resortId }
+                  : ''
               }
-            }}
-            locale={lang}
-            minDate={props.catalog.weeks[0].first_day}
-            maxDate={
-              props.catalog.weeks[props.catalog.weeks.length - 1].last_day
-            }
-          />
-        </FormRow>
-        <FormRow>
-          <SkierDropdown
-            childrenCount={booking.childrenCount}
-            adultsCount={booking.adultsCount}
-            onChange={(age, action) => handleSkierChange(age, action)}
-          />
-        </FormRow>
-        <section
-          className={`${props.booking ? 'mt-8 md:mt-4' : 'mt-2 md:mt-4'}`}
-        >
+              handleChange={handleResortChange}
+            />
+          </FormRow>
+          <FormRow className={`${props.booking && 'md:w-1/3 md:mx-2'}`}>
+            <DateRangeInput
+              from={booking.firstDay}
+              to={booking.lastDay}
+              fromLabel={t('common:form.dateFromLabel')}
+              toLabel={t('common:form.dateToLabel')}
+              onChange={(type, date) => handleDateChange(type, date)}
+              onChangeToDate={() => {
+                if (booking.adultsCount === 0) {
+                  document.getElementById('skiersInput').focus();
+                }
+              }}
+              locale={lang}
+              minDate={props.catalog.weeks[0].first_day}
+              maxDate={
+                props.catalog.weeks[props.catalog.weeks.length - 1].last_day
+              }
+            />
+          </FormRow>
+          <FormRow className={`${props.booking && 'md:w-1/3'}`}>
+            <SkierDropdown
+              childrenCount={booking.childrenCount}
+              adultsCount={booking.adultsCount}
+              onChange={(age, action) => handleSkierChange(age, action)}
+            />
+          </FormRow>
+        </section>
+        <section className={`mt-8 ${props.booking && 'md:mt-4'}`}>
           <Button
             type="submit"
-            classes="w-full uppercase tracking-wide"
+            classes={`w-full uppercase tracking-wide bg-secondary-blue text-white ${
+              props.booking && 'md:w-auto'
+            }`}
             name={t('common:button.validate')}
             disabled={!booking.isValid || loading}
             onClick={validateSearch}
