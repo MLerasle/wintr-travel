@@ -1,15 +1,10 @@
-import useTranslation from 'next-translate/useTranslation';
 import Heading from '@/UI/Heading';
 
-const MobileImage = () => {
-  const { t } = useTranslation();
-
-  return (
-    <div className="md:hidden relative">
-      <div className="mobile-image background-image h-64"></div>
-      <Heading className="homeTitle">{t('common:form.title')}</Heading>
-    </div>
-  );
-};
+const MobileImage = () => (
+  <div className="md:hidden relative">
+    <div className="mobile-image background-image h-64"></div>
+    <Heading className="homeTitle">Réservez vos skis et votre forfait.</Heading>
+  </div>
+);
 
 export default MobileImage;

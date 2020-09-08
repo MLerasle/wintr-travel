@@ -13,7 +13,7 @@ const Counter = (props) => (
       }}
       onClick={props.onDecrement}
     >
-      <Icon path={mdiMinus} size={1} color="#0CB3FA" />
+      <Icon path={mdiMinus} size={1} color="#4299E1" />
     </button>
     <div className="text-gray-700 mx-5 font-semibold">{props.value}</div>
     <button

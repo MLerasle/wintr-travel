@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import Router from 'next/router';
-import useTranslation from 'next-translate/useTranslation';
 import {
   CardElement,
   PaymentRequestButtonElement,
@@ -29,11 +28,10 @@ const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"
 
 const CheckoutForm = ({ booking, paymentIntent }) => {
   const _isMounted = useRef(true);
-  const { t, lang } = useTranslation();
   const stripe = useStripe();
   const elements = useElements();
   const [paymentRequest, setPaymentRequest] = useState(null);
-  const countries = Object.entries(isoCountries(lang)).sort((a, b) =>
+  const countries = Object.entries(isoCountries()).sort((a, b) =>
     a[1] > b[1] ? 1 : b[1] > a[1] ? -1 : 0
   );
   const [formState, setFormState] = useState({
@@ -43,10 +41,10 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     acceptTerms: false,
     isValid: false,
     errors: {
-      name: t('checkout:errors.name'),
-      email: t('checkout:errors.email'),
+      name: 'Vous devez renseigner votre nom.',
+      email: 'Vous devez saisir une adresse email valide.',
       country: '',
-      acceptTerms: t('checkout:errors.acceptTerms'),
+      acceptTerms: 'Invalide',
     },
   });
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
@@ -110,20 +108,21 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
 
     switch (name) {
       case 'name':
-        formErrors.name = value.trim() === '' ? t('checkout:errors.name') : '';
+        formErrors.name =
+          value.trim() === '' ? 'Vous devez renseigner votre nom.' : '';
         break;
       case 'email':
         formErrors.email =
           value.trim() === '' || !EMAIL_PATTERN.test(value)
-            ? t('checkout:errors.email')
+            ? 'Vous devez saisir une adresse email valide.'
             : '';
         break;
       case 'country':
-        formErrors.country = !value ? t('checkout:errors.country') : '';
+        formErrors.country = !value ? '' : '';
         break;
       case 'acceptTerms':
         value = !formState.acceptTerms;
-        formErrors.acceptTerms = !value ? t('checkout:errors.acceptTerms') : '';
+        formErrors.acceptTerms = !value ? 'Invalide' : '';
         break;
       default:
         break;
@@ -187,11 +186,10 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
             email: ev.payerEmail,
             countryCode: ev.paymentMethod.billing_details.address.country,
             paymentIntentId: paymentIntent.id,
-            locale: lang,
           };
           console.log('Booking to send to the API', updatedBooking);
           destroyCookie(null, 'paymentIntentId');
-          Router.push(`/${lang}/confirmation`).then(() => {
+          Router.push('/confirmation').then(() => {
             if (_isMounted.current) {
               setIsLoading(false);
             }
@@ -213,7 +211,6 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       email: formState.email,
       countryCode: formState.country.value,
       paymentIntentId: paymentIntent.id,
-      locale: lang,
     };
     console.log('Booking to send to the API', updatedBooking);
     if (!formState.isValid) {
@@ -248,7 +245,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         //     // See how to handle this...
         //     console.log(error);
         //   });
-        Router.push(`/${lang}/confirmation`).then(() => {
+        Router.push('/confirmation').then(() => {
           if (_isMounted.current) {
             setIsLoading(false);
           }
@@ -278,20 +275,18 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     <Hero>
       <Card>
         <Header>
-          <Heading className="text-xl sm:text-3xl">
-            {t('checkout:title')}
-          </Heading>
+          <Heading className="text-xl sm:text-3xl">Paiement</Heading>
         </Header>
         <Separator className="my-6" />
         {paymentRequestButton ? (
           <>
             {paymentRequestButton}
-            <Separator label={t('common:or')} className="my-10" />
+            <Separator label="Ou" className="my-10" />
           </>
         ) : null}
         <form className="flex flex-col">
           <FormRow>
-            <Label title={t('common:form.nameLabel')} for="name" />
+            <Label title="Nom" for="name" />
             <Input
               type="text"
               id="name"
@@ -308,7 +303,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
             </div>
           </FormRow>
           <FormRow>
-            <Label title={t('common:form.emailLabel')} for="email" />
+            <Label title="Email" for="email" />
             <Input
               type="email"
               id="email"
@@ -329,7 +324,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
               options={countries.map((c) => {
                 return { value: c[0], label: c[1] };
               })}
-              label={t('common:form.countryLabel')}
+              label="Pays"
               placeholder=""
               defaultValue={formState.country}
               name="country"
@@ -354,7 +349,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
             </div>
           </FormRow>
           <FormRow>
-            <Label title={t('checkout:creditCardLabel')} for="card-element" />
+            <Label title="Données de votre carte" for="card-element" />
             <StripeCardElement CardElement={CardElement} />
           </FormRow>
           <FormRow>
@@ -364,21 +359,17 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
               onChange={handleChange}
               error={formWasSubmitted && !!formState.errors.acceptTerms}
             >
-              {t('checkout:acceptTerms')}
+              J'accepte les Conditions Générales de Vente.
             </Checkbox>
           </FormRow>
           <Button
             type="submit"
-            name={t('common:button.pay')}
+            name="pay"
             onClick={handlePaymentSubmit}
             disabled={loading}
             classes="my-4"
           >
-            {loading ? (
-              <Loader />
-            ) : (
-              `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
-            )}
+            {loading ? <Loader /> : `Payer ${booking.totalAmount.toFixed(2)} €`}
           </Button>
         </form>
       </Card>

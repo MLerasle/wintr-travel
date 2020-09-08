@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
-import useTranslation from 'next-translate/useTranslation';
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -11,7 +10,6 @@ import Layout from '@/Layout/Layout';
 import CheckoutForm from '@/App/CheckoutForm';
 
 const Checkout = ({ paymentIntent }) => {
-  const { t, lang } = useTranslation();
   const router = useRouter();
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
   const {
@@ -48,16 +46,16 @@ const Checkout = ({ paymentIntent }) => {
       setCookie(null, 'paymentIntentId', paymentIntent.id);
     }
     if (!booking.isValid) {
-      Router.push(`/${lang}`);
+      Router.push('/');
     }
   }, []);
 
   return (
     <Layout>
       <Head>
-        <title>{t('checkout:title')} - Wintr Travel</title>
+        <title>Paiement - Wintr Travel</title>
       </Head>
-      <Elements stripe={stripePromise} options={{ locale: lang }}>
+      <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
         <CheckoutForm booking={booking} paymentIntent={paymentIntent} />
       </Elements>
     </Layout>

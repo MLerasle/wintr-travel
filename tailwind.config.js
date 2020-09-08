@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    enabled: true,
+    // enabled: true,
     content: [
       './pages/**/*.js',
       './components/**/*.js',
@@ -42,8 +42,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary-blue': '#245688',
-        'secondary-blue': '#0CB3FA',
+        // 'primary-blue': '#245688',
+        // 'secondary-blue': '#0CB3FA',
+        'primary-blue': '#2C5282',
+        'secondary-blue': '#4299E1',
       },
       opacity: {
         40: '.4',

@@ -33,10 +33,10 @@
 }
 .DayPickerInput input:focus {
   outline: none;
-  border: 1px solid #0cb3fa;
+  border: 1px solid #4299e1;
 }
 .InputDates-from .DayPickerInput input:focus {
-  border-right: 1px solid #0cb3fa;
+  border-right: 1px solid #4299e1;
 }
 .InputDates-from .DayPickerInput-OverlayWrapper {
   top: 8px;
@@ -94,7 +94,7 @@
 }
 .DayPicker-Day:focus {
   outline: none;
-  border: 1px solid #0cb3fa;
+  border: 1px solid #4299e1;
 }
 .DayPicker-Day,
 .DayPicker-Day--today {
@@ -115,7 +115,7 @@
 }
 .InputDates .DayPicker-Day--start,
 .InputDates .DayPicker-Day--end {
-  background-color: #0cb3fa !important;
+  background-color: #4299e1 !important;
   color: white;
 }
 @media (min-width: 342px) {

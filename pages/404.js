@@ -5,10 +5,10 @@ const Error = () => (
     <div className="error-container">
       <p className="error-title">404</p>
       <p className="error-subtitle">
-        Oops! Looks like you're not in the right place.
+        Oops! Il semble que vous soyiez un peu seul par ici.
       </p>
       <p className="action">
-        Take me back to{' '}
+        Ramenez moi à{' '}
         <Link href="/">
           <a>wintr.travel</a>
         </Link>

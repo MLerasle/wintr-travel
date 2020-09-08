@@ -1,10 +1,8 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import useTranslation from 'next-translate/useTranslation';
 
 const NavItems = (props) => {
   const router = useRouter();
-  const { t, lang } = useTranslation();
 
   const sections = [
     {
@@ -17,34 +15,23 @@ const NavItems = (props) => {
         // },
         {
           label: 'Notre offre',
-          href: `/${lang}/offer`,
+          href: '/offer',
+        },
+        {
+          label: 'Tarif',
+          href: '/price',
         },
       ],
     },
     {
-      name: t('common:label.language'),
-      key: 'lang',
-      links: [
-        { label: 'English', locale: 'en' },
-        { label: 'Français', locale: 'fr' },
-      ],
-    },
-    {
-      name: t('common:label.legal'),
+      name: 'Mentions légales',
       key: 'legal',
       links: [
-        { label: t('common:label.privacy'), href: `/${lang}/privacy` },
-        { label: t('common:label.terms'), href: `/${lang}/terms` },
+        { label: 'Confidentialité', href: '/privacy' },
+        { label: 'CGV', href: '/terms' },
       ],
     },
   ];
-
-  const localizedPath = (locale) => {
-    let currentPath = router.pathname;
-    // Remove locale part of the current url
-    currentPath = currentPath.replace('/en', '').replace('/fr', '');
-    return `/${locale}${currentPath}`;
-  };
 
   const navItemClicked = () => {
     if (props.onItemClick) {
@@ -63,18 +50,16 @@ const NavItems = (props) => {
           >
             {name}
           </div>
-          {links.map(({ label, locale, href }) => (
+          {links.map(({ label, href }) => (
             <Link
               href={{
-                pathname: href || localizedPath(locale),
+                pathname: href,
                 query: router.query,
               }}
               key={`nav-link-${label}`}
             >
               <a
-                className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide ${
-                  locale === lang ? 'text-secondary-blue' : 'text-gray-800'
-                } transition duration-300 ease-in-out hover:text-gray-600 sm:hover:text-gray-600 sm:bg-transparent sm:text-md sm:text-gray-800 sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer ${
+                className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide transition duration-300 ease-in-out hover:text-gray-600 sm:hover:text-gray-600 sm:bg-transparent sm:text-md sm:text-gray-800 sm:border-b-0 sm:mt-0 sm:ml-2 sm:px-2 cursor-pointer ${
                   key === 'legal' ? 'sm:hidden' : ''
                 }`}
                 onClick={navItemClicked}

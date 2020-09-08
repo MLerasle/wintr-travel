@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import useTranslation from 'next-translate/useTranslation';
 import Icon from '@mdi/react';
 import { mdiMenu } from '@mdi/js';
 
@@ -9,7 +8,6 @@ import NavItems from './NavItems';
 
 const Nav = (props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { lang } = useTranslation();
 
   const toggleIsMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,7 +19,7 @@ const Nav = (props) => {
     >
       <div className="flex items-center justify-between lg:px-0 py-3 w-full h-full max-w-screen-lg">
         <div className="text-gray-800 font-bold text-2xl tracking-wide">
-          <Link href={`/${lang}`} prefetch={false}>
+          <Link href="/" prefetch={false}>
             <a>Wintr Travel</a>
           </Link>
         </div>

@@ -1,6 +1,5 @@
 import { useReducer, useState, useRef, useEffect } from 'react';
 import Router from 'next/router';
-import useTranslation from 'next-translate/useTranslation';
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
 
@@ -22,7 +21,6 @@ import Loader from '@/UI/Loader';
 
 const BookingForm = (props) => {
   const _isMounted = useRef(true);
-  const { t, lang } = useTranslation();
   const [booking, dispatch] = useReducer(
     reducer,
     props.booking || INITIAL_BOOKING
@@ -109,7 +107,8 @@ const BookingForm = (props) => {
     if (bookingPrice.error) {
       setError({
         error: bookingPrice.message,
-        message: t('common:error.bookingPrice'),
+        message:
+          "Nous n'avons malheureusement pas de matériel à vous proposer à ces dates dans cette station. Veuillez modifier votre recherche.",
       });
       setIsLoading(false);
       return;
@@ -121,7 +120,7 @@ const BookingForm = (props) => {
       totalAmount: bookingPrice.total,
     });
     Router.push({
-      pathname: `/${lang}/cart`,
+      pathname: `/cart`,
       query: {
         resort_id: resortId,
         resort_name: resortName,
@@ -174,11 +173,11 @@ const BookingForm = (props) => {
               Modifier votre séjour
             </Heading>
             <button
-              name={t('common:button.cancel')}
+              name="cancel"
               className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
               onClick={props.onUpdate}
             >
-              {t('common:button.cancel')}
+              Annuler
             </button>
           </>
         ) : (
@@ -199,8 +198,8 @@ const BookingForm = (props) => {
                 .map((r) => {
                   return { value: r.id, label: r.name };
                 })}
-              label={t('common:form.resortLabel')}
-              placeholder={t('common:form.resortPlaceholder')}
+              label="Où"
+              placeholder="Choisissez la station"
               defaultValue={
                 booking.resortId
                   ? { label: booking.resortName, value: booking.resortId }
@@ -213,15 +212,15 @@ const BookingForm = (props) => {
             <DateRangeInput
               from={booking.firstDay}
               to={booking.lastDay}
-              fromLabel={t('common:form.dateFromLabel')}
-              toLabel={t('common:form.dateToLabel')}
+              fromLabel="Arrivée"
+              toLabel="Départ"
               onChange={(type, date) => handleDateChange(type, date)}
               onChangeToDate={() => {
                 if (booking.adultsCount === 0) {
                   document.getElementById('skiersInput').focus();
                 }
               }}
-              locale={lang}
+              locale="fr"
               minDate={props.catalog.weeks[0].first_day}
               maxDate={
                 props.catalog.weeks[props.catalog.weeks.length - 1].last_day
@@ -242,11 +241,11 @@ const BookingForm = (props) => {
             classes={`w-full uppercase tracking-wide bg-secondary-blue text-white ${
               props.booking && 'md:w-auto'
             }`}
-            name={t('common:button.validate')}
+            name="validate"
             disabled={!booking.isValid || loading}
             onClick={validateSearch}
           >
-            {loading ? <Loader /> : t('common:button.validate')}
+            {loading ? <Loader /> : 'Valider'}
           </Button>
         </section>
       </form>

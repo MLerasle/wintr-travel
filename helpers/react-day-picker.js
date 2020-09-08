@@ -1,20 +1,6 @@
 import dayjs from 'dayjs';
 
 const MONTHS = {
-  en: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ],
   fr: [
     'Janvier',
     'Février',
@@ -32,47 +18,36 @@ const MONTHS = {
 };
 
 const WEEKDAYS_LONG = {
-  en: [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ],
   fr: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
 };
 
 const WEEKDAYS_SHORT = {
-  en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
   fr: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
 };
 
 const FIRST_DAY = {
-  en: 0,
   fr: 0,
 };
 
-function formatDay(d, locale = 'en') {
+function formatDay(d, locale = 'fr') {
   return `${WEEKDAYS_LONG[locale][d.getDay()]}, ${d.getDate()} ${
     MONTHS[locale][d.getMonth()]
   } ${d.getFullYear()}`;
 }
 
-function formatMonthTitle(d, locale = 'en') {
+function formatMonthTitle(d, locale = 'fr') {
   return `${MONTHS[locale][d.getMonth()]} ${d.getFullYear()}`;
 }
 
-function formatWeekdayShort(i, locale = 'en') {
+function formatWeekdayShort(i, locale = 'fr') {
   return WEEKDAYS_SHORT[locale][i];
 }
 
-function formatWeekdayLong(i, locale = 'en') {
+function formatWeekdayLong(i, locale = 'fr') {
   return WEEKDAYS_SHORT[locale][i];
 }
 
-function getFirstDayOfWeek(locale = 'en') {
+function getFirstDayOfWeek(locale = 'fr') {
   return FIRST_DAY[locale];
 }
 
@@ -85,7 +60,7 @@ export function parseDate(str) {
   var format =
     arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'L';
   var locale =
-    arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'en';
+    arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'fr';
 
   var m = dayjs(str, format, locale, true);
   if (m.isValid()) {

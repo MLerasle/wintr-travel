@@ -1,20 +1,17 @@
 import Head from 'next/head';
-import useTranslation from 'next-translate/useTranslation';
 
 import Layout from 'components/Layout/Layout';
 
-const About = () => {
-  const { t } = useTranslation();
-
+const Privacy = () => {
   return (
     <Layout>
       <Head>
-        <title>{t('common:label.about')} - Wintr Travel</title>
+        <title>Confidentialité - Wintr Travel</title>
       </Head>
       <div className="bg-gray-100 w-full flex justify-center">
         <div className="page px-4 py-10 tracking-wide">
           <h1 className="pb-6 text-center text-3xl font-bold text-gray-900">
-            Qui sommes-nous?
+            Politique de confidentialité
           </h1>
           <p className="py-3 text-gray-600 text-lg">
             Nunc faucibus orci eu scelerisque faucibus. Donec id pellentesque
@@ -72,4 +69,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Privacy;

@@ -60,7 +60,7 @@ export default class DateRangeInput extends Component {
             formatDate={formatDate}
             placeholder="dd/mm/yyyy"
             dayPickerProps={{
-              localeUtils: localeUtils,
+              localeUtils,
               locale,
               disabledDays: {
                 before:
@@ -122,7 +122,7 @@ export default class DateRangeInput extends Component {
             formatDate={formatDate}
             placeholder="dd/mm/yyyy"
             dayPickerProps={{
-              localeUtils: localeUtils,
+              localeUtils,
               locale,
               selectedDays: [from, { from, to }],
               disabledDays: {

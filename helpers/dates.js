@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 
-export const formatDate = (day, locale) => {
+export const formatDate = (day) => {
   if (!day) {
     return;
   }
-  dayjs.locale(locale);
+  dayjs.locale('fr');
   const date = dayjs(day, 'YYYY-MM-DD');
   return date.format('DD MMM YYYY');
 };

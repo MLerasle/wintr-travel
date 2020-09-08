@@ -4,12 +4,12 @@ import Layout from 'components/Layout/Layout';
 import GridArg from '@/App/GridArg';
 
 const Offer = () => (
-  <Layout>
+  <Layout footerMaxWidth="max-w-screen-xxl">
     <Head>
       <title>Notre offre - Wintr Travel</title>
     </Head>
 
-    <header className="text-center px-4 sm:px-10 pt-6 pb-10 sm:py-16">
+    <header className="text-center px-4 sm:px-10 py-10 sm:py-16">
       <GridArg title="Vos vacances au ski en toute simplicité.">
         Nous vous livrons tout ce qu'il vous faut pour un séjour réussi.
       </GridArg>

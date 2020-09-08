@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import useTranslation from 'next-translate/useTranslation';
 
 import Label from '@/UI/Label';
 import Counter from '@/UI/Counter';
@@ -7,7 +6,6 @@ import Counter from '@/UI/Counter';
 const SkierInput = (props) => {
   const node = useRef();
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation();
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClick);
@@ -28,14 +26,8 @@ const SkierInput = (props) => {
     if (props.adultsCount === 0 && props.childrenCount === 0) {
       return '';
     }
-    const adultsLabel =
-      props.adultsCount > 1
-        ? `${t('common:label.adult_plural')}`
-        : `${t('common:label.adult')}`;
-    const childrenLabel =
-      props.childrenCount > 1
-        ? `${t('common:label.child_plural')}`
-        : `${t('common:label.child')}`;
+    const adultsLabel = props.adultsCount > 1 ? 'Adultes' : 'Adulte';
+    const childrenLabel = props.childrenCount > 1 ? 'Enfants' : 'Enfant';
     let skiers = `${props.adultsCount} ${adultsLabel}`;
     if (props.childrenCount > 0) {
       skiers += ` - ${props.childrenCount} ${childrenLabel}`;
@@ -54,7 +46,7 @@ const SkierInput = (props) => {
 
   return (
     <div ref={node} className="relative w-full z-40">
-      <Label title={t('common:form.skiersLabel')} for="skiersInput" />
+      <Label title="Skieurs" for="skiersInput" />
       <input
         type="text"
         readOnly
@@ -92,7 +84,7 @@ const SkierInput = (props) => {
       >
         <div className="flex justify-between items-center">
           <label className="text-gray-800 text-md font-semibold tracking-wide">
-            {t('common:label.adult_plural')}
+            Adultes
           </label>
           <Counter
             value={props.adultsCount}
@@ -109,7 +101,7 @@ const SkierInput = (props) => {
         </div>
         <div className="flex justify-between items-center mt-6">
           <label className="text-gray-800 text-md font-semibold tracking-wide">
-            {t('common:label.child_plural')}
+            Enfants
           </label>
           <Counter
             value={props.childrenCount}

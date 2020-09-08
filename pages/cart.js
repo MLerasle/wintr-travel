@@ -1,11 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
-import useTranslation from 'next-translate/useTranslation';
 
 import Layout from 'components/Layout/Layout';
-import Hero from 'components/UI/Hero';
-import BookingInfo from 'components/App/BookingInfo';
 import BookingForm from 'components/App/BookingForm';
 import Card from 'components/UI/Card';
 import Header from 'components/UI/Header';
@@ -49,7 +46,6 @@ const Cart = ({ catalog }) => {
     totalAmount: +total_amount,
     isValid: resort_id && checkin && adults > 0,
   };
-  const { t, lang } = useTranslation();
 
   const skiers = [];
   for (let i = 1; i <= booking.adultsCount; i++) {
@@ -74,7 +70,7 @@ const Cart = ({ catalog }) => {
     setIsLoading(true);
     if (booking.isValid) {
       Router.push({
-        pathname: `/${lang}/checkout`,
+        pathname: `/checkout`,
         query: {
           resort_id: booking.resortId,
           resort_name: booking.resortName,
@@ -100,7 +96,7 @@ const Cart = ({ catalog }) => {
   return (
     <Layout>
       <Head>
-        <title>{t('cart:title')} - Wintr Travel</title>
+        <title>Votre réservation - Wintr Travel</title>
       </Head>
       <section className="bg-gray-200 flex justify-center items-center">
         <div className="max-w-screen-lg w-full py-2 md:py-6 main-section">
@@ -118,11 +114,11 @@ const Cart = ({ catalog }) => {
                     Votre séjour
                   </Heading>
                   <button
-                    name={t('common:button.edit')}
+                    name="edit"
                     className="text-secondary-blue rounded text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
                     onClick={editBooking}
                   >
-                    {t('common:button.edit')}
+                    Modifier
                   </button>
                 </Header>
                 <Separator className="hidden md:block my-6" />
@@ -130,11 +126,11 @@ const Cart = ({ catalog }) => {
                   <li className="pb-2">
                     <span className="font-bold">{booking.resortName}</span> du{' '}
                     <span className="font-bold">
-                      {formatDate(booking.firstDay, lang)}
+                      {formatDate(booking.firstDay)}
                     </span>{' '}
                     au{' '}
                     <span className="font-bold">
-                      {formatDate(booking.lastDay, lang)}
+                      {formatDate(booking.lastDay)}
                     </span>
                     .
                   </li>
@@ -208,22 +204,16 @@ const Cart = ({ catalog }) => {
             </Card>
           </section>
           <section className="flex justify-center items-center px-4 md:px-0 pb-6 md:py-6">
-            {/* <Button
-              classes="uppercase tracking-wide w-64 bg-gray-600 text-gray-100 hidden sm:block"
-              name="back"
-            >
-              Retour
-            </Button> */}
             <Button
               classes="uppercase tracking-wide w-full md:w-auto bg-secondary-blue text-white"
-              name={t('common:button.pay')}
+              name="pay"
               disabled={!booking.isValid || loading}
               onClick={validateCart}
             >
               {loading ? (
                 <Loader />
               ) : (
-                `${t('common:button.pay')} ${booking.totalAmount.toFixed(2)} €`
+                `Payer ${booking.totalAmount.toFixed(2)} €`
               )}
             </Button>
           </section>
@@ -235,22 +225,6 @@ const Cart = ({ catalog }) => {
           }
         `}</style>
       </section>
-      {/* <Hero>
-        {isEditing ? (
-          <BookingForm
-            catalog={catalog}
-            booking={booking}
-            onUpdate={onBookingUpdate}
-          />
-        ) : (
-          <BookingInfo
-            booking={booking}
-            loading={loading}
-            onValidate={validateCart}
-            onEdit={editBooking}
-          />
-        )}
-      </Hero> */}
     </Layout>
   );
 };

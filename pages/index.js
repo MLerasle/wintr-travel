@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import useTranslation from 'next-translate/useTranslation';
 
 import Layout from 'components/Layout/Layout';
 import MobileImage from 'components/UI/MobileImage';
@@ -10,12 +9,10 @@ import Testimonials from 'components/App/Testimonials';
 import HomeCta from '@/App/HomeCta';
 
 const Index = ({ catalog }) => {
-  const { t } = useTranslation();
-
   return (
-    <Layout>
+    <Layout footerMaxWidth="max-w-screen-xxl">
       <Head>
-        <title>{t('home:title')}</title>
+        <title>Location et livraison de skis et forfaits - Wintr Travel</title>
       </Head>
       <MobileImage />
       <Hero type="full">

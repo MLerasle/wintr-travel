@@ -1,15 +1,12 @@
 import Head from 'next/head';
-import useTranslation from 'next-translate/useTranslation';
 
 import Layout from 'components/Layout/Layout';
 
 const Terms = () => {
-  const { t } = useTranslation();
-
   return (
     <Layout>
       <Head>
-        <title>{t('common:label.terms')} - Wintr Travel</title>
+        <title>CGV - Wintr Travel</title>
       </Head>
       <div className="bg-gray-100 w-full flex justify-center">
         <div className="page px-4 py-10 tracking-wide">
