@@ -1,42 +1,13 @@
 module.exports = {
   purge: {
-    // enabled: true,
+    enabled: true,
     content: [
       './pages/**/*.js',
       './components/**/*.js',
       './node_modules/react-day-picker/**/*.css',
     ],
     options: {
-      whitelist: [
-        'md:bg-white',
-        'text-orange-600',
-        'w-64',
-        'sm:w-64',
-        'md:w-auto',
-        'ml-1',
-        'ml-4',
-        'mb-2',
-        'm-auto',
-        'lg:w-1/2',
-        'md:text-xl',
-        'md:my-0',
-        'md:mb-6',
-        'md:px-0',
-        'md:mx-2',
-        'md:flex',
-        'md:items-center',
-        'pb-6',
-        'px-16',
-        'md:text-base',
-        'w-1/2',
-        'w-1/3',
-        'md:w-1/3',
-        'xs:ml-4',
-        'max-w-xs',
-        'text-gray-100',
-        'text-gray-200',
-        'underline',
-      ],
+      whitelist: [],
     },
   },
   theme: {
@@ -81,5 +52,6 @@ module.exports = {
   },
   future: {
     removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
 };

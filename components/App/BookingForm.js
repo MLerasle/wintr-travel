@@ -1,4 +1,5 @@
-import { useReducer, useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router';
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
@@ -13,18 +14,13 @@ import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import Separator from '@/UI/Separator';
 
-import { calcBookingPrice } from 'helpers/pricing';
-import { INITIAL_BOOKING } from 'store/state';
-import { reducer } from 'store/reducer';
-import { updateSkiersNumber } from 'store/action';
+import { getBookingPrices } from 'helpers/pricing';
 import Loader from '@/UI/Loader';
 
 const BookingForm = (props) => {
   const _isMounted = useRef(true);
-  const [booking, dispatch] = useReducer(
-    reducer,
-    props.booking || INITIAL_BOOKING
-  );
+  const booking = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -36,12 +32,11 @@ const BookingForm = (props) => {
 
   const handleResortChange = (resort, triggeredAction) => {
     if (triggeredAction.action === 'clear') {
-      return dispatch({ type: 'SET_RESORT', resortId: null, resortName: null });
+      return dispatch({ type: 'SET_RESORT', resort: null });
     }
     dispatch({
       type: 'SET_RESORT',
-      resortId: resort.value,
-      resortName: resort.label,
+      resort: resort.label,
     });
     if (!booking.firstDay) {
       document.querySelector('.InputDates-from input').focus();
@@ -54,14 +49,12 @@ const BookingForm = (props) => {
       if (type === 'from') {
         dispatch({
           type: 'SET_DATES',
-          catalog: props.catalog,
           firstDay: date,
           lastDay,
         });
       } else {
         dispatch({
           type: 'SET_DATES',
-          catalog: props.catalog,
           firstDay,
           lastDay: date,
         });
@@ -71,13 +64,30 @@ const BookingForm = (props) => {
     }
   };
 
-  const handleSkierChange = (action, age = null) => {
-    const { adultsCount, childrenCount } = updateSkiersNumber(
-      booking,
-      action,
-      age
-    );
-    dispatch({ type: 'SET_PEOPLE', adultsCount, childrenCount });
+  const updateSkiers = (category, action, skiersArray) => {
+    if (action === 'increment') {
+      const label = category === 'adult' ? 'Adulte' : 'Enfant';
+      const newSkier = {
+        label: `${label} ${skiersArray.length + 1}`,
+        size: null,
+        shoeSize: null,
+        headSize: null,
+      };
+      skiersArray.push(newSkier);
+    } else {
+      skiersArray.pop();
+    }
+  };
+
+  const handleSkierChange = (action, category = null) => {
+    if (action === 'reset') {
+      return dispatch({ type: 'SET_SKIERS', adults: [], children: [] });
+    }
+    const adults = [...booking.adults] || [];
+    const children = [...booking.children] || [];
+    const skiersToUpdate = category === 'adult' ? adults : children;
+    updateSkiers(category, action, skiersToUpdate);
+    dispatch({ type: 'SET_SKIERS', adults, children });
   };
 
   const validateSearch = (e) => {
@@ -86,55 +96,29 @@ const BookingForm = (props) => {
       return;
     }
     setIsLoading(true);
-    const {
-      resortId,
-      resortName,
-      firstDay,
-      lastDay,
-      weekId,
+
+    const { duration, adults, children } = booking;
+    const bookingPrice = getBookingPrices(
       duration,
-      adultsCount,
-      childrenCount,
-    } = booking;
-    const bookingPrice = calcBookingPrice(
-      props.catalog,
-      resortId,
-      weekId,
-      duration,
-      adultsCount,
-      childrenCount
+      adults.length,
+      children.length
     );
     if (bookingPrice.error) {
       setError({
         error: bookingPrice.message,
         message:
-          "Nous n'avons malheureusement pas de matériel à vous proposer à ces dates dans cette station. Veuillez modifier votre recherche.",
+          'Nous ne pouvons malheureusement pas vous livrer à ces dates dans cette station. Veuillez modifier votre recherche.',
       });
       setIsLoading(false);
       return;
     }
     dispatch({
       type: 'SET_AMOUNT',
-      adultsAmount: bookingPrice.adults,
-      childrenAmount: bookingPrice.children,
-      totalAmount: bookingPrice.total,
+      adultsPrice: bookingPrice.adults,
+      childrenPrice: bookingPrice.children,
+      totalPrice: bookingPrice.total,
     });
-    Router.push({
-      pathname: `/cart`,
-      query: {
-        resort_id: resortId,
-        resort_name: resortName,
-        checkin: firstDay,
-        checkout: lastDay,
-        week_id: weekId,
-        duration: duration,
-        adults: adultsCount,
-        children: childrenCount,
-        adults_amount: bookingPrice.adults,
-        children_amount: bookingPrice.children,
-        total_amount: bookingPrice.total,
-      },
-    })
+    Router.push('/cart')
       .then(() => {
         if (_isMounted.current) {
           setIsLoading(false);
@@ -151,7 +135,7 @@ const BookingForm = (props) => {
   return (
     <Card
       subclasses={`${
-        props.booking ? 'bg-gray-200 md:bg-white' : 'md:max-w-lg bg-white'
+        props.isEditing ? 'bg-gray-200 md:bg-white' : 'md:max-w-lg bg-white'
       }`}
     >
       {error && (
@@ -167,19 +151,10 @@ const BookingForm = (props) => {
         </div>
       )}
       <Header>
-        {props.booking ? (
-          <>
-            <Heading className="text-xl mb-2 md:mb-0">
-              Modifier votre séjour
-            </Heading>
-            <button
-              name="cancel"
-              className="text-secondary-blue text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
-              onClick={props.onUpdate}
-            >
-              Annuler
-            </button>
-          </>
+        {props.isEditing ? (
+          <Heading className="text-xl mb-2 md:mb-0">
+            Modifier votre séjour
+          </Heading>
         ) : (
           <Heading className="hidden md:block text-xl sm:text-3xl">
             Réservez vos skis et votre forfait.
@@ -187,9 +162,9 @@ const BookingForm = (props) => {
         )}
       </Header>
       <Separator className="my-6 hidden md:block" />
-      <form className={`${props.booking && 'mt-2'} md:mt-4`}>
-        <section className={`${props.booking && 'md:flex md:items-center'}`}>
-          <FormRow className={`${props.booking && 'md:w-1/3'}`}>
+      <form className={`${props.isEditing && 'mt-2'} md:mt-4`}>
+        <section className={`${props.isEditing && 'md:flex md:items-center'}`}>
+          <FormRow className={`${props.isEditing && 'md:w-1/3'}`}>
             <SelectInput
               options={props.catalog.resorts
                 .sort((a, b) =>
@@ -201,14 +176,14 @@ const BookingForm = (props) => {
               label="Où"
               placeholder="Choisissez la station"
               defaultValue={
-                booking.resortId
-                  ? { label: booking.resortName, value: booking.resortId }
+                booking.resort
+                  ? { label: booking.resort, value: booking.resort }
                   : ''
               }
               handleChange={handleResortChange}
             />
           </FormRow>
-          <FormRow className={`${props.booking && 'md:w-1/3 md:mx-2'}`}>
+          <FormRow className={`${props.isEditing && 'md:w-1/3 md:mx-2'}`}>
             <DateRangeInput
               from={booking.firstDay}
               to={booking.lastDay}
@@ -227,19 +202,19 @@ const BookingForm = (props) => {
               }
             />
           </FormRow>
-          <FormRow className={`${props.booking && 'md:w-1/3'}`}>
+          <FormRow className={`${props.isEditing && 'md:w-1/3'}`}>
             <SkierDropdown
-              childrenCount={booking.childrenCount}
-              adultsCount={booking.adultsCount}
+              childrenCount={booking.children.length}
+              adultsCount={booking.adults.length}
               onChange={(age, action) => handleSkierChange(age, action)}
             />
           </FormRow>
         </section>
-        <section className={`mt-8 ${props.booking && 'md:mt-4'}`}>
+        <section className={`mt-8 ${props.isEditing && 'md:mt-4'}`}>
           <Button
             type="submit"
             classes={`w-full uppercase tracking-wide bg-secondary-blue text-white ${
-              props.booking && 'md:w-auto'
+              props.isEditing && 'md:w-auto'
             }`}
             name="validate"
             disabled={!booking.isValid || loading}

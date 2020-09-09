@@ -8,7 +8,7 @@ import HomeArgs from 'components/App/HomeArgs';
 import Testimonials from 'components/App/Testimonials';
 import HomeCta from '@/App/HomeCta';
 
-const Index = ({ catalog }) => {
+const Index = ({ catalog, initialReduxState }) => {
   return (
     <Layout footerMaxWidth="max-w-screen-xxl">
       <Head>
@@ -16,7 +16,7 @@ const Index = ({ catalog }) => {
       </Head>
       <MobileImage />
       <Hero type="full">
-        <BookingForm catalog={catalog} />
+        <BookingForm catalog={catalog} booking={initialReduxState} />
       </Hero>
       <HomeArgs />
       <Testimonials />
@@ -32,6 +32,19 @@ export async function getStaticProps() {
   return {
     props: {
       catalog,
+      initialReduxState: {
+        resort: null,
+        firstDay: null,
+        lastDay: null,
+        duration: null,
+        adultsPrice: 0,
+        childrenPrice: 0,
+        totalPrice: 0,
+        adults: [],
+        children: [],
+        deliveryAddress: null,
+        isValid: false,
+      },
     },
   };
 }
