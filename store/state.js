@@ -10,4 +10,5 @@ export const INITIAL_BOOKING = {
   children: [],
   deliveryAddress: null,
   isValid: false,
+  isPaid: false,
 };

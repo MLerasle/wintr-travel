@@ -1,4 +1,4 @@
-import GridArg from 'components/App/GridArg';
+import GridArg from '@/App/GridArg';
 
 const HomeArgs = () => (
   <>

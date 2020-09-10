@@ -4,9 +4,9 @@ import Head from 'next/head';
 import Icon from '@mdi/react';
 import { mdiCheck } from '@mdi/js';
 
-import Layout from 'components/Layout/Layout';
-import Card from 'components/UI/Card';
-import Hero from 'components/UI/Hero';
+import Layout from '@/Layout/Layout';
+import Card from '@/UI/Card';
+import Hero from '@/UI/Hero';
 import { INITIAL_BOOKING } from 'store/state';
 import { reducer } from 'store/reducer';
 

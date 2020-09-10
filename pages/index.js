@@ -1,11 +1,11 @@
 import Head from 'next/head';
 
-import Layout from 'components/Layout/Layout';
-import MobileImage from 'components/UI/MobileImage';
-import Hero from 'components/UI/Hero';
-import BookingForm from 'components/App/BookingForm';
-import HomeArgs from 'components/App/HomeArgs';
-import Testimonials from 'components/App/Testimonials';
+import Layout from '@/Layout/Layout';
+import MobileImage from '@/UI/MobileImage';
+import Hero from '@/UI/Hero';
+import BookingForm from '@/App/BookingForm';
+import HomeArgs from '@/App/HomeArgs';
+import Testimonials from '@/App/Testimonials';
 import HomeCta from '@/App/HomeCta';
 
 const Index = ({ catalog, initialReduxState }) => {
@@ -44,6 +44,7 @@ export async function getStaticProps() {
         children: [],
         deliveryAddress: null,
         isValid: false,
+        isPaid: false,
       },
     },
   };

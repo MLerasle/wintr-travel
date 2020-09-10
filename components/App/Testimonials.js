@@ -1,4 +1,4 @@
-import Testimonial from 'components/App/Testimonial';
+import Testimonial from '@/App/Testimonial';
 
 const Testimonials = () => (
   <section className="flex justify-center items-center text-center px-4 sm:px-10 py-10 sm:py-16">

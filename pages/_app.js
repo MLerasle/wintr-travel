@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { useStore } from 'store/store';
+import { useStore } from 'store/config';
 
 import 'assets/style.css';
 import 'assets/fonts.css';

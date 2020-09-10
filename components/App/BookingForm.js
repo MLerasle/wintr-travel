@@ -118,7 +118,7 @@ const BookingForm = (props) => {
       childrenPrice: bookingPrice.children,
       totalPrice: bookingPrice.total,
     });
-    Router.push('/cart')
+    Router.push('/booking/details')
       .then(() => {
         if (_isMounted.current) {
           setIsLoading(false);

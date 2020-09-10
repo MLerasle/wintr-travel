@@ -1,4 +1,4 @@
-import FooterLink from 'components/App/FooterLink';
+import FooterLink from './FooterLink';
 
 const FooterLinks = () => (
   <section className="sm:flex sm:flex-row sm:items-center text-sm">

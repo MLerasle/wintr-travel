@@ -1,5 +1,5 @@
-import FooterLinks from 'components/App/FooterLinks';
-import SocialLinks from 'components/App/SocialLinks';
+import FooterLinks from './FooterLinks';
+import SocialLinks from './SocialLinks';
 
 const Footer = (props) => {
   return (

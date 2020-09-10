@@ -189,7 +189,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
           };
           console.log('Booking to send to the API', updatedBooking);
           destroyCookie(null, 'paymentIntentId');
-          Router.push('/confirmation').then(() => {
+          Router.push('/booking/confirmation').then(() => {
             if (_isMounted.current) {
               setIsLoading(false);
             }
@@ -245,7 +245,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         //     // See how to handle this...
         //     console.log(error);
         //   });
-        Router.push('/confirmation').then(() => {
+        Router.push('/booking/confirmation').then(() => {
           if (_isMounted.current) {
             setIsLoading(false);
           }

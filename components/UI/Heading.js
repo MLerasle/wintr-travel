@@ -1,5 +1,5 @@
 const Heading = (props) => (
-  <h1
+  <h2
     className={`flex items-center leading-tight font-bold text-gray-800 ${props.className}`}
   >
     {props.children}
@@ -19,7 +19,7 @@ const Heading = (props) => (
         }
       }
     `}</style>
-  </h1>
+  </h2>
 );
 
 export default Heading;

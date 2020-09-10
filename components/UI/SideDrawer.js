@@ -1,7 +1,7 @@
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
 
-import NavItems from '@/App/NavItems';
+import NavItems from '@/App/Navbar/NavItems';
 import Backdrop from '@/UI/Backdrop';
 
 const SideDrawer = (props) => (

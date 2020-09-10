@@ -1,5 +1,5 @@
 import { mdiTwitter, mdiFacebook, mdiInstagram } from '@mdi/js';
-import SocialLink from 'components/App/SocialLink';
+import SocialLink from './SocialLink';
 
 const SocialLinks = () => (
   <section className="flex items-center -ml-4">
