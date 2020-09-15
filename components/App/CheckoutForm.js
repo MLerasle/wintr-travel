@@ -7,13 +7,14 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
+import Icon from '@mdi/react';
+import { mdiLock } from '@mdi/js';
 
 import { isoCountries } from 'data/countries';
 
 import StripeCardElement from '@/App/StripeCardElement';
 import Card from '@/UI/Card';
 import Header from '@/UI/Header';
-import Hero from '@/UI/Hero';
 import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import FormRow from '@/UI/FormRow';
@@ -63,7 +64,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         currency: 'eur',
         total: {
           label: 'Booking Wintr Travel',
-          amount: +booking.totalAmount * 100,
+          amount: +booking.totalPrice * 100,
         },
         requestPayerName: true,
         requestPayerEmail: true,
@@ -272,108 +273,123 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   }
 
   return (
-    <Hero>
-      <Card>
-        <Header>
-          <Heading className="text-xl sm:text-3xl">Paiement</Heading>
-        </Header>
-        <Separator className="my-6" />
-        {paymentRequestButton ? (
-          <>
-            {paymentRequestButton}
-            <Separator label="Ou" className="my-10" />
-          </>
-        ) : null}
-        <form className="flex flex-col">
-          <FormRow>
-            <Label title="Nom" for="name" />
-            <Input
-              type="text"
-              id="name"
-              name="name"
-              onChange={handleChange}
-              className={
-                formState.errors.name && formWasSubmitted
-                  ? 'border-red-600 bg-red-100'
-                  : ''
-              }
-            />
-            <div className="error text-red-600 pt-1 pl-1" role="alert">
-              {formWasSubmitted && formState.errors.name}
-            </div>
-          </FormRow>
-          <FormRow>
-            <Label title="Email" for="email" />
-            <Input
-              type="email"
-              id="email"
-              name="email"
-              onChange={handleChange}
-              className={
-                formState.errors.email && formWasSubmitted
-                  ? 'border-red-600 bg-red-100'
-                  : ''
-              }
-            />
-            <div className="error text-red-600 pt-1 pl-1" role="alert">
-              {formWasSubmitted && formState.errors.email}
-            </div>
-          </FormRow>
-          <FormRow>
-            <SelectInput
-              options={countries.map((c) => {
-                return { value: c[0], label: c[1] };
-              })}
-              label="Pays"
-              placeholder=""
-              defaultValue={formState.country}
-              name="country"
-              styles={
-                formState.errors.country && formWasSubmitted
-                  ? {
-                      control: (base) => ({
-                        ...base,
-                        '&:hover': { borderColor: 'none' },
-                        boxShadow: 'none',
-                        height: '48px',
-                        borderColor: '#E53E3E',
-                        backgroundColor: '#FFF5F5',
-                      }),
-                    }
-                  : null
-              }
-              handleChange={handleChange}
-            />
-            <div className="error text-red-600 pt-1 pl-1" role="alert">
-              {formWasSubmitted && formState.errors.country}
-            </div>
-          </FormRow>
-          <FormRow>
-            <Label title="Données de votre carte" for="card-element" />
-            <StripeCardElement CardElement={CardElement} />
-          </FormRow>
-          <FormRow>
-            <Checkbox
-              name="acceptTerms"
-              value={formState.acceptTerms}
-              onChange={handleChange}
-              error={formWasSubmitted && !!formState.errors.acceptTerms}
-            >
-              J'accepte les Conditions Générales de Vente.
-            </Checkbox>
-          </FormRow>
-          <Button
-            type="submit"
-            name="pay"
-            onClick={handlePaymentSubmit}
-            disabled={loading}
-            classes="my-4"
+    <Card>
+      <Header>
+        <Heading className="text-xl sm:text-3xl">
+          <Icon path={mdiLock} size={1} color="#424242" />
+          <span className="ml-1">Paiement Sécurisé</span>
+        </Heading>
+        <div className="flex items-center h-8">
+          <img src="/images/powered_by_stripe.svg" alt="Powered By Stripe" />
+          <img src="/images/visa.svg" alt="Visa Logo" className="ml-1" />
+          <img
+            src="/images/mastercard.svg"
+            alt="Mastercard Logo"
+            className="ml-1"
+          />
+          <img
+            src="/images/amex.svg"
+            alt="American Express Logo"
+            className="ml-1"
+          />
+        </div>
+      </Header>
+      <Separator className="my-6" />
+      {paymentRequestButton ? (
+        <>
+          {paymentRequestButton}
+          <Separator label="Ou" className="my-10" />
+        </>
+      ) : null}
+      <form className="flex flex-col max-w-md mx-auto">
+        <FormRow>
+          <Label title="Nom" for="name" />
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            onChange={handleChange}
+            className={`w-full ${
+              formState.errors.name && formWasSubmitted
+                ? 'border-red-600 bg-red-100'
+                : ''
+            }`}
+          />
+          <div className="error text-red-600 pt-1 pl-1" role="alert">
+            {formWasSubmitted && formState.errors.name}
+          </div>
+        </FormRow>
+        <FormRow>
+          <Label title="Email" for="email" />
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            onChange={handleChange}
+            className={`w-full ${
+              formState.errors.name && formWasSubmitted
+                ? 'border-red-600 bg-red-100'
+                : ''
+            }`}
+          />
+          <div className="error text-red-600 pt-1 pl-1" role="alert">
+            {formWasSubmitted && formState.errors.email}
+          </div>
+        </FormRow>
+        <FormRow>
+          <SelectInput
+            options={countries.map((c) => {
+              return { value: c[0], label: c[1] };
+            })}
+            label="Pays"
+            placeholder=""
+            defaultValue={formState.country}
+            name="country"
+            styles={
+              formState.errors.country && formWasSubmitted
+                ? {
+                    control: (base) => ({
+                      ...base,
+                      '&:hover': { borderColor: 'none' },
+                      boxShadow: 'none',
+                      height: '48px',
+                      borderColor: '#E53E3E',
+                      backgroundColor: '#FFF5F5',
+                    }),
+                  }
+                : null
+            }
+            handleChange={handleChange}
+          />
+          <div className="error text-red-600 pt-1 pl-1" role="alert">
+            {formWasSubmitted && formState.errors.country}
+          </div>
+        </FormRow>
+        <FormRow>
+          <Label title="Données de votre carte" for="card-element" />
+          <StripeCardElement CardElement={CardElement} />
+        </FormRow>
+        <FormRow>
+          <Checkbox
+            name="acceptTerms"
+            value={formState.acceptTerms}
+            onChange={handleChange}
+            error={formWasSubmitted && !!formState.errors.acceptTerms}
           >
-            {loading ? <Loader /> : `Payer ${booking.totalAmount.toFixed(2)} €`}
-          </Button>
-        </form>
-      </Card>
-    </Hero>
+            J'accepte les Conditions Générales de Vente.
+          </Checkbox>
+        </FormRow>
+        <Button
+          type="submit"
+          name="pay"
+          onClick={handlePaymentSubmit}
+          disabled={loading}
+          classes="my-4 w-full uppercase tracking-wide bg-secondary-blue text-white"
+        >
+          {loading ? <Loader /> : `Payer ${booking.totalPrice.toFixed(2)} €`}
+        </Button>
+      </form>
+    </Card>
   );
 };
 

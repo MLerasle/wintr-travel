@@ -7,7 +7,7 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
       return {
         ...state,
         resort: action.resort,
-        isValid: action.resort && state.firstDay && state.adults.length > 0,
+        isValid: !!action.resort && !!state.firstDay && state.adults.length > 0,
       };
     case 'SET_DATES':
       return {
@@ -19,14 +19,14 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
             dayjs(action.firstDay),
             'day'
           ) + 1,
-        isValid: action.firstDay && state.resort && state.adults.length > 0,
+        isValid: !!action.firstDay && !!state.resort && state.adults.length > 0,
       };
     case 'SET_SKIERS':
       return {
         ...state,
         adults: action.adults,
         children: action.children,
-        isValid: action.adults.length > 0 && state.firstDay && state.resort,
+        isValid: action.adults.length > 0 && !!state.firstDay && !!state.resort,
       };
     case 'SET_DELIVERY_ADDRESS':
       return {
@@ -39,6 +39,11 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
         adultsPrice: action.adultsPrice,
         childrenPrice: action.childrenPrice,
         totalPrice: action.totalPrice,
+      };
+    case 'SET_PAYMENT_INTENT_ID':
+      return {
+        ...state,
+        paymentIntentId: action.paymentIntentId,
       };
     case 'RESET_BOOKING':
       return INITIAL_BOOKING;

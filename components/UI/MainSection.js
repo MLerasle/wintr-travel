@@ -6,7 +6,9 @@ const MainSection = (props) => (
 
     <style jsx>{`
       .main-section {
-        min-height: calc(100vh - 128px);
+        min-height: calc(
+          100vh - ${props.layoutWithoutFooter ? '64px' : '128px'}
+        );
       }
     `}</style>
   </section>

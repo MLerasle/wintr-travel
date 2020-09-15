@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router';
 import Head from 'next/head';
+import { parseCookies, setCookie } from 'nookies';
 
 import Layout from '@/Layout/Layout';
 import BookingForm from '@/App/BookingForm';
@@ -62,9 +63,29 @@ const Cart = ({ catalog }) => {
     });
   };
 
-  const validateCart = () => {
+  const validateBookingDetails = async () => {
     setIsLoading(true);
+    // Send a request to /api/checkout which will handle Stripe Payment Intent creation
     if (booking.isValid) {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(booking),
+      });
+      const data = await response.json();
+      if (!data.paymentIntent) {
+        // TODO: display a message to the user and send a report
+        console.log('ERROR', data.error);
+        setIsLoading(false);
+        return;
+      }
+      // Store the Payment Intent id in a cookie if we don't already have one
+      const { paymentIntentId } = parseCookies();
+      if (!paymentIntentId) {
+        setCookie(null, 'paymentIntentId', data.paymentIntent.id);
+      }
       Router.push('/booking/checkout').then(() => {
         if (_isMounted.current) {
           setIsLoading(false);
@@ -100,7 +121,7 @@ const Cart = ({ catalog }) => {
             <BookingFormValidate
               booking={booking}
               loading={loading}
-              onValidate={validateCart}
+              onValidate={validateBookingDetails}
             />
           </>
         )}

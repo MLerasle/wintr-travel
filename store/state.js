@@ -11,4 +11,5 @@ export const INITIAL_BOOKING = {
   deliveryAddress: null,
   isValid: false,
   isPaid: false,
+  paymentIntentId: null,
 };
