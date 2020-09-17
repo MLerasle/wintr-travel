@@ -8,17 +8,25 @@ import Layout from '@/Layout/Layout';
 import BookingForm from '@/App/BookingForm';
 import BookingMainInfo from '@/App/BookingMainInfo';
 import BookingFormDetails from '@/App/BookingFormDetails';
-import BookingFormDeliveryAddress from '@/App/BookingFormDeliveryAddress';
+import BookingFormEmail from '@/App/BookingFormEmail';
 import BookingFormValidate from '@/App/BookingFormValidate';
 import MainSection from '@/UI/MainSection';
 import Separator from '@/UI/Separator';
+
+import { EMAIL_PATTERN } from 'helpers/email';
 
 const Cart = ({ catalog }) => {
   const _isMounted = useRef(true);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setIsLoading] = useState(false);
+  const [formWasSubmitted, setFormWasSubmitted] = useState(false);
   const booking = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [formError, setFormError] = useState(
+    !EMAIL_PATTERN.test(booking.email)
+      ? 'Vous devez saisir une adresse email valide.'
+      : ''
+  );
 
   const skiers = [...booking.adults, ...booking.children];
 
@@ -39,7 +47,11 @@ const Cart = ({ catalog }) => {
       skiers = [...booking.children];
     }
     const person = skiers.find((s) => s.label === skier.label);
-    person[attribute] = +event.target.value;
+    if (typeof event === 'string') {
+      person[attribute] = event;
+    } else {
+      person[attribute] = +event.target.value;
+    }
 
     if (skier.label.startsWith('Adulte')) {
       dispatch({
@@ -56,17 +68,32 @@ const Cart = ({ catalog }) => {
     }
   };
 
-  const updateAddress = (event) => {
+  const updateEmail = (event) => {
+    const email = event.target.value;
+    const error =
+      email.trim() === '' || !EMAIL_PATTERN.test(email)
+        ? 'Vous devez saisir une adresse email valide.'
+        : '';
+    setFormError(error);
     dispatch({
-      type: 'SET_DELIVERY_ADDRESS',
-      deliveryAddress: event.target.value,
+      type: 'SET_EMAIL',
+      email,
+    });
+  };
+
+  const updateNewsletterRegistration = () => {
+    const register = !booking.isRegisteredToNewsletter;
+    dispatch({
+      type: 'SET_REGISTERED_TO_NEWSLETTER',
+      register,
     });
   };
 
   const validateBookingDetails = async () => {
-    setIsLoading(true);
+    setFormWasSubmitted(true);
     // Send a request to /api/checkout which will handle Stripe Payment Intent creation
-    if (booking.isValid) {
+    if (booking.isValid && !formError) {
+      setIsLoading(true);
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: {
@@ -114,9 +141,11 @@ const Cart = ({ catalog }) => {
             <Separator className="md:hidden my-2" />
             <BookingFormDetails skiers={skiers} onUpdateSkier={updateSkier} />
             <Separator className="md:hidden my-2" />
-            <BookingFormDeliveryAddress
+            <BookingFormEmail
               booking={booking}
-              onAddressUpdate={updateAddress}
+              onEmailUpdate={updateEmail}
+              onNewsletterRegistration={updateNewsletterRegistration}
+              error={formWasSubmitted && formError ? formError : null}
             />
             <BookingFormValidate
               booking={booking}

@@ -8,8 +8,12 @@ export const INITIAL_BOOKING = {
   totalPrice: 0,
   adults: [],
   children: [],
+  email: null,
+  name: null,
+  countryCode: 'FR',
   deliveryAddress: null,
+  paymentIntentId: null,
+  isRegisteredToNewsletter: true,
   isValid: false,
   isPaid: false,
-  paymentIntentId: null,
 };

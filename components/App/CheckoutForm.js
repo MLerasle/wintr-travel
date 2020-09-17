@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 import {
   CardElement,
@@ -7,14 +8,10 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
-import Icon from '@mdi/react';
-import { mdiLock } from '@mdi/js';
 
 import { isoCountries } from 'data/countries';
 
 import StripeCardElement from '@/App/StripeCardElement';
-import Card from '@/UI/Card';
-import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import FormRow from '@/UI/FormRow';
@@ -25,30 +22,23 @@ import SelectInput from '@/UI/SelectInput';
 import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
 
-const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
 const CheckoutForm = ({ booking, paymentIntent }) => {
   const _isMounted = useRef(true);
   const stripe = useStripe();
   const elements = useElements();
+  const dispatch = useDispatch();
   const [paymentRequest, setPaymentRequest] = useState(null);
   const countries = Object.entries(isoCountries()).sort((a, b) =>
     a[1] > b[1] ? 1 : b[1] > a[1] ? -1 : 0
   );
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    country: { value: 'FR', label: 'France' },
-    acceptTerms: false,
-    isValid: false,
-    errors: {
-      name: 'Vous devez renseigner votre nom.',
-      email: 'Vous devez saisir une adresse email valide.',
-      country: '',
-      acceptTerms: 'Invalide',
-    },
-  });
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [formIsValid, setFormIsValid] = useState(false);
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState({
+    name: 'Vous devez renseigner votre nom.',
+    country: '',
+    acceptTerms: 'Invalide',
+  });
   const [loading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -89,56 +79,44 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     }
   }, [stripe]);
 
-  const handleChange = (event) => {
-    let name;
-    let value;
-
-    if (event === undefined) {
-      // Toggle acceptTerms with keyboard
-      name = 'acceptTerms';
-    } else if (event === null || event.value) {
-      // Handle country react-select field
-      name = 'country';
-      value = event;
-    } else {
-      name = event.target.name;
-      value = event.target.value;
-    }
-
-    let formErrors = formState.errors;
-
-    switch (name) {
-      case 'name':
-        formErrors.name =
-          value.trim() === '' ? 'Vous devez renseigner votre nom.' : '';
-        break;
-      case 'email':
-        formErrors.email =
-          value.trim() === '' || !EMAIL_PATTERN.test(value)
-            ? 'Vous devez saisir une adresse email valide.'
-            : '';
-        break;
-      case 'country':
-        formErrors.country = !value ? '' : '';
-        break;
-      case 'acceptTerms':
-        value = !formState.acceptTerms;
-        formErrors.acceptTerms = !value ? 'Invalide' : '';
-        break;
-      default:
-        break;
-    }
-
-    setFormState({
-      ...formState,
-      [name]: value,
-      errors: { ...formState.errors, ...formErrors },
-      isValid:
-        !formErrors.name &&
-        !formErrors.email &&
-        !formErrors.country &&
-        !formErrors.acceptTerms,
+  const onNameUpdate = (event) => {
+    const updatedName = event.target.value;
+    dispatch({ type: 'SET_NAME', name: updatedName });
+    setFormErrors({
+      ...formErrors,
+      name: updatedName.trim() === '' ? 'Vous devez renseigner votre nom.' : '',
     });
+    updateFormValidity();
+  };
+
+  const onCountryCodeUpdate = (event) => {
+    const updatedCountry = event ? event.value : null;
+    dispatch({ type: 'SET_COUNTRY_CODE', countryCode: updatedCountry });
+    setFormErrors({
+      ...formErrors,
+      country: !updatedCountry
+        ? 'Veuillez renseigner votre pays de résidence.'
+        : '',
+    });
+    updateFormValidity();
+  };
+
+  const onDeliveryAddressUpdate = (event) => {
+    dispatch({ type: 'SET_DELIVERY_ADDRESS', address: event.target.value });
+    updateFormValidity();
+  };
+
+  const onToggleAcceptTerms = () => {
+    setAcceptTerms(!acceptTerms);
+    setFormErrors({
+      ...formErrors,
+      acceptTerms: !acceptTerms ? 'Invalide' : '',
+    });
+    updateFormValidity();
+  };
+
+  const updateFormValidity = () => {
+    setFormIsValid(!!booking.name && !!booking.countryCode && acceptTerms);
   };
 
   // Handle one click payment
@@ -205,16 +183,8 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     event.preventDefault();
     setIsLoading(true);
     setFormWasSubmitted(true);
-    // Add checkout informations to booking data before sending it to the backend
-    const updatedBooking = {
-      ...booking,
-      name: formState.name,
-      email: formState.email,
-      countryCode: formState.country.value,
-      paymentIntentId: paymentIntent.id,
-    };
-    console.log('Booking to send to the API', updatedBooking);
-    if (!formState.isValid) {
+    console.log('Booking to send to the API', booking);
+    if (!formIsValid) {
       setIsLoading(false);
       return;
     }
@@ -226,7 +196,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         payment_method: {
           card: elements.getElement(CardElement),
         },
-        receipt_email: formState.email,
+        receipt_email: booking.email,
       });
       if (error) throw new Error(error.message);
       if (status === 'succeeded') {
@@ -273,67 +243,30 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   }
 
   return (
-    <Card>
-      <Header>
-        <Heading className="text-xl sm:text-3xl">
-          <Icon path={mdiLock} size={1} color="#424242" />
-          <span className="ml-1">Paiement Sécurisé</span>
-        </Heading>
-        <div className="flex items-center h-8">
-          <img src="/images/powered_by_stripe.svg" alt="Powered By Stripe" />
-          <img src="/images/visa.svg" alt="Visa Logo" className="ml-1" />
-          <img
-            src="/images/mastercard.svg"
-            alt="Mastercard Logo"
-            className="ml-1"
-          />
-          <img
-            src="/images/amex.svg"
-            alt="American Express Logo"
-            className="ml-1"
-          />
-        </div>
-      </Header>
-      <Separator className="my-6" />
+    <div className="lg:w-1/2 pt-6">
       {paymentRequestButton ? (
         <>
           {paymentRequestButton}
           <Separator label="Ou" className="my-10" />
         </>
       ) : null}
-      <form className="flex flex-col max-w-md mx-auto">
+      <form className="flex flex-col max-w-md mx-auto lg:mx-0">
+        <Heading className="text-xl mb-4">Informations Client</Heading>
         <FormRow>
-          <Label title="Nom" for="name" />
+          <Label title="Prénom et Nom" for="name" />
           <Input
             type="text"
             id="name"
             name="name"
-            onChange={handleChange}
+            onChange={onNameUpdate}
             className={`w-full ${
-              formState.errors.name && formWasSubmitted
+              formErrors.name && formWasSubmitted
                 ? 'border-red-600 bg-red-100'
                 : ''
             }`}
           />
           <div className="error text-red-600 pt-1 pl-1" role="alert">
-            {formWasSubmitted && formState.errors.name}
-          </div>
-        </FormRow>
-        <FormRow>
-          <Label title="Email" for="email" />
-          <Input
-            type="email"
-            id="email"
-            name="email"
-            onChange={handleChange}
-            className={`w-full ${
-              formState.errors.name && formWasSubmitted
-                ? 'border-red-600 bg-red-100'
-                : ''
-            }`}
-          />
-          <div className="error text-red-600 pt-1 pl-1" role="alert">
-            {formWasSubmitted && formState.errors.email}
+            {formWasSubmitted && formErrors.name}
           </div>
         </FormRow>
         <FormRow>
@@ -341,12 +274,12 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
             options={countries.map((c) => {
               return { value: c[0], label: c[1] };
             })}
-            label="Pays"
+            label="Pays de résidence"
             placeholder=""
-            defaultValue={formState.country}
+            defaultValue={{ value: 'FR', label: 'France' }}
             name="country"
             styles={
-              formState.errors.country && formWasSubmitted
+              formErrors.country && formWasSubmitted
                 ? {
                     control: (base) => ({
                       ...base,
@@ -359,12 +292,29 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
                   }
                 : null
             }
-            handleChange={handleChange}
+            handleChange={onCountryCodeUpdate}
           />
           <div className="error text-red-600 pt-1 pl-1" role="alert">
-            {formWasSubmitted && formState.errors.country}
+            {formWasSubmitted && formErrors.country}
           </div>
         </FormRow>
+        <Heading className="text-xl my-4">Addresse de Livraison</Heading>
+        <FormRow>
+          <Label title="Où devons-nous vous livrer?" for="deliveryAddress" />
+          <Input
+            type="text"
+            id="deliveryAddress"
+            name="deliveryAddress"
+            className="w-full"
+            placeholder="Saisissez l'adresse complète ici"
+            onChange={onDeliveryAddressUpdate}
+            value={booking.deliveryAddress}
+          />
+          <p className="text-orange-600 text-sm md:text-base mt-2">
+            Vous pouvez renseigner cette information ultérieurement.
+          </p>
+        </FormRow>
+        <Heading className="text-xl my-4">Méthode de Règlement</Heading>
         <FormRow>
           <Label title="Données de votre carte" for="card-element" />
           <StripeCardElement CardElement={CardElement} />
@@ -372,9 +322,9 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         <FormRow>
           <Checkbox
             name="acceptTerms"
-            value={formState.acceptTerms}
-            onChange={handleChange}
-            error={formWasSubmitted && !!formState.errors.acceptTerms}
+            value={acceptTerms}
+            onChange={onToggleAcceptTerms}
+            error={formWasSubmitted && !acceptTerms}
           >
             J'accepte les Conditions Générales de Vente.
           </Checkbox>
@@ -389,7 +339,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
           {loading ? <Loader /> : `Payer ${booking.totalPrice.toFixed(2)} €`}
         </Button>
       </form>
-    </Card>
+    </div>
   );
 };
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 const CARD_ELEMENT_OPTIONS = {
   classes: {
     base:
-      'border border-gray-300 rounded-lg px-2 py-3 h-12 w-full appearance-none',
+      'border border-gray-300 rounded-lg px-2 py-3 h-12 w-full appearance-none bg-white',
     focus: 'outline-none border-secondary-blue',
     invalid:
       'border border-red-600 bg-red-100 rounded-lg px-2 py-3 h-12 w-full appearance-none',

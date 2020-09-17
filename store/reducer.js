@@ -28,11 +28,6 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
         children: action.children,
         isValid: action.adults.length > 0 && !!state.firstDay && !!state.resort,
       };
-    case 'SET_DELIVERY_ADDRESS':
-      return {
-        ...state,
-        deliveryAddress: action.deliveryAddress,
-      };
     case 'SET_AMOUNT':
       return {
         ...state,
@@ -40,10 +35,36 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
         childrenPrice: action.childrenPrice,
         totalPrice: action.totalPrice,
       };
+    case 'SET_EMAIL':
+      return {
+        ...state,
+        email: action.email,
+      };
+    case 'SET_REGISTERED_TO_NEWSLETTER': {
+      return {
+        ...state,
+        isRegisteredToNewsletter: action.register,
+      };
+    }
     case 'SET_PAYMENT_INTENT_ID':
       return {
         ...state,
         paymentIntentId: action.paymentIntentId,
+      };
+    case 'SET_NAME':
+      return {
+        ...state,
+        name: action.name,
+      };
+    case 'SET_COUNTRY_CODE':
+      return {
+        ...state,
+        countryCode: action.countryCode,
+      };
+    case 'SET_DELIVERY_ADDRESS':
+      return {
+        ...state,
+        deliveryAddress: action.address,
       };
     case 'RESET_BOOKING':
       return INITIAL_BOOKING;

@@ -13,8 +13,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // 'primary-blue': '#245688',
-        // 'secondary-blue': '#0CB3FA',
         'primary-blue': '#2C5282',
         'secondary-blue': '#4299E1',
       },
@@ -36,6 +34,8 @@ module.exports = {
       },
       height: {
         0.2: '0.05rem',
+        0.4: '0.1rem',
+        0.5: '0.125rem',
       },
       zIndex: {
         100: 100,
