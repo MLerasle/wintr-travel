@@ -1,11 +1,11 @@
 import { Provider } from 'react-redux';
 import { useStore } from 'store/config';
 
-import 'assets/style.css';
-import 'assets/fonts.css';
-import 'assets/background-image.css';
+import 'styles/style.css';
+import 'styles/fonts.css';
+import 'styles/background-image.css';
 import 'react-day-picker/lib/style.css';
-import 'assets/react-day-picker.css';
+import 'styles/react-day-picker.css';
 
 const MyApp = ({ Component, pageProps }) => {
   const store = useStore(pageProps.initialReduxState);
