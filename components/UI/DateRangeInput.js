@@ -50,7 +50,7 @@ export default class DateRangeInput extends Component {
     const format = 'DD/MM/YYYY';
     const fromValue = from ? formatDate(from, format) : null;
     const toValue = to ? formatDate(to, format) : null;
-    const today = new Date('2019-03-01'); // Hardcoded for testing purpose
+    const today = new Date();
     return (
       <div className="InputDates">
         <div className="InputDates-from">
@@ -81,7 +81,6 @@ export default class DateRangeInput extends Component {
                 if (formattedDay < minDate || formattedDay > maxDate) {
                   return;
                 }
-                this.to.getInput().focus();
               },
             }}
             inputProps={{

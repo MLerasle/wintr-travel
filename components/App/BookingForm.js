@@ -52,6 +52,7 @@ const BookingForm = (props) => {
           firstDay: date,
           lastDay,
         });
+        document.querySelector('.InputDates-to input').focus();
       } else {
         dispatch({
           type: 'SET_DATES',
@@ -214,7 +215,7 @@ const BookingForm = (props) => {
           <Button
             type="submit"
             classes={`w-full uppercase tracking-wide bg-secondary-blue text-white ${
-              props.isEditing && 'md:w-auto'
+              props.isEditing && 'md:w-64'
             }`}
             name="validate"
             disabled={!booking.isValid || loading}

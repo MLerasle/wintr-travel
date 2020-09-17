@@ -33,11 +33,9 @@ const Nav = (props) => {
           />
           <SideDrawer open={isMenuOpen} closed={toggleIsMenuOpen} />
         </div>
-        {!props.hideNavLinks && (
-          <div className="hidden sm:block">
-            <NavItems />
-          </div>
-        )}
+        <div className="hidden sm:block">
+          <NavItems />
+        </div>
       </div>
     </nav>
   );

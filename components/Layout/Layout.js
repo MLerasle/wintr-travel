@@ -3,7 +3,7 @@ import Footer from '@/App/Footer';
 
 const Layout = (props) => (
   <>
-    <Navbar classes="bg-white" hideNavLinks={props.hideNavLinks} />
+    {!props.withoutNavbar && <Navbar classes="bg-white" />}
     <main>{props.children}</main>
     {!props.withoutFooter && <Footer maxWidth={props.footerMaxWidth} />}
   </>

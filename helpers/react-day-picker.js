@@ -26,7 +26,7 @@ const WEEKDAYS_SHORT = {
 };
 
 const FIRST_DAY = {
-  fr: 0,
+  fr: 1,
 };
 
 function formatDay(d, locale = 'fr') {
