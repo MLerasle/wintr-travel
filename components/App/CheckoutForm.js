@@ -57,8 +57,8 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
           amount: +booking.totalPrice * 100,
         },
         requestPayerName: true,
-        requestPayerEmail: true,
-        requestShipping: true,
+        requestPayerEmail: false,
+        requestShipping: false,
         shippingOptions: [
           {
             id: 'free-shipping',
@@ -243,14 +243,14 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   }
 
   return (
-    <div className="lg:w-1/2 pt-6">
+    <div className="xl:w-1/2 pt-6 max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
       {paymentRequestButton ? (
         <>
           {paymentRequestButton}
           <Separator label="Ou" className="my-10" />
         </>
       ) : null}
-      <form className="flex flex-col max-w-md mx-auto lg:mx-0">
+      <form className="flex flex-col max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
         <Heading className="text-xl mb-4">Informations Client</Heading>
         <FormRow>
           <Label title="Prénom et Nom" for="name" />
