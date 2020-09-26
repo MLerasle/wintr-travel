@@ -253,7 +253,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       <form className="flex flex-col max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
         <Heading className="text-xl mb-4">Informations Client</Heading>
         <FormRow>
-          <Label title="Prénom et Nom" for="name" />
+          <Label for="name">Prénom et Nom</Label>
           <Input
             type="text"
             id="name"
@@ -300,7 +300,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         </FormRow>
         <Heading className="text-xl my-4">Addresse de Livraison</Heading>
         <FormRow>
-          <Label title="Où devons-nous vous livrer?" for="deliveryAddress" />
+          <Label for="deliveryAddress">Où devons-nous vous livrer?</Label>
           <Input
             type="text"
             id="deliveryAddress"
@@ -316,7 +316,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         </FormRow>
         <Heading className="text-xl my-4">Méthode de Règlement</Heading>
         <FormRow>
-          <Label title="Données de votre carte" for="card-element" />
+          <Label for="card-element">Données de votre carte</Label>
           <StripeCardElement CardElement={CardElement} />
         </FormRow>
         <FormRow>

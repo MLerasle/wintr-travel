@@ -54,7 +54,7 @@ export default class DateRangeInput extends Component {
     return (
       <div className="InputDates">
         <div className="InputDates-from">
-          <Label title={this.props.fromLabel} for="InputDates-from" />
+          <Label for="InputDates-from">{this.props.fromLabel}</Label>
           <DayPickerInput
             value={fromValue}
             formatDate={formatDate}
@@ -114,7 +114,7 @@ export default class DateRangeInput extends Component {
           </svg>
         </div>
         <div className="InputDates-to">
-          <Label title={this.props.toLabel} for="InputDates-to" />
+          <Label for="InputDates-to">{this.props.toLabel}</Label>
           <DayPickerInput
             ref={(el) => (this.to = el)}
             value={toValue}

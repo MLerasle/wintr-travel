@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8000",
     "build": "next build",
     "lint": "eslint ./components/** ./pages_/** -c .eslintrc.json --fix --ext js,jsx",
     "start": "next start"
@@ -25,16 +25,16 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "smoothscroll-polyfill": "^0.4.4",
-    "stripe": "^8.97.0"
+    "stripe": "^8.102.0"
   },
   "devDependencies": {
     "@mdi/react": "1.4.0",
     "babel-eslint": "^10.1.0",
     "cssnano": "4.1.10",
     "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react": "^7.21.2",
     "prettier": "^2.1.2",
     "tailwindcss": "1.8.10"
   }

@@ -20,35 +20,35 @@ const BookingSummary = ({ booking }) => (
     <BookingSummaryLine label="Départ" value={formatDate(booking.lastDay)} />
     <Separator className="my-6" />
     {booking.adults.map((skier) => (
-      <>
+      <div key={skier.label}>
         <BookingSummaryLine
           label={skier.label}
           value={`${(booking.duration * 55).toFixed(2)} €`}
-          key={skier.label}
         />
         <BookingSummaryLineSkier skier={skier} />
-      </>
+      </div>
     ))}
     {booking.children.length > 0 &&
       booking.children.map((skier) => (
-        <>
+        <div key={skier.label}>
           <BookingSummaryLine
             label={skier.label}
             value={`${(booking.duration * 40).toFixed(2)} €`}
-            key={skier.label}
           />
           <BookingSummaryLineSkier skier={skier} />
-        </>
+        </div>
       ))}
     <Separator className="my-6" />
     <BookingSummaryLine
       label="Total Prix Adulte"
       value={`${booking.adultsPrice.toFixed(2)} €`}
     />
-    <BookingSummaryLine
-      label="Total Prix Enfant"
-      value={`${booking.childrenPrice.toFixed(2)} €`}
-    />
+    {booking.children.length > 0 && (
+      <BookingSummaryLine
+        label="Total Prix Enfant"
+        value={`${booking.childrenPrice.toFixed(2)} €`}
+      />
+    )}
     <BookingSummaryLine label="Livraison" />
     <Separator className="my-6" />
     <BookingSummaryLine

@@ -70,9 +70,9 @@ const BookingForm = (props) => {
       const label = category === 'adult' ? 'Adulte' : 'Enfant';
       const newSkier = {
         label: `${label} ${skiersArray.length + 1}`,
-        size: null,
-        shoeSize: null,
-        headSize: null,
+        size: '',
+        shoeSize: '',
+        headSize: '',
       };
       skiersArray.push(newSkier);
     } else {

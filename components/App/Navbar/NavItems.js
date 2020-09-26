@@ -14,8 +14,12 @@ const NavItems = (props) => {
         //   href: `/${lang}/about`,
         // },
         {
-          label: 'Notre offre',
+          label: 'Matériel',
           href: '/offer',
+        },
+        {
+          label: 'Tailles',
+          href: '/sizes',
         },
         {
           label: 'Tarif',

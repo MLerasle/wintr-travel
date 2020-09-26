@@ -1,5 +1,5 @@
-const BookingSummaryLine = ({ label, value, key }) => (
-  <div className="flex justify-between items-center mt-2" key={key}>
+const BookingSummaryLine = ({ label, value }) => (
+  <div className="flex justify-between items-center mt-2">
     <p className="text-gray-800">{label}</p>
     {value ? (
       <p className="font-semibold whitespace-no-wrap">{value}</p>
