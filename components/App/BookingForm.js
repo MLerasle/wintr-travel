@@ -214,6 +214,7 @@ const BookingForm = (props) => {
         <section className={`mt-8 ${props.isEditing && 'md:mt-4'}`}>
           <Button
             type="submit"
+            id="searchButton"
             classes={`w-full uppercase tracking-wide bg-secondary-blue text-white ${
               props.isEditing && 'md:w-64'
             }`}

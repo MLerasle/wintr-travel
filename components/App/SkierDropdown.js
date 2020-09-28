@@ -116,6 +116,29 @@ const SkierInput = (props) => {
             }}
           />
         </div>
+        <div className="flex justify-between items-center mt-6">
+          <button
+            name="reset"
+            className="text-gray-600 font-semibold hover:underline text-sm focus:outline-none focus:shadow-outline"
+            onClick={(e) => {
+              e.preventDefault();
+              props.onChange('reset');
+            }}
+          >
+            Réinitialiser
+          </button>
+          <button
+            name="validate"
+            className="text-secondary-blue font-semibold hover:underline text-sm focus:outline-none focus:shadow-outline"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsOpen(false);
+              document.getElementById('searchButton').focus();
+            }}
+          >
+            Valider
+          </button>
+        </div>
       </div>
 
       <style jsx>{`
