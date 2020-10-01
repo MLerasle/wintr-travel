@@ -4,7 +4,7 @@ const SizeSkis = () => (
     <p className="text-gray-600 py-1 leading-loose">
       La taille des skis que nous vous livrons est environ{' '}
       <span className="font-bold text-blue-700">
-        10 cm inférieure à votre taille
+        10 centimètres inférieure à votre taille
       </span>
       , vous garantissant une bonne maniabilité sur tout type de piste quel que
       soit votre niveau.

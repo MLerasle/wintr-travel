@@ -33,6 +33,7 @@ const BookingMainInfos = ({ booking, onEditBooking }) => {
           {booking.adultsPrice.toFixed(2)} €)
           {booking.children.length > 0 && (
             <>
+              {' '}
               et {booking.children.length}{' '}
               <span className="font-bold">{children}</span> (
               {booking.childrenPrice.toFixed(2)} €)

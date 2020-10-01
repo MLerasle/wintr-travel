@@ -12,6 +12,10 @@ import BookingFormEmail from '@/App/BookingFormEmail';
 import BookingFormValidate from '@/App/BookingFormValidate';
 import MainSection from '@/UI/MainSection';
 import Separator from '@/UI/Separator';
+import Modal from '@/UI/Modal';
+import SizeSkis from '@/App/SizeSkis';
+import SizeShoes from '@/App/SizeShoes';
+import SizeHelmet from '@/App/SizeHelmet';
 
 import { EMAIL_PATTERN } from 'helpers/email';
 
@@ -19,6 +23,7 @@ const Cart = ({ catalog }) => {
   const _isMounted = useRef(true);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setIsLoading] = useState(false);
+  const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
   const booking = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -35,6 +40,10 @@ const Cart = ({ catalog }) => {
       _isMounted.current = false;
     };
   }, []);
+
+  const toggleSizesHelp = () => {
+    setIsModalSizesOpened(!isSizesModalOpened);
+  };
 
   const editBooking = () => setIsEditing(true);
   const validateBooking = () => setIsEditing(false);
@@ -128,6 +137,13 @@ const Cart = ({ catalog }) => {
         <title>Votre réservation - Wintr Travel</title>
       </Head>
       <MainSection className="py-2 md:py-6">
+        <Modal open={isSizesModalOpened} closed={toggleSizesHelp}>
+          <section className="md:text-md p-6">
+            <SizeSkis />
+            <SizeShoes withDetails />
+            <SizeHelmet withDetails />
+          </section>
+        </Modal>
         {isEditing ? (
           <BookingForm
             catalog={catalog}
@@ -139,7 +155,11 @@ const Cart = ({ catalog }) => {
           <>
             <BookingMainInfo booking={booking} onEditBooking={editBooking} />
             <Separator className="md:hidden my-2" />
-            <BookingFormDetails skiers={skiers} onUpdateSkier={updateSkier} />
+            <BookingFormDetails
+              skiers={skiers}
+              onUpdateSkier={updateSkier}
+              onToggleSizesHelp={toggleSizesHelp}
+            />
             <Separator className="md:hidden my-2" />
             <BookingFormEmail
               booking={booking}
