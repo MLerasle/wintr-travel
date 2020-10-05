@@ -8,7 +8,7 @@ import HomeArgs from '@/App/HomeArgs';
 import Testimonials from '@/App/Testimonials';
 import HomeCta from '@/App/HomeCta';
 
-const Index = ({ catalog, initialReduxState }) => {
+const Index = ({ initialReduxState }) => {
   return (
     <Layout footerMaxWidth="max-w-screen-xxl">
       <Head>
@@ -16,7 +16,7 @@ const Index = ({ catalog, initialReduxState }) => {
       </Head>
       <MobileImage />
       <Hero type="full">
-        <BookingForm catalog={catalog} booking={initialReduxState} />
+        <BookingForm booking={initialReduxState} />
       </Hero>
       <HomeArgs />
       <Testimonials />
@@ -26,12 +26,8 @@ const Index = ({ catalog, initialReduxState }) => {
 };
 
 export async function getStaticProps() {
-  const response = await fetch('https://catalog.wintr.travel/v1/catalog.json');
-  const catalog = await response.json();
-
   return {
     props: {
-      catalog,
       initialReduxState: {
         resort: null,
         firstDay: null,

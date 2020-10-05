@@ -3,7 +3,7 @@ import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 
-import { formatDate } from 'helpers/dates';
+import { formatDateLong } from 'helpers/dates';
 
 const BookingMainInfos = ({ booking, onEditBooking }) => {
   const adults = booking.adults.length > 1 ? 'adultes' : 'adulte';
@@ -12,7 +12,9 @@ const BookingMainInfos = ({ booking, onEditBooking }) => {
   return (
     <Card classes="lg:px-0" subclasses="bg-gray-200 md:bg-white">
       <Header>
-        <Heading className="text-xl mb-2 md:mb-0">Votre séjour</Heading>
+        <Heading className="text-xl mb-2 md:mb-0">
+          Votre séjour à Flaine
+        </Heading>
         <button
           name="edit"
           className="text-secondary-blue rounded text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
@@ -24,9 +26,10 @@ const BookingMainInfos = ({ booking, onEditBooking }) => {
       <Separator className="hidden md:block my-6" />
       <ul className="text-sm md:text-base mt-2">
         <li className="pb-2">
-          <span className="font-bold">{booking.resort}</span> du{' '}
-          <span className="font-bold">{formatDate(booking.firstDay)}</span> au{' '}
-          <span className="font-bold">{formatDate(booking.lastDay)}</span>.
+          Du{' '}
+          <span className="font-bold">{formatDateLong(booking.firstDay)}</span>{' '}
+          au{' '}
+          <span className="font-bold">{formatDateLong(booking.lastDay)}</span>.
         </li>
         <li>
           {booking.adults.length} <span className="font-bold">{adults}</span> (

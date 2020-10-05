@@ -3137,10 +3137,10 @@ eslint-plugin-prettier@^3.1.4:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react@^7.21.2:
-  version "7.21.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.21.2.tgz#3bd5d2c4c36d5a0428d0d6dda301ac9a84d681b2"
-  integrity sha512-j3XKvrK3rpBzveKFbgAeGsWb9uz6iUOrR0jixRfjwdFeGSRsXvVTFtHDQYCjsd1/6Z/xvb8Vy3LiI5Reo7fDrg==
+eslint-plugin-react@^7.21.3:
+  version "7.21.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.21.3.tgz#71655d2af5155b19285ec929dd2cdc67a4470b52"
+  integrity sha512-OI4GwTCqyIb4ipaOEGLWdaOHCXZZydStAsBEPB2e1ZfNM37bojpgO1BoOQbFb0eLVz3QLDx7b+6kYcrxCuJfhw==
   dependencies:
     array-includes "^3.1.1"
     array.prototype.flatmap "^1.2.3"
@@ -6389,10 +6389,10 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-stripe@^8.102.0:
-  version "8.106.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.106.0.tgz#a5bcfc2578cdbf09f062b5c89e05ce184f8e295a"
-  integrity sha512-Rbvb5c/9H4Wd3tpQiLPIoMb3WgvC/aigShawx+2Zd4edwht6BWZmn5hjMA4PhSWtvtgvhq9exKdWGSL3QyWu+A==
+stripe@^8.107.0:
+  version "8.107.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.107.0.tgz#d69b143c19d36bbe77db198fc66f951e01d9daa6"
+  integrity sha512-K0CJUK+f9EJKPys6u3NjO3juFb95q16R7yWGCIUgBLIEh1Vbhk3sp56A4EXSMepIflO9P4C9T67TlPb5fzGn7Q==
   dependencies:
     "@types/node" ">=8.1.0"
     qs "^6.6.0"

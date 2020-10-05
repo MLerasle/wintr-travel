@@ -1,28 +1,42 @@
-import { useState } from 'react';
+import { getDayNumber } from 'helpers/dates';
 
 const RadioButtons = (props) => {
-  const [selected, setSelected] = useState(props.selected);
-
-  const updateSelectButton = (item) => {
-    setSelected(item);
-    props.onButtonSelect(item);
-  };
-
   return (
-    <div className="w-full h-12 text-gray-800 bg-white rounded-lg flex cursor-pointer appearance-none">
+    <div
+      className={`w-full text-gray-800 bg-white rounded-lg flex cursor-pointer appearance-none ${
+        !props.withDateFormatting && 'h-12'
+      }`}
+    >
       {props.items.map((item, index) => (
-        <button
+        <label
           key={item}
-          className={`w-1/4 flex justify-center items-center border border-gray-300 hover:bg-blue-100 focus:outline-none ${
+          className={`flex-grow flex justify-center items-center border border-gray-300 hover:bg-blue-100 focus:outline-none ${
             index < props.items.length - 1 ? 'border-r-0' : 'rounded-r-lg'
           } ${index === 0 && 'rounded-l-lg'} ${
-            selected === item &&
-            'bg-secondary-blue hover:bg-secondary-blue border-secondary-blue text-white'
+            item === props.selected &&
+            'bg-blue-200 hover:bg-blue-200 border-blue-200'
           }`}
-          onClick={() => updateSelectButton(item)}
         >
-          {item}
-        </button>
+          <input
+            type="radio"
+            name={props.name}
+            value={item}
+            onChange={props.onChange}
+            className="absolute invisible"
+          />
+          {props.withDateFormatting ? (
+            <div className="w-full text-center">
+              <header className="text-gray-600">Samedi</header>
+              <main>
+                <section className="text-2xl font-bold">
+                  {getDayNumber(item)}
+                </section>
+              </main>
+            </div>
+          ) : (
+            item
+          )}
+        </label>
       ))}
     </div>
   );

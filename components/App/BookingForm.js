@@ -4,18 +4,21 @@ import Router from 'next/router';
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
 
-import SkierDropdown from '@/App/SkierDropdown';
 import Card from '@/UI/Card';
 import FormRow from '@/UI/FormRow';
-import SelectInput from '@/UI/SelectInput';
-import DateRangeInput from '@/UI/DateRangeInput';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import Separator from '@/UI/Separator';
+import Label from '@/UI/Label';
+import RadioButtons from '@/UI/RadioButtons';
 
 import { getBookingPrices } from 'helpers/pricing';
+import { formatDateLong } from 'helpers/dates';
 import Loader from '@/UI/Loader';
+
+const DECEMBER_DATES = ['2020-12-19', '2020-12-26'];
+const FEBRUARY_DATES = ['2021-02-06', '2021-02-13', '2021-02-20'];
 
 const BookingForm = (props) => {
   const _isMounted = useRef(true);
@@ -30,64 +33,30 @@ const BookingForm = (props) => {
     };
   }, []);
 
-  const handleResortChange = (resort, triggeredAction) => {
-    if (triggeredAction.action === 'clear') {
-      return dispatch({ type: 'SET_RESORT', resort: null });
-    }
+  const handleArrivalDate = (event) => {
+    const date = event.target.value;
     dispatch({
-      type: 'SET_RESORT',
-      resort: resort.label,
+      type: 'SET_DATES',
+      firstDay: date,
     });
-    if (!booking.firstDay) {
-      document.querySelector('.InputDates-from input').focus();
-    }
   };
 
-  const handleDateChange = (type, date) => {
-    const { firstDay, lastDay } = booking;
-    try {
-      if (type === 'from') {
-        dispatch({
-          type: 'SET_DATES',
-          firstDay: date,
-          lastDay,
-        });
-        document.querySelector('.InputDates-to input').focus();
-      } else {
-        dispatch({
-          type: 'SET_DATES',
-          firstDay,
-          lastDay: date,
-        });
-      }
-    } catch (error) {
-      console.log('ERROR', error);
-    }
-  };
-
-  const updateSkiers = (category, action, skiersArray) => {
-    if (action === 'increment') {
-      const label = category === 'adult' ? 'Adulte' : 'Enfant';
+  const handleSkierChange = (category, event) => {
+    const label = category === 'adults' ? 'Adulte' : 'Enfant';
+    const number = +event.target.value;
+    const skiersArray = [];
+    for (let i = 0; i < number; i++) {
       const newSkier = {
-        label: `${label} ${skiersArray.length + 1}`,
+        label: `${label} ${i + 1}`,
         size: '',
         shoeSize: '',
         headSize: '',
       };
       skiersArray.push(newSkier);
-    } else {
-      skiersArray.pop();
     }
-  };
-
-  const handleSkierChange = (action, category = null) => {
-    if (action === 'reset') {
-      return dispatch({ type: 'SET_SKIERS', adults: [], children: [] });
-    }
-    const adults = [...booking.adults] || [];
-    const children = [...booking.children] || [];
-    const skiersToUpdate = category === 'adult' ? adults : children;
-    updateSkiers(category, action, skiersToUpdate);
+    const adults = category === 'adults' ? skiersArray : [...booking.adults];
+    const children =
+      category === 'children' ? skiersArray : [...booking.children];
     dispatch({ type: 'SET_SKIERS', adults, children });
   };
 
@@ -136,7 +105,7 @@ const BookingForm = (props) => {
   return (
     <Card
       subclasses={`${
-        props.isEditing ? 'bg-gray-200 md:bg-white' : 'md:max-w-lg bg-white'
+        props.isEditing ? 'bg-gray-200 md:bg-white' : 'md:max-w-3xl bg-white'
       }`}
     >
       {error && (
@@ -158,60 +127,72 @@ const BookingForm = (props) => {
           </Heading>
         ) : (
           <Heading className="hidden md:block text-xl sm:text-3xl">
-            Réservez vos skis et votre forfait.
+            Livraison de skis à Flaine pour une semaine.
           </Heading>
         )}
       </Header>
       <Separator className="my-6 hidden md:block" />
-      <form className={`${props.isEditing && 'mt-2'} md:mt-4`}>
-        <section className={`${props.isEditing && 'md:flex md:items-center'}`}>
-          <FormRow className={`${props.isEditing && 'md:w-1/3'}`}>
-            <SelectInput
-              options={props.catalog.resorts
-                .sort((a, b) =>
-                  a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-                )
-                .map((r) => {
-                  return { value: r.id, label: r.name };
-                })}
-              label="Où"
-              placeholder="Choisissez la station"
-              defaultValue={
-                booking.resort
-                  ? { label: booking.resort, value: booking.resort }
-                  : ''
-              }
-              handleChange={handleResortChange}
-            />
+      <form className="md:mt-4">
+        <section>
+          <h3 className="text-lg md:text-xl leading-tight font-bold text-gray-800 mt-2 mb-2">
+            Quand souhaitez-vous être livré?
+          </h3>
+          <FormRow className="w-full md:flex">
+            <div className="flex-grow md:mr-2">
+              <Label for="name">Décembre 2020</Label>
+              <RadioButtons
+                items={DECEMBER_DATES}
+                onChange={handleArrivalDate}
+                name="arrival"
+                selected={booking.firstDay}
+                withDateFormatting
+              />
+            </div>
+            <div className="flex-grow mt-2 md:mt-0 md:ml-2">
+              <Label for="name">Février 2021</Label>
+              <RadioButtons
+                items={FEBRUARY_DATES}
+                onChange={handleArrivalDate}
+                name="arrival"
+                selected={booking.firstDay}
+                withDateFormatting
+              />
+            </div>
           </FormRow>
-          <FormRow className={`${props.isEditing && 'md:w-1/3 md:mx-2'}`}>
-            <DateRangeInput
-              from={booking.firstDay}
-              to={booking.lastDay}
-              fromLabel="Arrivée"
-              toLabel="Départ"
-              onChange={(type, date) => handleDateChange(type, date)}
-              onChangeToDate={() => {
-                if (booking.adultsCount === 0) {
-                  document.getElementById('skiersInput').focus();
-                }
-              }}
-              locale="fr"
-              minDate={props.catalog.weeks[0].first_day}
-              maxDate={
-                props.catalog.weeks[props.catalog.weeks.length - 1].last_day
-              }
-            />
-          </FormRow>
-          <FormRow className={`${props.isEditing && 'md:w-1/3'}`}>
-            <SkierDropdown
-              childrenCount={booking.children.length}
-              adultsCount={booking.adults.length}
-              onChange={(age, action) => handleSkierChange(age, action)}
-            />
+          {booking.lastDay && (
+            <p className="text-orange-600 mb-4 md:mb-0">
+              Nous récupérons le matériel le{' '}
+              <span className="font-semibold">
+                {formatDateLong(booking.lastDay)}
+              </span>
+              .
+            </p>
+          )}
+          <h3 className="text-lg md:text-xl leading-tight font-bold text-gray-800 mt-8 mb-2">
+            Pour combien de personnes?
+          </h3>
+          <FormRow className="w-full md:flex">
+            <div className="flex-grow md:mr-2">
+              <Label for="name">Adultes</Label>
+              <RadioButtons
+                items={[1, 2, 3, 4]}
+                name="adults"
+                selected={booking.adults.length}
+                onChange={(event) => handleSkierChange('adults', event)}
+              />
+            </div>
+            <div className="flex-grow mt-2 md:mt-0 md:ml-2">
+              <Label for="name">Enfants</Label>
+              <RadioButtons
+                items={[1, 2, 3, 4]}
+                name="children"
+                selected={booking.children.length}
+                onChange={(event) => handleSkierChange('children', event)}
+              />
+            </div>
           </FormRow>
         </section>
-        <section className={`mt-8 ${props.isEditing && 'md:mt-4'}`}>
+        <section className="mt-8">
           <Button
             type="submit"
             id="searchButton"
@@ -219,7 +200,7 @@ const BookingForm = (props) => {
               props.isEditing && 'md:w-64'
             }`}
             name="validate"
-            disabled={!booking.isValid || loading}
+            disabled={loading}
             onClick={validateSearch}
           >
             {loading ? <Loader /> : 'Valider'}
