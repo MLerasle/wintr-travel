@@ -9,9 +9,8 @@ class MyDocument extends Document {
           {/* <script src="/scripts/tawkto.js" defer></script> */}
           <meta
             name="description"
-            content="Faites-vous livrer vos skis et votre forfait dans votre résidence
-            avec Wintr Travel. Découvrez dans quelles stations nous livrons et
-            réservez dès maintenant!"
+            content="Faites-vous livrer vos skis et votre forfait dans votre résidence à Flaine avec Wintr Travel.
+            Réservez dès maintenant vos prochaines vacances au ski!"
           />
         </Head>
         <body className="font-body" onUnload={this.onUnload}>
