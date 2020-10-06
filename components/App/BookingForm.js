@@ -34,6 +34,7 @@ const BookingForm = (props) => {
   }, []);
 
   const handleArrivalDate = (event) => {
+    setError(null);
     const date = event.target.value;
     dispatch({
       type: 'SET_DATES',
@@ -42,6 +43,7 @@ const BookingForm = (props) => {
   };
 
   const handleSkierChange = (category, event) => {
+    setError(null);
     const label = category === 'adults' ? 'Adulte' : 'Enfant';
     const number = +event.target.value;
     const skiersArray = [];
@@ -63,6 +65,10 @@ const BookingForm = (props) => {
   const validateSearch = (e) => {
     e.preventDefault();
     if (!booking.isValid) {
+      setError({
+        message:
+          'Vous devez choisir une date de livraison et sélectionner au moins un adulte pour pouvoir poursuivre votre réservation.',
+      });
       return;
     }
     setIsLoading(true);
@@ -73,15 +79,6 @@ const BookingForm = (props) => {
       adults.length,
       children.length
     );
-    if (bookingPrice.error) {
-      setError({
-        error: bookingPrice.message,
-        message:
-          'Nous ne pouvons malheureusement pas vous livrer à ces dates dans cette station. Veuillez modifier votre recherche.',
-      });
-      setIsLoading(false);
-      return;
-    }
     dispatch({
       type: 'SET_AMOUNT',
       adultsPrice: bookingPrice.adults,
@@ -192,7 +189,7 @@ const BookingForm = (props) => {
             </div>
           </FormRow>
         </section>
-        <section className="mt-8">
+        <section className="mt-8 md:mt-10">
           <Button
             type="submit"
             id="searchButton"
