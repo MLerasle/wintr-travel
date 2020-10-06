@@ -12,7 +12,9 @@ const SizeHelmet = (props) => {
 
   const updateHeadSize = (event) => {
     setHelmet('');
-    const helmet = HELMET.find((h) => h.headsize === event.target.value);
+    const helmet = HELMET.find(
+      (h) => h.headsize === Math.floor(event.target.value)
+    );
     if (!helmet) {
       return;
     }
