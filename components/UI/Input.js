@@ -1,4 +1,6 @@
-const Input = (props) => (
+import React from 'react';
+
+const Input = React.forwardRef((props, ref) => (
   <input
     type={props.type}
     id={props.id}
@@ -9,11 +11,12 @@ const Input = (props) => (
     } ${props.className}`}
     onChange={props.onChange}
     value={props.value}
+    ref={ref}
     readOnly={props.readonly}
     min={props.min}
     max={props.max}
     step={props.step}
   />
-);
+));
 
 export default Input;

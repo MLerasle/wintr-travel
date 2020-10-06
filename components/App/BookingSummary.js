@@ -15,7 +15,7 @@ const BookingSummary = ({ booking }) => (
       paiement.
     </p>
     <Separator className="my-6" />
-    <BookingSummaryLine label="Station" value={booking.resort} />
+    <BookingSummaryLine label="Station" value="Flaine" />
     <BookingSummaryLine label="Arrivée" value={formatDate(booking.firstDay)} />
     <BookingSummaryLine label="Départ" value={formatDate(booking.lastDay)} />
     <Separator className="my-6" />

@@ -19,7 +19,7 @@ import SizeHelmet from '@/App/SizeHelmet';
 
 import { EMAIL_PATTERN } from 'helpers/email';
 
-const Cart = ({ catalog }) => {
+const Details = ({ catalog }) => {
   const _isMounted = useRef(true);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setIsLoading] = useState(false);
@@ -171,6 +171,7 @@ const Cart = ({ catalog }) => {
               booking={booking}
               loading={loading}
               onValidate={validateBookingDetails}
+              buttonLabel={`Payer ${booking.totalPrice.toFixed(2)} €`}
             />
           </>
         )}
@@ -190,4 +191,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Cart;
+export default Details;

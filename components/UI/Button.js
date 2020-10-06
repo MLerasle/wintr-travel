@@ -1,6 +1,6 @@
 const Button = (props) => {
   let classes =
-    'font-bold py-3 px-16 rounded-lg shadow-md md:shadow-xl focus:outline-none focus:shadow-outline z-0 ';
+    'font-bold py-3 md:px-16 rounded-lg shadow-md md:shadow-xl focus:outline-none focus:shadow-outline z-0 ';
   if (props.classes) {
     classes += `${props.classes} `;
   }

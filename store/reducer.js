@@ -60,6 +60,10 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
       };
     case 'RESET_BOOKING':
       return INITIAL_BOOKING;
+    case 'INITIALIZE_BOOKING':
+      return {
+        ...action.booking,
+      };
     default:
       return {
         ...state,

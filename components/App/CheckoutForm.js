@@ -11,6 +11,7 @@ import { destroyCookie } from 'nookies';
 
 import { isoCountries } from 'data/countries';
 
+import BookingDeliveryAddress from '@/App/BookingDeliveryAddress';
 import StripeCardElement from '@/App/StripeCardElement';
 import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
@@ -300,19 +301,10 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         </FormRow>
         <Heading className="text-xl my-4">Addresse de Livraison</Heading>
         <FormRow>
-          <Label for="deliveryAddress">Où devons-nous vous livrer?</Label>
-          <Input
-            type="text"
-            id="deliveryAddress"
-            name="deliveryAddress"
-            className="w-full"
-            placeholder="Saisissez l'adresse complète ici"
-            onChange={onDeliveryAddressUpdate}
-            value={booking.deliveryAddress}
+          <BookingDeliveryAddress
+            booking={booking}
+            onDeliveryAddressUpdate={onDeliveryAddressUpdate}
           />
-          <p className="text-orange-600 text-sm md:text-base mt-2">
-            Vous pouvez renseigner cette information ultérieurement.
-          </p>
         </FormRow>
         <Heading className="text-xl my-4">Méthode de Règlement</Heading>
         <FormRow>
