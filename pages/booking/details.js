@@ -19,7 +19,7 @@ import SizeHelmet from '@/App/SizeHelmet';
 
 import { EMAIL_PATTERN } from 'helpers/email';
 
-const Details = ({ catalog }) => {
+const Details = () => {
   const _isMounted = useRef(true);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setIsLoading] = useState(false);
@@ -56,8 +56,8 @@ const Details = ({ catalog }) => {
       skiers = [...booking.children];
     }
     const person = skiers.find((s) => s.label === skier.label);
-    if (typeof event === 'string') {
-      person[attribute] = event;
+    if (attribute === 'headSize') {
+      person[attribute] = event.target.value;
     } else {
       person[attribute] = +event.target.value;
     }
@@ -145,12 +145,7 @@ const Details = ({ catalog }) => {
           </section>
         </Modal>
         {isEditing ? (
-          <BookingForm
-            catalog={catalog}
-            booking={booking}
-            isEditing
-            onUpdate={validateBooking}
-          />
+          <BookingForm booking={booking} isEditing onUpdate={validateBooking} />
         ) : (
           <>
             <BookingMainInfo booking={booking} onEditBooking={editBooking} />
@@ -179,16 +174,5 @@ const Details = ({ catalog }) => {
     </Layout>
   );
 };
-
-export async function getStaticProps() {
-  const response = await fetch('https://catalog.wintr.travel/v1/catalog.json');
-  const catalog = await response.json();
-
-  return {
-    props: {
-      catalog,
-    },
-  };
-}
 
 export default Details;

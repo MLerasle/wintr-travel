@@ -77,8 +77,9 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
           </div>
           <RadioButtons
             items={HEAD_SIZES}
+            onChange={(event) => onUpdateSkier(skier, 'headSize', event)}
+            name="helmet"
             selected={skier.headSize}
-            onButtonSelect={(event) => onUpdateSkier(skier, 'headSize', event)}
           />
         </div>
       </div>

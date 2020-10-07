@@ -87,7 +87,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       ...formErrors,
       name: updatedName.trim() === '' ? 'Vous devez renseigner votre nom.' : '',
     });
-    updateFormValidity();
+    setFormIsValid(updatedName && !!booking.countryCode && acceptTerms);
   };
 
   const onCountryCodeUpdate = (event) => {
@@ -99,12 +99,11 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         ? 'Veuillez renseigner votre pays de résidence.'
         : '',
     });
-    updateFormValidity();
+    setFormIsValid(!!booking.name && updatedCountry && acceptTerms);
   };
 
   const onDeliveryAddressUpdate = (event) => {
     dispatch({ type: 'SET_DELIVERY_ADDRESS', address: event.target.value });
-    updateFormValidity();
   };
 
   const onToggleAcceptTerms = () => {
@@ -113,11 +112,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
       ...formErrors,
       acceptTerms: !acceptTerms ? 'Invalide' : '',
     });
-    updateFormValidity();
-  };
-
-  const updateFormValidity = () => {
-    setFormIsValid(!!booking.name && !!booking.countryCode && acceptTerms);
+    setFormIsValid(!!booking.name && !!booking.countryCode && !acceptTerms);
   };
 
   // Handle one click payment

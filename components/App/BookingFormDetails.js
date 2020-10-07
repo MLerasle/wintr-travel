@@ -21,13 +21,13 @@ const BookingFormDetails = ({
         <Heading className="text-xl">Mensurations des skieurs</Heading>
         <button
           name="sizes-help"
-          className="hidden md:block text-secondary-blue rounded text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
+          className="hidden md:block text-secondary-blue rounded font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
           onClick={onToggleSizesHelp}
         >
           Comment renseigner les bonnes tailles?
         </button>
       </Header>
-      <h3 className="py-2 text-sm md:text-base">
+      <h3 className="py-2">
         Ces informations sont importantes pour vous fournir le matériel à votre
         taille.
       </h3>
@@ -35,7 +35,7 @@ const BookingFormDetails = ({
       {!token &&
         (showDetailsForm ? (
           <button
-            className="text-orange-600 mb-4 md:mb-0 text-sm md:text-base cursor-pointer underline"
+            className="text-orange-600 mb-4 md:mb-0 cursor-pointer underline"
             onClick={() => setShowDetailsForm(false)}
           >
             Passer cette étape pour le moment.

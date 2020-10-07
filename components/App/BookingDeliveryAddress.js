@@ -25,7 +25,7 @@ const BookingDeliveryAddress = ({
         <>
           {!token && (
             <button
-              className="text-orange-600 text-sm md:text-base cursor-pointer underline"
+              className="text-orange-600 text-sm md:text-base cursor-pointer underline block"
               onClick={() => setShowDeliveryAddress(false)}
             >
               Renseigner cette information ultérieurement.

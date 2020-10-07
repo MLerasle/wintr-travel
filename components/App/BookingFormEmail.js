@@ -12,7 +12,7 @@ const BookingFormEmail = ({
 }) => (
   <Card classes="lg:px-0" subclasses="bg-gray-200 md:bg-white">
     <Heading className="text-xl pb-2">Informations de contact</Heading>
-    <p className="text-gray-600 text-sm md:text-base">
+    <p className="text-gray-600">
       Pour vous tenir informé de l'état de votre réservation et effectuer les
       opérations d'après-vente.
     </p>

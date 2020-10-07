@@ -34,7 +34,7 @@ const BookingMainInfos = ({ booking, onEditBooking, token }) => {
         )}
       </Header>
       <Separator className="hidden md:block my-6" />
-      <ul className="text-sm md:text-base mt-2">
+      <ul className="mt-2">
         <li className="pb-2">
           Du{' '}
           <span className="font-bold">{formatDateLong(booking.firstDay)}</span>{' '}
