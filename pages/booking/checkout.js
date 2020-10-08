@@ -49,7 +49,7 @@ const Checkout = ({ paymentIntent }) => {
         <Separator className="mt-6" />
         <div className="px-4 lg:px-2 xl:px-0 xl:flex xl:justify-between">
           <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
-            <CheckoutForm booking={booking} paymentIntent={paymentIntent} />
+            <CheckoutForm booking={booking} intent={paymentIntent} />
           </Elements>
           <BookingSummary booking={booking} />
         </div>

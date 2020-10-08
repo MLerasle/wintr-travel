@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router';
-import Icon from '@mdi/react';
-import { mdiClose } from '@mdi/js';
 
 import Card from '@/UI/Card';
 import FormRow from '@/UI/FormRow';
@@ -12,6 +10,7 @@ import Button from '@/UI/Button';
 import Separator from '@/UI/Separator';
 import Label from '@/UI/Label';
 import RadioButtons from '@/UI/RadioButtons';
+import ErrorAlert from '@/UI/ErrorAlert';
 
 import { getBookingPrices } from 'helpers/pricing';
 import { formatDateLong } from 'helpers/dates';
@@ -106,16 +105,7 @@ const BookingForm = (props) => {
       }`}
     >
       {error && (
-        <div className="relative mb-4 p-4 border border-red-600 rounded bg-red-100 text-red-600">
-          <Icon
-            path={mdiClose}
-            size={0.9}
-            className="absolute top-1/4 right-1/4 cursor-pointer"
-            color="#E53E3E"
-            onClick={() => setError(null)}
-          />
-          {error.message}
-        </div>
+        <ErrorAlert error={error.message} onClearError={() => setError(null)} />
       )}
       <Header>
         {props.isEditing ? (

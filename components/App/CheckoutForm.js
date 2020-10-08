@@ -22,8 +22,9 @@ import Checkbox from '@/UI/Checkbox';
 import SelectInput from '@/UI/SelectInput';
 import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
+import ErrorAlert from '@/UI/ErrorAlert';
 
-const CheckoutForm = ({ booking, paymentIntent }) => {
+const CheckoutForm = ({ booking, intent }) => {
   const _isMounted = useRef(true);
   const stripe = useStripe();
   const elements = useElements();
@@ -35,6 +36,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
+  const [paymentError, setPaymentError] = useState();
   const [formErrors, setFormErrors] = useState({
     name: 'Vous devez renseigner votre nom.',
     country: '',
@@ -122,11 +124,11 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
 
       // This is necessary to work around a weird Stripe issue at the moment
       // https://github.com/stripe/stripe-payments-demo/issues/101
-      const intent = paymentIntent;
+      const pintent = intent;
 
       // Confirm the PaymentIntent without handling potential next actions (yet).
       const { error: confirmError } = await stripe.confirmCardPayment(
-        paymentIntent.client_secret,
+        intent.client_secret,
         { payment_method: ev.paymentMethod.id },
         { handleActions: false }
       );
@@ -145,7 +147,7 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
 
         // Let Stripe.js handle the rest of the payment flow.
         const { error, paymentIntent } = await stripe.confirmCardPayment(
-          intent.client_secret
+          pintent.client_secret
         );
 
         if (error) {
@@ -179,28 +181,38 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
     event.preventDefault();
     setIsLoading(true);
     setFormWasSubmitted(true);
-    console.log('Booking to send to the API', booking);
+
     if (!formIsValid) {
       setIsLoading(false);
       return;
     }
+
     try {
-      const {
-        error,
-        paymentIntent: { status },
-      } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-        receipt_email: booking.email,
-      });
-      if (error) throw new Error(error.message);
-      if (status === 'succeeded') {
+      const { error, paymentIntent } = await stripe.confirmCardPayment(
+        intent.client_secret,
+        {
+          payment_method: {
+            card: elements.getElement(CardElement),
+            billing_details: {
+              name: booking.name,
+              email: booking.email,
+              address: {
+                country: booking.countryCode,
+              },
+            },
+          },
+          receipt_email: booking.email,
+        }
+      );
+
+      if (error) {
+        throw new Error(error.message);
+      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         destroyCookie(null, 'paymentIntentId');
         // Send booking infos to the backend
         // fetch('https://wintr.travel/booking', {
         //   method: 'post',
-        //   body: JSON.stringify(updatedBooking),
+        //   body: JSON.stringify(booking),
         // })
         //   .then((response) => {
         //     // We succesfully saved the booking on the backend
@@ -219,8 +231,8 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
         });
       }
     } catch (err) {
+      setPaymentError(err.message);
       setIsLoading(false);
-      console.log(err);
     }
   };
 
@@ -240,6 +252,12 @@ const CheckoutForm = ({ booking, paymentIntent }) => {
 
   return (
     <div className="xl:w-1/2 pt-6 max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
+      {paymentError && (
+        <ErrorAlert
+          error={paymentError}
+          onClearError={() => setPaymentError(null)}
+        />
+      )}
       {paymentRequestButton ? (
         <>
           {paymentRequestButton}

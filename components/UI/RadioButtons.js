@@ -19,6 +19,7 @@ const RadioButtons = (props) => {
         >
           <input
             type="radio"
+            id={`${props.name}-${item}`}
             name={props.name}
             value={item}
             onChange={props.onChange}
