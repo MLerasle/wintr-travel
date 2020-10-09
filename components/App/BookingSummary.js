@@ -49,7 +49,7 @@ const BookingSummary = ({ booking }) => (
         value={`${booking.childrenPrice.toFixed(2)} €`}
       />
     )}
-    <BookingSummaryLine label="Livraison" />
+    <BookingSummaryLine label="Livraison" value="GRATUIT" />
     <Separator className="my-6" />
     <BookingSummaryLine
       label="Total"

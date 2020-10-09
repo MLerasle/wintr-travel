@@ -166,7 +166,7 @@ const Details = () => {
               booking={booking}
               loading={loading}
               onValidate={validateBookingDetails}
-              buttonLabel={`Payer ${booking.totalPrice.toFixed(2)} €`}
+              buttonLabel="Suivant"
             />
           </>
         )}

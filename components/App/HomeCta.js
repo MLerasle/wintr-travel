@@ -22,7 +22,7 @@ const HomeCta = () => {
         Retrouvez le plaisir du ski sans contraintes.
       </p>
       <Button
-        classes="w-auto uppercase tracking-wide bg-secondary-blue text-white"
+        classes="w-auto px-4 uppercase tracking-wide bg-secondary-blue text-white"
         onClick={scrollToTop}
       >
         Réservez maintenant

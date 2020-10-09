@@ -4,7 +4,7 @@ const MobileImage = () => (
   <div className="md:hidden relative">
     <div className="mobile-image background-image h-48"></div>
     <Heading className="homeTitle">
-      Livraison de skis à Flaine pour une semaine.
+      Vos skis livrés à Flaine pour une semaine.
     </Heading>
   </div>
 );

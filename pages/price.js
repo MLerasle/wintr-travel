@@ -15,7 +15,7 @@ const Price = () => (
 
     <MainSection>
       <header className="text-center px-4 sm:px-10 py-10 sm:py-16">
-        <GridArg title="Un tarif unique quelle que soit votre destination.">
+        <GridArg title="Un tarif unique.">
           Budgéter ses vacances n'a jamais été aussi simple.
         </GridArg>
       </header>
@@ -53,9 +53,13 @@ const Price = () => (
               <Icon path={mdiCheck} size={1} className="mr-2" color="#48BB78" />
               Forfait Adulte
             </li>
-            <li className="flex items-center tracking-wide sm:text-lg">
+            <li className="flex items-center my-3 tracking-wide sm:text-lg">
               <Icon path={mdiCheck} size={1} className="mr-2" color="#48BB78" />
               Livraison du matériel + forfait
+            </li>
+            <li className="flex items-center tracking-wide sm:text-lg">
+              <Icon path={mdiCheck} size={1} className="mr-2" color="#48BB78" />
+              Assurance Casse / Vol
             </li>
           </ul>
         </Card>
@@ -91,9 +95,13 @@ const Price = () => (
               <Icon path={mdiCheck} size={1} className="mr-2" color="#48BB78" />
               Forfait Enfant
             </li>
-            <li className="flex items-center tracking-wide sm:text-lg">
+            <li className="flex items-center my-3 tracking-wide sm:text-lg">
               <Icon path={mdiCheck} size={1} className="mr-2" color="#48BB78" />
               Livraison du matériel + forfait
+            </li>
+            <li className="flex items-center tracking-wide sm:text-lg">
+              <Icon path={mdiCheck} size={1} className="mr-2" color="#48BB78" />
+              Assurance Casse / Vol
             </li>
           </ul>
         </Card>

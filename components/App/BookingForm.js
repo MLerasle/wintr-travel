@@ -114,7 +114,7 @@ const BookingForm = (props) => {
           </Heading>
         ) : (
           <Heading className="hidden md:block text-xl sm:text-3xl">
-            Livraison de skis à Flaine pour une semaine.
+            Vos skis livrés à Flaine pour une semaine.
           </Heading>
         )}
       </Header>
@@ -190,7 +190,7 @@ const BookingForm = (props) => {
             disabled={loading}
             onClick={validateSearch}
           >
-            {loading ? <Loader /> : 'Valider'}
+            {loading ? <Loader /> : props.isEditing ? 'Valider' : 'Suivant'}
           </Button>
         </section>
       </form>
