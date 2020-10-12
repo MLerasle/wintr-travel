@@ -5,8 +5,6 @@ import {
   EmailIcon,
   FacebookShareButton,
   FacebookIcon,
-  FacebookMessengerShareButton,
-  FacebookMessengerIcon,
   TelegramShareButton,
   TelegramIcon,
   TwitterShareButton,
@@ -17,6 +15,7 @@ import {
 
 const ShareStep = () => {
   const SHARE_URL = 'https://wintr.travel';
+  const TITLE = 'Wintr Travel - La livraison de skis dans votre résidence';
 
   return (
     <>
@@ -39,22 +38,35 @@ const ShareStep = () => {
           <section className="my-10 md:my-4">
             <h3 className="mb-4 font-bold">Partager sur les réseaux</h3>
             <p>
-              <FacebookShareButton url={SHARE_URL} className="mr-3">
+              <FacebookShareButton
+                url={SHARE_URL}
+                quote={TITLE}
+                className="mr-3"
+              >
                 <FacebookIcon size={38} round />
               </FacebookShareButton>
-              <FacebookMessengerShareButton url={SHARE_URL} className="mr-3">
-                <FacebookMessengerIcon size={38} round />
-              </FacebookMessengerShareButton>
-              <WhatsappShareButton url={SHARE_URL} className="mr-3">
+              <WhatsappShareButton
+                url={SHARE_URL}
+                title={TITLE}
+                className="mr-3"
+              >
                 <WhatsappIcon size={38} round />
               </WhatsappShareButton>
-              <TwitterShareButton url={SHARE_URL} className="mr-3">
+              <TwitterShareButton
+                url={SHARE_URL}
+                title={TITLE}
+                className="mr-3"
+              >
                 <TwitterIcon size={38} round />
               </TwitterShareButton>
-              <TelegramShareButton url={SHARE_URL} className="mr-3">
+              <TelegramShareButton
+                url={SHARE_URL}
+                title={TITLE}
+                className="mr-3"
+              >
                 <TelegramIcon size={38} round />
               </TelegramShareButton>
-              <EmailShareButton url={SHARE_URL}>
+              <EmailShareButton url={SHARE_URL} subject={TITLE}>
                 <EmailIcon size={38} round />
               </EmailShareButton>
             </p>

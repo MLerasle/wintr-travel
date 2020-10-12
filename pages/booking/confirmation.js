@@ -13,6 +13,7 @@ const Confirmation = () => {
 
   const updateView = () => {
     setIsPhoneNumberSubmitted(true);
+    window.scrollTo(0, 0);
   };
 
   const view = isPhoneNumberSubmitted ? (

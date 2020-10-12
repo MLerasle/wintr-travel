@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Icon from '@mdi/react';
 import { mdiCheck } from '@mdi/js';
 import 'react-phone-number-input/style.css';
@@ -12,6 +12,13 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
   const [mobileNumber, setMobileNumber] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+  const phoneNumberInputRef = useRef();
+
+  useEffect(() => {
+    phoneNumberInputRef.current.focus();
+    phoneNumberInputRef.current.selectionStart = phoneNumberInputRef.current.selectionEnd =
+      phoneNumberInputRef.current.value.length;
+  }, []);
 
   const changeMobileNumber = (e) => {
     setError(null);
@@ -62,6 +69,7 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
             international
             withCountryCallingCode
             inputComponent={Input}
+            ref={phoneNumberInputRef}
             value={mobileNumber}
             onChange={changeMobileNumber}
           />

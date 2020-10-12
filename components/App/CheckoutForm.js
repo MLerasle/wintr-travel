@@ -170,6 +170,7 @@ const CheckoutForm = ({ booking, intent }) => {
             if (_isMounted.current) {
               setIsLoading(false);
             }
+            window.scrollTo(0, 0);
           });
         }
       }
