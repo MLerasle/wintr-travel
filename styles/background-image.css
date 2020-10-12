@@ -6,58 +6,58 @@
 }
 
 .webp .mobile-image {
-  background-image: url('@/images/mobile/wintr-travel-home.webp');
+  background-image: url('/images/mobile/wintr-travel-home.webp');
 }
 
 .no-webp .mobile-image {
-  background-image: url('@/images/mobile/wintr-travel-home.jpg');
+  background-image: url('/images/mobile/wintr-travel-home.jpg');
 }
 
 .webp .home-args-image-1 {
-  background-image: url('@/images/mobile/wintr-travel-simple.webp');
+  background-image: url('/images/mobile/wintr-travel-simple.webp');
 }
 .webp .home-args-image-2 {
-  background-image: url('@/images/mobile/wintr-travel-rapide.webp');
+  background-image: url('/images/mobile/wintr-travel-rapide.webp');
 }
 .webp .home-args-image-3 {
-  background-image: url('@/images/mobile/wintr-travel-confort.webp');
+  background-image: url('/images/mobile/wintr-travel-confort.webp');
 }
 
 .no-webp .home-args-image-1 {
-  background-image: url('@/images/mobile/wintr-travel-simple.jpg');
+  background-image: url('/images/mobile/wintr-travel-simple.jpg');
 }
 .no-webp .home-args-image-2 {
-  background-image: url('@/images/mobile/wintr-travel-rapide.jpg');
+  background-image: url('/images/mobile/wintr-travel-rapide.jpg');
 }
 .no-webp .home-args-image-3 {
-  background-image: url('@/images/mobile/wintr-travel-confort.jpg');
+  background-image: url('/images/mobile/wintr-travel-confort.jpg');
 }
 
 @media (min-width: 768px) {
   .webp .hero::before {
-    background: url('@/images/desktop/wintr-travel-home.webp');
+    background: url('/images/desktop/wintr-travel-home.webp');
   }
   .no-webp .hero::before {
-    background: url('@/images/desktop/wintr-travel-home.jpg');
+    background: url('/images/desktop/wintr-travel-home.jpg');
   }
 
   .webp .home-args-image-1 {
-    background-image: url('@/images/desktop/wintr-travel-simple.webp');
+    background-image: url('/images/desktop/wintr-travel-simple.webp');
   }
   .webp .home-args-image-2 {
-    background-image: url('@/images/desktop/wintr-travel-rapide.webp');
+    background-image: url('/images/desktop/wintr-travel-rapide.webp');
   }
   .webp .home-args-image-3 {
-    background-image: url('@/images/desktop/wintr-travel-confort.webp');
+    background-image: url('/images/desktop/wintr-travel-confort.webp');
   }
 
   .no-webp .home-args-image-1 {
-    background-image: url('@/images/desktop/wintr-travel-simple.jpg');
+    background-image: url('/images/desktop/wintr-travel-simple.jpg');
   }
   .no-webp .home-args-image-2 {
-    background-image: url('@/images/desktop/wintr-travel-rapide.jpg');
+    background-image: url('/images/desktop/wintr-travel-rapide.jpg');
   }
   .no-webp .home-args-image-3 {
-    background-image: url('@/images/desktop/wintr-travel-confort.jpg');
+    background-image: url('/images/desktop/wintr-travel-confort.jpg');
   }
 }

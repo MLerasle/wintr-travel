@@ -4,8 +4,7 @@
     "paths": {
       "@/App/*": ["components/App/*"],
       "@/Layout/*": ["components/Layout/*"],
-      "@/UI/*": ["components/UI/*"],
-      "@/images/*": ["public/images/*"]
+      "@/UI/*": ["components/UI/*"]
     }
   }
 }
