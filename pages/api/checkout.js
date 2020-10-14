@@ -28,7 +28,13 @@ export default async (req, res) => {
         currency: 'eur',
         payment_method_types: ['card'],
         // Temp before verifying the integration
-        metadata: { integration_check: 'accept_a_payment' },
+        metadata: {
+          firstDay: booking.firstDay,
+          lastDay: booking.lastDay,
+          email: booking.email,
+          adults: booking.adults.length,
+          children: booking.children.length,
+        },
       });
     }
 
