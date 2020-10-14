@@ -171,7 +171,7 @@ const BookingForm = (props) => {
             <div className="flex-grow mt-2 md:mt-0 md:ml-2">
               <Label for="name">Enfants</Label>
               <RadioButtons
-                items={[1, 2, 3, 4]}
+                items={[0, 1, 2, 3, 4]}
                 name="children"
                 selected={booking.children.length}
                 onChange={(event) => handleSkierChange('children', event)}
