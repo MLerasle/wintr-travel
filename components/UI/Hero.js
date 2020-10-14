@@ -6,7 +6,7 @@ const Hero = (props) => (
       @media (min-width: 768px) {
         .hero {
           position: relative;
-          width: 100vw;
+          width: 100%;
           min-height: ${props.type == 'full'
             ? 'calc(100vh - 64px)'
             : 'calc(100vh - 128px)'};
