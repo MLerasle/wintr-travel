@@ -13,8 +13,8 @@ const BookingMainInfos = ({ booking, onEditBooking, token }) => {
   const adults = booking.adults.length > 1 ? 'adultes' : 'adulte';
   const children = booking.children.length > 1 ? 'enfants' : 'enfant';
 
-  const onDeliveryAddressUpdate = (event) => {
-    dispatch({ type: 'SET_DELIVERY_ADDRESS', address: event.target.value });
+  const onDeliveryAddressUpdate = (address) => {
+    dispatch({ type: 'SET_DELIVERY_ADDRESS', address });
   };
 
   return (

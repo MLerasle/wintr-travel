@@ -105,8 +105,8 @@ const CheckoutForm = ({ intent }) => {
     setFormIsValid(!!booking.name && updatedCountry && acceptTerms);
   };
 
-  const onDeliveryAddressUpdate = (event) => {
-    dispatch({ type: 'SET_DELIVERY_ADDRESS', address: event.target.value });
+  const onDeliveryAddressUpdate = (address) => {
+    dispatch({ type: 'SET_DELIVERY_ADDRESS', address });
   };
 
   const onToggleAcceptTerms = () => {
