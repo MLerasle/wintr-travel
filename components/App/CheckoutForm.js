@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router';
 import {
   CardElement,
@@ -24,10 +24,11 @@ import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
 import ErrorAlert from '@/UI/ErrorAlert';
 
-const CheckoutForm = ({ booking, intent }) => {
+const CheckoutForm = ({ intent }) => {
   const _isMounted = useRef(true);
   const stripe = useStripe();
   const elements = useElements();
+  const booking = useSelector((state) => state);
   const dispatch = useDispatch();
   const [paymentRequest, setPaymentRequest] = useState(null);
   const countries = Object.entries(isoCountries()).sort((a, b) =>

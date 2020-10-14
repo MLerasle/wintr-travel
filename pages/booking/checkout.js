@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Head from 'next/head';
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
@@ -19,18 +19,15 @@ import Separator from '@/UI/Separator';
 
 const Checkout = ({ paymentIntent }) => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
-  const booking = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!booking.paymentIntentId) {
-      const { paymentIntentId } = parseCookies();
-      dispatch({
-        type: 'SET_PAYMENT_INTENT_ID',
-        paymentIntentId,
-      });
-    }
-  }, []);
+    const { paymentIntentId } = parseCookies();
+    dispatch({
+      type: 'SET_PAYMENT_INTENT_ID',
+      paymentIntentId,
+    });
+  }, [paymentIntent]);
 
   return (
     <Layout withoutNavbar withoutFooter>
@@ -49,9 +46,9 @@ const Checkout = ({ paymentIntent }) => {
         <Separator className="mt-6" />
         <div className="px-4 lg:px-2 xl:px-0 xl:flex xl:justify-between">
           <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
-            <CheckoutForm booking={booking} intent={paymentIntent} />
+            <CheckoutForm intent={paymentIntent} />
           </Elements>
-          <BookingSummary booking={booking} />
+          <BookingSummary />
         </div>
       </MainSection>
     </Layout>
