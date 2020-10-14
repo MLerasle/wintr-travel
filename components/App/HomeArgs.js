@@ -34,7 +34,7 @@ const HomeArgs = () => (
             <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-3">
               <GridArg title="Un package complet">
                 Tout est inclus: skis, chaussures, casque, forfait, assurance
-                casse/vol pour que vous profitiez pleinement de vos vacances.
+                casse/vol, pour que vous profitiez pleinement de vos vacances.
               </GridArg>
             </div>
           </div>
