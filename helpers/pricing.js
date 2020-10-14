@@ -1,5 +1,4 @@
-const UNIT_ADULT_PRICE = 55;
-const UNIT_CHILD_PRICE = 40;
+import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from '../data/prices';
 
 export const getBookingPrices = (duration, adults, children) => {
   try {

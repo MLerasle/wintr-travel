@@ -4,6 +4,7 @@ import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 
 import { formatDate } from 'helpers/dates';
+import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from 'data/prices';
 
 const BookingSummary = ({ booking }) => (
   <div className="max-w-md lg:max-w-lg mx-auto xl:mx-0 md:bg-white md:p-6 md:mt-4 xl:mt-0 lg:w-1/2 text-gray-800">
@@ -23,7 +24,7 @@ const BookingSummary = ({ booking }) => (
       <div key={skier.label}>
         <BookingSummaryLine
           label={skier.label}
-          value={`${(booking.duration * 55).toFixed(2)} €`}
+          value={`${(booking.duration * UNIT_ADULT_PRICE).toFixed(2)} €`}
         />
         <BookingSummaryLineSkier skier={skier} />
       </div>
@@ -33,7 +34,7 @@ const BookingSummary = ({ booking }) => (
         <div key={skier.label}>
           <BookingSummaryLine
             label={skier.label}
-            value={`${(booking.duration * 40).toFixed(2)} €`}
+            value={`${(booking.duration * UNIT_CHILD_PRICE).toFixed(2)} €`}
           />
           <BookingSummaryLineSkier skier={skier} />
         </div>
