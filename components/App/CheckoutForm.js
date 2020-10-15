@@ -24,6 +24,8 @@ import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
 import ErrorAlert from '@/UI/ErrorAlert';
 
+import { getPrices } from 'helpers/booking';
+
 const CheckoutForm = ({ intent }) => {
   const _isMounted = useRef(true);
   const stripe = useStripe();
@@ -44,6 +46,7 @@ const CheckoutForm = ({ intent }) => {
     acceptTerms: 'Invalide',
   });
   const [loading, setIsLoading] = useState(false);
+  const prices = getPrices(booking.adults.length, booking.children.length);
 
   useEffect(() => {
     return () => {
@@ -58,7 +61,7 @@ const CheckoutForm = ({ intent }) => {
         currency: 'eur',
         total: {
           label: 'Booking Wintr Travel',
-          amount: +booking.totalPrice * 100,
+          amount: +prices.total * 100,
         },
         requestPayerName: true,
         requestPayerEmail: false,
@@ -343,7 +346,7 @@ const CheckoutForm = ({ intent }) => {
           disabled={loading}
           classes="my-4 w-full uppercase tracking-wide bg-secondary-blue text-white"
         >
-          {loading ? <Loader /> : `Payer ${booking.totalPrice.toFixed(2)} €`}
+          {loading ? <Loader /> : `Payer ${prices.total.toFixed(2)} €`}
         </Button>
       </form>
     </div>

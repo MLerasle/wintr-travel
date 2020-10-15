@@ -18,6 +18,7 @@ import SizeShoes from '@/App/SizeShoes';
 import SizeHelmet from '@/App/SizeHelmet';
 
 import { EMAIL_PATTERN } from 'helpers/email';
+import { getPrices, isValid } from 'helpers/booking';
 
 const Details = () => {
   const _isMounted = useRef(true);
@@ -32,8 +33,8 @@ const Details = () => {
       ? 'Vous devez saisir une adresse email valide.'
       : ''
   );
-
   const skiers = [...booking.adults, ...booking.children];
+  const prices = getPrices(booking.adults.length, booking.children.length);
 
   useEffect(() => {
     return () => {
@@ -101,7 +102,7 @@ const Details = () => {
   const validateBookingDetails = async () => {
     setFormWasSubmitted(true);
     // Send a request to /api/checkout which will handle Stripe Payment Intent creation
-    if (booking.isValid && !formError) {
+    if (isValid(booking) && !formError) {
       setIsLoading(true);
       const response = await fetch('/api/checkout', {
         method: 'POST',
@@ -145,10 +146,14 @@ const Details = () => {
           </section>
         </Modal>
         {isEditing ? (
-          <BookingForm booking={booking} isEditing onUpdate={validateBooking} />
+          <BookingForm isEditing onUpdate={validateBooking} />
         ) : (
           <>
-            <BookingMainInfo booking={booking} onEditBooking={editBooking} />
+            <BookingMainInfo
+              booking={booking}
+              prices={prices}
+              onEditBooking={editBooking}
+            />
             <Separator className="md:hidden my-2" />
             <BookingFormDetails
               skiers={skiers}

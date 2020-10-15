@@ -1,5 +1,6 @@
 import { parseCookies } from 'nookies';
 import Stripe from 'stripe';
+import { getPrices } from 'helpers/booking';
 
 export default async (req, res) => {
   try {
@@ -11,23 +12,23 @@ export default async (req, res) => {
       typeof window === 'undefined' ? { req } : {}
     );
 
-    const bookingPrice = Math.round(+booking.totalPrice * 100);
+    const prices = getPrices(booking.adults.length, booking.children.length);
+    const amount = Math.round(+prices.total * 100);
 
     // If we already have an unconfirmed paymentIntent we reuse it
     if (paymentIntentId) {
       paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
       // Update its amount if it changed
-      if (bookingPrice !== paymentIntent.amount) {
+      if (amount !== paymentIntent.amount) {
         await stripe.paymentIntents.update(paymentIntentId, {
-          amount: bookingPrice,
+          amount,
         });
       }
     } else {
       paymentIntent = await stripe.paymentIntents.create({
-        amount: bookingPrice,
+        amount,
         currency: 'eur',
         payment_method_types: ['card'],
-        // Temp before verifying the integration
         metadata: {
           firstDay: booking.firstDay,
           lastDay: booking.lastDay,
@@ -37,7 +38,6 @@ export default async (req, res) => {
         },
       });
     }
-
     res.status(200).json({ paymentIntent });
   } catch (error) {
     console.log('ERROR', { error });

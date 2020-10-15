@@ -11,15 +11,13 @@ import Separator from '@/UI/Separator';
 import Label from '@/UI/Label';
 import RadioButtons from '@/UI/RadioButtons';
 import ErrorAlert from '@/UI/ErrorAlert';
-
-import { getBookingPrices } from 'helpers/pricing';
-import { formatDateLong } from 'helpers/dates';
 import Loader from '@/UI/Loader';
 
-const DECEMBER_DATES = ['2020-12-19', '2020-12-26'];
-const FEBRUARY_DATES = ['2021-02-06', '2021-02-13', '2021-02-20'];
+import { formatDateLong } from 'helpers/dates';
+import { isValid } from 'helpers/booking';
+import { DECEMBER_DATES, FEBRUARY_DATES } from 'data/booking';
 
-const BookingForm = (props) => {
+const BookingForm = ({ isEditing, onUpdate }) => {
   const _isMounted = useRef(true);
   const booking = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -36,7 +34,7 @@ const BookingForm = (props) => {
     setError(null);
     const date = event.target.value;
     dispatch({
-      type: 'SET_DATES',
+      type: 'SET_ARRIVAL_DATE',
       firstDay: date,
     });
   };
@@ -63,7 +61,7 @@ const BookingForm = (props) => {
 
   const validateSearch = (e) => {
     e.preventDefault();
-    if (!booking.isValid) {
+    if (!isValid(booking)) {
       setError({
         message:
           'Vous devez choisir une date de livraison et sélectionner au moins un adulte pour pouvoir poursuivre votre réservation.',
@@ -72,25 +70,13 @@ const BookingForm = (props) => {
     }
     setIsLoading(true);
 
-    const { duration, adults, children } = booking;
-    const bookingPrice = getBookingPrices(
-      duration,
-      adults.length,
-      children.length
-    );
-    dispatch({
-      type: 'SET_AMOUNT',
-      adultsPrice: bookingPrice.adults,
-      childrenPrice: bookingPrice.children,
-      totalPrice: bookingPrice.total,
-    });
     Router.push('/booking/details')
       .then(() => {
         if (_isMounted.current) {
           setIsLoading(false);
           setError(null);
         }
-        props.onUpdate && props.onUpdate();
+        onUpdate && onUpdate();
         window.scrollTo(0, 0);
       })
       .catch((error) => {
@@ -101,14 +87,14 @@ const BookingForm = (props) => {
   return (
     <Card
       subclasses={`${
-        props.isEditing ? 'bg-gray-200 md:bg-white' : 'md:max-w-3xl bg-white'
+        isEditing ? 'bg-gray-200 md:bg-white' : 'md:max-w-3xl bg-white'
       }`}
     >
       {error && (
         <ErrorAlert error={error.message} onClearError={() => setError(null)} />
       )}
       <Header>
-        {props.isEditing ? (
+        {isEditing ? (
           <Heading className="text-xl mb-2 md:mb-0">
             Modifier votre séjour
           </Heading>
@@ -184,13 +170,13 @@ const BookingForm = (props) => {
             type="submit"
             id="searchButton"
             classes={`w-full uppercase tracking-wide bg-secondary-blue text-white ${
-              props.isEditing && 'md:w-64'
+              isEditing && 'md:w-64'
             }`}
             name="validate"
             disabled={loading}
             onClick={validateSearch}
           >
-            {loading ? <Loader /> : props.isEditing ? 'Valider' : 'Suivant'}
+            {loading ? <Loader /> : isEditing ? 'Valider' : 'Suivant'}
           </Button>
         </section>
       </form>

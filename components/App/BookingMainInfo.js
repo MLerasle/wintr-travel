@@ -7,8 +7,9 @@ import Separator from '@/UI/Separator';
 import BookingDeliveryAddress from '@/App/BookingDeliveryAddress';
 
 import { formatDateLong } from 'helpers/dates';
+import { getLastDay } from 'helpers/booking';
 
-const BookingMainInfos = ({ booking, onEditBooking, token }) => {
+const BookingMainInfos = ({ booking, prices, onEditBooking, token }) => {
   const dispatch = useDispatch();
   const adults = booking.adults.length > 1 ? 'adultes' : 'adulte';
   const children = booking.children.length > 1 ? 'enfants' : 'enfant';
@@ -39,18 +40,21 @@ const BookingMainInfos = ({ booking, onEditBooking, token }) => {
           Du{' '}
           <span className="font-bold">{formatDateLong(booking.firstDay)}</span>{' '}
           au{' '}
-          <span className="font-bold">{formatDateLong(booking.lastDay)}</span>.
+          <span className="font-bold">
+            {formatDateLong(getLastDay(booking.firstDay))}
+          </span>
+          .
         </li>
         <li>
           Pour {booking.adults.length}{' '}
           <span className="font-bold">{adults}</span> (
-          {booking.adultsPrice.toFixed(2)} €)
+          {prices.adults.toFixed(2)} €)
           {booking.children.length > 0 && (
             <>
               {' '}
               et {booking.children.length}{' '}
               <span className="font-bold">{children}</span> (
-              {booking.childrenPrice.toFixed(2)} €)
+              {prices.children.toFixed(2)} €)
             </>
           )}
           .
