@@ -1,16 +1,25 @@
 import { useMemo } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import { INITIAL_BOOKING } from './state';
 import { reducer } from './reducer';
 
 let store;
 
-function initStore(preloadedState = INITIAL_BOOKING) {
+const persistConfig = {
+  key: 'search',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+function initStore(initialState = INITIAL_BOOKING) {
   return createStore(
-    reducer,
-    preloadedState,
+    persistedReducer,
+    initialState,
     composeWithDevTools(applyMiddleware())
   );
 }

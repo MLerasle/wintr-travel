@@ -27,6 +27,7 @@
     "react-share": "^4.3.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^6.0.0",
     "smoothscroll-polyfill": "^0.4.4",
     "stripe": "^8.109.0"
   },

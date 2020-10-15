@@ -1,31 +1,17 @@
-import dayjs from 'dayjs';
 import { INITIAL_BOOKING } from './state';
 
 export const reducer = (state = INITIAL_BOOKING, action) => {
   switch (action.type) {
-    case 'SET_DATES':
+    case 'SET_ARRIVAL_DATE':
       return {
         ...state,
         firstDay: action.firstDay,
-        lastDay: action.firstDay
-          ? dayjs(action.firstDay).add(6, 'day').format('YYYY-MM-DD')
-          : null,
-        duration: action.firstDay ? 6 : 0,
-        isValid: !!action.firstDay && state.adults.length > 0,
       };
     case 'SET_SKIERS':
       return {
         ...state,
         adults: action.adults,
         children: action.children,
-        isValid: action.adults.length > 0 && !!state.firstDay,
-      };
-    case 'SET_AMOUNT':
-      return {
-        ...state,
-        adultsPrice: action.adultsPrice,
-        childrenPrice: action.childrenPrice,
-        totalPrice: action.totalPrice,
       };
     case 'SET_EMAIL':
       return {
@@ -61,12 +47,8 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
     case 'RESET_BOOKING':
       return INITIAL_BOOKING;
     case 'INITIALIZE_BOOKING':
-      return {
-        ...action.booking,
-      };
+      return action.booking;
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };
