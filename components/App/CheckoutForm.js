@@ -24,7 +24,7 @@ import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
 import ErrorAlert from '@/UI/ErrorAlert';
 
-import { getPrices } from 'helpers/booking';
+import { getLastDay, getPrices } from 'helpers/booking';
 
 const CheckoutForm = ({ intent }) => {
   const _isMounted = useRef(true);
@@ -108,8 +108,8 @@ const CheckoutForm = ({ intent }) => {
     setFormIsValid(!!booking.name && updatedCountry && acceptTerms);
   };
 
-  const onDeliveryAddressUpdate = (address) => {
-    dispatch({ type: 'SET_DELIVERY_ADDRESS', address });
+  const onDeliveryAddressUpdate = (address, placeId) => {
+    dispatch({ type: 'SET_DELIVERY_ADDRESS', address, placeId });
   };
 
   const onToggleAcceptTerms = () => {
@@ -213,22 +213,23 @@ const CheckoutForm = ({ intent }) => {
       if (error) {
         throw new Error(error.message);
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        destroyCookie(null, 'paymentIntentId');
         // Send booking infos to the backend
-        // fetch('https://wintr.travel/booking', {
-        //   method: 'post',
-        //   body: JSON.stringify(booking),
-        // })
-        //   .then((response) => {
-        //     // We succesfully saved the booking on the backend
-        //     // Redirect
-        //     console.log(response);
-        //   })
-        //   .catch((error) => {
-        //     // The booking is paid but we failed saving it on the backend
-        //     // See how to handle this...
-        //     console.log(error);
-        //   });
+        const response = await fetch('/api/booking/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...booking,
+            lastDay: getLastDay(booking.firstDay),
+            paymentIntentId: intent.id,
+          }),
+        });
+        const publishedBooking = await response.json();
+        console.log(publishedBooking);
+
+        destroyCookie(null, 'paymentIntentId');
+
         Router.push('/booking/confirmation').then(() => {
           if (_isMounted.current) {
             setIsLoading(false);
