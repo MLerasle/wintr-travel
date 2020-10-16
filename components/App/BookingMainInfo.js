@@ -14,8 +14,8 @@ const BookingMainInfos = ({ booking, prices, onEditBooking, token }) => {
   const adults = booking.adults.length > 1 ? 'adultes' : 'adulte';
   const children = booking.children.length > 1 ? 'enfants' : 'enfant';
 
-  const onDeliveryAddressUpdate = (address) => {
-    dispatch({ type: 'SET_DELIVERY_ADDRESS', address });
+  const onDeliveryAddressUpdate = (address, placeId) => {
+    dispatch({ type: 'SET_DELIVERY_ADDRESS', address, placeId });
   };
 
   return (

@@ -24,11 +24,6 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
         isRegisteredToNewsletter: action.register,
       };
     }
-    case 'SET_PAYMENT_INTENT_ID':
-      return {
-        ...state,
-        paymentIntentId: action.paymentIntentId,
-      };
     case 'SET_NAME':
       return {
         ...state,
@@ -43,6 +38,7 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
       return {
         ...state,
         deliveryAddress: action.address,
+        placeId: action.placeId,
       };
     case 'RESET_BOOKING':
       return INITIAL_BOOKING;

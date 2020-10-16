@@ -6,15 +6,15 @@ import Input from '@/UI/Input';
 
 let autoComplete;
 
-const handleScriptLoad = (updateQuery, deliveryAddressRef) => {
-  // Create a circle of 3km radius around Flaine
+const handleScriptLoad = (updateQuery, updatePlaceId, deliveryAddressRef) => {
+  // Create a circle of 2km radius around Flaine
   const flaineCoordinates = {
     lat: 46.006538,
     lng: 6.68953,
   };
   const circle = new window.google.maps.Circle({
     center: flaineCoordinates,
-    radius: 1000,
+    radius: 2000,
   });
   // Assign autoComplete with Google maps places one time
   autoComplete = new window.google.maps.places.Autocomplete(
@@ -27,32 +27,39 @@ const handleScriptLoad = (updateQuery, deliveryAddressRef) => {
     }
   );
   // Specify what properties we will get from API
-  autoComplete.setFields(['address_components', 'formatted_address', 'name']);
+  autoComplete.setFields([
+    'address_components',
+    'formatted_address',
+    'name',
+    'place_id',
+  ]);
   // Add a listener to handle when the place is selected
   autoComplete.addListener('place_changed', () =>
-    handlePlaceSelect(updateQuery)
+    handlePlaceSelect(updateQuery, updatePlaceId)
   );
 };
 
-const handlePlaceSelect = async (updateQuery) => {
+const handlePlaceSelect = async (updateQuery, updatePlaceId) => {
   // Get place from google api
   const addressObject = autoComplete.getPlace();
   const query = `${addressObject.name} - ${addressObject.formatted_address}`;
+  updatePlaceId(addressObject.place_id);
   updateQuery(query);
 };
 
 const BookingDeliveryAddress = ({ booking, onDeliveryAddressUpdate }) => {
   useScript({
     src: `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&libraries=places`,
-    onload: () => handleScriptLoad(setQuery, deliveryAddressRef),
+    onload: () => handleScriptLoad(setQuery, setPlaceId, deliveryAddressRef),
     checkForExisting: true,
   });
   const [query, setQuery] = useState(booking.deliveryAddress);
+  const [placeId, setPlaceId] = useState();
   const deliveryAddressRef = useRef(null);
 
   useEffect(() => {
-    onDeliveryAddressUpdate(query);
-  }, [query]);
+    onDeliveryAddressUpdate(query, placeId);
+  }, [query, placeId]);
 
   return (
     <>

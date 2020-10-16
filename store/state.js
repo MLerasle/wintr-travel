@@ -6,5 +6,6 @@ export const INITIAL_BOOKING = {
   name: '',
   countryCode: 'FR',
   deliveryAddress: '',
+  placeId: null,
   isRegisteredToNewsletter: true,
 };

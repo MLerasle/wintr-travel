@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import Head from 'next/head';
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
@@ -19,15 +17,6 @@ import Separator from '@/UI/Separator';
 
 const Checkout = ({ paymentIntent }) => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const { paymentIntentId } = parseCookies();
-    dispatch({
-      type: 'SET_PAYMENT_INTENT_ID',
-      paymentIntentId,
-    });
-  }, [paymentIntent]);
 
   return (
     <Layout withoutNavbar withoutFooter>
