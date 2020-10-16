@@ -1,6 +1,6 @@
 const { PubSub } = require('@google-cloud/pubsub');
 
-const topicName = 'YOUR_TOPIC_NAME';
+const topicName = process.env.GOOGLE_PUBSUB_TOPIC_BOOKINGS;
 const pubSubClient = new PubSub();
 
 import { getPrices } from 'helpers/booking';
