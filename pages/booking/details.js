@@ -16,6 +16,7 @@ import Modal from '@/UI/Modal';
 import SizeSkis from '@/App/SizeSkis';
 import SizeShoes from '@/App/SizeShoes';
 import SizeHelmet from '@/App/SizeHelmet';
+import ErrorAlert from '@/UI/ErrorAlert';
 
 import { EMAIL_PATTERN } from 'helpers/email';
 import { getPrices, isValid } from 'helpers/booking';
@@ -33,6 +34,7 @@ const Details = () => {
       ? 'Vous devez saisir une adresse email valide.'
       : ''
   );
+  const [error, setError] = useState();
   const skiers = [...booking.adults, ...booking.children];
   const prices = getPrices(booking.adults.length, booking.children.length);
 
@@ -104,31 +106,38 @@ const Details = () => {
     // Send a request to /api/checkout which will handle Stripe Payment Intent creation
     if (isValid(booking) && !formError) {
       setIsLoading(true);
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(booking),
-      });
-      const data = await response.json();
-      if (!data.paymentIntent) {
-        // TODO: display a message to the user and send a report
-        console.log('ERROR', data.error);
-        setIsLoading(false);
-        return;
-      }
-      // Store the Payment Intent id in a cookie if we don't already have one
-      const { paymentIntentId } = parseCookies();
-      if (!paymentIntentId) {
-        setCookie(null, 'paymentIntentId', data.paymentIntent.id);
-      }
-      Router.push('/booking/checkout').then(() => {
-        if (_isMounted.current) {
-          setIsLoading(false);
+      try {
+        const response = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(booking),
+        });
+        const data = await response.json();
+        // if (!data.paymentIntent) {
+        //   // TODO: display a message to the user and send a report
+        //   console.log('ERROR', data.error);
+        //   setIsLoading(false);
+        //   return;
+        // }
+        // Store the Payment Intent id in a cookie if we don't already have one
+        const { paymentIntentId } = parseCookies();
+        if (!paymentIntentId) {
+          setCookie(null, 'paymentIntentId', data.paymentIntent.id);
         }
-        window.scrollTo(0, 0);
-      });
+        Router.push('/booking/checkout').then(() => {
+          if (_isMounted.current) {
+            setIsLoading(false);
+          }
+          window.scrollTo(0, 0);
+        });
+      } catch (err) {
+        setIsLoading(false);
+        setError(
+          "Une erreur est survenue, veuillez réessayer ou prendre contact avec nous si l'erreur persiste."
+        );
+      }
     }
   };
 
@@ -145,6 +154,12 @@ const Details = () => {
             <SizeHelmet withDetails />
           </section>
         </Modal>
+        {error && (
+          <ErrorAlert
+            error={error.message}
+            onClearError={() => setError(null)}
+          />
+        )}
         {isEditing ? (
           <BookingForm isEditing onUpdate={validateBooking} />
         ) : (
