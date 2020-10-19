@@ -1,14 +1,7 @@
 module.exports = {
   purge: {
     enabled: true,
-    content: [
-      './pages/**/*.js',
-      './components/**/*.js',
-      './node_modules/react-day-picker/**/*.css',
-    ],
-    options: {
-      whitelist: [],
-    },
+    content: ['./pages/**/*.js', './components/**/*.js'],
   },
   theme: {
     extend: {
