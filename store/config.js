@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import sessionStorage from 'redux-persist/lib/storage/session';
 
 import { INITIAL_BOOKING } from './state';
 import { reducer } from './reducer';
@@ -11,7 +11,7 @@ let store;
 
 const persistConfig = {
   key: 'search',
-  storage,
+  storage: sessionStorage,
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
