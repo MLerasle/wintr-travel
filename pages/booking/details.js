@@ -115,16 +115,12 @@ const Details = () => {
           body: JSON.stringify(booking),
         });
         const data = await response.json();
-        // if (!data.paymentIntent) {
-        //   // TODO: display a message to the user and send a report
-        //   console.log('ERROR', data.error);
-        //   setIsLoading(false);
-        //   return;
-        // }
         // Store the Payment Intent id in a cookie if we don't already have one
         const { paymentIntentId } = parseCookies();
         if (!paymentIntentId) {
-          setCookie(null, 'paymentIntentId', data.paymentIntent.id);
+          setCookie(null, 'paymentIntentId', data.paymentIntent.id, {
+            maxAge: 24 * 60 * 60,
+          });
         }
         Router.push('/booking/checkout').then(() => {
           if (_isMounted.current) {
@@ -134,9 +130,10 @@ const Details = () => {
         });
       } catch (err) {
         setIsLoading(false);
-        setError(
-          "Une erreur est survenue, veuillez réessayer ou prendre contact avec nous si l'erreur persiste."
-        );
+        setError({
+          message:
+            "Une erreur est survenue, veuillez réessayer ou prendre contact avec nous si l'erreur persiste.",
+        });
       }
     }
   };

@@ -52,7 +52,13 @@ export async function getServerSideProps(context) {
     typeof window === 'undefined' ? context : {}
   );
 
-  paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+  if (paymentIntentId) {
+    paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+  } else {
+    // Go back to previous step if paymentIntent id is missing
+    context.res.writeHead(302, { Location: '/booking/details' });
+    context.res.end();
+  }
 
   return {
     props: {
