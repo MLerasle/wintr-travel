@@ -18,6 +18,7 @@ import SizeShoes from '@/App/SizeShoes';
 import SizeHelmet from '@/App/SizeHelmet';
 import ErrorAlert from '@/UI/ErrorAlert';
 
+import * as gtag from 'lib/gtag';
 import { EMAIL_PATTERN } from 'helpers/email';
 import { getPrices, isValid } from 'helpers/booking';
 
@@ -39,12 +40,18 @@ const Details = () => {
   const prices = getPrices(booking.adults.length, booking.children.length);
 
   useEffect(() => {
+    gtag.pageView('Détails de la réservation', '/booking/details');
     return () => {
       _isMounted.current = false;
     };
   }, []);
 
   const toggleSizesHelp = () => {
+    gtag.event({
+      action: 'toggle_sizes_help',
+      category: 'Booking',
+      label: isSizesModalOpened ? 'hide' : 'show',
+    });
     setIsModalSizesOpened(!isSizesModalOpened);
   };
 
@@ -122,6 +129,13 @@ const Details = () => {
             maxAge: 24 * 60 * 60,
           });
         }
+
+        gtag.event({
+          action: 'submit_details_form',
+          category: 'Booking',
+          label: 'Submission OK',
+        });
+
         Router.push('/booking/checkout').then(() => {
           if (_isMounted.current) {
             setIsLoading(false);
@@ -129,6 +143,11 @@ const Details = () => {
           window.scrollTo(0, 0);
         });
       } catch (err) {
+        gtag.event({
+          action: 'submit_details_form',
+          category: 'Booking',
+          label: 'Error while validating booking details',
+        });
         setIsLoading(false);
         setError({
           message:

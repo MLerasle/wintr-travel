@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 
 import Layout from '@/Layout/Layout';
@@ -8,7 +9,13 @@ import HomeArgs from '@/App/HomeArgs';
 import Testimonials from '@/App/Testimonials';
 import HomeCta from '@/App/HomeCta';
 
+import * as gtag from 'lib/gtag';
+
 const Index = () => {
+  useEffect(() => {
+    gtag.pageView('Location et livraison de skis et forfaits', '/');
+  }, []);
+
   return (
     <Layout footerMaxWidth="max-w-screen-xxl">
       <Head>

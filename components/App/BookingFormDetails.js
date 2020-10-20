@@ -7,6 +7,8 @@ import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 import Button from '@/UI/Button';
 
+import * as gtag from 'lib/gtag';
+
 const BookingFormDetails = ({
   skiers,
   onUpdateSkier,
@@ -14,6 +16,15 @@ const BookingFormDetails = ({
   token,
 }) => {
   const [showDetailsForm, setShowDetailsForm] = useState(!!token);
+
+  const handleToggleSizesForm = () => {
+    gtag.event({
+      action: 'toggle_sizes_form',
+      category: 'Booking',
+      label: showDetailsForm ? 'hide' : 'show',
+    });
+    setShowDetailsForm(!showDetailsForm);
+  };
 
   return (
     <Card classes="lg:px-0" subclasses="bg-gray-200 md:bg-white">
@@ -36,7 +47,7 @@ const BookingFormDetails = ({
         (showDetailsForm ? (
           <button
             className="text-orange-600 mb-4 md:mb-0 cursor-pointer underline"
-            onClick={() => setShowDetailsForm(false)}
+            onClick={handleToggleSizesForm}
           >
             Passer cette étape pour le moment.
           </button>
@@ -59,7 +70,7 @@ const BookingFormDetails = ({
       ) : (
         <Button
           classes="uppercase tracking-wide bg-white border border-orange-600 hover:bg-orange-100 text-orange-600 w-full md:w-auto"
-          onClick={() => setShowDetailsForm(true)}
+          onClick={handleToggleSizesForm}
         >
           Renseigner maintenant
         </Button>

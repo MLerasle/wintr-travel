@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import 'react-phone-number-input/style.css';
 
@@ -8,8 +8,14 @@ import MainSection from '@/UI/MainSection';
 import PhoneNumberStep from '@/App/Confirmation/PhoneNumberStep';
 import ShareStep from '@/App/Confirmation/ShareStep';
 
+import * as gtag from 'lib/gtag';
+
 const Confirmation = () => {
   const [isPhoneNumberSubmitted, setIsPhoneNumberSubmitted] = useState(false);
+
+  useEffect(() => {
+    gtag.pageView('Confirmation de la réservation', '/booking/confirmation');
+  }, []);
 
   const updateView = () => {
     setIsPhoneNumberSubmitted(true);

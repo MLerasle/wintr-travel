@@ -13,6 +13,7 @@ import RadioButtons from '@/UI/RadioButtons';
 import ErrorAlert from '@/UI/ErrorAlert';
 import Loader from '@/UI/Loader';
 
+import * as gtag from 'lib/gtag';
 import { formatDateLong } from 'helpers/dates';
 import { isValid } from 'helpers/booking';
 import { DECEMBER_DATES, FEBRUARY_DATES } from 'data/booking';
@@ -62,6 +63,11 @@ const BookingForm = ({ isEditing, onUpdate }) => {
   const validateSearch = (e) => {
     e.preventDefault();
     if (!isValid(booking)) {
+      gtag.event({
+        action: 'submit_home_form',
+        category: 'Booking',
+        label: 'Form is not valid',
+      });
       setError({
         message:
           'Vous devez choisir une date de livraison et sélectionner au moins un adulte pour pouvoir poursuivre votre réservation.',
@@ -69,6 +75,12 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       return;
     }
     setIsLoading(true);
+
+    gtag.event({
+      action: 'submit_home_form',
+      category: 'Booking',
+      label: 'Submission OK',
+    });
 
     Router.push('/booking/details')
       .then(() => {

@@ -24,6 +24,7 @@ import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
 import ErrorAlert from '@/UI/ErrorAlert';
 
+import * as gtag from 'lib/gtag';
 import { getLastDay, getPrices } from 'helpers/booking';
 
 const CheckoutForm = ({ intent }) => {
@@ -188,6 +189,11 @@ const CheckoutForm = ({ intent }) => {
     setFormWasSubmitted(true);
 
     if (!formIsValid) {
+      gtag.event({
+        action: 'pay_booking',
+        category: 'Booking',
+        label: 'Form is not valid',
+      });
       setIsLoading(false);
       return;
     }
@@ -230,6 +236,12 @@ const CheckoutForm = ({ intent }) => {
 
         destroyCookie(null, 'paymentIntentId');
 
+        gtag.event({
+          action: 'pay_booking',
+          category: 'Booking',
+          label: 'Payment OK',
+        });
+
         Router.push('/booking/confirmation').then(() => {
           if (_isMounted.current) {
             setIsLoading(false);
@@ -237,6 +249,11 @@ const CheckoutForm = ({ intent }) => {
         });
       }
     } catch (err) {
+      gtag.event({
+        action: 'pay_booking',
+        category: 'Booking',
+        label: 'Error while paying booking',
+      });
       setPaymentError(err.message);
       setIsLoading(false);
     }

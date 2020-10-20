@@ -23,7 +23,7 @@ const NavItems = (props) => {
         },
         {
           label: 'Tarif',
-          href: '/price',
+          href: '/prices',
         },
       ],
     },

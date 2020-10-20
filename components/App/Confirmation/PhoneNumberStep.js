@@ -8,6 +8,8 @@ import Input from '@/UI/Input';
 import Button from '@/UI/Button';
 import Loader from '@/UI/Loader';
 
+import * as gtag from 'lib/gtag';
+
 const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
   const [mobileNumber, setMobileNumber] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -28,14 +30,20 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
   const submitPhoneNumber = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log('Submit phone number', mobileNumber);
+    let gtagLabel;
     if (isValidPhoneNumber(mobileNumber)) {
       // Send it to the backend
-      console.log('Mobile is valid YEAH');
+      gtagLabel = 'Phone number OK';
       onPhoneNumberSubmitted();
     } else {
+      gtagLabel = 'Phone number incorrect';
       setError('Le numéro saisi est incorrect.');
     }
+    gtag.event({
+      action: 'submit_phone_number',
+      category: 'Booking',
+      label: gtagLabel,
+    });
     setIsLoading(false);
   };
 

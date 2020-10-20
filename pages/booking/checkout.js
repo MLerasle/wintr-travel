@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
@@ -15,8 +16,13 @@ import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 
+import * as gtag from 'lib/gtag';
+
 const Checkout = ({ paymentIntent }) => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+  useEffect(() => {
+    gtag.pageView('Paiement de la réservation', '/booking/checkout');
+  }, []);
 
   return (
     <Layout withoutNavbar withoutFooter>
