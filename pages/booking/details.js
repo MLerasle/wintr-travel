@@ -19,6 +19,7 @@ import SizeHelmet from '@/App/SizeHelmet';
 import ErrorAlert from '@/UI/ErrorAlert';
 
 import * as gtag from 'lib/gtag';
+import { setSkiers, setEmail, setRegisteredToNewsLetter } from 'store/actions';
 import { EMAIL_PATTERN } from 'helpers/email';
 import { getPrices, isValid } from 'helpers/booking';
 
@@ -73,17 +74,9 @@ const Details = () => {
     }
 
     if (skier.label.startsWith('Adulte')) {
-      dispatch({
-        type: 'SET_SKIERS',
-        adults: skiers,
-        children: [...booking.children],
-      });
+      dispatch(setSkiers(skiers, booking.children));
     } else {
-      dispatch({
-        type: 'SET_SKIERS',
-        adults: [...booking.adults],
-        children: skiers,
-      });
+      dispatch(setSkiers(booking.adults, skiers));
     }
   };
 
@@ -94,18 +87,12 @@ const Details = () => {
         ? 'Vous devez saisir une adresse email valide.'
         : '';
     setFormError(error);
-    dispatch({
-      type: 'SET_EMAIL',
-      email,
-    });
+    dispatch(setEmail(email));
   };
 
   const updateNewsletterRegistration = () => {
     const register = !booking.isRegisteredToNewsletter;
-    dispatch({
-      type: 'SET_REGISTERED_TO_NEWSLETTER',
-      register,
-    });
+    dispatch(setRegisteredToNewsLetter(register));
   };
 
   const validateBookingDetails = async () => {

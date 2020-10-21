@@ -14,8 +14,9 @@ import ErrorAlert from '@/UI/ErrorAlert';
 import Loader from '@/UI/Loader';
 
 import * as gtag from 'lib/gtag';
+import { setArrivalDate, setSkiers } from 'store/actions';
 import { formatDateLong } from 'helpers/dates';
-import { isValid } from 'helpers/booking';
+import { isValid, getLastDay } from 'helpers/booking';
 import { DECEMBER_DATES, FEBRUARY_DATES } from 'data/booking';
 
 const BookingForm = ({ isEditing, onUpdate }) => {
@@ -34,10 +35,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
   const handleArrivalDate = (event) => {
     setError(null);
     const date = event.target.value;
-    dispatch({
-      type: 'SET_ARRIVAL_DATE',
-      firstDay: date,
-    });
+    dispatch(setArrivalDate(date));
   };
 
   const handleSkierChange = (category, event) => {
@@ -57,7 +55,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
     const adults = category === 'adults' ? skiersArray : [...booking.adults];
     const children =
       category === 'children' ? skiersArray : [...booking.children];
-    dispatch({ type: 'SET_SKIERS', adults, children });
+    dispatch(setSkiers(adults, children));
   };
 
   const validateSearch = (e) => {
@@ -144,11 +142,11 @@ const BookingForm = ({ isEditing, onUpdate }) => {
               />
             </div>
           </FormRow>
-          {booking.lastDay && (
+          {booking.firstDay && (
             <p className="text-orange-600 mb-4 md:mb-0">
               Nous récupérons le matériel le{' '}
               <span className="font-semibold">
-                {formatDateLong(booking.lastDay)}
+                {formatDateLong(getLastDay(booking.firstDay))}
               </span>
               .
             </p>

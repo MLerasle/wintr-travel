@@ -14,6 +14,7 @@ import SizeSkis from '@/App/SizeSkis';
 import SizeShoes from '@/App/SizeShoes';
 import SizeHelmet from '@/App/SizeHelmet';
 
+import { setSkiers, initializeBooking } from 'store/actions';
 import { PAID_BOOKING } from 'data/booking';
 
 const Booking = () => {
@@ -34,10 +35,7 @@ const Booking = () => {
   }, []);
 
   useEffect(() => {
-    dispatch({
-      type: 'INITIALIZE_BOOKING',
-      booking,
-    });
+    dispatch(initializeBooking(booking));
   }, []);
 
   const toggleSizesHelp = () => {
@@ -59,17 +57,9 @@ const Booking = () => {
     }
 
     if (skier.label.startsWith('Adulte')) {
-      dispatch({
-        type: 'SET_SKIERS',
-        adults: skiers,
-        children: [...booking.children],
-      });
+      dispatch(setSkiers(skiers, booking.children));
     } else {
-      dispatch({
-        type: 'SET_SKIERS',
-        adults: [...booking.adults],
-        children: skiers,
-      });
+      dispatch(setSkiers(booking.adults, skiers));
     }
   };
 

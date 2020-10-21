@@ -40,8 +40,6 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
         deliveryAddress: action.address,
         placeId: action.placeId,
       };
-    case 'RESET_BOOKING':
-      return INITIAL_BOOKING;
     case 'INITIALIZE_BOOKING':
       return action.booking;
     default:

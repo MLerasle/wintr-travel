@@ -9,8 +9,6 @@ import {
 } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
 
-import { isoCountries } from 'data/countries';
-
 import BookingDeliveryAddress from '@/App/BookingDeliveryAddress';
 import StripeCardElement from '@/App/StripeCardElement';
 import Heading from '@/UI/Heading';
@@ -25,7 +23,9 @@ import Loader from '@/UI/Loader';
 import ErrorAlert from '@/UI/ErrorAlert';
 
 import * as gtag from 'lib/gtag';
+import { setName, setCountryCode, setDeliveryAddress } from 'store/actions';
 import { getLastDay, getPrices } from 'helpers/booking';
+import { isoCountries } from 'data/countries';
 
 const CheckoutForm = ({ intent }) => {
   const _isMounted = useRef(true);
@@ -90,7 +90,7 @@ const CheckoutForm = ({ intent }) => {
 
   const onNameUpdate = (event) => {
     const updatedName = event.target.value;
-    dispatch({ type: 'SET_NAME', name: updatedName });
+    dispatch(setName(updatedName));
     setFormErrors({
       ...formErrors,
       name: updatedName.trim() === '' ? 'Vous devez renseigner votre nom.' : '',
@@ -100,7 +100,7 @@ const CheckoutForm = ({ intent }) => {
 
   const onCountryCodeUpdate = (event) => {
     const updatedCountry = event ? event.value : null;
-    dispatch({ type: 'SET_COUNTRY_CODE', countryCode: updatedCountry });
+    dispatch(setCountryCode(updatedCountry));
     setFormErrors({
       ...formErrors,
       country: !updatedCountry
@@ -111,7 +111,7 @@ const CheckoutForm = ({ intent }) => {
   };
 
   const onDeliveryAddressUpdate = (address, placeId) => {
-    dispatch({ type: 'SET_DELIVERY_ADDRESS', address, placeId });
+    dispatch(setDeliveryAddress(address, placeId));
   };
 
   const onToggleAcceptTerms = () => {
