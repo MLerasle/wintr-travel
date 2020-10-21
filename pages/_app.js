@@ -10,7 +10,7 @@ import 'styles/background-image.css';
 import 'styles/google-searchbox.css';
 
 const MyApp = ({ Component, pageProps }) => {
-  const store = useStore(pageProps.initialReduxState);
+  const store = useStore();
   const persistor = persistStore(store, {}, function () {
     persistor.persist();
   });

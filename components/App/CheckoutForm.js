@@ -58,10 +58,10 @@ const CheckoutForm = ({ intent }) => {
   useEffect(() => {
     if (stripe) {
       const pr = stripe.paymentRequest({
-        country: 'CH', // country_code of Stripe Account
+        country: process.env.NODE_ENV === 'production' ? 'FR' : 'CH', // country_code of Stripe Account
         currency: 'eur',
         total: {
-          label: 'Booking Wintr Travel',
+          label: 'Réservation Wintr Travel',
           amount: +prices.total * 100,
         },
         requestPayerName: true,
@@ -70,13 +70,14 @@ const CheckoutForm = ({ intent }) => {
         shippingOptions: [
           {
             id: 'free-shipping',
-            label: 'Free shipping',
+            label: 'Livraison gratuite',
             detail: '',
             amount: 0,
           },
         ],
       });
 
+      // Check the availability of the Payment Request API.
       pr.canMakePayment()
         .then((result) => {
           if (result) {
@@ -122,6 +123,33 @@ const CheckoutForm = ({ intent }) => {
     setFormIsValid(!!booking.name && !!booking.countryCode && !acceptTerms);
   };
 
+  const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
+    // Send booking infos to the backend
+    const response = await fetch('/api/booking/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedBooking),
+    });
+    const publishedBooking = await response.json();
+    console.log(publishedBooking);
+
+    destroyCookie(null, 'paymentIntentId');
+
+    gtag.event({
+      action: 'pay_booking',
+      category: 'Booking',
+      label: paymentMethod,
+    });
+
+    Router.push('/booking/confirmation').then(() => {
+      if (_isMounted.current) {
+        setIsLoading(false);
+      }
+    });
+  };
+
   // Handle one click payment
   if (paymentRequest) {
     paymentRequest.on('paymentmethod', async (ev) => {
@@ -132,7 +160,10 @@ const CheckoutForm = ({ intent }) => {
       const pintent = intent;
 
       // Confirm the PaymentIntent without handling potential next actions (yet).
-      const { error: confirmError } = await stripe.confirmCardPayment(
+      const {
+        paymentIntent,
+        error: confirmError,
+      } = await stripe.confirmCardPayment(
         intent.client_secret,
         { payment_method: ev.paymentMethod.id },
         { handleActions: false }
@@ -149,34 +180,30 @@ const CheckoutForm = ({ intent }) => {
         // it to close the browser payment method collection interface.
         console.log('Successful one click payment');
         ev.complete('success');
+        const updatedBooking = {
+          ...booking,
+          name: ev.payerName,
+          countryCode: ev.paymentMethod.billing_details.address.country,
+          paymentIntentId: paymentIntent.id,
+        };
 
-        // Let Stripe.js handle the rest of the payment flow.
-        const { error, paymentIntent } = await stripe.confirmCardPayment(
-          pintent.client_secret
-        );
-
-        if (error) {
-          // The payment failed -- ask your customer for a new payment method.
-          // Redirect to checkout and display an error message
-          console.log('ERROR', error);
+        if (paymentIntent.status === 'requires_action') {
+          // Let Stripe.js handle the rest of the payment flow.
+          const { error } = await stripe.confirmCardPayment(
+            pintent.client_secret
+          );
+          if (error) {
+            // The payment failed -- ask your customer for a new payment method.
+            // Redirect to checkout and display an error message
+            console.log('ERROR', error);
+          } else {
+            // The payment has succeeded.
+            console.log('SUCCESS', paymentIntent);
+            await handlePaymentSucces(updatedBooking, 'oneClick');
+          }
         } else {
           // The payment has succeeded.
-          console.log('SUCCESS', paymentIntent);
-          const updatedBooking = {
-            ...booking,
-            name: ev.payerName,
-            email: ev.payerEmail,
-            countryCode: ev.paymentMethod.billing_details.address.country,
-            paymentIntentId: paymentIntent.id,
-          };
-          console.log('Booking to send to the API', updatedBooking);
-          destroyCookie(null, 'paymentIntentId');
-          Router.push('/booking/confirmation').then(() => {
-            if (_isMounted.current) {
-              setIsLoading(false);
-            }
-            window.scrollTo(0, 0);
-          });
+          await handlePaymentSucces(updatedBooking, 'oneClick');
         }
       }
     });
@@ -219,34 +246,12 @@ const CheckoutForm = ({ intent }) => {
       if (error) {
         throw new Error(error.message);
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        // Send booking infos to the backend
-        const response = await fetch('/api/booking/create', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            ...booking,
-            lastDay: getLastDay(booking.firstDay),
-            paymentIntentId: intent.id,
-          }),
-        });
-        const publishedBooking = await response.json();
-        console.log(publishedBooking);
-
-        destroyCookie(null, 'paymentIntentId');
-
-        gtag.event({
-          action: 'pay_booking',
-          category: 'Booking',
-          label: 'Payment OK',
-        });
-
-        Router.push('/booking/confirmation').then(() => {
-          if (_isMounted.current) {
-            setIsLoading(false);
-          }
-        });
+        const updatedBooking = {
+          ...booking,
+          lastDay: getLastDay(booking.firstDay),
+          paymentIntentId: intent.id,
+        };
+        await handlePaymentSucces(updatedBooking, 'creditCard');
       }
     } catch (err) {
       gtag.event({

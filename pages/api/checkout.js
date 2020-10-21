@@ -1,6 +1,6 @@
 import { parseCookies } from 'nookies';
 import Stripe from 'stripe';
-import { getPrices } from 'helpers/booking';
+import { getPrices, getLastDay } from 'helpers/booking';
 
 export default async (req, res) => {
   try {
@@ -29,9 +29,10 @@ export default async (req, res) => {
         amount,
         currency: 'eur',
         payment_method_types: ['card'],
+        receipt_email: booking.email,
         metadata: {
           firstDay: booking.firstDay,
-          lastDay: booking.lastDay,
+          lastDay: getLastDay(booking.firstDay),
           email: booking.email,
           adults: booking.adults.length,
           children: booking.children.length,
