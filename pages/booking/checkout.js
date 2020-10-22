@@ -8,9 +8,9 @@ import Icon from '@mdi/react';
 import { mdiLock } from '@mdi/js';
 
 import Layout from '@/Layout/Layout';
-import CheckoutForm from '@/App/CheckoutForm';
-import PaymentIcons from '@/App/PaymentIcons';
-import BookingSummary from '@/App/BookingSummary';
+import CheckoutForm from '@/App/Checkout/CheckoutForm';
+import PaymentIcons from '@/App/Checkout/PaymentIcons';
+import BookingSummary from '@/App/Checkout/BookingSummary';
 import MainSection from '@/UI/MainSection';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';

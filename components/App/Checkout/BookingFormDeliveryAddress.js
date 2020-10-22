@@ -47,7 +47,7 @@ const handlePlaceSelect = async (updateQuery, updatePlaceId) => {
   updateQuery(query);
 };
 
-const BookingDeliveryAddress = ({ booking, onDeliveryAddressUpdate }) => {
+const BookingFormDeliveryAddress = ({ booking, onDeliveryAddressUpdate }) => {
   useScript({
     src: `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&libraries=places`,
     onload: () => handleScriptLoad(setQuery, setPlaceId, deliveryAddressRef),
@@ -79,4 +79,4 @@ const BookingDeliveryAddress = ({ booking, onDeliveryAddressUpdate }) => {
   );
 };
 
-export default BookingDeliveryAddress;
+export default BookingFormDeliveryAddress;

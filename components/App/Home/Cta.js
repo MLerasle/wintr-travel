@@ -2,7 +2,7 @@ import smoothscroll from 'smoothscroll-polyfill';
 
 import Button from '@/UI/Button';
 
-const HomeCta = () => {
+const Cta = () => {
   const scrollToTop = () => {
     // Polyfill that fixes smooth scroll bug in Safari
     smoothscroll.polyfill();
@@ -31,4 +31,4 @@ const HomeCta = () => {
   );
 };
 
-export default HomeCta;
+export default Cta;

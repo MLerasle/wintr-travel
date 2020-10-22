@@ -3,7 +3,6 @@ import Head from 'next/head';
 
 import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
-import GridArg from '@/App/GridArg';
 
 import * as gtag from 'lib/gtag';
 
@@ -19,7 +18,7 @@ const Privacy = () => {
       </Head>
       <MainSection>
         <header className="sm:text-center px-4 sm:px-10 py-8 sm:py-12">
-          <GridArg title="Politique de confidentialité"></GridArg>
+          <h1 className="heading">Politique de confidentialité</h1>
         </header>
         <section className="md:text-lg pb-10 sm:pb-16 px-4 xl:px-0 text-gray-600 leading-loose">
           <p className="py-3">

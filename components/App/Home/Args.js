@@ -1,12 +1,11 @@
-import GridArg from '@/App/GridArg';
-
-const HomeArgs = () => (
+const Args = () => (
   <>
     <section className="text-center px-4 sm:px-10 pt-6 pb-10 sm:py-16">
-      <GridArg title="Nous vous livrons dans votre résidence.">
+      <h2 className="heading">Nous vous livrons dans votre résidence.</h2>
+      <p className="argument">
         Plus besoin de chercher un magasin, d'attendre son matériel, ni de le
         porter. Nous nous occupons de tout.
-      </GridArg>
+      </p>
     </section>
     <section>
       <div className="flex justify-center bg-gray-200">
@@ -14,28 +13,31 @@ const HomeArgs = () => (
           <div className="home-args-image-1 overflow-hidden img-container"></div>
           <div className="flex justify-center items-center">
             <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-1">
-              <GridArg title="Une offre simple">
+              <h2 className="heading">Une offre simple</h2>
+              <p className="argument">
                 Nous offrons un modèle unique de skis performants et s'adaptant
                 à tous les niveaux.
-              </GridArg>
+              </p>
             </div>
           </div>
           <div className="home-args-image-2 overflow-hidden img-container"></div>
           <div className="flex justify-center items-center">
             <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-2">
-              <GridArg title="Un service confortable">
+              <h2 className="heading">Un service confortable</h2>
+              <p className="argument">
                 Réservez votre matériel en quelques clics. Nous vous livrons à
                 l'adresse de votre choix.
-              </GridArg>
+              </p>
             </div>
           </div>
           <div className="home-args-image-3 overflow-hidden img-container"></div>
           <div className="flex justify-center items-center">
             <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-3">
-              <GridArg title="Un package complet">
+              <h2 className="heading">Un package complet</h2>
+              <p className="argument">
                 Tout est inclus: skis, chaussures, casque, forfait, assurance
                 casse/vol, pour que vous profitiez pleinement de vos vacances.
-              </GridArg>
+              </p>
             </div>
           </div>
         </div>
@@ -105,4 +107,4 @@ const HomeArgs = () => (
   </>
 );
 
-export default HomeArgs;
+export default Args;

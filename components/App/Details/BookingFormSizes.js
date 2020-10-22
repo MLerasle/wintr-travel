@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import SkierDetailsForm from '@/App/SkierDetailsForm';
+import SkierDetailsForm from '@/App/Details/SkierDetailsForm';
 import Card from '@/UI/Card';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
@@ -9,7 +9,7 @@ import Button from '@/UI/Button';
 
 import * as gtag from 'lib/gtag';
 
-const BookingFormDetails = ({
+const BookingFormSizes = ({
   skiers,
   onUpdateSkier,
   onToggleSizesHelp,
@@ -79,4 +79,4 @@ const BookingFormDetails = ({
   );
 };
 
-export default BookingFormDetails;
+export default BookingFormSizes;

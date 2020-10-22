@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
-import BookingSummaryLine from '@/App/BookingSummaryLine';
-import BookingSummaryLineSkier from './BookingSummaryLineSkier';
+import BookingSummaryLine from '@/App/Checkout/BookingSummaryLine';
+import BookingSummaryLineSkier from '@/App/Checkout/BookingSummaryLineSkier';
 import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 

@@ -4,7 +4,6 @@ import Icon from '@mdi/react';
 import { mdiCheck } from '@mdi/js';
 
 import Layout from '@/Layout/Layout';
-import GridArg from '@/App/GridArg';
 import MainSection from '@/UI/MainSection';
 import Card from '@/UI/Card';
 
@@ -23,9 +22,10 @@ const Prices = () => {
 
       <MainSection>
         <header className="text-center px-4 sm:px-10 py-10 sm:py-16">
-          <GridArg title="Un tarif unique.">
+          <h1 className="heading">Un tarif unique.</h1>
+          <p className="argument">
             Budgéter ses vacances n'a jamais été aussi simple.
-          </GridArg>
+          </p>
         </header>
 
         <article className="sm:flex sm:justify-between sm:items-center">

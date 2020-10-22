@@ -5,13 +5,7 @@ export const DECEMBER_DATES = ['2020-12-19', '2020-12-26'];
 export const FEBRUARY_DATES = ['2021-02-06', '2021-02-13', '2021-02-20'];
 
 export const PAID_BOOKING = {
-  resort: 'Flaine',
   firstDay: '2020-12-19',
-  lastDay: '2020-12-25',
-  duration: 6,
-  adultsPrice: 660,
-  childrenPrice: 240,
-  totalPrice: 900,
   adults: [
     {
       label: 'Adulte 1',
@@ -38,8 +32,4 @@ export const PAID_BOOKING = {
   name: 'Maxime Lerasle',
   countryCode: 'FR',
   deliveryAddress: 'Route des pistes, 74300 Flaine',
-  paymentIntentId: 'alskfhlkashflhaslfkh',
-  isRegisteredToNewsletter: false,
-  isValid: true,
-  isPaid: true,
 };

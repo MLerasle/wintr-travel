@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .heading {
+    @apply text-2xl font-bold pb-2 text-gray-800 leading-tight;
+  }
+  @screen sm {
+    .heading {
+      @apply text-3xl;
+    }
+  }
+
+  .argument {
+    @apply text-gray-600;
+  }
+  @screen sm {
+    .argument {
+      @apply text-lg;
+    }
+  }
+  @screen lg {
+    .argument {
+      @apply text-xl;
+    }
+  }
+}

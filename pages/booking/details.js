@@ -5,17 +5,17 @@ import Head from 'next/head';
 import { parseCookies, setCookie } from 'nookies';
 
 import Layout from '@/Layout/Layout';
-import BookingForm from '@/App/BookingForm';
-import BookingMainInfo from '@/App/BookingMainInfo';
-import BookingFormDetails from '@/App/BookingFormDetails';
-import BookingFormEmail from '@/App/BookingFormEmail';
-import BookingFormValidate from '@/App/BookingFormValidate';
+import BookingForm from '@/App/Home/BookingForm';
+import Recap from '@/App/Details/Recap';
+import BookingFormSizes from '@/App/Details/BookingFormSizes';
+import BookingFormEmail from '@/App/Details/BookingFormEmail';
+import BookingFormValidate from '@/App/Details/BookingFormValidate';
 import MainSection from '@/UI/MainSection';
 import Separator from '@/UI/Separator';
 import Modal from '@/UI/Modal';
-import SizeSkis from '@/App/SizeSkis';
-import SizeShoes from '@/App/SizeShoes';
-import SizeHelmet from '@/App/SizeHelmet';
+import SizeSkis from '@/App/Sizes/SizeSkis';
+import SizeShoes from '@/App/Sizes/SizeShoes';
+import SizeHelmet from '@/App/Sizes/SizeHelmet';
 import ErrorAlert from '@/UI/ErrorAlert';
 
 import * as gtag from 'lib/gtag';
@@ -167,13 +167,13 @@ const Details = () => {
           <BookingForm isEditing onUpdate={validateBooking} />
         ) : (
           <>
-            <BookingMainInfo
+            <Recap
               booking={booking}
               prices={prices}
               onEditBooking={editBooking}
             />
             <Separator className="md:hidden my-2" />
-            <BookingFormDetails
+            <BookingFormSizes
               skiers={skiers}
               onUpdateSkier={updateSkier}
               onToggleSizesHelp={toggleSizesHelp}

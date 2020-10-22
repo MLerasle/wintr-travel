@@ -9,8 +9,8 @@ import {
 } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
 
-import BookingDeliveryAddress from '@/App/BookingDeliveryAddress';
-import StripeCardElement from '@/App/StripeCardElement';
+import BookingDeliveryAddress from '@/App/Checkout/BookingFormDeliveryAddress';
+import StripeCardElement from '@/App/Checkout/StripeCardElement';
 import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import FormRow from '@/UI/FormRow';

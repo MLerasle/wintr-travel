@@ -4,17 +4,18 @@ import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import Layout from '@/Layout/Layout';
-import BookingMainInfo from '@/App/BookingMainInfo';
-import BookingFormDetails from '@/App/BookingFormDetails';
-import BookingFormValidate from '@/App/BookingFormValidate';
+import Recap from '@/App/Details/Recap';
+import BookingFormSizes from '@/App/Details/BookingFormSizes';
+import BookingFormValidate from '@/App/Details/BookingFormValidate';
 import MainSection from '@/UI/MainSection';
 import Separator from '@/UI/Separator';
 import Modal from '@/UI/Modal';
-import SizeSkis from '@/App/SizeSkis';
-import SizeShoes from '@/App/SizeShoes';
-import SizeHelmet from '@/App/SizeHelmet';
+import SizeSkis from '@/App/Sizes/SizeSkis';
+import SizeShoes from '@/App/Sizes/SizeShoes';
+import SizeHelmet from '@/App/Sizes/SizeHelmet';
 
 import { setSkiers, initializeBooking } from 'store/actions';
+import { getPrices } from 'helpers/booking';
 import { PAID_BOOKING } from 'data/booking';
 
 const Booking = () => {
@@ -24,6 +25,7 @@ const Booking = () => {
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const booking = PAID_BOOKING;
+  const prices = getPrices(booking.adults.length, booking.children.length);
   const dispatch = useDispatch();
 
   const skiers = [...booking.adults, ...booking.children];
@@ -86,9 +88,9 @@ const Booking = () => {
             <SizeHelmet withDetails />
           </section>
         </Modal>
-        <BookingMainInfo booking={booking} token={token} />
+        <Recap booking={booking} prices={prices} token={token} />
         <Separator className="md:hidden my-2" />
-        <BookingFormDetails
+        <BookingFormSizes
           skiers={skiers}
           onUpdateSkier={updateSkier}
           onToggleSizesHelp={toggleSizesHelp}
@@ -99,7 +101,7 @@ const Booking = () => {
           booking={booking}
           loading={loading}
           onValidate={validateBookingDetails}
-          buttonLabel={`Enregistrer les modifications`}
+          buttonLabel={`Enregistrer`}
         />
       </MainSection>
     </Layout>

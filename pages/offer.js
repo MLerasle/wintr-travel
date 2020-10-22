@@ -3,7 +3,6 @@ import Head from 'next/head';
 
 import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
-import GridArg from '@/App/GridArg';
 
 import * as gtag from 'lib/gtag';
 
@@ -20,9 +19,10 @@ const Offer = () => {
 
       <MainSection>
         <header className="text-center px-4 sm:px-10 py-10 sm:py-16">
-          <GridArg title="Vos vacances au ski en toute simplicité.">
+          <h1 className="heading">Vos vacances au ski en toute simplicité.</h1>
+          <p className="argument">
             Nous vous livrons tout ce qu'il vous faut pour un séjour réussi.
-          </GridArg>
+          </p>
         </header>
 
         <div className="flex justify-center bg-gray-200 border-t-2 border-gray-200">
@@ -32,12 +32,13 @@ const Offer = () => {
             </div>
             <div className="flex justify-center items-center">
               <div className="max-w-md mx-8 sm:mx-auto py-10 ski-description">
-                <GridArg title="Skis Armada Victa 83">
+                <h2 className="heading">Skis Armada Victa 83</h2>
+                <p className="argument">
                   La légèreté des skis Armada Victa 83 permettent de skier
                   simplement et en confiance sur toutes les pistes. Ils
                   conviendront donc parfaitement aux skieurs confirmés comme
                   débutants, adultes comme enfants.
-                </GridArg>
+                </p>
               </div>
             </div>
             <div className="flex justify-center items-center shoe-image bg-white">
@@ -45,12 +46,13 @@ const Offer = () => {
             </div>
             <div className="flex justify-center items-center">
               <div className="max-w-md mx-8 sm:mx-auto py-10 shoe-description">
-                <GridArg title="Chaussures Atomic Hawx Prime 90">
+                <h2 className="heading">Chaussures Atomic Hawx Prime 90</h2>
+                <p className="argument">
                   Ces chaussures au flex souple assurent votre confort tant sur
                   les pistes que dans les files d'attente des remontées
                   mécaniques. Plus souple mais techniques, ces chaussures
                   conviendront à ceux qui ne skient que quelques jours par an.
-                </GridArg>
+                </p>
               </div>
             </div>
             <div className="flex justify-center items-center helmet-image bg-white">
@@ -58,14 +60,17 @@ const Offer = () => {
             </div>
             <div className="flex justify-center items-center">
               <div className="max-w-md mx-8 sm:mx-auto py-10 helmet-description">
-                <GridArg title="Casque ski Bollé Backline Visor Premium">
+                <h2 className="heading">
+                  Casque ski Bollé Backline Visor Premium
+                </h2>
+                <p className="argument">
                   Le casque de ski Bollé Backline Visor Premium possède un
                   système de ventilation réglable, des coussinets d'oreille
                   amovibles, un rembourrage en tissu hypoallergénique, un
                   système Click to Fit et une visière rotative en polycarbonate
                   avec vue panoramique pour profiter pleinement de votre séjour
                   en toute sécurité.
-                </GridArg>
+                </p>
               </div>
             </div>
             <div className="flex justify-center items-center skipass-image bg-white overflow-hidden">
@@ -73,11 +78,14 @@ const Offer = () => {
             </div>
             <div className="flex justify-center items-center">
               <div className="max-w-md mx-8 sm:mx-auto py-10 skipass-description">
-                <GridArg title="Forfait pour la durée de votre séjour">
+                <h2 className="heading">
+                  Forfait pour la durée de votre séjour
+                </h2>
+                <p className="argument">
                   Afin que vous perdiez le moins de temps possible dans des
                   files d'attentes, nous vous livrons votre forfait dans votre
                   résidence en même temps que votre matériel.
-                </GridArg>
+                </p>
               </div>
             </div>
           </div>

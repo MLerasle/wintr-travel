@@ -69,7 +69,7 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
           <span className="font-bold">numéro de mobile</span> pour rester
           informé en temps réel de la livraison de votre matériel:
         </p>
-        <form className="max-w-sm">
+        <form className="max-w-sm md:flex">
           <PhoneInput
             placeholder="+33 6 12 34 56 78"
             defaultCountry="FR"
@@ -86,7 +86,7 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
           </div>
           <Button
             type="submit"
-            classes="w-full uppercase tracking-wide bg-white border border-secondary-blue text-secondary-blue mt-4"
+            classes="uppercase tracking-wide bg-secondary-blue text-white mt-6 w-full md:w-auto md:mt-0 md:ml-3"
             name="validate"
             disabled={isLoading}
             onClick={submitPhoneNumber}

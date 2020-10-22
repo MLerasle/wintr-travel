@@ -3,10 +3,9 @@ import Head from 'next/head';
 
 import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
-import GridArg from '@/App/GridArg';
-import SizeSkis from '@/App/SizeSkis';
-import SizeShoes from '@/App/SizeShoes';
-import SizeHelmet from '@/App/SizeHelmet';
+import SizeSkis from '@/App/Sizes/SizeSkis';
+import SizeShoes from '@/App/Sizes/SizeShoes';
+import SizeHelmet from '@/App/Sizes/SizeHelmet';
 
 import * as gtag from 'lib/gtag';
 
@@ -23,9 +22,12 @@ const Sizes = () => {
 
       <MainSection>
         <header className="text-center px-4 sm:px-10 py-10 sm:py-16">
-          <GridArg title="Comment renseigner la bonne taille pour votre matériel?">
+          <h1 className="heading">
+            Comment renseigner la bonne taille pour votre matériel?
+          </h1>
+          <p className="argument">
             Tout ce que vous devez savoir pour trouver chaussure à votre pied.
-          </GridArg>
+          </p>
         </header>
         <section className="md:text-lg pb-10 sm:pb-16 px-4 xl:px-0">
           <SizeSkis />

@@ -4,12 +4,12 @@ import Card from '@/UI/Card';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
-import BookingDeliveryAddress from '@/App/BookingDeliveryAddress';
+import BookingDeliveryAddress from '@/App/Checkout/BookingFormDeliveryAddress';
 
 import { formatDateLong } from 'helpers/dates';
 import { getLastDay } from 'helpers/booking';
 
-const BookingMainInfos = ({ booking, prices, onEditBooking, token }) => {
+const Recap = ({ booking, prices, onEditBooking, token }) => {
   const dispatch = useDispatch();
   const adults = booking.adults.length > 1 ? 'adultes' : 'adulte';
   const children = booking.children.length > 1 ? 'enfants' : 'enfant';
@@ -35,7 +35,7 @@ const BookingMainInfos = ({ booking, prices, onEditBooking, token }) => {
         )}
       </Header>
       <Separator className="hidden md:block my-6" />
-      <ul className="mt-2">
+      <ul className={`mt-2 ${!!token && 'mb-6'}`}>
         <li className="pb-2">
           Du{' '}
           <span className="font-bold">{formatDateLong(booking.firstDay)}</span>{' '}
@@ -71,4 +71,4 @@ const BookingMainInfos = ({ booking, prices, onEditBooking, token }) => {
   );
 };
 
-export default BookingMainInfos;
+export default Recap;
