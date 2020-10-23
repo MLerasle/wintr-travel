@@ -1,7 +1,5 @@
-const withImages = require('next-images');
+const withOptimizedImages = require('next-optimized-images');
 
-module.exports = withImages({
-  cssLoaderOptions: {
-    url: false,
-  },
+module.exports = withOptimizedImages({
+  optimizeImagesInDev: true,
 });
