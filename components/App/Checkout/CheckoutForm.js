@@ -20,7 +20,7 @@ import Checkbox from '@/UI/Checkbox';
 import SelectInput from '@/UI/SelectInput';
 import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
-import ErrorAlert from '@/UI/ErrorAlert';
+import Alert from '@/UI/Alert';
 
 import * as gtag from 'lib/gtag';
 import { setName, setCountryCode, setDeliveryAddress } from 'store/actions';
@@ -125,15 +125,13 @@ const CheckoutForm = ({ intent }) => {
 
   const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
     // Send booking infos to the backend
-    const response = await fetch('/api/booking/create', {
-      method: 'POST',
+    await fetch('/api/booking/publish', {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedBooking),
     });
-    const publishedBooking = await response.json();
-    console.log(publishedBooking);
 
     destroyCookie(null, 'paymentIntentId');
 
@@ -281,9 +279,10 @@ const CheckoutForm = ({ intent }) => {
   return (
     <div className="xl:w-1/2 pt-6 max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
       {paymentError && (
-        <ErrorAlert
-          error={paymentError}
-          onClearError={() => setPaymentError(null)}
+        <Alert
+          type="error"
+          message={paymentError}
+          onClearMessage={() => setPaymentError(null)}
         />
       )}
       {paymentRequestButton ? (

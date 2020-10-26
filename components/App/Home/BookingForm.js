@@ -10,7 +10,7 @@ import Button from '@/UI/Button';
 import Separator from '@/UI/Separator';
 import Label from '@/UI/Label';
 import RadioButtons from '@/UI/RadioButtons';
-import ErrorAlert from '@/UI/ErrorAlert';
+import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
 
 import * as gtag from 'lib/gtag';
@@ -101,7 +101,11 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       }`}
     >
       {error && (
-        <ErrorAlert error={error.message} onClearError={() => setError(null)} />
+        <Alert
+          type="error"
+          message={error.message}
+          onClearMessage={() => setError(null)}
+        />
       )}
       <Header>
         {isEditing ? (

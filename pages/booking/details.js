@@ -16,7 +16,7 @@ import Modal from '@/UI/Modal';
 import SizeSkis from '@/App/Sizes/SizeSkis';
 import SizeShoes from '@/App/Sizes/SizeShoes';
 import SizeHelmet from '@/App/Sizes/SizeHelmet';
-import ErrorAlert from '@/UI/ErrorAlert';
+import Alert from '@/UI/Alert';
 
 import * as gtag from 'lib/gtag';
 import { setSkiers, setEmail, setRegisteredToNewsLetter } from 'store/actions';
@@ -67,11 +67,7 @@ const Details = () => {
       skiers = [...booking.children];
     }
     const person = skiers.find((s) => s.label === skier.label);
-    if (attribute === 'headSize') {
-      person[attribute] = event.target.value;
-    } else {
-      person[attribute] = +event.target.value;
-    }
+    person[attribute] = event.target.value;
 
     if (skier.label.startsWith('Adulte')) {
       dispatch(setSkiers(skiers, booking.children));
@@ -158,9 +154,10 @@ const Details = () => {
           </section>
         </Modal>
         {error && (
-          <ErrorAlert
-            error={error.message}
-            onClearError={() => setError(null)}
+          <Alert
+            type="error"
+            message={error.message}
+            onClearMessage={() => setError(null)}
           />
         )}
         {isEditing ? (
