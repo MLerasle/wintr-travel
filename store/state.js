@@ -4,6 +4,7 @@ export const INITIAL_BOOKING = {
   children: [],
   email: '',
   name: '',
+  phoneNumber: '',
   countryCode: 'FR',
   deliveryAddress: '',
   placeId: null,

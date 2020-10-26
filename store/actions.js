@@ -26,6 +26,10 @@ export const setDeliveryAddress = (address, placeId) => {
   return { type: 'SET_DELIVERY_ADDRESS', address, placeId };
 };
 
+export const setPhoneNumber = (phoneNumber) => {
+  return { type: 'SET_PHONE_NUMBER', phoneNumber };
+};
+
 export const initializeBooking = (booking) => {
   return { type: 'INITIALIZE_BOOKING', booking };
 };
