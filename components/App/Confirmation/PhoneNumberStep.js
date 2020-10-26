@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import Icon from '@mdi/react';
 import { mdiCheck } from '@mdi/js';
 import 'react-phone-number-input/style.css';
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import { isValidPhoneNumber } from 'react-phone-number-input';
 
-import Input from '@/UI/Input';
+import InputPhone from '@/UI/InputPhone';
 import Button from '@/UI/Button';
 import Loader from '@/UI/Loader';
 
@@ -14,13 +14,6 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
   const [mobileNumber, setMobileNumber] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-  const phoneNumberInputRef = useRef();
-
-  useEffect(() => {
-    phoneNumberInputRef.current.focus();
-    phoneNumberInputRef.current.selectionStart = phoneNumberInputRef.current.selectionEnd =
-      phoneNumberInputRef.current.value.length;
-  }, []);
 
   const changeMobileNumber = (e) => {
     setError(null);
@@ -64,26 +57,18 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
           Vous allez recevoir d'ici quelques minutes un email contenant les
           détails de votre réservation ainsi que votre facture.
         </p>
-        <p className="my-8 md:my-6">
+        <p className="my-8 md:mt-6">
           Renseignez dès maintenant votre{' '}
           <span className="font-bold">numéro de mobile</span> pour rester
           informé en temps réel de la livraison de votre matériel:
         </p>
         <form className="max-w-sm md:flex">
-          <PhoneInput
-            placeholder="+33 6 12 34 56 78"
-            defaultCountry="FR"
-            country="FR"
-            international
-            withCountryCallingCode
-            inputComponent={Input}
-            ref={phoneNumberInputRef}
+          <InputPhone
             value={mobileNumber}
             onChange={changeMobileNumber}
+            focus
+            error={error}
           />
-          <div className="error text-red-600 pt-1 pl-1" role="alert">
-            {error && error}
-          </div>
           <Button
             type="submit"
             classes="uppercase tracking-wide bg-secondary-blue text-white mt-6 w-full md:w-auto md:mt-0 md:ml-3"
