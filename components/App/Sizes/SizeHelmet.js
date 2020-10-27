@@ -8,7 +8,7 @@ import Input from '@/UI/Input';
 import { HELMET } from 'data/sizes';
 
 const SizeHelmet = (props) => {
-  const [helmet, setHelmet] = useState('');
+  const [helmet, setHelmet] = useState();
 
   const updateHeadSize = (event) => {
     setHelmet('');
@@ -68,10 +68,9 @@ const SizeHelmet = (props) => {
           color="#2D3748"
         />
         <div className="flex flex-col w-2/5 md:w-1/4">
-          <Label for="helmet">Taille du casque</Label>
+          <Label>Taille du casque</Label>
           <Input
             type="text"
-            id="helmet"
             name="helmet"
             value={helmet}
             readonly

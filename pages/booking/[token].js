@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -27,7 +27,7 @@ const Booking = () => {
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [alert, setAlert] = useState(null);
-  const booking = useSelector((state) => state);
+  const booking = useSelector((state) => state, shallowEqual);
   const dispatch = useDispatch();
 
   const skiers = [...booking.adults, ...booking.children];

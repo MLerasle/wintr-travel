@@ -47,13 +47,15 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
         <div className="flex flex-col w-1/2 pl-1 md:w-1/3 md:px-2">
           <div className="flex">
             <Label for={`shoe-size-${skier.label}`}>Taille du pied</Label>
-            <Icon
-              path={mdiHelpCircle}
-              size={0.7}
-              className="mx-1 md:hidden"
-              color="#4A5568"
-              onClick={toggleShoeHelper}
-            />
+            {index === 0 && (
+              <Icon
+                path={mdiHelpCircle}
+                size={0.8}
+                className="mx-1 md:hidden"
+                color="#DD6B20"
+                onClick={toggleShoeHelper}
+              />
+            )}
           </div>
           <Input
             type="number"
@@ -67,13 +69,15 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
         <div className="flex flex-col w-full md:w-1/3 mt-2 md:mt-0 md:pl-2">
           <div className="flex">
             <Label for={`head-size-${skier.label}`}>Taille du casque</Label>
-            <Icon
-              path={mdiHelpCircle}
-              size={0.7}
-              className="mx-1 md:hidden"
-              color="#4A5568"
-              onClick={toggleHelmetHelper}
-            />
+            {index === 0 && (
+              <Icon
+                path={mdiHelpCircle}
+                size={0.8}
+                className="mx-1 md:hidden"
+                color="#DD6B20"
+                onClick={toggleHelmetHelper}
+              />
+            )}
           </div>
           <RadioButtons
             items={HEAD_SIZES}

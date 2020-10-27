@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Router from 'next/router';
 
 import Card from '@/UI/Card';
@@ -17,11 +17,11 @@ import * as gtag from 'lib/gtag';
 import { setArrivalDate, setSkiers } from 'store/actions';
 import { formatDateLong } from 'helpers/dates';
 import { isValid, getLastDay } from 'helpers/booking';
-import { DECEMBER_DATES, FEBRUARY_DATES } from 'data/booking';
+import { FEBRUARY_DATES } from 'data/booking';
 
 const BookingForm = ({ isEditing, onUpdate }) => {
   const _isMounted = useRef(true);
-  const booking = useSelector((state) => state);
+  const booking = useSelector((state) => state, shallowEqual);
   const dispatch = useDispatch();
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -125,17 +125,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
             Quand souhaitez-vous être livré?
           </h3>
           <FormRow className="w-full md:flex">
-            <div className="flex-grow md:mr-2">
-              <Label for="name">Décembre 2020</Label>
-              <RadioButtons
-                items={DECEMBER_DATES}
-                onChange={handleArrivalDate}
-                name="arrival"
-                selected={booking.firstDay}
-                withDateFormatting
-              />
-            </div>
-            <div className="flex-grow mt-2 md:mt-0 md:ml-2">
+            <div className="flex-grow mt-2 md:mt-0">
               <Label for="name">Février 2021</Label>
               <RadioButtons
                 items={FEBRUARY_DATES}

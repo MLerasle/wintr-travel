@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Router from 'next/router';
 import Head from 'next/head';
 import { parseCookies, setCookie } from 'nookies';
@@ -29,7 +29,7 @@ const Details = () => {
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
-  const booking = useSelector((state) => state);
+  const booking = useSelector((state) => state, shallowEqual);
   const dispatch = useDispatch();
   const [formError, setFormError] = useState(
     !EMAIL_PATTERN.test(booking.email)
