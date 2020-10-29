@@ -14,7 +14,11 @@ const Offer = () => {
   return (
     <Layout>
       <Head>
-        <title>Notre offre - Wintr Travel</title>
+        <title>L'offre Wintr Travel</title>
+        <meta
+          name="description"
+          content="Vous souhaitez louer des skis rapidement? Nous avons conçu un modèle universel s'adaptant à tous les niveaux que nous vous livrons dans votre résidence."
+        />
       </Head>
 
       <MainSection>

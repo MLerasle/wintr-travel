@@ -17,7 +17,11 @@ const Prices = () => {
   return (
     <Layout>
       <Head>
-        <title>Tarifs - Wintr Travel</title>
+        <title>Tarifs Wintr Travel</title>
+        <meta
+          name="description"
+          content="Budgéter ses vacances au ski n'a jamais été aussi simple grâce à la politique de tarification unique de Wintr Travel."
+        />
       </Head>
 
       <MainSection>

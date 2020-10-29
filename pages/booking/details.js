@@ -42,6 +42,9 @@ const Details = () => {
 
   useEffect(() => {
     gtag.pageView('Détails de la réservation', '/booking/details');
+    if (!isValid(booking)) {
+      setIsEditing(true);
+    }
     return () => {
       _isMounted.current = false;
     };

@@ -17,7 +17,11 @@ const Sizes = () => {
   return (
     <Layout>
       <Head>
-        <title>Guide des Tailles - Wintr Travel</title>
+        <title>Choisir les bons skis - Wintr Travel</title>
+        <meta
+          name="description"
+          content="Tout ce qu'il vous faut savoir pour trouver le matériel de ski à votre taille. Skis, chaussures, casque, on vous explique tout."
+        />
       </Head>
 
       <MainSection>

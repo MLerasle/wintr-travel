@@ -20,6 +20,11 @@ const Index = () => {
     <Layout footerMaxWidth="max-w-screen-xxl">
       <Head>
         <title>Location et livraison de skis et forfaits - Wintr Travel</title>
+        <meta
+          name="description"
+          content="Faites-vous livrer vos skis et votre forfait dans votre résidence à Flaine avec Wintr Travel.
+            Réservez dès maintenant vos prochaines vacances au ski!"
+        />
       </Head>
       <MobileImage />
       <Hero type="full">
