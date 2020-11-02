@@ -1,28 +1,125 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Background images */
+.background-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: transparent;
+}
 
-@layer components {
-  .heading {
-    @apply text-2xl font-bold pb-2 text-gray-800 leading-tight;
+.webp .mobile-image {
+  background-image: url('/images/mobile/wintr-travel-home-xs.webp');
+}
+.no-webp .mobile-image {
+  background-image: url('/images/mobile/wintr-travel-home-xs.jpg');
+}
+
+.webp .home-args-image-1 {
+  background-image: url('/images/mobile/wintr-travel-simple-sm.webp');
+}
+.no-webp .home-args-image-1 {
+  background-image: url('/images/mobile/wintr-travel-simple-sm.jpg');
+}
+
+.webp .home-args-image-2 {
+  background-image: url('/images/mobile/wintr-travel-rapide-sm.webp');
+}
+.no-webp .home-args-image-2 {
+  background-image: url('/images/mobile/wintr-travel-rapide-sm.jpg');
+}
+
+.webp .home-args-image-3 {
+  background-image: url('/images/mobile/wintr-travel-confort-sm.webp');
+}
+.no-webp .home-args-image-3 {
+  background-image: url('/images/mobile/wintr-travel-confort-sm.jpg');
+}
+
+@media (min-width: 415px) {
+  .webp .mobile-image {
+    background-image: url('/images/mobile/wintr-travel-home.webp');
   }
-  @screen sm {
-    .heading {
-      @apply text-3xl;
-    }
+  .no-webp .mobile-image {
+    background-image: url('/images/mobile/wintr-travel-home.jpg');
   }
 
-  .argument {
-    @apply text-gray-600;
+  .webp .home-args-image-1 {
+    background-image: url('/images/mobile/wintr-travel-simple.webp');
   }
-  @screen sm {
-    .argument {
-      @apply text-lg;
-    }
+  .no-webp .home-args-image-1 {
+    background-image: url('/images/mobile/wintr-travel-simple.jpg');
   }
-  @screen lg {
-    .argument {
-      @apply text-xl;
-    }
+
+  .webp .home-args-image-2 {
+    background-image: url('/images/mobile/wintr-travel-rapide.webp');
   }
+  .no-webp .home-args-image-2 {
+    background-image: url('/images/mobile/wintr-travel-rapide.jpg');
+  }
+
+  .webp .home-args-image-3 {
+    background-image: url('/images/mobile/wintr-travel-confort.webp');
+  }
+  .no-webp .home-args-image-3 {
+    background-image: url('/images/mobile/wintr-travel-confort.jpg');
+  }
+}
+
+@media (min-width: 641px) {
+  .webp .mobile-image {
+    background-image: url('/images/mobile/wintr-travel-home-md.webp');
+  }
+  .no-webp .mobile-image {
+    background-image: url('/images/mobile/wintr-travel-home-md.jpg');
+  }
+
+  .webp .home-args-image-1 {
+    background-image: url('/images/desktop/wintr-travel-simple.webp');
+  }
+  .no-webp .home-args-image-1 {
+    background-image: url('/images/desktop/wintr-travel-simple.jpg');
+  }
+
+  .webp .home-args-image-2 {
+    background-image: url('/images/desktop/wintr-travel-rapide.webp');
+  }
+  .no-webp .home-args-image-2 {
+    background-image: url('/images/desktop/wintr-travel-rapide.jpg');
+  }
+
+  .webp .home-args-image-3 {
+    background-image: url('/images/desktop/wintr-travel-confort.webp');
+  }
+  .no-webp .home-args-image-3 {
+    background-image: url('/images/desktop/wintr-travel-confort.jpg');
+  }
+}
+
+@media (min-width: 768px) {
+  .webp .hero::before {
+    background: url('/images/desktop/wintr-travel-home.webp');
+  }
+  .no-webp .hero::before {
+    background: url('/images/desktop/wintr-travel-home.jpg');
+  }
+}
+
+/* Google Searchbox */
+.pac-container {
+  border-radius: 0.5rem;
+  margin-top: 0.3rem;
+  box-shadow: none;
+  border: 1px solid #cbd5e0;
+}
+.pac-item {
+  padding: 0.5rem 0.3rem;
+  font-family: inherit;
+  font-size: 12px;
+  color: #a0aec0;
+}
+.pac-item:hover {
+  background-color: #f7fafc;
+}
+.pac-item-query {
+  color: #2d3748;
+  font-size: 14px;
 }

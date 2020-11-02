@@ -7,6 +7,30 @@ class MyDocument extends Document {
     return (
       <Html lang="fr">
         <Head>
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com/"
+            crossOrigin="true"
+          />
+          <link
+            rel="preload"
+            href="https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2"
+            as="font"
+            crossOrigin="true"
+          />
+          <link
+            rel="preload"
+            href="https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2"
+            as="font"
+            crossOrigin="true"
+          />
+          <link
+            rel="preload"
+            href="https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu3cOWxw.woff2"
+            as="font"
+            crossOrigin="true"
+          />
+
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {process.env.NODE_ENV === 'production' && (
             <>
@@ -29,15 +53,10 @@ class MyDocument extends Document {
               />
             </>
           )}
-          <script src="/scripts/modernizr-webp.js" defer></script>
+          <script src="/scripts/modernizr-webp.js" async />
           {/* <script src="/scripts/tawkto.js" defer></script> */}
-          <meta
-            name="description"
-            content="Faites-vous livrer vos skis et votre forfait dans votre résidence à Flaine avec Wintr Travel.
-            Réservez dès maintenant vos prochaines vacances au ski!"
-          />
         </Head>
-        <body className="font-body" onUnload={this.onUnload}>
+        <body className="font-body">
           <Main />
           <NextScript />
         </body>
