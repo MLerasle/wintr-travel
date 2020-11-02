@@ -7,16 +7,17 @@ const Testimonials = () => (
         Demandez l'avis de nos clients.
       </h2>
       <article className="flex flex-col sm:flex-row justify-between items-center tracking-wide">
-        <Testimonial person="Jean-Michel Sansidée">
-          Merci Wintr Travel pour ce service simple et efficace!
+        <Testimonial person="David M.">
+          Un service qui tombe à pic en pleine pandémie de covid-19. On a hâte
+          d'y être!
         </Testimonial>
-        <Testimonial person="Sandrine Prèdesessou" classes="py-6 sm:py-0">
+        <Testimonial person="Sandrine P." classes="py-6 sm:py-0">
           J'ai pu annuler ma réservation sans problème et ai reçu le
           remboursement dans la foulée. Merci beaucoup!
         </Testimonial>
-        <Testimonial person="Patrick Sébastien">
-          Un service incroyable, une équipe de rêve, je n'envisage plus ma vie
-          sans Wintr Travel!
+        <Testimonial person="Patrick S.">
+          La réservation est vraiment simple à faire et le service client très
+          réactif.
         </Testimonial>
       </article>
     </div>
