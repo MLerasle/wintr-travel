@@ -12,6 +12,18 @@ class MyDocument extends Document {
             href="https://fonts.gstatic.com/"
             crossOrigin="true"
           />
+          <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+          <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+          <link
+            href="https://www.google-analytics.com"
+            rel="preconnect"
+            crossOrigin=""
+          />
+          <link
+            href="https://www.googletagmanager.com"
+            rel="preconnect"
+            crossOrigin=""
+          />
           <link
             rel="preload"
             href="https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2"
