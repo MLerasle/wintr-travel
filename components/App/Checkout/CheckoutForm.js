@@ -25,6 +25,7 @@ import Alert from '@/UI/Alert';
 import * as gtag from 'lib/gtag';
 import { setName, setCountryCode, setDeliveryAddress } from 'store/actions';
 import { getLastDay, getPrices } from 'helpers/booking';
+import { twoDaysBefore } from 'helpers/dates';
 import { isoCountries } from 'data/countries';
 
 const CheckoutForm = ({ intent }) => {
@@ -361,6 +362,9 @@ const CheckoutForm = ({ intent }) => {
             J'accepte les Conditions Générales de Vente.
           </Checkbox>
         </FormRow>
+        <p className="text-green-600 font-semibold text-center my-2">
+          Annulation GRATUITE jusqu'au {twoDaysBefore(booking.firstDay)}
+        </p>
         <Button
           type="submit"
           name="pay"
