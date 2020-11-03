@@ -12,17 +12,10 @@ class MyDocument extends Document {
             href="https://fonts.gstatic.com/"
             crossOrigin="true"
           />
-          <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-          <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-          <link
-            href="https://www.google-analytics.com"
-            rel="preconnect"
-            crossOrigin=""
-          />
           <link
             href="https://www.googletagmanager.com"
             rel="preconnect"
-            crossOrigin=""
+            crossOrigin="true"
           />
           <link
             rel="preload"
@@ -42,6 +35,7 @@ class MyDocument extends Document {
             as="font"
             crossOrigin="true"
           />
+          <script src="/scripts/modernizr-webp.js" />
 
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {process.env.NODE_ENV === 'production' && (
@@ -65,8 +59,6 @@ class MyDocument extends Document {
               />
             </>
           )}
-          <script src="/scripts/modernizr-webp.js" async />
-          {/* <script src="/scripts/tawkto.js" defer></script> */}
         </Head>
         <body className="font-body">
           <Main />
