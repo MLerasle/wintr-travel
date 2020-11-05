@@ -1,22 +1,14 @@
-import { useDispatch } from 'react-redux';
-
 import Card from '@/UI/Card';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
-import BookingDeliveryAddress from '@/App/Checkout/BookingFormDeliveryAddress';
 
 import { formatDateLong } from 'helpers/dates';
 import { getLastDay } from 'helpers/booking';
 
 const Recap = ({ booking, prices, onEditBooking, token }) => {
-  const dispatch = useDispatch();
   const adults = booking.adults.length > 1 ? 'adultes' : 'adulte';
   const children = booking.children.length > 1 ? 'enfants' : 'enfant';
-
-  const onDeliveryAddressUpdate = (address, placeId) => {
-    dispatch({ type: 'SET_DELIVERY_ADDRESS', address, placeId });
-  };
 
   return (
     <Card classes="lg:px-0" subclasses="bg-gray-200 md:bg-white">
@@ -35,7 +27,7 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
         )}
       </Header>
       <Separator className="hidden md:block my-6" />
-      <ul className={`mt-2 ${!!token && 'mb-6'}`}>
+      <ul className={`mt-2`}>
         <li className="pb-2">
           Du{' '}
           <span className="font-bold">{formatDateLong(booking.firstDay)}</span>{' '}
@@ -60,13 +52,6 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
           .
         </li>
       </ul>
-      {!!token && (
-        <BookingDeliveryAddress
-          booking={booking}
-          onDeliveryAddressUpdate={onDeliveryAddressUpdate}
-          token={token}
-        />
-      )}
     </Card>
   );
 };

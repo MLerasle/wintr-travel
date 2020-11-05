@@ -4,10 +4,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { useStore } from 'store/config';
 
-import 'styles/style.css';
 import 'styles/fonts.css';
-import 'styles/background-image.css';
-import 'styles/google-searchbox.css';
+import 'styles/tailwind.css';
+import 'styles/style.css';
 
 const MyApp = ({ Component, pageProps }) => {
   const store = useStore();

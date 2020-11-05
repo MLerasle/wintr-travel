@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Router from 'next/router';
 import Head from 'next/head';
 import { parseCookies, setCookie } from 'nookies';
@@ -16,7 +16,7 @@ import Modal from '@/UI/Modal';
 import SizeSkis from '@/App/Sizes/SizeSkis';
 import SizeShoes from '@/App/Sizes/SizeShoes';
 import SizeHelmet from '@/App/Sizes/SizeHelmet';
-import ErrorAlert from '@/UI/ErrorAlert';
+import Alert from '@/UI/Alert';
 
 import * as gtag from 'lib/gtag';
 import { setSkiers, setEmail, setRegisteredToNewsLetter } from 'store/actions';
@@ -29,7 +29,7 @@ const Details = () => {
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
-  const booking = useSelector((state) => state);
+  const booking = useSelector((state) => state, shallowEqual);
   const dispatch = useDispatch();
   const [formError, setFormError] = useState(
     !EMAIL_PATTERN.test(booking.email)
@@ -42,6 +42,9 @@ const Details = () => {
 
   useEffect(() => {
     gtag.pageView('Détails de la réservation', '/booking/details');
+    if (!isValid(booking)) {
+      setIsEditing(true);
+    }
     return () => {
       _isMounted.current = false;
     };
@@ -67,11 +70,7 @@ const Details = () => {
       skiers = [...booking.children];
     }
     const person = skiers.find((s) => s.label === skier.label);
-    if (attribute === 'headSize') {
-      person[attribute] = event.target.value;
-    } else {
-      person[attribute] = +event.target.value;
-    }
+    person[attribute] = event.target.value;
 
     if (skier.label.startsWith('Adulte')) {
       dispatch(setSkiers(skiers, booking.children));
@@ -158,9 +157,10 @@ const Details = () => {
           </section>
         </Modal>
         {error && (
-          <ErrorAlert
-            error={error.message}
-            onClearError={() => setError(null)}
+          <Alert
+            type="error"
+            message={error.message}
+            onClearMessage={() => setError(null)}
           />
         )}
         {isEditing ? (

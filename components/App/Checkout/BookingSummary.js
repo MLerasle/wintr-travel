@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
 
 import BookingSummaryLine from '@/App/Checkout/BookingSummaryLine';
 import BookingSummaryLineSkier from '@/App/Checkout/BookingSummaryLineSkier';
@@ -10,7 +10,7 @@ import { getPrices, getLastDay } from 'helpers/booking';
 import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE, DURATION } from 'data/booking';
 
 const BookingSummary = () => {
-  const booking = useSelector((state) => state);
+  const booking = useSelector((state) => state, shallowEqual);
   const prices = getPrices(booking.adults.length, booking.children.length);
 
   return (

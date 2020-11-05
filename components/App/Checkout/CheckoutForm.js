@@ -20,11 +20,12 @@ import Checkbox from '@/UI/Checkbox';
 import SelectInput from '@/UI/SelectInput';
 import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
-import ErrorAlert from '@/UI/ErrorAlert';
+import Alert from '@/UI/Alert';
 
 import * as gtag from 'lib/gtag';
 import { setName, setCountryCode, setDeliveryAddress } from 'store/actions';
 import { getLastDay, getPrices } from 'helpers/booking';
+import { twoDaysBefore } from 'helpers/dates';
 import { isoCountries } from 'data/countries';
 
 const CheckoutForm = ({ intent }) => {
@@ -125,15 +126,13 @@ const CheckoutForm = ({ intent }) => {
 
   const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
     // Send booking infos to the backend
-    const response = await fetch('/api/booking/create', {
-      method: 'POST',
+    await fetch('/api/booking/publish', {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedBooking),
     });
-    const publishedBooking = await response.json();
-    console.log(publishedBooking);
 
     destroyCookie(null, 'paymentIntentId');
 
@@ -281,9 +280,10 @@ const CheckoutForm = ({ intent }) => {
   return (
     <div className="xl:w-1/2 pt-6 max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
       {paymentError && (
-        <ErrorAlert
-          error={paymentError}
-          onClearError={() => setPaymentError(null)}
+        <Alert
+          type="error"
+          message={paymentError}
+          onClearMessage={() => setPaymentError(null)}
         />
       )}
       {paymentRequestButton ? (
@@ -362,6 +362,9 @@ const CheckoutForm = ({ intent }) => {
             J'accepte les Conditions Générales de Vente.
           </Checkbox>
         </FormRow>
+        <p className="text-green-600 font-semibold text-center my-2">
+          Annulation GRATUITE jusqu'au {twoDaysBefore(booking.firstDay)}
+        </p>
         <Button
           type="submit"
           name="pay"

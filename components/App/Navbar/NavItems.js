@@ -9,10 +9,6 @@ const NavItems = (props) => {
       name: '',
       key: 'other',
       links: [
-        // {
-        //   label: t('common:label.about'),
-        //   href: `/${lang}/about`,
-        // },
         {
           label: 'Matériel',
           href: '/offer',

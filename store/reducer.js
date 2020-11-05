@@ -40,6 +40,11 @@ export const reducer = (state = INITIAL_BOOKING, action) => {
         deliveryAddress: action.address,
         placeId: action.placeId,
       };
+    case 'SET_PHONE_NUMBER':
+      return {
+        ...state,
+        phoneNumber: action.phoneNumber,
+      };
     case 'INITIALIZE_BOOKING':
       return action.booking;
     default:

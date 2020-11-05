@@ -47,7 +47,12 @@ const handlePlaceSelect = async (updateQuery, updatePlaceId) => {
   updateQuery(query);
 };
 
-const BookingFormDeliveryAddress = ({ booking, onDeliveryAddressUpdate }) => {
+const BookingFormDeliveryAddress = ({
+  booking,
+  onDeliveryAddressUpdate,
+  token,
+  className,
+}) => {
   useScript({
     src: `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&libraries=places`,
     onload: () => handleScriptLoad(setQuery, setPlaceId, deliveryAddressRef),
@@ -63,14 +68,16 @@ const BookingFormDeliveryAddress = ({ booking, onDeliveryAddressUpdate }) => {
 
   return (
     <>
-      <Label for="deliveryAddress">Votre adresse de livraison</Label>
-      <p className="text-orange-600 text-sm md:text-base">
-        Vous pouvez renseigner cette information ultérieurement.
-      </p>
+      <Label for="deliveryAddress">Adresse de livraison</Label>
+      {!token && (
+        <p className="text-orange-600 text-sm md:text-base">
+          Vous pouvez renseigner cette information ultérieurement.
+        </p>
+      )}
       <Input
         ref={deliveryAddressRef}
         name="deliveryAddress"
-        className="w-full mt-2"
+        className={`w-full mt-2 ${className}`}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Saisissez l'adresse complète ici"
         value={query}

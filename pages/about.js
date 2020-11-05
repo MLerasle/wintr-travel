@@ -15,6 +15,10 @@ const About = () => {
     <Layout>
       <Head>
         <title>À propos - Wintr Travel</title>
+        <meta
+          name="description"
+          content="Notre mission est de faciliter la location de skis en livrant tout le nécessaire à nos clients dans leur résidence."
+        />
       </Head>
       <MainSection>
         <header className="sm:text-center px-4 sm:px-10 py-8 sm:py-12">

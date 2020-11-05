@@ -15,6 +15,10 @@ const Terms = () => {
     <Layout>
       <Head>
         <title>CGV - Wintr Travel</title>
+        <meta
+          name="description"
+          content="Conditions Générales de Vente Wintr Travel"
+        />
       </Head>
       <MainSection>
         <header className="sm:text-center px-4 sm:px-10 py-8 sm:py-12">

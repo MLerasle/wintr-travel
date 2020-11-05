@@ -17,7 +17,11 @@ const Prices = () => {
   return (
     <Layout>
       <Head>
-        <title>Tarifs - Wintr Travel</title>
+        <title>Tarifs Wintr Travel</title>
+        <meta
+          name="description"
+          content="Budgéter ses vacances au ski n'a jamais été aussi simple grâce à la politique de tarification unique de Wintr Travel."
+        />
       </Head>
 
       <MainSection>
@@ -36,10 +40,10 @@ const Prices = () => {
             <span className="rounded-full py-1 px-5 text-blue-800 bg-blue-200 bg-opacity-75 uppercase tracking-wide font-semibold text-lg">
               Adulte
             </span>
-            <h3 className="text-6xl font-black">
+            <h2 className="text-6xl font-bold">
               55€{' '}
               <span className="text-2xl font-medium text-gray-600">/jour</span>
-            </h3>
+            </h2>
             <ul className="mt-6 text-gray-700">
               <li className="flex items-center my-3 tracking-wide sm:text-lg">
                 <Icon
@@ -113,10 +117,10 @@ const Prices = () => {
             <span className="rounded-full py-1 px-5 text-blue-800 bg-blue-200 bg-opacity-75 uppercase tracking-wide font-semibold text-lg">
               Enfant
             </span>
-            <h3 className="text-6xl font-black">
+            <h2 className="text-6xl font-bold">
               40€{' '}
               <span className="text-2xl font-medium text-gray-600">/jour</span>
-            </h3>
+            </h2>
             <ul className="mt-6 text-gray-700">
               <li className="flex items-center my-3 tracking-wide sm:text-lg">
                 <Icon
