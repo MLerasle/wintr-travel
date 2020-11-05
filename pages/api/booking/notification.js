@@ -12,7 +12,8 @@ export default async (req, res) => {
     const message = req.body ? req.body.message : null;
     if (message) {
       const buffer = Buffer.from(message.data, 'base64');
-      bookingdata = buffer ? buffer.toString() : null;
+      const data = buffer && buffer.toString();
+      bookingdata = data && JSON.parse(data);
  
       console.log(`Received message ${message.messageId}:`);
       console.log(`Data: ${bookingdata}`);
@@ -27,7 +28,7 @@ export default async (req, res) => {
         email: bookingdata.email,
         name: bookingdata.name
       }],
-      textContent:bookingdata,
+      textContent:bookingdata.toString(),
       subject:"Vos skis Wintr sont réservés",
       tags:["booking"]
     }
