@@ -21,15 +21,21 @@ export default async (req, res) => {
 
     sendSmtpEmail = {
       sender: {
-        name: "Wintr Booking",
-        email: "stephane@wintr.travel"
+        name: "Skis Wintr",
+        email: "support@wintr.travel"
       },
       to: [{
         email: bookingdata.email,
         name: bookingdata.name
       }],
-      textContent:bookingdata.toString(),
-      subject:"Vos skis Wintr sont réservés",
+      templateId: 1,
+      params: {
+        name: bookingdata.name,
+        firstDay: bookingdata.firstDay,
+        amount: bookingdata.amount,
+        paymentIntentId: bookingdata.paymentIntentId
+      },
+      subject:"Vos skis livrés à Flaine sont réservés !",
       tags:["booking"]
     }
 
