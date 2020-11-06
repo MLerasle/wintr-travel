@@ -37,7 +37,7 @@ export default async (req, res) => {
       templateId: 1,
       params: {
         name: bookingdata.name,
-        startDateHumanReadable: Date.parse(bookingdata.firstDay).toLocaleString('fr-fr', {weekday: 'long', year: 'numeric',month: 'long'});,
+        startDateHumanReadable: Date.parse(bookingdata.firstDay).toLocaleString('fr-fr', {weekday: 'long', year: 'numeric',month: 'long'}),
         amount: bookingdata.amount,
         paymentIntentId: bookingdata.paymentIntentId,
         deliveryAddress: bookingdata.deliveryAddress
