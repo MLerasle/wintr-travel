@@ -21,7 +21,7 @@ export default async (req, res) => {
 
     sendSmtpEmail = {
       sender: {
-        name: "Skis Wintr",
+        name: "Wintr Travel",
         email: "support@wintr.travel"
       },
       to: [{
@@ -31,11 +31,12 @@ export default async (req, res) => {
       templateId: 1,
       params: {
         name: bookingdata.name,
-        firstDay: bookingdata.firstDay,
+        startDateHumanReadable: Date.parse(bookingdata.firstDay).toLocaleString('fr-fr', {weekday: 'long', year: 'numeric',month: 'long'});,
         amount: bookingdata.amount,
-        paymentIntentId: bookingdata.paymentIntentId
+        paymentIntentId: bookingdata.paymentIntentId,
+        deliveryAddress: bookingdata.deliveryAddress
       },
-      subject:"Vos skis livrés à Flaine sont réservés !",
+      subject:` Votre réservation ${bookingdata.paymentIntentId} est confirmée`,
       tags:["booking"]
     }
 
