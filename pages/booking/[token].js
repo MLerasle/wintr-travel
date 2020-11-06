@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import * as Sentry from '@sentry/browser';
 
 import Layout from '@/Layout/Layout';
 import BookingValidatedInfos from '@/App/BookingEdit/BookingValidatedInfos';
@@ -79,12 +80,12 @@ const Booking = () => {
         type: 'success',
       });
     } catch (error) {
+      Sentry.captureException(error);
       setAlert({
         message:
           "Une erreur est survenue durant la mise à jour de votre réservation. \nVeuillez réessayer ou prendre contact avec nous si l'erreur persiste.",
         type: 'error',
       });
-      console.log({ error });
     }
 
     setIsLoading(false);

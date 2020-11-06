@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/node';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -8,7 +9,15 @@ import 'styles/fonts.css';
 import 'styles/tailwind.css';
 import 'styles/style.css';
 
-const MyApp = ({ Component, pageProps }) => {
+if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+  console.log('Sentry init with ', process.env.NEXT_PUBLIC_SENTRY_DSN);
+  Sentry.init({
+    enabled: process.env.NODE_ENV === 'production',
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  });
+}
+
+const MyApp = ({ Component, pageProps, err }) => {
   const store = useStore();
   const persistor = persistStore(store, {}, function () {
     persistor.persist();
@@ -17,7 +26,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <Component {...pageProps} />
+        <Component {...pageProps} err={err} />
       </PersistGate>
     </Provider>
   );

@@ -3,6 +3,7 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Router from 'next/router';
 import Head from 'next/head';
 import { parseCookies, setCookie } from 'nookies';
+import * as Sentry from '@sentry/browser';
 
 import Layout from '@/Layout/Layout';
 import BookingForm from '@/App/Home/BookingForm';
@@ -129,15 +130,17 @@ const Details = () => {
           window.scrollTo(0, 0);
         });
       } catch (err) {
-        gtag.event({
-          action: 'submit_details_form',
-          category: 'Booking',
-          label: 'Error while validating booking details',
-        });
         setIsLoading(false);
         setError({
           message:
             "Une erreur est survenue, veuillez réessayer ou prendre contact avec nous si l'erreur persiste.",
+        });
+        window.scrollTo(0, 0);
+        Sentry.captureException(err);
+        gtag.event({
+          action: 'submit_details_form',
+          category: 'Booking',
+          label: 'Error while validating booking details',
         });
       }
     }
