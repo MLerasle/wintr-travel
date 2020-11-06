@@ -8,6 +8,7 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
+import * as Sentry from '@sentry/browser';
 
 import BookingDeliveryAddress from '@/App/Checkout/BookingFormDeliveryAddress';
 import StripeCardElement from '@/App/Checkout/StripeCardElement';
@@ -253,13 +254,15 @@ const CheckoutForm = ({ intent }) => {
         await handlePaymentSucces(updatedBooking, 'creditCard');
       }
     } catch (err) {
+      setPaymentError(err.message);
+      setIsLoading(false);
+      window.scrollTo(0, 0);
+      Sentry.captureException(err);
       gtag.event({
         action: 'pay_booking',
         category: 'Booking',
         label: 'Error while paying booking',
       });
-      setPaymentError(err.message);
-      setIsLoading(false);
     }
   };
 

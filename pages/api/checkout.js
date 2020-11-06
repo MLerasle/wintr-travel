@@ -1,5 +1,7 @@
 import { parseCookies } from 'nookies';
 import Stripe from 'stripe';
+const Sentry = require('@sentry/node');
+
 import { getPrices, getLastDay } from 'helpers/booking';
 
 export default async (req, res) => {
@@ -41,7 +43,7 @@ export default async (req, res) => {
     }
     res.status(200).json({ paymentIntent });
   } catch (error) {
-    console.log('ERROR', { error });
+    Sentry.captureException(error);
     res.status(404).json({ message: 'Une erreur est survenue', error });
   }
 };

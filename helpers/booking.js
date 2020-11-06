@@ -7,18 +7,14 @@ export const getLastDay = (firstDay) => {
 };
 
 export const getPrices = (adults, children) => {
-  try {
-    const adultsPrice = DURATION * adults * UNIT_ADULT_PRICE;
-    const childrenPrice = DURATION * children * UNIT_CHILD_PRICE;
-    const totalPrice = adultsPrice + childrenPrice;
-    return {
-      adults: adultsPrice,
-      children: childrenPrice,
-      total: totalPrice,
-    };
-  } catch (err) {
-    return { error: 'ERROR', message: err };
-  }
+  const adultsPrice = DURATION * adults * UNIT_ADULT_PRICE;
+  const childrenPrice = DURATION * children * UNIT_CHILD_PRICE;
+  const totalPrice = adultsPrice + childrenPrice;
+  return {
+    adults: adultsPrice,
+    children: childrenPrice,
+    total: totalPrice,
+  };
 };
 
 export const isValid = (booking) => {

@@ -1,4 +1,5 @@
 const { PubSub } = require('@google-cloud/pubsub');
+const Sentry = require('@sentry/node');
 
 const topicName = process.env.GOOGLE_PUBSUB_TOPIC_BOOKINGS;
 const pubSubClient = new PubSub({
@@ -30,7 +31,7 @@ export default async (req, res) => {
 
     res.status(201).json({ booking });
   } catch (error) {
-    console.log({ error });
+    Sentry.captureException(error);
     res.status(404).json({
       message: "Une erreur est survenue lors de l'enregistrement du booking.",
       error,
@@ -46,7 +47,7 @@ async function publishMessage(booking) {
     const messageId = await pubSubClient.topic(topicName).publish(dataBuffer);
     console.log(`Message ${messageId} published.`);
   } catch (error) {
-    console.error(`Received error while publishing: ${error.message}`);
+    Sentry.captureException(error);
     process.exitCode = 1;
   }
 }
