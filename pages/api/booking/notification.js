@@ -7,6 +7,8 @@ apiKey.apiKey =
   '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';
 var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+
+import { formatDateLong } from 'helpers/dates';
 let bookingdata;
 
 export default async (req, res) => {
@@ -24,9 +26,8 @@ export default async (req, res) => {
 
     sendSmtpEmail = {
       sender: {
-        name: "Wintr Travel",
-        email: "support@wintr.travel"
-
+        name: 'Wintr Travel',
+        email: 'support@wintr.travel',
       },
       to: [
         {
@@ -37,14 +38,14 @@ export default async (req, res) => {
       templateId: 1,
       params: {
         name: bookingdata.name,
-        startDateHumanReadable: Date.parse(bookingdata.firstDay).toLocaleString('fr-fr', {weekday: 'long', year: 'numeric',month: 'long'}),
+        startDateHumanReadable: formatDateLong(bookingdata.firstDay),
         amount: bookingdata.amount,
         paymentIntentId: bookingdata.paymentIntentId,
-        deliveryAddress: bookingdata.deliveryAddress
+        deliveryAddress: bookingdata.deliveryAddress,
       },
-      subject:` Votre réservation ${bookingdata.paymentIntentId} est confirmée`,
-      tags:["booking"]
-    }
+      subject: `Votre réservation ${bookingdata.paymentIntentId} est confirmée`,
+      tags: ['booking'],
+    };
 
     // Call sendinblue API to send email
     apiInstance.sendTransacEmail(sendSmtpEmail).then(
