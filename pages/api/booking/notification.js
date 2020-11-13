@@ -61,13 +61,13 @@ export default async (req, res) => {
 
     // enregistre le booking dans son propre document sur Cloud Firestore
     const docRef = db.collection('paid_bookings').doc(bookingdata.paymentIntentId);
-    await docRef.set(bookingdata);
+    docRef.set(bookingdata);
 
     // appelle Sendinblue pour envoie de mail
     apiInstance.sendTransacEmail(sendSmtpEmail).then(
       function (data) {
         console.log('API called successfully. Returned data: ' + JSON.stringify(bookingdata));
-        await docRef.set({notification_email_timestamp: Math.floor(Date.now()/1000});
+        docRef.set({notification_email_timestamp: Math.floor(Date.now()/1000});
         res.status(204).end();
       },
       function (error) {
