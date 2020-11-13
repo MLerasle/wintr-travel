@@ -67,7 +67,7 @@ export default async (req, res) => {
     apiInstance.sendTransacEmail(sendSmtpEmail).then(
       function (data) {
         console.log('API called successfully. Returned data: ' + JSON.stringify(bookingdata));
-        docRef.set({notification_email_timestamp: Math.floor(Date.now()/1000});
+        docRef.set({notification_email_timestamp: Math.floor(Date.now()/1000)});
         res.status(204).end();
       },
       function (error) {
