@@ -10,11 +10,15 @@ const NavItems = (props) => {
       key: 'other',
       links: [
         {
-          label: 'Matériel',
+          label: 'La Marque',
+          href: '/brand',
+        },
+        {
+          label: 'Notre offre',
           href: '/offer',
         },
         {
-          label: 'Tailles',
+          label: 'Guide des Tailles',
           href: '/sizes',
         },
         {

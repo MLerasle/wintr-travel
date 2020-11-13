@@ -22,7 +22,7 @@ const BookingDeliveryInfos = ({ booking, token, phoneError }) => {
   };
 
   return (
-    <Card classes="lg:px-0" subclasses="bg-gray-200 md:bg-white">
+    <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-200 md:bg-white">
       <Header>
         <Heading className="text-xl">Informations de livraison</Heading>
       </Header>

@@ -96,6 +96,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
 
   return (
     <Card
+      classes="md:py-6"
       subclasses={`${
         isEditing ? 'bg-gray-200 md:bg-white' : 'md:max-w-3xl bg-white'
       }`}

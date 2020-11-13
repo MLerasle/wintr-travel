@@ -1,6 +1,6 @@
 const Card = (props) => (
   <div
-    className={`flex flex-col items-start md:items-center md:py-6 ${
+    className={`flex flex-col items-start md:items-center ${
       props.classes && props.classes
     }`}
   >

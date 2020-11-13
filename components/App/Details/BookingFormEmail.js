@@ -10,7 +10,7 @@ const BookingFormEmail = ({
   onNewsletterRegistration,
   error,
 }) => (
-  <Card classes="lg:px-0" subclasses="bg-gray-200 md:bg-white">
+  <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-200 md:bg-white">
     <Heading className="text-xl pb-2">Informations de contact</Heading>
     <p className="text-gray-600">
       Pour vous tenir informé de l'état de votre réservation et effectuer les
