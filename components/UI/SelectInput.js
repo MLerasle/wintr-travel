@@ -48,7 +48,7 @@ const SelectInput = (props) => (
         borderRadius: '0.5rem',
         colors: {
           ...theme.colors,
-          primary: '#4299E1',
+          primary: '#389469',
           primary25: '#F7FAFC',
           primary50: 'white',
           primary75: 'white',

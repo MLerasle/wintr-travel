@@ -10,7 +10,7 @@ const BookingFormEmail = ({
   onNewsletterRegistration,
   error,
 }) => (
-  <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-200 md:bg-white">
+  <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-100 md:bg-white">
     <Heading className="text-xl pb-2">Informations de contact</Heading>
     <p className="text-gray-600">
       Pour vous tenir informé de l'état de votre réservation et effectuer les
@@ -22,13 +22,13 @@ const BookingFormEmail = ({
       id="email-address"
       name="email-address"
       className={`my-4 md:my-0 w-full lg:w-1/2 ${
-        error && 'border-red-600 bg-red-100'
+        error && 'border-primary-red bg-light-red'
       }`}
       placeholder="Email"
       onChange={(event) => onEmailUpdate(event)}
       value={booking.email}
     />
-    <div className="error text-red-600 pt-1 pl-1" role="alert">
+    <div className="error text-primary-red pt-1 pl-1" role="alert">
       {error && error}
     </div>
     <p className="text-gray-700 font-semibold mt-4">

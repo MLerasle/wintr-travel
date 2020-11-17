@@ -38,7 +38,7 @@ const InputPhone = ({
         onChange={onChange}
         onBlur={onBlur}
       />
-      <div className="error text-red-600 pt-1 pl-1" role="alert">
+      <div className="error text-primary-red pt-1 pl-1" role="alert">
         {error && error}
       </div>
     </div>

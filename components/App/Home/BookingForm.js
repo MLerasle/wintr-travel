@@ -98,7 +98,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
     <Card
       classes="md:py-6"
       subclasses={`${
-        isEditing ? 'bg-gray-200 md:bg-white' : 'md:max-w-3xl bg-white'
+        isEditing ? 'bg-gray-100 md:bg-white' : 'md:max-w-3xl bg-white'
       }`}
     >
       {error && (
@@ -138,7 +138,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
             </div>
           </FormRow>
           {booking.firstDay && (
-            <p className="text-orange-600 mb-4 md:mb-0">
+            <p className="text-primary-blue mb-4 md:mb-0">
               Nous récupérons le matériel le{' '}
               <span className="font-semibold">
                 {formatDateLong(getLastDay(booking.firstDay))}
@@ -174,7 +174,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           <Button
             type="submit"
             id="searchButton"
-            classes={`w-full uppercase tracking-wide bg-secondary-blue text-white ${
+            classes={`w-full uppercase tracking-wide bg-primary-green text-white ${
               isEditing && 'md:w-64'
             }`}
             name="validate"

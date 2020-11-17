@@ -8,7 +8,7 @@ const Args = () => (
       </p>
     </section>
     <section>
-      <div className="flex justify-center bg-gray-200">
+      <div className="flex justify-center bg-gray-100">
         <div className="w-full grid grid-cols-1 sm:grid-cols-2">
           <div className="home-args-image-1 overflow-hidden img-container"></div>
           <div className="flex justify-center items-center">

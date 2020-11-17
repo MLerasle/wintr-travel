@@ -7,7 +7,7 @@ const Testimonial = (props) => (
       props.classes && props.classes
     }`}
   >
-    <Icon path={mdiFormatQuoteOpen} size={1.5} color="#4299E1" />
+    <Icon path={mdiFormatQuoteOpen} size={1.5} color="#389469" />
     <p className="py-2 sm:pb-3 text-gray-800">{props.children}</p>
     <p className="text-gray-600">{props.person}</p>
   </div>

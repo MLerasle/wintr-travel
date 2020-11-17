@@ -27,12 +27,12 @@ const BookingFormSizes = ({
   };
 
   return (
-    <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-200 md:bg-white">
+    <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-100 md:bg-white">
       <Header>
         <Heading className="text-xl">Mensurations des skieurs</Heading>
         <button
           name="sizes-help"
-          className="hidden md:block text-secondary-blue rounded font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
+          className="hidden md:block text-primary-blue rounded font-bold tracking-wide focus:outline-none focus:shadow-custom-outline transition duration-300 ease-in-out hover:opacity-75"
           onClick={onToggleSizesHelp}
         >
           Comment renseigner les bonnes tailles?
@@ -46,13 +46,13 @@ const BookingFormSizes = ({
       {!token &&
         (showDetailsForm ? (
           <button
-            className="text-orange-600 mb-4 md:mb-0 cursor-pointer underline"
+            className="text-primary-blue mb-4 md:mb-0 cursor-pointer underline"
             onClick={handleToggleSizesForm}
           >
             Passer cette étape pour le moment.
           </button>
         ) : (
-          <p className="text-orange-600 mb-4 md:mb-0 text-sm md:text-base">
+          <p className="text-primary-blue mb-4 md:mb-0 text-sm md:text-base">
             Vous pouvez choisir de passer cette étape pour le moment.
           </p>
         ))}
@@ -69,7 +69,7 @@ const BookingFormSizes = ({
         ))
       ) : (
         <Button
-          classes="uppercase tracking-wide bg-white border border-orange-600 hover:bg-orange-100 text-orange-600 w-full md:w-auto"
+          classes="uppercase tracking-wide bg-white border border-primary-blue hover:bg-light-blue text-primary-blue w-full md:w-auto"
           onClick={handleToggleSizesForm}
         >
           Renseigner maintenant

@@ -52,7 +52,7 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
                 path={mdiHelpCircle}
                 size={0.8}
                 className="mx-1 md:hidden"
-                color="#DD6B20"
+                color="#1381F6"
                 onClick={toggleShoeHelper}
               />
             )}
@@ -74,7 +74,7 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
                 path={mdiHelpCircle}
                 size={0.8}
                 className="mx-1 md:hidden"
-                color="#DD6B20"
+                color="#1381F6"
                 onClick={toggleHelmetHelper}
               />
             )}

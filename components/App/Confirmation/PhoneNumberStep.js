@@ -71,7 +71,7 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
           />
           <Button
             type="submit"
-            classes="uppercase tracking-wide bg-secondary-blue text-white mt-6 w-full md:w-auto md:mt-0 md:ml-3"
+            classes="uppercase tracking-wide bg-primary-green text-white mt-6 w-full md:w-auto md:mt-0 md:ml-3"
             name="validate"
             disabled={isLoading}
             onClick={submitPhoneNumber}

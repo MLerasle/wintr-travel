@@ -22,11 +22,11 @@ const BookingDeliveryInfos = ({ booking, token, phoneError }) => {
   };
 
   return (
-    <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-200 md:bg-white">
+    <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-100 md:bg-white">
       <Header>
         <Heading className="text-xl">Informations de livraison</Heading>
       </Header>
-      <h3 className="py-2 text-orange-600">
+      <h3 className="py-2 text-primary-blue">
         Renseignez votre numéro de téléphone pour être informé en temps réel du
         suivi de votre livraison.
       </h3>

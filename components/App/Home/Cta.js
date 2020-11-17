@@ -14,7 +14,7 @@ const Cta = () => {
   };
 
   return (
-    <section className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-primary-blue">
+    <section className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
       <h2 className="text-2xl sm:text-3xl font-bold pb-2 text-white leading-tight">
         En piste !
       </h2>
@@ -22,7 +22,7 @@ const Cta = () => {
         Retrouvez le plaisir du ski sans contraintes.
       </p>
       <Button
-        classes="w-auto px-4 uppercase tracking-wide bg-secondary-blue text-white"
+        classes="w-auto px-4 uppercase tracking-wide bg-primary-green text-white"
         onClick={scrollToTop}
       >
         Réservez maintenant

@@ -11,7 +11,7 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
   const children = booking.children.length > 1 ? 'enfants' : 'enfant';
 
   return (
-    <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-200 md:bg-white">
+    <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-100 md:bg-white">
       <Header>
         <Heading className="text-xl mb-2 md:mb-0">
           Votre séjour à Flaine
@@ -19,7 +19,7 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
         {!token && (
           <button
             name="edit"
-            className="text-secondary-blue rounded text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-outline transition duration-300 ease-in-out hover:opacity-75"
+            className="text-primary-blue rounded text-sm sm:text-base font-bold tracking-wide focus:outline-none focus:shadow-custom-outline transition duration-300 ease-in-out hover:opacity-75"
             onClick={onEditBooking}
           >
             Modifier

@@ -306,11 +306,11 @@ const CheckoutForm = ({ intent }) => {
             onChange={onNameUpdate}
             className={`w-full ${
               formErrors.name && formWasSubmitted
-                ? 'border-red-600 bg-red-100'
+                ? 'border-primary-red bg-light-red'
                 : ''
             }`}
           />
-          <div className="error text-red-600 pt-1 pl-1" role="alert">
+          <div className="error text-primary-red pt-1 pl-1" role="alert">
             {formWasSubmitted && formErrors.name}
           </div>
         </FormRow>
@@ -331,15 +331,15 @@ const CheckoutForm = ({ intent }) => {
                       '&:hover': { borderColor: 'none' },
                       boxShadow: 'none',
                       height: '48px',
-                      borderColor: '#E53E3E',
-                      backgroundColor: '#FFF5F5',
+                      borderColor: '#CA463F',
+                      backgroundColor: '#FBF0EF',
                     }),
                   }
                 : null
             }
             handleChange={onCountryCodeUpdate}
           />
-          <div className="error text-red-600 pt-1 pl-1" role="alert">
+          <div className="error text-primary-red pt-1 pl-1" role="alert">
             {formWasSubmitted && formErrors.country}
           </div>
         </FormRow>
@@ -365,7 +365,7 @@ const CheckoutForm = ({ intent }) => {
             J'accepte les Conditions Générales de Vente.
           </Checkbox>
         </FormRow>
-        <p className="text-green-600 font-semibold text-center my-2">
+        <p className="text-primary-green font-semibold text-center my-2">
           Annulation GRATUITE jusqu'au {twoDaysBefore(booking.firstDay)}
         </p>
         <Button
@@ -373,7 +373,7 @@ const CheckoutForm = ({ intent }) => {
           name="pay"
           onClick={handlePaymentSubmit}
           disabled={loading}
-          classes="my-4 w-full uppercase tracking-wide bg-secondary-blue text-white"
+          classes="my-4 w-full uppercase tracking-wide bg-primary-green text-white"
         >
           {loading ? <Loader /> : `Payer ${prices.total.toFixed(2)} €`}
         </Button>

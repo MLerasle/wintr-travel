@@ -7,7 +7,7 @@ const Input = React.forwardRef((props, ref) => (
     name={props.name}
     placeholder={props.placeholder}
     className={`border border-gray-300 rounded-lg px-2 py-2 h-12 focus:outline-none text-gray-800 appearance-none ${
-      !props.readonly && 'focus:border-secondary-blue'
+      !props.readonly && 'focus:border-primary-green'
     } ${props.className}`}
     onChange={props.onChange}
     value={props.value}

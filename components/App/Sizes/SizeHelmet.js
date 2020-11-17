@@ -30,14 +30,14 @@ const SizeHelmet = (props) => {
       )}
       <p className="text-gray-600 py-1 leading-loose">
         Vous devez{' '}
-        <span className="font-bold text-blue-700">
+        <span className="font-bold text-primary-blue">
           mesurer votre tour de tête en centimètres
         </span>
         .
       </p>
       <p className="text-gray-600 py-1 leading-loose">
         Pour ce faire,{' '}
-        <span className="font-bold text-blue-700">
+        <span className="font-bold text-primary-blue">
           prenez un mètre ruban et faites le tour de votre crâne au niveau du
           front
         </span>

@@ -29,7 +29,7 @@ const Offer = () => {
           </p>
         </header>
 
-        <div className="flex justify-center bg-gray-200 border-t-2 border-gray-200">
+        <div className="flex justify-center bg-gray-100">
           <div className="w-full max-w-screen-lg grid grid-cols-1 sm:grid-cols-2">
             <div className="flex justify-center items-center ski-image bg-white">
               <img src="/skis.jpg" alt="Ski Wintr Travel" />
