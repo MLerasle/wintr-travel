@@ -60,14 +60,17 @@ export default async (req, res) => {
     };
 
     // enregistre le booking dans son propre document sur Cloud Firestore
-    const docRef = db.collection('paid_bookings').doc(bookingdata.paymentIntentId);
-    docRef.set(bookingdata);
+    //console.log(db);
+    //console.log(db.collection('paid_bookings'));
+    const docRef = db.collection('paid_bookings').doc('test').add({test: 'blah'});
+    //await docRef.set(bookingdata);
+    //console.log(docRef);
 
     // appelle Sendinblue pour envoie de mail
     apiInstance.sendTransacEmail(sendSmtpEmail).then(
       function (data) {
         console.log('API called successfully. Returned data: ' + JSON.stringify(bookingdata));
-        docRef.set({notification_email_timestamp: Math.floor(Date.now()/1000)});
+        docRef.update({notification_email_timestamp: Math.floor(Date.now()/1000)});
         res.status(204).end();
       },
       function (error) {
