@@ -60,8 +60,8 @@ export default async (req, res) => {
     };
 
     // enregistre le booking dans son propre document sur Cloud Firestore
-    console.log({db});
-    console.log({db.collection('paid_bookings')});
+    console.log(db);
+    console.log(db.collection('paid_bookings'));
     const docRef = db.collection('paid_bookings').doc(bookingdata.paymentIntentId);
     //await docRef.set(bookingdata);
     console.log(docRef.toString);
