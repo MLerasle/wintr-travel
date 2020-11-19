@@ -2,7 +2,6 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 const Sentry = require('@sentry/node');
 const Firestore = require('@google-cloud/firestore');
 
-
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 var apiKey = defaultClient.authentications['api-key'];
 apiKey.apiKey =
@@ -33,7 +32,7 @@ export default async (req, res) => {
       bookingdata = data && JSON.parse(data);
 
       console.log(`Received message ${message.messageId}:`);
-      console.log(`Data: ${bookingdata}`);
+      console.log(`Data: ${JSON.stringify(bookingdata)}`);
     }
 
     sendSmtpEmail = {
@@ -62,21 +61,34 @@ export default async (req, res) => {
     // enregistre le booking dans son propre document sur Cloud Firestore
     //console.log(db);
     //console.log(db.collection('paid_bookings'));
-    const docRef = db.collection('paid_bookings').doc('test').add({test: 'blah'});
+    db.collection('bookings')
+      .add({ test: 'blah' })
+      .then((docRef) => {
+        console.log('Document written with ID: ', docRef.id);
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
+        Sentry.captureException(error);
+      });
     //await docRef.set(bookingdata);
     //console.log(docRef);
 
     // appelle Sendinblue pour envoie de mail
-    apiInstance.sendTransacEmail(sendSmtpEmail).then(
-      function (data) {
-        console.log('API called successfully. Returned data: ' + JSON.stringify(bookingdata));
-        docRef.update({notification_email_timestamp: Math.floor(Date.now()/1000)});
-        res.status(204).end();
-      },
-      function (error) {
-        console.error(error);
-      }
-    );
+    // apiInstance.sendTransacEmail(sendSmtpEmail).then(
+    //   function (data) {
+    //     console.log(
+    //       'API called successfully. Returned data: ' +
+    //         JSON.stringify(bookingdata)
+    //     );
+    //     docRef.update({
+    //       notification_email_timestamp: Math.floor(Date.now() / 1000),
+    //     });
+    //     res.status(204).end();
+    //   },
+    //   function (error) {
+    //     console.error(error);
+    //   }
+    // );
   } catch (error) {
     Sentry.captureException(error);
     res.status(400).json({
