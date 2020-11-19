@@ -64,7 +64,7 @@ export default async (req, res) => {
     //console.log(db.collection('paid_bookings'));
     const docRef = db.collection('paid_bookings').add(bookingdata);
     //await docRef.set(bookingdata);
-    console.log(docRef);
+    //console.log(docRef);
 
     // appelle Sendinblue pour envoie de mail
     apiInstance.sendTransacEmail(sendSmtpEmail).then(
