@@ -22,14 +22,16 @@ const Offer = () => {
       </Head>
 
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 sm:py-16">
-          <h1 className="heading">Vos vacances au ski en toute simplicité.</h1>
-          <p className="argument">
+        <header className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
+          <h1 className="heading text-gray-100">
+            Vos vacances au ski en toute simplicité.
+          </h1>
+          <p className="argument text-gray-300">
             Nous vous livrons tout ce qu'il vous faut pour un séjour réussi.
           </p>
         </header>
 
-        <div className="flex justify-center bg-gray-100">
+        <div className="flex justify-center bg-gray-100 max-w-screen-lg mx-auto">
           <div className="w-full max-w-screen-lg grid grid-cols-1 sm:grid-cols-2">
             <div className="flex justify-center items-center ski-image bg-white">
               <img src="/skis.jpg" alt="Ski Wintr Travel" />

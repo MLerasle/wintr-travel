@@ -35,8 +35,8 @@ const Args = () => (
             <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-3">
               <h2 className="heading">Un package complet</h2>
               <p className="argument">
-                Tout est inclus: skis, chaussures, casque, forfait, assurance
-                casse/vol, pour que vous profitiez pleinement de vos vacances.
+                Tout est inclus: skis, chaussures, casque, forfait et assurance
+                casse/vol pour que vous profitiez pleinement de vos vacances.
               </p>
             </div>
           </div>

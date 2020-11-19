@@ -4,21 +4,16 @@
 
 @layer components {
   .heading {
-    @apply text-2xl font-bold pb-2 text-gray-800 leading-tight;
+    @apply text-3xl font-bold pb-2 text-gray-800 leading-tight;
   }
   @screen sm {
     .heading {
-      @apply text-3xl;
+      @apply text-4xl;
     }
   }
 
   .argument {
-    @apply text-gray-600;
-  }
-  @screen sm {
-    .argument {
-      @apply text-lg;
-    }
+    @apply text-gray-600 text-lg;
   }
   @screen lg {
     .argument {

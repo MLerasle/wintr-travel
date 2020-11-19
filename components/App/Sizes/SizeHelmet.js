@@ -24,9 +24,9 @@ const SizeHelmet = (props) => {
   return (
     <>
       {props.withDetails && (
-        <h3 className="text-2xl font-bold text-gray-800 pb-4 pt-8">
+        <h2 className="text-2xl font-bold text-gray-800 pb-4 pt-8">
           3. Casque
-        </h3>
+        </h2>
       )}
       <p className="text-gray-600 py-1 leading-loose">
         Vous devez{' '}

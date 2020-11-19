@@ -23,14 +23,14 @@ const Brand = () => {
         />
       </Head>
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 sm:py-16">
-          <h1 className="heading">Fatch™</h1>
-          <p className="argument">
+        <header className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
+          <h1 className="heading text-gray-100">Fatch™</h1>
+          <p className="argument text-gray-300">
             La marque qui réinvente l’équipement de ski grand public.
           </p>
         </header>
 
-        <section className="md:text-lg pb-10 sm:pb-16 px-4 xl:px-0 text-gray-600 leading-loose">
+        <section className="md:text-lg pb-10 sm:pb-16 max-w-screen-lg mx-auto mt-10 text-gray-600 leading-loose">
           <h2 className="pb-3 text-2xl font-bold text-gray-900">
             1. L'origine de la marque
           </h2>

@@ -29,7 +29,10 @@ const Checkout = ({ paymentIntent }) => {
       <Head>
         <title>Paiement - Wintr Travel</title>
       </Head>
-      <MainSection className="py-2 md:py-6" layoutWithoutNavbarAndFooter>
+      <MainSection
+        className="py-2 md:py-6 max-w-screen-lg mx-auto"
+        layoutWithoutNavbarAndFooter
+      >
         <Header className="px-4 lg:px-2 xl:px-0">
           <Heading className="text-3xl">
             <Icon path={mdiLock} size={1} color="#424242" />

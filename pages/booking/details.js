@@ -151,7 +151,7 @@ const Details = () => {
       <Head>
         <title>Votre réservation - Wintr Travel</title>
       </Head>
-      <MainSection className="py-2 md:py-6">
+      <MainSection className="py-2 md:py-6 max-w-screen-lg mx-auto">
         <Modal open={isSizesModalOpened} closed={toggleSizesHelp}>
           <section className="md:text-md p-6">
             <SizeSkis />

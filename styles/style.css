@@ -8,9 +8,11 @@
 
 .webp .mobile-image {
   background-image: url('images/mobile/wintr-travel-home-xs.jpg?webp');
+  background-image: url('images/desktop/wintr-travel-home-2.jpg?webp');
 }
 .no-webp .mobile-image {
-  background-image: url('images/mobile/wintr-travel-home-xs.jpg');
+  /* background-image: url('images/mobile/wintr-travel-home-xs.jpg'); */
+  background-image: url('images/desktop/wintr-travel-home-2.jpg');
 }
 
 .webp .home-args-image-1 {
@@ -73,33 +75,35 @@
   }
 
   .webp .home-args-image-1 {
-    background-image: url('images/desktop/wintr-travel-simple.jpg?webp');
+    background-image: url('images/desktop/wintr-travel-simple-4.jpg?webp');
   }
   .no-webp .home-args-image-1 {
-    background-image: url('images/desktop/wintr-travel-simple.jpg');
+    background-image: url('images/desktop/wintr-travel-simple-4.jpg');
   }
 
   .webp .home-args-image-2 {
-    background-image: url('images/desktop/wintr-travel-rapide.jpg?webp');
+    background-image: url('images/desktop/wintr-travel-rapide-4.jpg?webp');
   }
   .no-webp .home-args-image-2 {
-    background-image: url('images/desktop/wintr-travel-rapide.jpg');
+    background-image: url('images/desktop/wintr-travel-rapide-4.jpg');
   }
 
   .webp .home-args-image-3 {
-    background-image: url('images/desktop/wintr-travel-confort.jpg?webp');
+    background-image: url('images/desktop/wintr-travel-confort-2.jpg?webp');
   }
   .no-webp .home-args-image-3 {
-    background-image: url('images/desktop/wintr-travel-confort.jpg');
+    background-image: url('images/desktop/wintr-travel-confort-2.jpg');
   }
 }
 
 @media (min-width: 768px) {
   .webp .hero::before {
-    background: url('images/desktop/wintr-travel-home.jpg?webp');
+    filter: brightness(50%);
+    background: url('images/desktop/wintr-travel-home-2.jpg?webp');
   }
   .no-webp .hero::before {
-    background: url('images/desktop/wintr-travel-home.jpg');
+    filter: brightness(50%);
+    background: url('images/desktop/wintr-travel-home-2.jpg');
   }
 }
 

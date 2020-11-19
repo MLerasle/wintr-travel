@@ -5,7 +5,7 @@ const Card = (props) => (
     }`}
   >
     <div
-      className={`bg-white md:rounded-lg md:shadow-xl p-4 md:p-8 w-full ${
+      className={`bg-white md:rounded-lg md:shadow-xl w-full ${
         props.subclasses && props.subclasses
       }`}
     >

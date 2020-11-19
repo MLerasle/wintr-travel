@@ -3,6 +3,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import * as Sentry from '@sentry/browser';
+import * as SentryNode from '@sentry/node';
 
 import Layout from '@/Layout/Layout';
 import BookingValidatedInfos from '@/App/BookingEdit/BookingValidatedInfos';
@@ -103,7 +104,7 @@ const Booking = () => {
       <Head>
         <title>Votre réservation - Wintr Travel</title>
       </Head>
-      <MainSection className="py-2 md:py-6">
+      <MainSection className="py-2 md:py-6 max-w-screen-lg mx-auto">
         <Modal open={isSizesModalOpened} closed={toggleSizesHelp}>
           <section className="md:text-md p-6">
             <SizeSkis />
@@ -139,5 +140,23 @@ const Booking = () => {
     </Layout>
   );
 };
+
+// export async function getServerSideProps(context) {
+//   const token = context.params.token;
+//   let booking;
+
+//   try {
+//     const response = await fetch(`https://whereisthebooking/${token}`);
+//     booking = await response.json();
+//   } catch (error) {
+//     SentryNode.captureException(error);
+//   }
+
+//   return {
+//     props: {
+//       booking,
+//     },
+//   };
+// }
 
 export default Booking;

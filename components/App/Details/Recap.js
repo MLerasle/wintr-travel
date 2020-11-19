@@ -11,7 +11,10 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
   const children = booking.children.length > 1 ? 'enfants' : 'enfant';
 
   return (
-    <Card classes="lg:px-0 md:py-6" subclasses="bg-gray-100 md:bg-white">
+    <Card
+      classes="lg:px-0 md:py-6"
+      subclasses="bg-gray-100 md:bg-white p-4 md:p-8"
+    >
       <Header>
         <Heading className="text-xl mb-2 md:mb-0">
           Votre séjour à Flaine

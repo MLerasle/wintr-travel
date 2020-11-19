@@ -10,11 +10,12 @@ const RadioButtons = (props) => {
       {props.items.map((item, index) => (
         <label
           key={item}
-          className={`flex-grow flex justify-center items-center border border-gray-300 hover:bg-lighter-green focus:outline-none ${
+          className={`flex-grow flex justify-center items-center border border-gray-300 focus:outline-none ${
             index < props.items.length - 1 ? 'border-r-0' : 'rounded-r-lg'
           } ${index === 0 && 'rounded-l-lg'} ${
-            item === props.selected &&
-            'bg-light-green hover:bg-light-green border-light-green'
+            item === props.selected
+              ? 'bg-light-green border-light-green'
+              : 'hover:bg-lighter-green'
           }`}
         >
           <input

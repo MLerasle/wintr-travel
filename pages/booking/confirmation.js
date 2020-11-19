@@ -34,7 +34,10 @@ const Confirmation = () => {
         <title>Commande validée - Wintr Travel</title>
       </Head>
       <MainSection className="py-2 md:py-6 flex justify-center items-center">
-        <Card classes="max-w-2xl" subclasses="bg-gray-100 md:bg-white">
+        <Card
+          classes="max-w-2xl"
+          subclasses="bg-gray-100 md:bg-white p-4 md:p-8"
+        >
           {view}
         </Card>
       </MainSection>

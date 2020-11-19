@@ -1,9 +1,9 @@
 const SizeShoes = (props) => (
   <>
     {props.withDetails && (
-      <h3 className="text-2xl font-bold text-gray-800 pb-4 pt-8">
+      <h2 className="text-2xl font-bold text-gray-800 pb-4 pt-8">
         2. Chaussures
-      </h3>
+      </h2>
     )}
     <p className="text-gray-600 py-1 leading-loose">
       La pointure des chaussures de skis se mesure en Mondopoint, ce qui
