@@ -60,7 +60,8 @@ export default async (req, res) => {
     };
 
     // enregistre le booking dans son propre document sur Cloud Firestore
-    const docRef = db.collection('paid_bookings').doc(bookingdata.paymentIntentId).set(bookingdata);
+    const docRef = db.collection('paid_bookings').doc(bookingdata.paymentIntentId);
+    await docRef.set(bookingdata);
     console.log(docRef);
 
     // appelle Sendinblue pour envoie de mail
