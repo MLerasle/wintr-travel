@@ -45,15 +45,36 @@ class MyDocument extends Document {
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
               />
               <script
+                async
+                src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"
+              ></script>
+              <script
                 dangerouslySetInnerHTML={{
                   __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', '${GA_TRACKING_ID}', {
-                  send_page_view: false
-                });
+                const GA_LOCAL_STORAGE_KEY = 'ga:clientId';
+
+                if (window.localStorage) {
+                  if (localStorage.getItem(GA_LOCAL_STORAGE_KEY)) {
+                    gtag('config', '${GA_TRACKING_ID}', {
+                      send_page_view: false,
+                      client_storage: 'none',
+                      client_id: localStorage.getItem(GA_LOCAL_STORAGE_KEY),
+                    });
+                  } else {
+                    window.localStorage.setItem(GA_LOCAL_STORAGE_KEY, uuidv4());
+
+                    gtag('config', '${GA_TRACKING_ID}', {
+                      send_page_view: false,
+                      client_storage: 'none',
+                      client_id: localStorage.getItem(GA_LOCAL_STORAGE_KEY),
+                    });
+                  }
+                }
+
               `,
                 }}
               />
