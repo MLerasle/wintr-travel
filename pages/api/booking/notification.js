@@ -68,7 +68,6 @@ export default async (req, res) => {
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
-        Sentry.captureException(error);
       });
     //await docRef.set(bookingdata);
     //console.log(docRef);
