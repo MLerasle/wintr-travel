@@ -61,7 +61,7 @@ export default async (req, res) => {
     // enregistre le booking dans son propre document sur Cloud Firestore
     //console.log(db);
     //console.log(db.collection('paid_bookings'));
-    db.collection('bookings')
+    db.collection('paid_bookings')
       .add({ test: 'blah' })
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
