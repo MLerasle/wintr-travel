@@ -77,11 +77,10 @@ export default async (req, res) => {
          );
          docRef.update({
            notification_email_timestamp: Math.floor(Date.now() / 1000),
-         });
-         res.status(204).end();
-       },
-       function (error) {
-         console.error(error);
+         }).then(() => {
+           res.status(204).end();
+         };     function (error) {
+          console.error(error);
        }
      );
   } catch (error) {
