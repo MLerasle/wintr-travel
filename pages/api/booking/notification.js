@@ -59,31 +59,23 @@ export default async (req, res) => {
     };
 
     // enregistre le booking dans son propre document sur Cloud Firestore
-    db.collection('paid_bookings')
-      .doc(bookingdata.paymentIntentId).set(bookingdata)
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-    });
-    
+    const docRef = await db
+      .collection('paid_bookings')
+      .doc(bookingdata.paymentIntentId)
+      .set(bookingdata);
+
+    console.log('Document written with ID: ', docRef.id);
+
     // appelle Sendinblue pour envoie de mail
-    apiInstance.sendTransacEmail(sendSmtpEmail).then(
-      function (data) {
-         console.log(
-           'API called successfully. Returned data: ' +
-             JSON.stringify(bookingdata)
-         );
-         docRef.update({
-           notification_email_timestamp: Math.floor(Date.now() / 1000),
-         }).then(() => {
-           res.status(204).end();
-         };     function (error) {
-          console.error(error);
-       }
-     );
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
+    console.log('Succesfully sent email');
+    await docRef.update({
+      notification_email_timestamp: Math.floor(Date.now() / 1000),
+    });
+    console.log('Notification timestamp was updated');
+    res.status(204).end();
   } catch (error) {
+    console.log({ error });
     Sentry.captureException(error);
     res.status(400).json({
       message: 'Error while sending notification',
