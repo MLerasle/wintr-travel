@@ -25,68 +25,69 @@ const Faq = () => {
           </p>
         </header>
         <ul className="max-w-screen-lg mx-auto mt-10">
-          <Question query="Comment retourner mes articles ?">
-            Voluptate reprehenderit cupidatat dolor qui anim nulla aliquip Lorem
-            irure consequat. Lorem dolore occaecat anim incididunt Lorem.
-            Cupidatat commodo sit aliquip irure enim anim aute exercitation
-            cupidatat veniam eu ullamco adipisicing. Excepteur id Lorem
-            adipisicing sit veniam adipisicing sint. Irure sint cupidatat sunt
-            id deserunt irure voluptate dolor. Amet elit nisi ipsum amet ea
-            fugiat. Pariatur id ex laboris consectetur.
-          </Question>
           <Question query="Où en est ma commande ?">
-            Voluptate reprehenderit cupidatat dolor qui anim nulla aliquip Lorem
-            irure consequat. Lorem dolore occaecat anim incididunt Lorem.
-            Cupidatat commodo sit aliquip irure enim anim aute exercitation
-            cupidatat veniam eu ullamco adipisicing. Excepteur id Lorem
-            adipisicing sit veniam adipisicing sint. Irure sint cupidatat sunt
-            id deserunt irure voluptate dolor. Amet elit nisi ipsum amet ea
-            fugiat. Pariatur id ex laboris consectetur.
+            <p className="py-1">
+              Nous travaillons avec notre propre transporteur pour nous assurer
+              de la livraison dans les meilleures conditions.
+            </p>
+            <p className="py-1">
+              L’équipe de Wintr Travel prendra contact avec vous quelques jours
+              avant votre arrivée si des informations sont manquantes.
+            </p>
+            <p className="py-1">
+              Vous pouvez nous contacter à tout moment, nous sommes disponibles
+              à toute heure pour vous répondre.
+            </p>
           </Question>
-          <Question query="Je me suis trompé(e) d’adresse, de modèle, de taille lors de ma commande, que faire ?">
-            Voluptate reprehenderit cupidatat dolor qui anim nulla aliquip Lorem
-            irure consequat. Lorem dolore occaecat anim incididunt Lorem.
-            Cupidatat commodo sit aliquip irure enim anim aute exercitation
-            cupidatat veniam eu ullamco adipisicing. Excepteur id Lorem
-            adipisicing sit veniam adipisicing sint. Irure sint cupidatat sunt
-            id deserunt irure voluptate dolor. Amet elit nisi ipsum amet ea
-            fugiat. Pariatur id ex laboris consectetur.
+          <Question query="Je me suis trompé(e) d’adresse ou de taille lors de ma commande, que faire ?">
+            <p className="py-1">Cela arrive même au meilleur !</p>
+            <p className="py-1">
+              Sachez que votre commande, une fois validée, est envoyée
+              immédiatement à nos équipes et nous avons la possibilité de la
+              modifier.
+            </p>
+            <p className="py-1">
+              Contactez nous simplement et nous serons ravis de faire les
+              modifications nécessaires.
+            </p>
           </Question>
-          <Question query="Que faire s'il manque un produit dans ma commande ?">
-            Voluptate reprehenderit cupidatat dolor qui anim nulla aliquip Lorem
-            irure consequat. Lorem dolore occaecat anim incididunt Lorem.
-            Cupidatat commodo sit aliquip irure enim anim aute exercitation
-            cupidatat veniam eu ullamco adipisicing. Excepteur id Lorem
-            adipisicing sit veniam adipisicing sint. Irure sint cupidatat sunt
-            id deserunt irure voluptate dolor. Amet elit nisi ipsum amet ea
-            fugiat. Pariatur id ex laboris consectetur.
+          <Question query="Comment vous contacter ?">
+            <p className="py-1">
+              Pour nous contacter, vous pouvez nous envoyer un email à XXX ou
+              nous laisser un message dans le chat, nous répondrons au plus
+              vite.
+            </p>
           </Question>
           <Question query="Quels sont les coûts et délais de livraison ?">
-            Voluptate reprehenderit cupidatat dolor qui anim nulla aliquip Lorem
-            irure consequat. Lorem dolore occaecat anim incididunt Lorem.
-            Cupidatat commodo sit aliquip irure enim anim aute exercitation
-            cupidatat veniam eu ullamco adipisicing. Excepteur id Lorem
-            adipisicing sit veniam adipisicing sint. Irure sint cupidatat sunt
-            id deserunt irure voluptate dolor. Amet elit nisi ipsum amet ea
-            fugiat. Pariatur id ex laboris consectetur.
+            <p className="py-1">
+              Les commandes sont préparées dans les 48H avant votre arrivée. Les
+              coûts de livraison sont offerts et nous nous engageons à vous
+              livrer au mieux dans le créneau défini lors de la commande.
+            </p>
+            <p className="py-1">
+              Si vous avez des retards ou souhaitez modifier le créneau, c’est
+              simple il suffit de nous contacter.
+            </p>
           </Question>
           <Question query="Quels sont les moyens de paiement pour régler ma commande ?">
-            Voluptate reprehenderit cupidatat dolor qui anim nulla aliquip Lorem
-            irure consequat. Lorem dolore occaecat anim incididunt Lorem.
-            Cupidatat commodo sit aliquip irure enim anim aute exercitation
-            cupidatat veniam eu ullamco adipisicing. Excepteur id Lorem
-            adipisicing sit veniam adipisicing sint. Irure sint cupidatat sunt
-            id deserunt irure voluptate dolor. Amet elit nisi ipsum amet ea
-            fugiat. Pariatur id ex laboris consectetur.
+            <p className="py-1">
+              Nous proposons le paiement sécurisé par carte bancaire (Visa,
+              Mastercard ou American Express).
+            </p>
+            <p className="py-1">
+              Vous pouvez également payer en un clic via Apple Pay ou Google
+              Pay.
+            </p>
           </Question>
-          <Question query="Je souhaite annuler ma commande">
-            Voluptate reprehenderit cupidatat dolor qui anim nulla aliquip Lorem
-            irure consequat. Lorem dolore occaecat anim incididunt Lorem.
-            Cupidatat commodo sit aliquip irure enim anim aute exercitation
-            cupidatat veniam eu ullamco adipisicing. Excepteur id Lorem
-            adipisicing sit veniam adipisicing sint. Irure sint cupidatat sunt
-            id deserunt irure voluptate dolor. Amet elit nisi ipsum amet ea
-            fugiat. Pariatur id ex laboris consectetur.
+          <Question query="Puis-je annuler ma commande ?">
+            <p className="py-1">Nous regrettons fortement votre choix !</p>
+            <p className="py-1">
+              Sachez que vous pouvez annuler votre commande sans frais jusqu'à
+              24h avant votre arrivée.
+            </p>
+            <p className="py-1">
+              Vous serez intégralement remboursés dans un délai de 48 heures.
+            </p>
           </Question>
         </ul>
       </MainSection>
