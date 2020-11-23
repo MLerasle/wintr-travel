@@ -30,7 +30,7 @@ const Privacy = () => {
 
         <article className="md:text-lg pb-10 sm:pb-16 px-4 xl:px-0 text-gray-700 leading-loose max-w-screen-lg mx-auto mt-10">
           <section className="mb-10">
-            <h2 className="py-4 text-2xl font-bold text-gray-900">
+            <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 1 : PRÉAMBULE
             </h2>
             <p className="py-3">
@@ -41,7 +41,7 @@ const Privacy = () => {
               La présente politique de confidentialité a pour but d'exposer aux
               utilisateurs du site :
             </p>
-            <ul className="list-disc px-10 py-3">
+            <ul className="list-disc px-6 md:px-10 py-3">
               <li>
                 La manière dont sont collectées et traitées leurs données à
                 caractère personnel. Doivent être considérées comme données
@@ -76,7 +76,7 @@ const Privacy = () => {
           </section>
 
           <section className="mb-10">
-            <h2 className="py-4 text-2xl font-bold text-gray-900">
+            <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 2 : PRINCIPES GÉNÉRAUX EN MATIÈRE DE COLLECTE ET DE
               TRAITEMENT DE DONNÉES
             </h2>
@@ -85,7 +85,7 @@ const Privacy = () => {
               2016/679, la collecte et le traitement des données des
               utilisateurs du site respectent les principes suivants :
             </p>
-            <ul className="list-disc px-10 py-3">
+            <ul className="list-disc px-6 md:px-10 py-3">
               <li>
                 Licéité, loyauté et transparence : les données ne peuvent être
                 collectées et traitées qu'avec le consentement de l'utilisateur
@@ -124,7 +124,7 @@ const Privacy = () => {
               données à caractère personnel ne pourront intervenir que s'ils
               respectent au moins l'une des conditions ci-après énumérées :
             </p>
-            <ul className="list-disc px-10 py-3">
+            <ul className="list-disc px-6 md:px-10 py-3">
               <li>L'utilisateur a expressément consenti au traitement;</li>
               <li>
                 Le traitement est nécessaire à la bonne exécution d'un contrat;
@@ -149,25 +149,25 @@ const Privacy = () => {
           </section>
 
           <section>
-            <h2 className="py-4 text-2xl font-bold text-gray-900">
+            <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 3 : DONNÉES À CARACTÈRE PERSONNEL COLLECTÉES ET TRAITÉES
               DANS LE CADRE DE LA NAVIGATION SUR LE SITE
             </h2>
-            <h3 className="text-gray-900 font-semibold text-xl px-10 py-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               A. DONNÉES COLLECTÉES ET TRAITÉES ET MODE DE COLLECTE
             </h3>
             <p className="py-3">
               Les données à caractère personnel collectées sur le site Wintr
               Travel sont les suivantes :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               Prénoms, Nom, adresse e-mail et numéro de téléphone.
             </p>
             <p className="py-3">
               Ces données sont collectées lorsque l'utilisateur effectue l'une
               des opérations suivantes sur le site :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               Lorsque l'utilise effectue une réservation sur le site.
             </p>
             <p className="py-3">
@@ -185,14 +185,14 @@ const Privacy = () => {
               La collecte et le traitement des données répondent aux finalités
               suivantes :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               L'adresse email est enregistrée afin de pouvoir confirmer la
               réservation et effectuer les opérations d'après-vente.
               <br />
               Le nom et le prénom sont stockés pour la facturation au client.
             </p>
 
-            <h3 className="text-gray-900 font-semibold text-xl px-10 pt-6 pb-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               B. TRANSMISSION DES DONNÉES A DES TIERS
             </h3>
             <p className="py-3">
@@ -201,14 +201,14 @@ const Privacy = () => {
               site.
             </p>
 
-            <h3 className="text-gray-900 font-semibold text-xl px-10 pt-6 pb-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               C. HÉBERGEMENT DES DONNÉES
             </h3>
             <p className="py-3">
               Le site Wintr Travel est hébergé par : Vercel Inc., dont le siège
               est situé à l'adresse ci-après :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               340 S Lemon Ave #4133 Walnut, CA 91789
             </p>
             <p className="py-3">
@@ -223,18 +223,18 @@ const Privacy = () => {
           </section>
 
           <section className="mb-10">
-            <h2 className="py-4 text-2xl font-bold text-gray-900">
+            <h2 className="pt-4 pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 4 : RESPONSABLE DU TRAITEMENT DES DONNÉES ET DÉLÉGUÉ À LA
               PROTECTION DES DONNÉES
             </h2>
-            <h3 className="text-gray-900 font-semibold text-xl px-10 py-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               A. LE RESPONSABLE DU TRAITEMENT DES DONNÉES
             </h3>
             <p className="py-3">
               Le responsable du traitement des données à caractère personnel est
               : Adrien Naeem. Il peut être contacté de la manière suivante :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               Le responsable des traitements peut être contacté à l'adresse{' '}
               <a href="mailto:dpo@wintr.travel" className="text-primary-blue">
                 dpo@wintr.travel
@@ -246,7 +246,7 @@ const Privacy = () => {
               les finalités et les moyens mis au service du traitement des
               données à caractère personnel.
             </p>
-            <h3 className="text-gray-900 font-semibold text-xl px-10 pt-6 pb-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               B. OBLIGATIONS DU RESPONSABLE DU TRAITEMENT DES DONNÉES
             </h3>
             <p className="py-3">
@@ -276,7 +276,7 @@ const Privacy = () => {
               responsable du traitement s'engage à informer l'utilisateur par
               tout moyen.
             </p>
-            <h3 className="text-gray-900 font-semibold text-xl px-10 pt-6 pb-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               C. LE DÉLÉGUÉ À LA PROTECTION DES DONNÉES
             </h3>
             <p className="py-3">
@@ -295,13 +295,13 @@ const Privacy = () => {
               Le délégué à la protection des données peut être joint de la
               manière suivante :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               Par email à l'adresse dpo@wintr.travel
             </p>
           </section>
 
           <section className="mb-10">
-            <h2 className="py-4 text-2xl font-bold text-gray-900">
+            <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 5 : DROITS DE L'UTILISATEUR
             </h2>
             <p className="py-3">
@@ -318,11 +318,11 @@ const Privacy = () => {
               Le responsable du traitement des données est tenu de répondre à
               l'utilisateur dans un délai de 30 (trente) jours maximum.
             </p>
-            <h3 className="text-gray-900 font-semibold text-xl px-10 py-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               A. PRÉSENTATION DES DROITS DE L'UTILISATEUR EN MATIÈRE DE COLLECTE
               ET TRAITEMENT DE DONNÉES
             </h3>
-            <h4 className="text-gray-900 text-lg px-16 py-3 font-semibold">
+            <h4 className="text-gray-900 md:text-lg px-6 md:px-16 py-3 font-semibold">
               a. Droit d'accès, de rectification et droit à l'effacement
             </h4>
             <p className="py-3">
@@ -330,12 +330,12 @@ const Privacy = () => {
               ou demander la suppression des données le concernant, en
               respectant la procédure ci-après énoncée :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               L’utilisateur doit envoyer un e-mail au responsable du traitement
               des données personnelles, en précisant l’objet de sa demande et en
               utilisant l’adresse e-mail de contact qui est fournie plus haut.
             </p>
-            <h4 className="text-gray-900 text-lg px-16 py-3 font-semibold">
+            <h4 className="text-gray-900 md:text-lg px-6 md:px-16 py-3 font-semibold">
               b. Droit à la portabilité des données
             </h4>
             <p className="py-3">
@@ -343,12 +343,12 @@ const Privacy = () => {
               personnelles, détenues par le site, vers un autre site, en se
               conformant à la procédure ci-après :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               L’utilisateur doit faire une demande de portabilité de ses données
               personnelles auprès du responsable du traitement des données, en
               envoyant un e-mail à l’adresse prévue ci-dessus.
             </p>
-            <h4 className="text-gray-900 text-lg px-16 py-3 font-semibold">
+            <h4 className="text-gray-900 md:text-lg px-6 md:px-16 py-3 font-semibold">
               c. Droit à la limitation et à l'opposition du traitement des
               données
             </h4>
@@ -364,12 +364,12 @@ const Privacy = () => {
               formuler une opposition au traitement de ses données,
               l'utilisateur doit suivre la procédure suivante :
             </p>
-            <p className="px-10 py-3 italic">
+            <p className="px-6 md:px-10 py-3 italic">
               L’utilisateur doit faire une demande de limitation au traitement
               de ses données personnelles auprès du responsable du traitement
               des données, en envoyant un e-mail à l’adresse prévue ci-dessus.
             </p>
-            <h4 className="text-gray-900 text-lg px-16 py-3 font-semibold">
+            <h4 className="text-gray-900 md:text-lg px-6 md:px-16 py-3 font-semibold">
               d. Droit de ne pas faire l'objet d'une décision fondée
               exclusivement sur un procédé automatisé
             </h4>
@@ -380,7 +380,7 @@ const Privacy = () => {
               effets juridiques le concernant, ou l'affecte de manière
               significative de façon similaire.
             </p>
-            <h4 className="text-gray-900 text-lg px-16 py-3 font-semibold">
+            <h4 className="text-gray-900 md:text-lg px-6 md:px-16 py-3 font-semibold">
               e. Droit de déterminer le sort des données après la mort
             </h4>
             <p className="py-3">
@@ -388,7 +388,7 @@ const Privacy = () => {
               le devenir de ses données collectées et traitées s'il décède,
               conformément à la loi n°2016-1321 du 7 octobre 2016.
             </p>
-            <h4 className="text-gray-900 text-lg px-16 py-3 font-semibold">
+            <h4 className="text-gray-900 md:text-lg px-6 md:px-16 py-3 font-semibold">
               f. Droit de saisir l'autorité de contrôle compétente
             </h4>
             <p className="py-3">
@@ -408,7 +408,7 @@ const Privacy = () => {
               </a>
               ) ou tout juge compétent.
             </p>
-            <h3 className="text-gray-900 font-semibold text-xl px-10 py-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               B. DONNÉES PERSONNELLES DES PERSONNES MINEURES
             </h3>
             <p className="py-3">
@@ -430,7 +430,7 @@ const Privacy = () => {
           </section>
 
           <section className="mb-10">
-            <h2 className="py-4 text-2xl font-bold text-gray-900">
+            <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 6 : UTILISATION DES FICHIERS "COOKIES"
             </h2>
             <p className="py-3">
@@ -458,7 +458,7 @@ const Privacy = () => {
               le site demandera à nouveau l'autorisation de l'utilisateur pour
               enregistrer des fichiers "cookies" sur son disque dur.
             </p>
-            <h3 className="text-gray-900 font-semibold text-xl px-10 py-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               A. Opposition de l'utilisateur à l'utilisation de fichiers
               "cookies" par le site
             </h3>
@@ -473,12 +473,12 @@ const Privacy = () => {
               de navigation pour s'opposer à l'enregistrement des fichiers
               "cookies" :
             </p>
-            <ul className="list-disc px-10 py-3">
+            <ul className="list-disc px-6 md:px-10 py-3">
               <li>
                 <b>Chrome​</b> :{' '}
                 <a
                   href="https://support.google.com/accounts/answer/61416?hl=fr"
-                  className="text-primary-blue hover:underline"
+                  className="text-primary-blue hover:underline break-all"
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -488,21 +488,19 @@ const Privacy = () => {
               <li>
                 <b>Firefox</b> :{' '}
                 <a
-                  href="https://support.mozilla.org/fr/kb/enable-and-disable-cookies-website-prefere
-                  nces"
-                  className="text-primary-blue hover:underline"
+                  href="https://support.mozilla.org/fr/kb/enable-and-disable-cookies-website-preferences"
+                  className="text-primary-blue hover:underline break-all"
                   rel="noreferrer"
                   target="_blank"
                 >
-                  https://support.mozilla.org/fr/kb/enable-and-disable-cookies-website-prefere
-                  nces
+                  https://support.mozilla.org/fr/kb/enable-and-disable-cookies-website-preferences
                 </a>
               </li>
               <li>
                 <b>Safari​</b> :{' '}
                 <a
                   href="http://www.apple.com/legal/privacy/fr-ww/"
-                  className="text-primary-blue hover:underline"
+                  className="text-primary-blue hover:underline break-all"
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -512,21 +510,19 @@ const Privacy = () => {
               <li>
                 <b>Internet Explorer</b> :{' '}
                 <a
-                  href="https://support.microsoft.com/fr-fr/help/17442/windows-internet-explorer-del
-                  ete-manage-cookies"
-                  className="text-primary-blue hover:underline"
+                  href="https://support.microsoft.com/fr-fr/help/17442/windows-internet-explorer-delete-manage-cookies"
+                  className="text-primary-blue hover:underline break-all"
                   rel="noreferrer"
                   target="_blank"
                 >
-                  https://support.microsoft.com/fr-fr/help/17442/windows-internet-explorer-del
-                  ete-manage-cookies
+                  https://support.microsoft.com/fr-fr/help/17442/windows-internet-explorer-delete-manage-cookies
                 </a>
               </li>
               <li>
                 <b>Opera</b> :{' '}
                 <a
                   href="http://www.opera.com/help/tutorials/security/cookies/"
-                  className="text-primary-blue hover:underline"
+                  className="text-primary-blue hover:underline break-all"
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -541,14 +537,14 @@ const Privacy = () => {
               manipulation ne pourrait être considéré comme étant du fait de
               l'éditeur du site.
             </p>
-            <h3 className="text-gray-900 font-semibold text-xl px-10 py-3">
+            <h3 className="text-gray-900 font-semibold text-lg md:text-xl md:px-10 py-3">
               B. Description des fichiers "cookies" utilisés par le site
             </h3>
             <p className="py-3">
               L'éditeur du site attire l'attention de l'utilisateur sur le fait
               que les cookies suivants sont utilisés lors de sa navigation :
             </p>
-            <ul className="list-disc px-10 py-3">
+            <ul className="list-disc px-6 md:px-10 py-3">
               <li>
                 Nom du cookie: paymentIntentId; Émetteur: Wintr Travel;
                 Finalité: Bon fonctionnement du site;
@@ -570,7 +566,7 @@ const Privacy = () => {
             <p className="py-3">
               Il s'agit plus particulièrement des tiers suivants :
             </p>
-            <ul className="list-disc px-10 py-3">
+            <ul className="list-disc px-6 md:px-10 py-3">
               <li>Stripe</li>
               <li>Google</li>
             </ul>
@@ -592,7 +588,7 @@ const Privacy = () => {
           </section>
 
           <section className="mb-10">
-            <h2 className="py-4 text-2xl font-bold text-gray-900">
+            <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 7 : CONDITIONS DE MODIFICATION DE LA POLITIQUE DE
               CONFIDENTIALITÉ
             </h2>
@@ -624,7 +620,7 @@ const Privacy = () => {
           </section>
 
           <section className="mb-10">
-            <h2 className="py-4 text-2xl font-bold text-gray-900">
+            <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 8 : ACCEPTATION PAR L'UTILISATEUR DE LA POLITIQUE DE
               CONFIDENTIALITÉ
             </h2>
