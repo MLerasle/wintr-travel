@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
 import * as SentryNode from '@sentry/node';
 
@@ -20,16 +21,15 @@ import Alert from '@/UI/Alert';
 
 import * as gtag from 'lib/gtag';
 import { setSkiers, initializeBooking } from 'store/actions';
-import { PAID_BOOKING } from 'data/booking';
+import { CREDENTIALS } from 'data/gcp';
 
-const Booking = () => {
+const Booking = ({ booking }) => {
   const router = useRouter();
   const { token } = router.query;
   const _isMounted = useRef(true);
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [alert, setAlert] = useState(null);
-  const booking = useSelector((state) => state, shallowEqual);
   const dispatch = useDispatch();
 
   const skiers = [...booking.adults, ...booking.children];
@@ -41,7 +41,7 @@ const Booking = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(initializeBooking(PAID_BOOKING));
+    dispatch(initializeBooking(booking));
   }, []);
 
   const toggleSizesHelp = () => {
@@ -141,22 +141,33 @@ const Booking = () => {
   );
 };
 
-// export async function getServerSideProps(context) {
-//   const token = context.params.token;
-//   let booking;
+export async function getServerSideProps(context) {
+  const db = new Firestore(CREDENTIALS);
+  const token = context.params.token;
+  const docRef = db.collection('paid_bookings').doc(token);
+  let booking;
 
-//   try {
-//     const response = await fetch(`https://whereisthebooking/${token}`);
-//     booking = await response.json();
-//   } catch (error) {
-//     SentryNode.captureException(error);
-//   }
+  try {
+    const doc = await docRef.get();
+    if (doc.exists) {
+      booking = doc.data();
+    } else {
+      return {
+        notFound: true,
+      };
+    }
+  } catch (error) {
+    SentryNode.captureException(error);
+    return {
+      notFound: true,
+    };
+  }
 
-//   return {
-//     props: {
-//       booking,
-//     },
-//   };
-// }
+  return {
+    props: {
+      booking,
+    },
+  };
+}
 
 export default Booking;
