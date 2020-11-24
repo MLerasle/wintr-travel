@@ -143,7 +143,10 @@ const CheckoutForm = ({ intent }) => {
       label: paymentMethod,
     });
 
-    Router.push('/booking/confirmation').then(() => {
+    Router.push({
+      pathname: '/booking/confirmation',
+      query: { pid: updatedBooking.paymentIntentId },
+    }).then(() => {
       if (_isMounted.current) {
         setIsLoading(false);
       }

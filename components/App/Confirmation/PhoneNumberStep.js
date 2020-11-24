@@ -27,7 +27,7 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
     if (isValidPhoneNumber(mobileNumber)) {
       // Send it to the backend
       gtagLabel = 'Phone number OK';
-      onPhoneNumberSubmitted();
+      onPhoneNumberSubmitted(mobileNumber);
     } else {
       gtagLabel = 'Phone number incorrect';
       setError('Le numéro saisi est incorrect.');
