@@ -11,23 +11,23 @@ import Loader from '@/UI/Loader';
 import * as gtag from 'lib/gtag';
 
 const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
-  const [mobileNumber, setMobileNumber] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
   const changeMobileNumber = (e) => {
     setError(null);
-    setMobileNumber(e);
+    setPhoneNumber(e);
   };
 
   const submitPhoneNumber = (e) => {
     e.preventDefault();
     setIsLoading(true);
     let gtagLabel;
-    if (isValidPhoneNumber(mobileNumber)) {
+    if (isValidPhoneNumber(phoneNumber)) {
       // Send it to the backend
       gtagLabel = 'Phone number OK';
-      onPhoneNumberSubmitted(mobileNumber);
+      onPhoneNumberSubmitted(phoneNumber);
     } else {
       gtagLabel = 'Phone number incorrect';
       setError('Le numéro saisi est incorrect.');
@@ -64,7 +64,7 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
         </p>
         <form className="max-w-sm md:flex">
           <InputPhone
-            value={mobileNumber}
+            value={phoneNumber}
             onChange={changeMobileNumber}
             focus
             error={error}

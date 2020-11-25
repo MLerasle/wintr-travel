@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import 'react-phone-number-input/style.css';
 
 import Layout from '@/Layout/Layout';
@@ -14,9 +13,7 @@ import { setPhoneNumber } from 'store/actions';
 
 import * as gtag from 'lib/gtag';
 
-const Confirmation = () => {
-  const router = useRouter();
-  const pid = router.query.pid;
+const Confirmation = ({ pid }) => {
   const dispatch = useDispatch();
   const [isPhoneNumberSubmitted, setIsPhoneNumberSubmitted] = useState(false);
 
@@ -24,15 +21,15 @@ const Confirmation = () => {
     gtag.pageView('Confirmation de la réservation', '/booking/confirmation');
   }, []);
 
-  const updateBooking = async (mobileNumber) => {
+  const updateBooking = async (phoneNumber) => {
     try {
-      dispatch(setPhoneNumber(mobileNumber));
+      dispatch(setPhoneNumber(phoneNumber));
       await fetch('/api/booking/update', {
         method: 'PUT',
         headers: {
           'content-type': 'application/json',
         },
-        body: JSON.stringify({ mobileNumber, pid }),
+        body: JSON.stringify({ phoneNumber, pid }),
       });
       setIsPhoneNumberSubmitted(true);
     } catch (error) {
@@ -63,5 +60,23 @@ const Confirmation = () => {
     </Layout>
   );
 };
+
+export async function getServerSideProps(context) {
+  // /confirmation is reachable only after checkout
+  const pid = context.query.pid;
+  let prevPath;
+  if (context.req.headers.referer) {
+    prevPath = context.req.headers.referer.split('/').reverse()[0];
+  }
+  if (!pid || !prevPath || prevPath !== 'checkout') {
+    context.res.writeHead(302, { Location: '/' });
+    context.res.end();
+  }
+  return {
+    props: {
+      pid,
+    },
+  };
+}
 
 export default Confirmation;

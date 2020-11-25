@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Firestore from '@google-cloud/firestore';
@@ -23,7 +23,7 @@ import * as gtag from 'lib/gtag';
 import { setSkiers, initializeBooking } from 'store/actions';
 import { CREDENTIALS } from 'data/gcp';
 
-const Booking = ({ booking }) => {
+const Booking = ({ fetchedBooking }) => {
   const router = useRouter();
   const { token } = router.query;
   const _isMounted = useRef(true);
@@ -31,8 +31,9 @@ const Booking = ({ booking }) => {
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [alert, setAlert] = useState(null);
   const dispatch = useDispatch();
+  const booking = useSelector((state) => state, shallowEqual);
 
-  const skiers = [...booking.adults, ...booking.children];
+  const skiers = [...fetchedBooking.adults, ...fetchedBooking.children];
 
   useEffect(() => {
     return () => {
@@ -41,7 +42,7 @@ const Booking = ({ booking }) => {
   }, []);
 
   useEffect(() => {
-    dispatch(initializeBooking(booking));
+    dispatch(initializeBooking(fetchedBooking));
   }, []);
 
   const toggleSizesHelp = () => {
@@ -68,18 +69,37 @@ const Booking = ({ booking }) => {
   const validateBookingDetails = async () => {
     setIsLoading(true);
     try {
-      await fetch('/api/booking/publish', {
+      console.log('Payment intent id', booking.paymentIntentId);
+      const response = await fetch('/api/booking/update', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(booking),
+        body: JSON.stringify({
+          pid: booking.paymentIntentId,
+          prevPhoneNumber: fetchedBooking.phoneNumber,
+          phoneNumber: booking.phoneNumber,
+          deliveryAddress: booking.deliveryAddress,
+          placeId: booking.placeId,
+          adults: booking.adults,
+          children: booking.children,
+        }),
       });
-      setAlert({
-        message:
-          'Les modifications de votre réservation ont bien été prises en compte.',
-        type: 'success',
-      });
+      let alert;
+      if (response.status === 200) {
+        alert = {
+          message:
+            'Les modifications de votre réservation ont bien été prises en compte.',
+          type: 'success',
+        };
+      } else {
+        alert = {
+          message:
+            "Une erreur est survenue durant la mise à jour de votre réservation. \nVeuillez réessayer ou prendre contact avec nous si l'erreur persiste.",
+          type: 'error',
+        };
+      }
+      setAlert(alert);
     } catch (error) {
       Sentry.captureException(error);
       setAlert({
@@ -145,12 +165,12 @@ export async function getServerSideProps(context) {
   const db = new Firestore(CREDENTIALS);
   const token = context.params.token;
   const docRef = db.collection('paid_bookings').doc(token);
-  let booking;
+  let fetchedBooking;
 
   try {
     const doc = await docRef.get();
     if (doc.exists) {
-      booking = doc.data();
+      fetchedBooking = doc.data();
     } else {
       return {
         notFound: true,
@@ -165,7 +185,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      booking,
+      fetchedBooking,
     },
   };
 }

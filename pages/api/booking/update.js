@@ -5,20 +5,25 @@ import { CREDENTIALS } from 'data/gcp';
 
 export default async (req, res) => {
   const db = new Firestore(CREDENTIALS);
+  db.settings({ ignoreUndefinedProperties: true });
+
   const bookingdata = req.body;
-  console.log({ bookingdata });
 
   try {
     const docRef = db.collection('paid_bookings').doc(bookingdata.pid);
 
     // Update booking in db
     await docRef.update({
-      mobileNumber: bookingdata.mobileNumber,
+      phoneNumber: bookingdata.phoneNumber,
+      deliveryAddress: bookingdata.deliveryAddress,
+      placeId: bookingdata.placeId,
+      adults: bookingdata.adults,
+      children: bookingdata.children,
     });
 
     // Send confirmation SMS if needed
-    if (bookingdata.mobileNumber) {
-      sendConfirmationSms(bookingdata.mobileNumber);
+    if (bookingdata.prevPhoneNumber !== bookingdata.phoneNumber) {
+      sendConfirmationSms(bookingdata.phoneNumber);
     }
 
     res.status(200).json({ bookingdata });
@@ -32,7 +37,7 @@ export default async (req, res) => {
 };
 
 // Code pour envoyer le SMS de confirmation via Sendinblue
-const sendConfirmationSms = (mobileNumber) => {
+const sendConfirmationSms = (phoneNumber) => {
   console.log('Send confirmation SMS');
-  console.log({ mobileNumber });
+  console.log({ phoneNumber });
 };
