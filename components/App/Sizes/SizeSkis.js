@@ -1,7 +1,7 @@
 const SizeSkis = () => (
   <>
     <h2 className="text-2xl font-bold text-gray-800 pb-4">1. Skis</h2>
-    <p className="text-gray-600 py-1 leading-loose">
+    <p className="text-gray-700 py-1 leading-loose">
       La taille des skis que nous vous livrons est environ{' '}
       <span className="font-bold text-primary-blue">
         10 centimètres inférieure à votre taille

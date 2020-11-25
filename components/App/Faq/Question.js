@@ -27,7 +27,7 @@ const Question = (props) => {
       {isOpened && (
         <>
           <Separator className="mt-4" />
-          <p className="px-4 mt-4 text-gray-700">{props.children}</p>
+          <div className="px-4 mt-4 text-gray-700">{props.children}</div>
         </>
       )}
     </li>

@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import Icon from '@mdi/react';
-import { mdiSwapHorizontal } from '@mdi/js';
 
 import Label from '@/UI/Label';
 import Input from '@/UI/Input';
@@ -28,14 +26,14 @@ const SizeHelmet = (props) => {
           3. Casque
         </h2>
       )}
-      <p className="text-gray-600 py-1 leading-loose">
+      <p className="text-gray-700 py-1 leading-loose">
         Vous devez{' '}
         <span className="font-bold text-primary-blue">
           mesurer votre tour de tête en centimètres
         </span>
         .
       </p>
-      <p className="text-gray-600 py-1 leading-loose">
+      <p className="text-gray-700 py-1 leading-loose">
         Pour ce faire,{' '}
         <span className="font-bold text-primary-blue">
           prenez un mètre ruban et faites le tour de votre crâne au niveau du
@@ -44,13 +42,13 @@ const SizeHelmet = (props) => {
         , juste au-dessus de vos sourcils.
       </p>
       <br />
-      <p className="text-gray-600 py-1 leading-loose">
+      <p className="text-gray-700 py-1 leading-loose">
         Reportez la valeur ainsi mesurée ci-dessous pour connaitre la taille de
         casque qu'il vous faut.
       </p>
-      <div className="mt-6 flex items-end">
+      <div className="mt-6">
         <div className="flex flex-col w-2/5 md:w-1/4">
-          <Label for="head-size">Tour de tête</Label>
+          <Label for="head-size">Votre tour de tête:</Label>
           <Input
             type="number"
             min="52"
@@ -60,22 +58,11 @@ const SizeHelmet = (props) => {
             placeholder="En cm"
             onChange={(event) => updateHeadSize(event)}
           />
-        </div>
-        <Icon
-          path={mdiSwapHorizontal}
-          size={2}
-          className="mx-1 sm:mx-4"
-          color="#2D3748"
-        />
-        <div className="flex flex-col w-2/5 md:w-1/4">
-          <Label>Taille du casque</Label>
-          <Input
-            type="text"
-            name="helmet"
-            value={helmet}
-            readonly
-            className="bg-gray-100 cursor-not-allowed"
-          />
+          {helmet && (
+            <p className="text-primary-blue mt-2">
+              Taille du casque: <span className="font-semibold">{helmet}</span>
+            </p>
+          )}
         </div>
       </div>
     </>
