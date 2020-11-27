@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { parseCookies, setCookie } from 'nookies';
 import * as Sentry from '@sentry/browser';
 
-import Layout from '@/Layout/Layout';
 import BookingForm from '@/App/Home/BookingForm';
 import Recap from '@/App/Details/Recap';
 import BookingFormSizes from '@/App/Details/BookingFormSizes';
@@ -147,7 +146,7 @@ const Details = () => {
   };
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>Votre réservation - Wintr Travel</title>
       </Head>
@@ -197,7 +196,7 @@ const Details = () => {
           </>
         )}
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

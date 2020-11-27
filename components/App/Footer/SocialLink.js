@@ -8,7 +8,7 @@ const SocialLink = (props) => (
     target="_blank"
     rel="noreferrer"
   >
-    <Icon path={props.icon} size={1} color="#2D3748" />
+    <Icon path={props.icon} size={1} color={props.color} />
   </a>
 );
 

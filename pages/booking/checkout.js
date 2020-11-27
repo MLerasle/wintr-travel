@@ -7,7 +7,6 @@ import { parseCookies } from 'nookies';
 import Icon from '@mdi/react';
 import { mdiLock } from '@mdi/js';
 
-import Layout from '@/Layout/Layout';
 import CheckoutForm from '@/App/Checkout/CheckoutForm';
 import PaymentIcons from '@/App/Checkout/PaymentIcons';
 import BookingSummary from '@/App/Checkout/BookingSummary';
@@ -25,12 +24,12 @@ const Checkout = ({ paymentIntent }) => {
   }, []);
 
   return (
-    <Layout withoutNavbar withoutFooter>
+    <>
       <Head>
         <title>Paiement - Wintr Travel</title>
       </Head>
       <MainSection
-        className="py-2 md:py-6 max-w-screen-lg mx-auto"
+        className="py-4 md:py-8 max-w-screen-lg mx-auto"
         layoutWithoutNavbarAndFooter
       >
         <Header className="px-4 lg:px-2 xl:px-0">
@@ -49,7 +48,7 @@ const Checkout = ({ paymentIntent }) => {
           <BookingSummary />
         </div>
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

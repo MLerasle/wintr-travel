@@ -6,7 +6,6 @@ import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
 import * as SentryNode from '@sentry/node';
 
-import Layout from '@/Layout/Layout';
 import BookingValidatedInfos from '@/App/BookingEdit/BookingValidatedInfos';
 import BookingDeliveryInfos from '@/App/BookingEdit/BookingDeliveryInfos';
 import BookingFormSizes from '@/App/Details/BookingFormSizes';
@@ -120,7 +119,7 @@ const Booking = ({ fetchedBooking }) => {
   };
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>Votre réservation - Wintr Travel</title>
       </Head>
@@ -157,7 +156,7 @@ const Booking = ({ fetchedBooking }) => {
           buttonLabel={`Enregistrer`}
         />
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

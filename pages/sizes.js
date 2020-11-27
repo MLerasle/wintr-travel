@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
-import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
 import SizeSkis from '@/App/Sizes/SizeSkis';
 import SizeShoes from '@/App/Sizes/SizeShoes';
@@ -15,7 +14,7 @@ const Sizes = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>Choisir les bons skis - Wintr Travel</title>
         <meta
@@ -39,7 +38,7 @@ const Sizes = () => {
           <SizeHelmet withDetails />
         </section>
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

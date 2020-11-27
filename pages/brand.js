@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
-import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
 import Quote from '@/UI/Quote';
 
@@ -14,7 +13,7 @@ const Brand = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>La marque Wintr - Wintr Travel</title>
         <meta
@@ -95,7 +94,7 @@ const Brand = () => {
           </p>
         </section>
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

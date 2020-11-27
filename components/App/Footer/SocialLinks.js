@@ -1,22 +1,13 @@
-import { mdiTwitter, mdiFacebook, mdiInstagram } from '@mdi/js';
+import { mdiFacebook } from '@mdi/js';
 import SocialLink from './SocialLink';
 
 const SocialLinks = () => (
   <section className="flex items-center -ml-4">
     <SocialLink
-      href="https://twitter.com"
-      icon={mdiTwitter}
-      ariaLabel="Twitter"
-    />
-    <SocialLink
-      href="https://facebook.com"
+      href="https://www.facebook.com/Wintr-Travel-104716271447577/"
       icon={mdiFacebook}
+      color="#4267B2"
       ariaLabel="Facebook"
-    />
-    <SocialLink
-      href="https://instagram.com"
-      icon={mdiInstagram}
-      ariaLabel="Instagram"
     />
   </section>
 );

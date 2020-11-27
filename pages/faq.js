@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
-import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
 import Question from '@/App/Faq/Question';
 
@@ -13,7 +12,7 @@ const Faq = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>FAQ - Wintr Travel</title>
       </Head>
@@ -61,10 +60,10 @@ const Faq = () => {
             <p className="py-1">
               Pour nous contacter, vous pouvez nous envoyer un email à{' '}
               <a
-                href="mailto:contact@wintr.travel"
+                href="mailto:support@wintr.travel"
                 className="text-primary-blue"
               >
-                contact@wintr.travel
+                support@wintr.travel
               </a>{' '}
               ou nous laisser un message dans le chat, nous répondrons au plus
               vite.
@@ -103,7 +102,7 @@ const Faq = () => {
           </Question>
         </ul>
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

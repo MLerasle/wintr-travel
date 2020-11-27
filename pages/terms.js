@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
-import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
 
 import * as gtag from 'lib/gtag';
@@ -12,7 +11,7 @@ const Terms = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>CGV - Wintr Travel</title>
         <meta
@@ -63,7 +62,7 @@ const Terms = () => {
           </h2>
         </section>
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

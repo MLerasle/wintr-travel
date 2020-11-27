@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
-import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
 import PriceCard from '@/App/Prices/PriceCard';
 
@@ -13,7 +12,7 @@ const Prices = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>Tarifs Wintr Travel</title>
         <meta
@@ -35,7 +34,7 @@ const Prices = () => {
           <PriceCard category="Enfant" price="78" />
         </article>
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

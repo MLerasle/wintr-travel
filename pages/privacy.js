@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import Layout from '@/Layout/Layout';
 import MainSection from '@/UI/MainSection';
 
 import * as gtag from 'lib/gtag';
@@ -13,7 +12,7 @@ const Privacy = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>Confidentialité - Wintr Travel</title>
         <meta
@@ -634,7 +633,7 @@ const Privacy = () => {
           </section>
         </article>
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

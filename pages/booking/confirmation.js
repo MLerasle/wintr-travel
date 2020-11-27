@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import Head from 'next/head';
 import 'react-phone-number-input/style.css';
 
-import Layout from '@/Layout/Layout';
 import Card from '@/UI/Card';
 import MainSection from '@/UI/MainSection';
 import PhoneNumberStep from '@/App/Confirmation/PhoneNumberStep';
@@ -45,7 +44,7 @@ const Confirmation = ({ pid }) => {
   );
 
   return (
-    <Layout>
+    <>
       <Head>
         <title>Commande validée - Wintr Travel</title>
       </Head>
@@ -57,7 +56,7 @@ const Confirmation = ({ pid }) => {
           {view}
         </Card>
       </MainSection>
-    </Layout>
+    </>
   );
 };
 

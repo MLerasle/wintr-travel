@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import Layout from '@/Layout/Layout';
 import { useStore } from 'store/config';
 
 import 'styles/fonts.css';
@@ -25,7 +26,9 @@ const MyApp = ({ Component, pageProps, err }) => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <Component {...pageProps} err={err} />
+        <Layout>
+          <Component {...pageProps} err={err} />
+        </Layout>
       </PersistGate>
     </Provider>
   );
