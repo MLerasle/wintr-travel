@@ -43,18 +43,30 @@ const Faq = () => {
             <p className="py-1">Cela arrive même au meilleur !</p>
             <p className="py-1">
               Sachez que votre commande, une fois validée, est envoyée
-              immédiatement à nos équipes et nous avons la possibilité de la
-              modifier.
+              immédiatement à nos équipes et vous avez la possibilité de la
+              modifier ou de la compléter au besoin.
             </p>
             <p className="py-1">
-              Contactez nous simplement et nous serons ravis de faire les
-              modifications nécessaires.
+              Cliquez simplement sur le lien contenu dans le mail de
+              confirmation de votre commande et effectuez directement en ligne
+              les modifications souhaitées.
+            </p>
+            <p className="py-1">
+              Si vous avez perdu ledit mail ou si vous rencontrez la moindre
+              difficulté, contactez nous simplement et nous serons ravis de
+              faire les modifications nécessaires.
             </p>
           </Question>
           <Question query="Comment vous contacter ?">
             <p className="py-1">
-              Pour nous contacter, vous pouvez nous envoyer un email à XXX ou
-              nous laisser un message dans le chat, nous répondrons au plus
+              Pour nous contacter, vous pouvez nous envoyer un email à{' '}
+              <a
+                href="mailto:contact@wintr.travel"
+                className="text-primary-blue"
+              >
+                contact@wintr.travel
+              </a>{' '}
+              ou nous laisser un message dans le chat, nous répondrons au plus
               vite.
             </p>
           </Question>

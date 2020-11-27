@@ -16,13 +16,13 @@ const PriceCard = ({ category, price }) => (
       </span>
       <h2 className="text-6xl font-bold">
         {price}€{' '}
-        <span className="text-2xl font-medium text-gray-600">/jour</span>
+        <span className="text-2xl font-medium text-gray-600">/semaine</span>
       </h2>
     </header>
     <ul className="text-gray-700 bg-gray-100 rounded-b-lg px-4 pt-1 pb-4 md:px-8 md:pt-5 md:pb-8">
       <PriceItem>
         <Link href="/brand">
-          <a className="font-semibold underline">Skis Fatch</a>
+          <a className="font-semibold underline">Skis Wintr</a>
         </Link>
       </PriceItem>
       <PriceItem>Bâtons</PriceItem>

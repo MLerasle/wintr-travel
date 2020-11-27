@@ -4,7 +4,7 @@ import { mdiFormatQuoteOpen } from '@mdi/js';
 import Card from '@/UI/Card';
 
 const Quote = (props) => (
-  <Card subclasses="p-4 md:p-8">
+  <Card subclasses={`p-4 md:p-8 ${props.subclasses}`}>
     <blockquote className="relative pl-4 sm:pl-6">
       <Icon
         path={mdiFormatQuoteOpen}
