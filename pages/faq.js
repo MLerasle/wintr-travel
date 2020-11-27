@@ -23,7 +23,8 @@ const Faq = () => {
             Trouvez les réponses à vos questions.
           </p>
         </header>
-        <ul className="max-w-screen-lg mx-auto mt-10">
+
+        <ul className="px-4 xl:px-0 max-w-screen-lg mx-auto mt-10">
           <Question query="Où en est ma commande ?">
             <p className="py-1">
               Nous travaillons avec notre propre transporteur pour nous assurer

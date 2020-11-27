@@ -32,7 +32,7 @@ const Sizes = () => {
             Tout ce que vous devez savoir pour trouver chaussure à votre pied.
           </p>
         </header>
-        <section className="md:text-lg pb-10 max-w-screen-lg mx-auto mt-10">
+        <section className="px-4 xl:px-0 md:text-lg pb-10 max-w-screen-lg mx-auto mt-10">
           <SizeSkis />
           <SizeShoes withDetails />
           <SizeHelmet withDetails />
