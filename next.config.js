@@ -1,5 +1,4 @@
 const withOptimizedImages = require('next-optimized-images');
-const path = require('path');
 const withSourceMaps = require('@zeit/next-source-maps');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const {
@@ -23,7 +22,6 @@ module.exports = withOptimizedImages(
       if (!options.isServer) {
         config.resolve.alias['@sentry/node'] = '@sentry/browser';
       }
-      config.resolve.alias.images = path.join(__dirname, 'images');
       if (
         SENTRY_DSN &&
         SENTRY_ORG &&

@@ -1,0 +1,99 @@
+/* Home page */
+.webp .mobile-image {
+  background-image: url('/images/home-wintr-travel-1.svg?webp');
+}
+.no-webp .mobile-image {
+  background-image: url('/images/home-wintr-travel-1.svg');
+}
+
+.webp .home-args-image-1 {
+  background-image: url('/images/home-wintr-travel-2-sm.webp');
+}
+.no-webp .home-args-image-1 {
+  background-image: url('/images/home-wintr-travel-2-sm.jpg');
+}
+
+.webp .home-args-image-2 {
+  background-image: url('/images/home-wintr-travel-3-sm.webp');
+}
+.no-webp .home-args-image-2 {
+  background-image: url('/images/home-wintr-travel-3-sm.jpg');
+}
+
+.webp .home-args-image-3 {
+  background-image: url('/images/home-wintr-travel-4-sm.webp');
+}
+.no-webp .home-args-image-3 {
+  background-image: url('/images/home-wintr-travel-4-sm.jpg');
+}
+
+@media (min-width: 415px) {
+  .webp .home-args-image-1 {
+    background-image: url('/images/home-wintr-travel-2-md.webp');
+  }
+  .no-webp .home-args-image-1 {
+    background-image: url('/images/home-wintr-travel-2-md.jpg');
+  }
+
+  .webp .home-args-image-2 {
+    background-image: url('/images/home-wintr-travel-3-md.jpg?webp');
+  }
+  .no-webp .home-args-image-2 {
+    background-image: url('/images/home-wintr-travel-3-md.jpg');
+  }
+
+  .webp .home-args-image-3 {
+    background-image: url('/images/home-wintr-travel-4-md.webp');
+  }
+  .no-webp .home-args-image-3 {
+    background-image: url('/images/home-wintr-travel-4-md.jpg');
+  }
+}
+
+@media (min-width: 641px) {
+  .webp .home-args-image-1 {
+    background-image: url('/images/home-wintr-travel-2-lg.jpg?webp');
+  }
+  .no-webp .home-args-image-1 {
+    background-image: url('/images/home-wintr-travel-2-lg.jpg');
+  }
+
+  .webp .home-args-image-2 {
+    background-image: url('/images/home-wintr-travel-3-lg.jpg?webp');
+  }
+  .no-webp .home-args-image-2 {
+    background-image: url('/images/home-wintr-travel-3-lg.jpg');
+  }
+
+  .webp .home-args-image-3 {
+    background-image: url('/images/home-wintr-travel-4-lg.webp');
+  }
+  .no-webp .home-args-image-3 {
+    background-image: url('/images/home-wintr-travel-4-lg.jpg');
+  }
+}
+
+@media (min-width: 768px) {
+  .webp .hero::before {
+    filter: brightness(50%);
+    background: url('/images/home-wintr-travel-1.svg?webp');
+  }
+  .no-webp .hero::before {
+    filter: brightness(50%);
+    background: url('/images/home-wintr-travel-1.svg');
+  }
+}
+
+/* About page */
+.webp .about-image-1 {
+  background-image: url('/images/about-wintr-travel-1.jpg?webp');
+}
+.no-webp .about-image-1 {
+  background-image: url('/images/about-wintr-travel-1.jpg');
+}
+.webp .about-image-2 {
+  background-image: url('/images/about-wintr-travel-2.jpg?webp');
+}
+.no-webp .about-image-2 {
+  background-image: url('/images/about-wintr-travel-2.jpg');
+}

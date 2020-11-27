@@ -22,9 +22,16 @@ const Brand = () => {
         />
       </Head>
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
-          <h1 className="heading text-gray-100">Wintr</h1>
-          <p className="argument text-gray-300">
+        <header className="text-center px-4 sm:px-10 py-10 bg-dark-blue">
+          <h1 className="heading text-gray-100">
+            <Image
+              src="/images/logo-full.svg"
+              alt="Logo Wintr Travel"
+              width={150}
+              height={100}
+            />
+          </h1>
+          <p className="argument text-gray-300 -mt-4">
             La marque qui réinvente l’équipement de ski grand public.
           </p>
         </header>
@@ -40,7 +47,7 @@ const Brand = () => {
             skis de qualité avec un accès plus grand public.
           </p>
           <Image
-            src="/images/skiers.jpg"
+            src="/images/brand-wintr-1.jpg"
             alt="Trois co-fondateurs de Wintr Travel au ski"
             layout="responsive"
             width={500}
