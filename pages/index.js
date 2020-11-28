@@ -3,7 +3,8 @@ import Head from 'next/head';
 
 import MobileImage from '@/UI/MobileImage';
 import Hero from '@/UI/Hero';
-import BookingForm from '@/App/Home/BookingForm';
+// import BookingForm from '@/App/Home/BookingForm';
+import EmailForm from '@/App/Home/EmailForm';
 import HomeArgs from '@/App/Home/Args';
 import Testimonials from '@/App/Home/Testimonials';
 import HomeCta from '@/App/Home/Cta';
@@ -27,7 +28,8 @@ const Index = () => {
       </Head>
       <MobileImage />
       <Hero type="full">
-        <BookingForm />
+        <EmailForm />
+        {/* <BookingForm /> */}
       </Hero>
       <HomeArgs />
       <Testimonials />
