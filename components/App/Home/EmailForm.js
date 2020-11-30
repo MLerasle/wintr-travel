@@ -8,17 +8,65 @@ import Separator from '@/UI/Separator';
 import Label from '@/UI/Label';
 import Input from '@/UI/Input';
 import Button from '@/UI/Button';
+import Alert from '@/UI/Alert';
+import Loader from '@/UI/Loader';
+
+import { EMAIL_PATTERN } from 'helpers/email';
 
 const EmailForm = () => {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
-  const submitEmailForm = (e) => {
+  const submitEmailForm = async (e) => {
     e.preventDefault();
+    if (email.trim() === '' || !EMAIL_PATTERN.test(email)) {
+      setError({
+        message: "L'email saisi est incorrect.",
+        type: 'invalid_email',
+      });
+      return;
+    }
+    setIsLoading(true);
+    setError('');
     console.log('submit', { email });
+    const response = await fetch('/api/createContact', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+    if (response.status === 400) {
+      setError({
+        message:
+          "Une erreur est survenue. Veuillez vérifier l'adresse email saisie et réessayer.",
+      });
+    }
+    setIsSubmitted(true);
+    setIsLoading(false);
+    setEmail('');
   };
 
   return (
     <Card classes="md:py-6" subclasses="p-4 md:p-8 md:max-w-2xl bg-white">
+      {error && (
+        <Alert
+          type="error"
+          message={error.message}
+          onClearMessage={() => setError('')}
+        />
+      )}
+      {isSubmitted && !error && (
+        <Alert
+          type="success"
+          message={
+            "Merci pour votre inscription!\n Vous allez recevoir un email de confirmation d'ici quelques minutes."
+          }
+          onClearMessage={() => setIsSubmitted(false)}
+        />
+      )}
       <Header>
         <Heading className="hidden md:block text-xl sm:text-3xl">
           Vos skis livrés à Flaine pour une semaine.
@@ -27,14 +75,14 @@ const EmailForm = () => {
       <Separator className="my-6 hidden md:block" />
       <section className="text-gray-700 text-lg">
         <p>
-          En raison de la situation liée à la pandémie de Covid-19,{' '}
-          <span className="font-semibold">
+          En raison de la situation liée à la pandémie de COVID-19,{' '}
+          <span className="font-bold">
             notre sytème de réservation est momentanément fermé
           </span>
           .
         </p>
         <p className="mt-4">
-          <span className="font-semibold">Les places étant limitées</span>, vous
+          <span className="font-bold">Les places étant limitées</span>, vous
           pouvez renseigner votre email ci-dessous pour être informé dès la
           réouverture de celui-ci:
         </p>
@@ -46,7 +94,11 @@ const EmailForm = () => {
             type="email"
             id="email-address"
             name="email-address"
-            className={`my-0 w-full`}
+            className={`my-0 w-full ${
+              error &&
+              error.type === 'invalid_email' &&
+              'border-primary-red bg-light-red'
+            }`}
             placeholder="Email"
             onChange={(event) => setEmail(event.target.value)}
             value={email}
@@ -55,11 +107,11 @@ const EmailForm = () => {
         <Button
           type="submit"
           id="submitButton"
-          classes="w-full uppercase tracking-wide bg-primary-green text-white"
+          classes="w-full uppercase tracking-wide bg-primary-green text-white mt-2"
           name="validate"
           onClick={submitEmailForm}
         >
-          Soumettre
+          {isLoading ? <Loader /> : 'Soumettre'}
         </Button>
       </form>
     </Card>
