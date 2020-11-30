@@ -8,7 +8,7 @@ import { useStore } from 'store/config';
 
 import 'styles/fonts.css';
 import 'styles/tailwind.css';
-import 'styles/style.css';
+import 'styles/google-searchbox.css';
 import 'styles/images.css';
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {

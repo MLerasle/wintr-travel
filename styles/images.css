@@ -1,9 +1,16 @@
+.background-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: transparent;
+}
+
 /* Home page */
 .webp .mobile-image {
-  background-image: url('/images/home-wintr-travel-1.svg?webp');
+  background-image: url('/images/home-wintr-travel-xs.webp');
 }
 .no-webp .mobile-image {
-  background-image: url('/images/home-wintr-travel-1.svg');
+  background-image: url('/images/home-wintr-travel-xs.jpg');
 }
 
 .webp .home-args-image-1 {
@@ -28,6 +35,13 @@
 }
 
 @media (min-width: 415px) {
+  .webp .mobile-image {
+    background-image: url('/images/home-wintr-travel-sm.webp');
+  }
+  .no-webp .mobile-image {
+    background-image: url('/images/home-wintr-travel-sm.jpg');
+  }
+
   .webp .home-args-image-1 {
     background-image: url('/images/home-wintr-travel-2-md.webp');
   }
@@ -36,7 +50,7 @@
   }
 
   .webp .home-args-image-2 {
-    background-image: url('/images/home-wintr-travel-3-md.jpg?webp');
+    background-image: url('/images/home-wintr-travel-3-md.webp');
   }
   .no-webp .home-args-image-2 {
     background-image: url('/images/home-wintr-travel-3-md.jpg');
@@ -51,15 +65,22 @@
 }
 
 @media (min-width: 641px) {
+  .webp .mobile-image {
+    background-image: url('/images/home-wintr-travel-md.webp');
+  }
+  .no-webp .mobile-image {
+    background-image: url('/images/home-wintr-travel-md.jpg');
+  }
+
   .webp .home-args-image-1 {
-    background-image: url('/images/home-wintr-travel-2-lg.jpg?webp');
+    background-image: url('/images/home-wintr-travel-2-lg.webp');
   }
   .no-webp .home-args-image-1 {
     background-image: url('/images/home-wintr-travel-2-lg.jpg');
   }
 
   .webp .home-args-image-2 {
-    background-image: url('/images/home-wintr-travel-3-lg.jpg?webp');
+    background-image: url('/images/home-wintr-travel-3-lg.webp');
   }
   .no-webp .home-args-image-2 {
     background-image: url('/images/home-wintr-travel-3-lg.jpg');
@@ -76,11 +97,11 @@
 @media (min-width: 768px) {
   .webp .hero::before {
     filter: brightness(50%);
-    background: url('/images/home-wintr-travel-1.svg?webp');
+    background: url('/images/home-wintr-travel-lg.webp');
   }
   .no-webp .hero::before {
     filter: brightness(50%);
-    background: url('/images/home-wintr-travel-1.svg');
+    background: url('/images/home-wintr-travel-lg.jpg');
   }
 }
 

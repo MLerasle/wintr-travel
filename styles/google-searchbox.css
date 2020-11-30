@@ -1,0 +1,20 @@
+/* Google Searchbox */
+.pac-container {
+  border-radius: 0.5rem;
+  margin-top: 0.3rem;
+  box-shadow: none;
+  border: 1px solid #cbd5e0;
+}
+.pac-item {
+  padding: 0.5rem 0.3rem;
+  font-family: inherit;
+  font-size: 12px;
+  color: #a0aec0;
+}
+.pac-item:hover {
+  background-color: #f7fafc;
+}
+.pac-item-query {
+  color: #2d3748;
+  font-size: 14px;
+}
