@@ -1,5 +1,7 @@
 const MainSection = (props) => (
-  <section className="bg-gray-100 flex justify-center items-center">
+  <section
+    className={`bg-gray-100 flex justify-center items-center ${props.parentClass}`}
+  >
     <div className={`w-full main-section ${props.className}`}>
       {props.children}
     </div>

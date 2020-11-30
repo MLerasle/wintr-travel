@@ -109,6 +109,7 @@ const EmailForm = () => {
           id="submitButton"
           classes="w-full uppercase tracking-wide bg-primary-green text-white mt-2"
           name="validate"
+          disabled={isLoading}
           onClick={submitEmailForm}
         >
           {isLoading ? <Loader /> : 'Soumettre'}
