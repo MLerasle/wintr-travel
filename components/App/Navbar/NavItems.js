@@ -13,10 +13,10 @@ const NavItems = (props) => {
           label: 'La Marque',
           href: '/brand',
         },
-        {
-          label: 'Notre offre',
-          href: '/offer',
-        },
+        // {
+        //   label: 'Notre offre',
+        //   href: '/offer',
+        // },
         {
           label: 'Guide des Tailles',
           href: '/sizes',

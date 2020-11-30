@@ -4,7 +4,7 @@ const Args = () => (
       <h2 className="heading">Nous vous livrons dans votre résidence.</h2>
       <p className="argument">
         Plus besoin de chercher un magasin, d'attendre son matériel, ni de le
-        porter. Nous nous occupons de tout.
+        transporter. Nous nous occupons de tout.
       </p>
     </section>
     <section>
@@ -15,8 +15,8 @@ const Args = () => (
             <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-1">
               <h2 className="heading">Une offre simple</h2>
               <p className="argument">
-                Nous offrons un modèle unique de skis performants et s'adaptant
-                à tous les niveaux.
+                Nous offrons un modèle unique de skis modernes et s'adaptant à
+                tous les niveaux.
               </p>
             </div>
           </div>

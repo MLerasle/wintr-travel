@@ -8,7 +8,7 @@ const Testimonials = () => (
       </h2>
       <article className="flex flex-col sm:flex-row justify-between items-center tracking-wide">
         <Testimonial person="David M.">
-          Un service qui tombe à pic en pleine pandémie de covid-19. On a hâte
+          Un service qui tombe à pic en pleine pandémie de COVID-19. On a hâte
           d'y être!
         </Testimonial>
         <Testimonial person="Sandrine P." classes="py-6 sm:py-0">
