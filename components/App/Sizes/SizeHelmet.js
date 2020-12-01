@@ -13,6 +13,14 @@ const SizeHelmet = (props) => {
     const helmet = HELMET.find(
       (h) => h.headsize === Math.floor(event.target.value)
     );
+    if (+event.target.value < 52 && event.target.value.length > 1) {
+      setHelmet('XS');
+      return;
+    }
+    if (+event.target.value > 62) {
+      setHelmet('XL');
+      return;
+    }
     if (!helmet) {
       return;
     }
