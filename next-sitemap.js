@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: 'https://beta.wintr.travel',
+  siteUrl: 'https://www.wintr.travel',
   generateRobotsTxt: true,
   exclude: [
     '/booking/details',
@@ -11,7 +11,7 @@ module.exports = {
     policies: [
       {
         userAgent: '*',
-        disallow: ['/api', '/booking', '/404'],
+        disallow: ['/api', '/booking', '/waiting-list', '/404'],
       },
     ],
   },
