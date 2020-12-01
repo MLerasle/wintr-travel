@@ -31,12 +31,12 @@ const About = () => {
               <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-1">
                 <h2 className="heading">Qui sommes-nous?</h2>
                 <p className="argument mt-4">
-                  Wintr Travel est une marque audacieuse qui, depuis 3 ans,
-                  façonne en France des équipements pensés pour des individus.
-                  Wintr Travel réinvente avec panache l'industrie de
-                  l’équipement de ski en positionnant les nouveaux outils du
-                  numérique au service d’une production humaine, durable et
-                  ancrée dans la diversité des territoires.
+                  Wintr Travel est une marque audacieuse, qui, depuis 3 ans,
+                  façonne en France des équipements pensés pour le grand public.
+                  Wintr Travel réinvente l'industrie de l’équipement de ski en
+                  positionnant les nouveaux outils du numérique au service d’une
+                  production humaine, durable, et ancrée dans la diversité des
+                  territoires.
                 </p>
               </div>
             </div>
@@ -45,8 +45,8 @@ const About = () => {
               <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-2">
                 <h2 className="heading">Notre offre</h2>
                 <p className="argument mt-4">
-                  Wintr Travel propose la location clef en main de l’équipement
-                  de ski au travers de sa marque de ski{' '}
+                  Wintr Travel propose la location clé en main de l’équipement
+                  de ski au travers de sa marque{' '}
                   <Link href="/brand">
                     <a className="font-semibold underline">Wintr</a>
                   </Link>{' '}

@@ -83,7 +83,7 @@ const EmailForm = () => {
         </p>
         <p className="mt-4">
           <span className="font-bold">Les places étant limitées</span>, vous
-          pouvez renseigner votre email ci-dessous pour être informé dès la
+          pouvez renseigner votre email ci-dessous pour être tenu informé de la
           réouverture de celui-ci:
         </p>
       </section>

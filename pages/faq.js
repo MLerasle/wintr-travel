@@ -72,9 +72,10 @@ const Faq = () => {
           </Question>
           <Question query="Quels sont les coûts et délais de livraison ?">
             <p className="py-1">
-              Les commandes sont préparées dans les 48H avant votre arrivée. Les
-              coûts de livraison sont offerts et nous nous engageons à vous
-              livrer au mieux dans le créneau défini lors de la commande.
+              Les commandes sont préparées dans les 48 heures avant votre
+              arrivée. Les coûts de livraison sont offerts et nous nous
+              engageons à vous livrer au mieux dans le créneau défini lors de la
+              commande.
             </p>
             <p className="py-1">
               Si vous avez des retards ou souhaitez modifier le créneau, c’est
@@ -95,7 +96,7 @@ const Faq = () => {
             <p className="py-1">Nous regrettons fortement votre choix !</p>
             <p className="py-1">
               Sachez que vous pouvez annuler votre commande sans frais jusqu'à
-              24h avant votre arrivée.
+              24 heures avant votre arrivée.
             </p>
             <p className="py-1">
               Vous serez intégralement remboursés dans un délai de 48 heures.

@@ -58,16 +58,16 @@ const Brand = () => {
             2. La fabrication
           </h2>
           <p className="py-3">
-            Imaginé en Europe et disposant des certifications ISO/TC 83/SC 4
-            nous avons veillés à ce que l’équipement Wintr répondent à toutes
-            les normes de sécurité tout en fournissant un confort d’utilisation
+            Imaginé en Europe et disposant des certifications ISO/TC 83/SC 4,
+            nous avons veillé à ce que l’équipement Wintr réponde à toutes les
+            normes de sécurité tout en fournissant un confort d’utilisation
             inégalé.
           </p>
           <Quote
             author="Adrien, Co-fondateur de Wintr Travel"
             subclasses="mt-4 md:mt-6"
           >
-            Chez Wintr™, la transparence est au coeur de nos valeurs : elle nous
+            Chez Wintr, la transparence est au coeur de nos valeurs: elle nous
             guide chaque jour pour vous proposer des produits fabriqués dans le
             respect de notre charte de qualité, et dont nous sommes fiers de
             vous dévoiler les secrets de production… et ça, ça ne changera
@@ -95,7 +95,7 @@ const Brand = () => {
           <p className="py-3">
             Notre engagement depuis la création a toujours été de respecter les
             exigences de nos utilisateurs et de proposer un prix juste pour des
-            équipements de qualité, moderne et sécurisé. Nous mettons tout en
+            équipements de qualité, modernes et sécurisés. Nous mettons tout en
             oeuvre pour améliorer nos produits et faisons tester ceux-ci grâce à
             nos laboratoires.
           </p>
