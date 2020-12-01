@@ -62,7 +62,6 @@ const NavItems = (props) => {
             <Link
               href={{
                 pathname: href,
-                query: router.query,
               }}
               key={`nav-link-${label}`}
             >
