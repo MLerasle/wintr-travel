@@ -89,7 +89,7 @@ const EmailForm = () => {
       </section>
       <form className="md:mt-4">
         <FormRow className="w-full mt-4">
-          <Label for="name">Votre adresse email</Label>
+          <Label for="email-address">Votre adresse email</Label>
           <Input
             type="email"
             id="email-address"

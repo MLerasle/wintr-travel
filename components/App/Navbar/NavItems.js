@@ -1,9 +1,6 @@
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const NavItems = (props) => {
-  const router = useRouter();
-
   const sections = [
     {
       name: '',
@@ -59,12 +56,7 @@ const NavItems = (props) => {
             {name}
           </div>
           {links.map(({ label, href }) => (
-            <Link
-              href={{
-                pathname: href,
-              }}
-              key={`nav-link-${label}`}
-            >
+            <Link href={href} prefetch={false} key={`nav-link-${label}`}>
               <a
                 className={`block px-6 py-3 border-b bg-white border-gray-300 tracking-wide transition duration-300 ease-in-out hover:text-primary-green md:hover:text-primary-green md:bg-transparent md:text-md md:text-gray-800 md:border-b-0 md:mt-0 md:ml-2 md:px-2 cursor-pointer ${
                   key === 'legal' ? 'md:hidden' : ''
