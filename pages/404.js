@@ -5,25 +5,25 @@ const Error = () => (
     <div className="error-container">
       <p className="error-title">404</p>
       <p className="error-subtitle">
-        Oops! Il semble que vous soyiez un peu seul par ici.
+        Nous ne parvenons pas à trouver la page que vous recherchez.
       </p>
       <p className="action">
-        Ramenez moi à{' '}
         <Link href="/">
-          <a>wintr.travel</a>
+          <a>Retour à la page d'accueil</a>
         </Link>
       </p>
     </div>
     <style jsx>{`
       .error-container {
         width: 100vw;
-        height: 100vh;
+        min-height: calc(100vh - 128px);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-content: center;
         flex-wrap: wrap;
-        background-color: #245688;
+        background-color: #389469;
+        padding: 0 1rem;
       }
 
       .error-title,
@@ -33,23 +33,34 @@ const Error = () => (
       }
 
       .error-title {
+        margin-top: -60px;
         font-size: 130px;
       }
 
       .error-subtitle {
+        margin-top: -20px;
         font-size: 20px;
       }
 
       .action {
-        margin-top: 1.5rem;
+        margin-top: 3rem;
         font-size: 16px;
         text-align: center;
         color: #a0aec0;
       }
 
       .action > a {
-        color: white;
-        border-bottom: 1px solid white;
+        color: #389469;
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        border: 1px solid #389469;
+        cursor: pointer;
+      }
+
+      .action > a:hover {
+        opacity: 0.97;
       }
 
       @media (min-width: 768px) {
