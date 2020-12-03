@@ -21,14 +21,14 @@ const Privacy = () => {
         />
       </Head>
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
-          <h1 className="heading text-gray-100">
+        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
+          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold md:pb-3 leading-tight text-gray-100">
             Politique de confidentialité
           </h1>
         </header>
 
-        <article className="md:text-lg pb-10 sm:pb-16 px-4 xl:px-0 text-gray-700 leading-loose max-w-screen-lg mx-auto mt-10">
-          <section className="mb-10">
+        <article className="md:text-lg pb-10 sm:pb-16 px-4 xl:px-0 text-gray-700 leading-loose max-w-screen-lg mx-auto mt-6 md:mt-10">
+          <section className="mb-6 md:mb-10">
             <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 1 : PRÉAMBULE
             </h2>
@@ -74,7 +74,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section className="mb-10">
+          <section className="mb-6 md:mb-10">
             <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 2 : PRINCIPES GÉNÉRAUX EN MATIÈRE DE COLLECTE ET DE
               TRAITEMENT DE DONNÉES
@@ -221,7 +221,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section className="mb-10">
+          <section className="mb-6 md:mb-10">
             <h2 className="pt-4 pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 4 : RESPONSABLE DU TRAITEMENT DES DONNÉES ET DÉLÉGUÉ À LA
               PROTECTION DES DONNÉES
@@ -299,7 +299,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section className="mb-10">
+          <section className="mb-6 md:mb-10">
             <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 5 : DROITS DE L'UTILISATEUR
             </h2>
@@ -428,7 +428,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section className="mb-10">
+          <section className="mb-6 md:mb-10">
             <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 6 : UTILISATION DES FICHIERS "COOKIES"
             </h2>
@@ -586,7 +586,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section className="mb-10">
+          <section className="mb-6 md:mb-10">
             <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 7 : CONDITIONS DE MODIFICATION DE LA POLITIQUE DE
               CONFIDENTIALITÉ
@@ -618,7 +618,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section className="mb-10">
+          <section className="mb-6 md:mb-10">
             <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 8 : ACCEPTATION PAR L'UTILISATEUR DE LA POLITIQUE DE
               CONFIDENTIALITÉ

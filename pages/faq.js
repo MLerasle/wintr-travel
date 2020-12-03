@@ -17,14 +17,16 @@ const Faq = () => {
         <title>FAQ - Wintr Travel</title>
       </Head>
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
-          <h1 className="heading text-gray-100">Aide de Wintr Travel.</h1>
-          <p className="argument text-gray-300">
+        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
+          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
+            Aide de Wintr Travel.
+          </h1>
+          <p className="md:text-xl text-gray-300">
             Trouvez les réponses à vos questions.
           </p>
         </header>
 
-        <ul className="px-4 xl:px-0 max-w-screen-lg mx-auto mt-10">
+        <ul className="px-4 xl:px-0 max-w-screen-lg mx-auto mt-6 md:mt-10">
           <Question query="Où en est ma commande ?">
             <p className="py-1">
               Nous travaillons avec notre propre transporteur pour nous assurer

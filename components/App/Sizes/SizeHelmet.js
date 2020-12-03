@@ -30,7 +30,7 @@ const SizeHelmet = (props) => {
   return (
     <>
       {props.withDetails && (
-        <h2 className="text-2xl font-bold text-gray-800 pb-4 pt-8">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800 pb-2 md:pb-4 pt-4 md:pt-8">
           3. Casque
         </h2>
       )}

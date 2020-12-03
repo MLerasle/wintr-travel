@@ -7,7 +7,7 @@ const FooterLinks = () => (
     </p>
     <ul className="flex items-center mb-4 md:mb-0">
       <FooterLink href="about">À propos</FooterLink>
-      <FooterLink href="terms">CGV</FooterLink>
+      {/* <FooterLink href="terms">CGV</FooterLink> */}
       <FooterLink href="/privacy">Confidentialité</FooterLink>
     </ul>
   </section>

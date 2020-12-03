@@ -22,7 +22,7 @@ const Brand = () => {
         />
       </Head>
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 bg-dark-blue">
+        <header className="text-center px-4 sm:px-10 py-6 md:py-10 bg-dark-blue">
           <h1 className="heading text-gray-100">
             <Image
               src="/images/logo-full.svg"

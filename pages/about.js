@@ -21,8 +21,10 @@ const About = () => {
         />
       </Head>
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
-          <h1 className="heading text-gray-100">À propos de Wintr Travel</h1>
+        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
+          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold md:pb-3 leading-tight text-gray-100">
+            À propos de Wintr Travel
+          </h1>
         </header>
         <div className="flex justify-center bg-gray-100">
           <div className="w-full grid grid-cols-1 sm:grid-cols-2">

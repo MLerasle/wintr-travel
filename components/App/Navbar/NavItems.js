@@ -33,7 +33,7 @@ const NavItems = (props) => {
       key: 'legal',
       links: [
         { label: 'Confidentialité', href: '/privacy' },
-        { label: 'CGV', href: '/terms' },
+        // { label: 'CGV', href: '/terms' },
       ],
     },
   ];

@@ -24,15 +24,15 @@ const Sizes = () => {
       </Head>
 
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
-          <h1 className="heading text-gray-100">
-            Comment renseigner la bonne taille pour votre matériel?
+        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
+          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
+            Guide des tailles
           </h1>
-          <p className="argument text-gray-300">
-            Tout ce que vous devez savoir pour trouver chaussure à votre pied.
+          <p className="md:text-xl text-gray-300">
+            Ce que vous devez savoir pour ne pas vous tromper.
           </p>
         </header>
-        <section className="px-4 xl:px-0 md:text-lg pb-10 max-w-screen-lg mx-auto mt-10">
+        <section className="px-4 xl:px-0 md:text-lg pb-10 max-w-screen-lg mx-auto">
           <SizeSkis />
           <SizeShoes withDetails />
           <SizeHelmet withDetails />

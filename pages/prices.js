@@ -22,9 +22,11 @@ const Prices = () => {
       </Head>
 
       <MainSection>
-        <header className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
-          <h1 className="heading text-gray-100">Un tarif unique.</h1>
-          <p className="argument text-gray-300">
+        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
+          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
+            Un tarif unique.
+          </h1>
+          <p className="md:text-xl text-gray-300">
             Budgéter ses vacances n'a jamais été aussi simple.
           </p>
         </header>
