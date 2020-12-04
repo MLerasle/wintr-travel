@@ -19,7 +19,7 @@ const Cta = () => {
         En piste !
       </h2>
       <p className="text-lg lg:text-xl text-white mb-6">
-        Retrouvez le plaisir du ski sans contraintes.
+        Découvrez le plaisir du ski sans contraintes.
       </p>
       <Button
         classes="w-auto px-4 uppercase tracking-wide bg-primary-green text-white"

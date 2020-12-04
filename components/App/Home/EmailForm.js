@@ -50,7 +50,7 @@ const EmailForm = () => {
   };
 
   return (
-    <Card classes="md:py-6" subclasses="p-4 md:p-8 md:max-w-2xl bg-white">
+    <Card classes="md:py-6" subclasses="p-4 md:p-8 md:max-w-2xl bg-gray-100">
       {error && (
         <Alert
           type="error"

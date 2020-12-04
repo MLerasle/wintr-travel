@@ -1,10 +1,11 @@
 const Args = () => (
   <>
-    <section className="text-center px-4 sm:px-10 pt-6 pb-10 sm:py-16">
-      <h2 className="heading">Nous vous livrons dans votre résidence.</h2>
+    <section className="md:text-center px-4 md:px-10 pt-6 pb-10 md:py-16">
+      <h2 className="heading">Livraison sans contact dans votre résidence.</h2>
       <p className="argument">
-        Plus besoin de chercher un magasin, d'attendre son matériel, ni de le
-        transporter. Nous nous occupons de tout.
+        Plus besoin d'aller chercher votre matériel en magasin.
+        <br />
+        Nous nous occupons de tout dans le respect des précautions sanitaires.
       </p>
     </section>
     <section>
@@ -12,7 +13,7 @@ const Args = () => (
         <div className="w-full grid grid-cols-1 sm:grid-cols-2">
           <div className="home-args-image-1 overflow-hidden img-container"></div>
           <div className="flex justify-center items-center">
-            <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-1">
+            <div className="max-w-md mx-4 md:mx-auto py-10 home-args-desc-1">
               <h2 className="heading">Une offre simple</h2>
               <p className="argument">
                 Nous offrons un modèle unique de skis modernes et s'adaptant à
@@ -22,7 +23,7 @@ const Args = () => (
           </div>
           <div className="home-args-image-2 overflow-hidden img-container"></div>
           <div className="flex justify-center items-center">
-            <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-2">
+            <div className="max-w-md mx-4 md:mx-auto py-10 home-args-desc-2">
               <h2 className="heading">Un service confortable</h2>
               <p className="argument">
                 Réservez votre matériel en quelques clics. Nous vous livrons à
@@ -32,7 +33,7 @@ const Args = () => (
           </div>
           <div className="home-args-image-3 overflow-hidden img-container"></div>
           <div className="flex justify-center items-center">
-            <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-3">
+            <div className="max-w-md mx-4 md:mx-auto py-10 home-args-desc-3">
               <h2 className="heading">Un package complet</h2>
               <p className="argument">
                 Tout est inclus: skis, chaussures, casque, forfait et assurance

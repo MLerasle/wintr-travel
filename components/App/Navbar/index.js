@@ -18,7 +18,7 @@ const Nav = (props) => {
     <nav
       className={`shadow md:flex md:justify-center md:items-center px-4 md:py-3 h-16 ${props.classes}`}
     >
-      <div className="flex items-center justify-between lg:px-0 py-3 w-full h-full max-w-screen-lg">
+      <div className="flex items-center justify-between lg:px-0 py-3 w-full h-full max-w-screen-xl">
         <div className="text-gray-800 font-bold text-2xl tracking-wide">
           <Link href="/">
             <a className="flex items-center">
