@@ -57,7 +57,7 @@ const NavItems = (props) => {
   return (
     <div className={`pb-2 md:flex md:p-0`}>
       {sections.map(({ name, key, links }) => (
-        <div className="md:flex" key={key}>
+        <div className="md:flex md:items-center" key={key}>
           <div
             className={`md:hidden py-2 px-4 uppercase tracking-wide text-sm text-gray-600 ${
               key === 'cta' ? '' : 'mt-4'
@@ -69,7 +69,7 @@ const NavItems = (props) => {
             <Link href={href} prefetch={false} key={`nav-link-${label}`}>
               {key === 'cta' ? (
                 <a
-                  className="block px-6 py-3 text-white bg-primary-green tracking-wide uppercase md:rounded-lg transition duration-300 ease-in-out hover:opacity-90 cursor-pointer md:mr-1"
+                  className="block px-6 py-3 md:py-2 text-white bg-primary-green tracking-wide uppercase md:rounded-lg transition duration-300 ease-in-out hover:opacity-90 cursor-pointer md:mr-1"
                   onClick={navItemClicked}
                 >
                   {label}

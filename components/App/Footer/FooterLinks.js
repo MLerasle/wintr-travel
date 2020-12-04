@@ -9,7 +9,7 @@ const FooterLinks = () => (
       <FooterLink href="about">À propos</FooterLink>
       {/* <FooterLink href="terms">CGV</FooterLink> */}
       <FooterLink href="/privacy">Confidentialité</FooterLink>
-      <FooterLink href="/contact">Contact</FooterLink>
+      {/* <FooterLink href="/contact">Contact</FooterLink> */}
     </ul>
   </section>
 );

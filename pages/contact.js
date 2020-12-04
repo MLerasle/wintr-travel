@@ -4,9 +4,6 @@ import Head from 'next/head';
 import MainSection from '@/UI/MainSection';
 import Card from '@/UI/Card';
 import FormRow from '@/UI/FormRow';
-// import Header from '@/UI/Header';
-// import Heading from '@/UI/Heading';
-// import Separator from '@/UI/Separator';
 import Label from '@/UI/Label';
 import Input from '@/UI/Input';
 import Textarea from '@/UI/Textarea';
@@ -15,6 +12,7 @@ import Button from '@/UI/Button';
 import Loader from '@/UI/Loader';
 
 import * as gtag from 'lib/gtag';
+import { EMAIL_PATTERN } from 'helpers/email';
 
 const Contact = () => {
   const [name, setName] = useState('');
@@ -28,8 +26,34 @@ const Contact = () => {
     gtag.pageView('Contact', '/contact');
   }, []);
 
-  const submitContactForm = () => {
-    console.log('Submit contact form ', name, email, message);
+  const reinitializeForm = () => {
+    setName('');
+    setEmail('');
+    setMessage('');
+    setIsLoading(false);
+  };
+
+  const submitContactForm = async (e) => {
+    e.preventDefault();
+    if (email.trim() === '' || !EMAIL_PATTERN.test(email)) {
+      setError({
+        message: "L'email saisi est incorrect.",
+        type: 'invalid_email',
+      });
+      return;
+    }
+    setIsLoading(true);
+    const response = await fetch('/api/sendEmail', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, message }),
+    });
+    // console.log('Submit contact form ', name, email, message);
+    console.log({ response });
+    setIsSubmitted(true);
+    reinitializeForm();
   };
 
   return (
@@ -52,8 +76,8 @@ const Contact = () => {
           classes="md:py-6 md:-mt-14"
           subclasses="p-4 md:p-8 md:max-w-2xl bg-gray-100"
         >
-          <form className="md:mt-4">
-            <FormRow className="w-full mt-4">
+          <form>
+            <FormRow className="w-full">
               <Label for="name">Votre nom</Label>
               <Input
                 type="text"
