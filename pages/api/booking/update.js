@@ -10,7 +10,7 @@ export default async (req, res) => {
   const bookingdata = req.body;
 
   try {
-    const docRef = db.collection('paid_bookings').doc(bookingdata.pid);
+    const docRef = db.collection(process.env.GOOGLE_FIRESTORE_COLLECTION).doc(bookingdata.pid);
 
     // Update booking in db
     await docRef.update({

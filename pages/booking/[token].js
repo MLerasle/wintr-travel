@@ -163,7 +163,7 @@ const Booking = ({ fetchedBooking }) => {
 export async function getServerSideProps(context) {
   const db = new Firestore(CREDENTIALS);
   const token = context.params.token;
-  const docRef = db.collection('paid_bookings').doc(token);
+  const docRef = db.collection(process.env.GOOGLE_FIRESTORE_COLLECTION).doc(token);
   let fetchedBooking;
 
   try {
