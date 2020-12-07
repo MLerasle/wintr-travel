@@ -53,7 +53,7 @@ export default async (req, res) => {
 
     // enregistre le booking dans son propre document sur Cloud Firestore
     const docRef = db
-      .collection('paid_bookings')
+      .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
       .doc(bookingdata.paymentIntentId);
 
     await docRef.set(bookingdata);
