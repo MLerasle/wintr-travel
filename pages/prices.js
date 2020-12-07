@@ -5,6 +5,7 @@ import MainSection from '@/UI/MainSection';
 import PriceCard from '@/App/Prices/PriceCard';
 
 import * as gtag from 'lib/gtag';
+import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from 'data/booking';
 
 const Prices = () => {
   useEffect(() => {
@@ -32,8 +33,8 @@ const Prices = () => {
         </header>
 
         <article className="sm:flex sm:justify-between sm:items-center max-w-screen-lg mx-auto mt-10">
-          <PriceCard category="Adulte" price="130" />
-          <PriceCard category="Enfant" price="78" />
+          <PriceCard category="Adulte" price={UNIT_ADULT_PRICE} />
+          <PriceCard category="Enfant" price={UNIT_CHILD_PRICE} />
         </article>
       </MainSection>
     </>

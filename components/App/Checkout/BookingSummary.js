@@ -7,7 +7,7 @@ import Separator from '@/UI/Separator';
 
 import { formatDate } from 'helpers/dates';
 import { getPrices, getLastDay } from 'helpers/booking';
-import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE, DURATION } from 'data/booking';
+import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from 'data/booking';
 
 const BookingSummary = () => {
   const booking = useSelector((state) => state, shallowEqual);
@@ -37,7 +37,7 @@ const BookingSummary = () => {
         <div key={skier.label}>
           <BookingSummaryLine
             label={skier.label}
-            value={`${(DURATION * UNIT_ADULT_PRICE).toFixed(2)} €`}
+            value={`${UNIT_ADULT_PRICE.toFixed(2)} €`}
           />
           <BookingSummaryLineSkier skier={skier} />
         </div>
@@ -47,7 +47,7 @@ const BookingSummary = () => {
           <div key={skier.label}>
             <BookingSummaryLine
               label={skier.label}
-              value={`${(DURATION * UNIT_CHILD_PRICE).toFixed(2)} €`}
+              value={`${UNIT_CHILD_PRICE.toFixed(2)} €`}
             />
             <BookingSummaryLineSkier skier={skier} />
           </div>
