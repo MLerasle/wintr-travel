@@ -1,10 +1,10 @@
 const { PubSub } = require('@google-cloud/pubsub');
 const Sentry = require('@sentry/node');
 
-import { CREDENTIALS } from 'data/gcp';
+import { GCP_CREDENTIALS } from 'lib/gcp';
 
 const topicName = process.env.GOOGLE_PUBSUB_TOPIC_BOOKINGS;
-const pubSubClient = new PubSub(CREDENTIALS);
+const pubSubClient = new PubSub(GCP_CREDENTIALS);
 
 import { getPrices } from 'helpers/booking';
 

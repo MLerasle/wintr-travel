@@ -8,7 +8,7 @@ import Label from '@/UI/Label';
 import Input from '@/UI/Input';
 import Textarea from '@/UI/Textarea';
 import Button from '@/UI/Button';
-// import Alert from '@/UI/Alert';
+import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
 
 import * as gtag from 'lib/gtag';
@@ -30,11 +30,11 @@ const Contact = () => {
     setName('');
     setEmail('');
     setMessage('');
-    setIsLoading(false);
   };
 
   const submitContactForm = async (e) => {
     e.preventDefault();
+
     if (email.trim() === '' || !EMAIL_PATTERN.test(email)) {
       setError({
         message: "L'email saisi est incorrect.",
@@ -42,18 +42,26 @@ const Contact = () => {
       });
       return;
     }
+
     setIsLoading(true);
-    const response = await fetch('/api/sendEmail', {
+    setError('');
+
+    const response = await fetch('/api/submitContactForm', {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ name, email, message }),
     });
-    // console.log('Submit contact form ', name, email, message);
-    console.log({ response });
+
+    if (response.status === 200) {
+      reinitializeForm();
+    } else {
+      setError({
+        message: 'Une erreur est survenue. Veuillez réessayer ultérieurement.',
+      });
+    }
+
     setIsSubmitted(true);
-    reinitializeForm();
+    setIsLoading(false);
   };
 
   return (
@@ -76,6 +84,22 @@ const Contact = () => {
           classes="md:py-6 md:-mt-14"
           subclasses="p-4 md:p-8 md:max-w-2xl bg-gray-100"
         >
+          {error && (
+            <Alert
+              type="error"
+              message={error.message}
+              onClearMessage={() => setError('')}
+            />
+          )}
+          {isSubmitted && !error && (
+            <Alert
+              type="success"
+              message={
+                "Nous avons bien reçu votre message. Nous reviendrons vers vous d'ici 48 heures."
+              }
+              onClearMessage={() => setIsSubmitted(false)}
+            />
+          )}
           <form>
             <FormRow className="w-full">
               <Label for="name">Votre nom</Label>

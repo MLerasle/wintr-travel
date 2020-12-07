@@ -1,16 +1,18 @@
 const Sentry = require('@sentry/node');
 const Firestore = require('@google-cloud/firestore');
 
-import { CREDENTIALS } from 'data/gcp';
+import { GCP_CREDENTIALS } from 'lib/gcp';
 
 export default async (req, res) => {
-  const db = new Firestore(CREDENTIALS);
+  const db = new Firestore(GCP_CREDENTIALS);
   db.settings({ ignoreUndefinedProperties: true });
 
   const bookingdata = req.body;
 
   try {
-    const docRef = db.collection(process.env.GOOGLE_FIRESTORE_COLLECTION).doc(bookingdata.pid);
+    const docRef = db
+      .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
+      .doc(bookingdata.pid);
 
     // Update booking in db
     await docRef.update({

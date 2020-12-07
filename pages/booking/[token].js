@@ -20,7 +20,7 @@ import Alert from '@/UI/Alert';
 
 import * as gtag from 'lib/gtag';
 import { setSkiers, initializeBooking } from 'store/actions';
-import { CREDENTIALS } from 'data/gcp';
+import { GCP_CREDENTIALS } from 'lib/gcp';
 
 const Booking = ({ fetchedBooking }) => {
   const router = useRouter();
@@ -161,9 +161,11 @@ const Booking = ({ fetchedBooking }) => {
 };
 
 export async function getServerSideProps(context) {
-  const db = new Firestore(CREDENTIALS);
+  const db = new Firestore(GCP_CREDENTIALS);
   const token = context.params.token;
-  const docRef = db.collection(process.env.GOOGLE_FIRESTORE_COLLECTION).doc(token);
+  const docRef = db
+    .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
+    .doc(token);
   let fetchedBooking;
 
   try {

@@ -2,17 +2,17 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 const Sentry = require('@sentry/node');
 const Firestore = require('@google-cloud/firestore');
 
-import { CREDENTIALS } from 'data/gcp';
+import { GCP_CREDENTIALS } from 'lib/gcp';
+import { SIB_API_KEY } from 'lib/sendinblue';
 import { formatDateLong } from 'helpers/dates';
 
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey =
-  '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';
+apiKey.apiKey = SIB_API_KEY;
 var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
-const db = new Firestore(CREDENTIALS);
+const db = new Firestore(GCP_CREDENTIALS);
 
 export default async (req, res) => {
   let bookingdata;

@@ -21,6 +21,7 @@ const EmailForm = () => {
 
   const submitEmailForm = async (e) => {
     e.preventDefault();
+
     if (email.trim() === '' || !EMAIL_PATTERN.test(email)) {
       setError({
         message: "L'email saisi est incorrect.",
@@ -28,22 +29,23 @@ const EmailForm = () => {
       });
       return;
     }
+
     setIsLoading(true);
     setError('');
-    console.log('submit', { email });
+
     const response = await fetch('/api/createContact', {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email }),
     });
+
     if (response.status === 400) {
       setError({
         message:
           "Une erreur est survenue. Veuillez vérifier l'adresse email saisie et réessayer.",
       });
     }
+
     setIsSubmitted(true);
     setIsLoading(false);
     setEmail('');
@@ -62,7 +64,7 @@ const EmailForm = () => {
         <Alert
           type="success"
           message={
-            "Merci pour votre inscription!\n Vous allez recevoir un email de confirmation d'ici quelques minutes."
+            "Vous allez recevoir un email de confirmation d'ici quelques minutes.\n Veuillez cliquer sur le lien contenu dans cet email pour valider votre inscription."
           }
           onClearMessage={() => setIsSubmitted(false)}
         />
