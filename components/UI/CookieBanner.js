@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import Icon from '@mdi/react';
-import { mdiClose } from '@mdi/js';
 
 const CookieBanner = () => {
   const [cookiePolicy, setCookiePolicy] = useState(
@@ -15,11 +13,11 @@ const CookieBanner = () => {
 
   return (
     <div
-      className={`fixed w-full left-0 bottom-0 bg-gray-900 text-gray-100 flex justify-center px-5 xs:px-4 py-2 transition-opacity duration-300 ease-in-out ${
+      className={`fixed w-full left-0 bottom-0 bg-gray-900 text-gray-100 flex md:justify-center px-4 md:px-16 py-2 transition-opacity duration-300 ease-in-out ${
         cookiePolicy === 'shown' ? 'opacity-0 hidden' : 'opacity-75'
       }`}
     >
-      <p>
+      <p className="container">
         En utilisant notre site, vous acceptez notre{' '}
         <Link href="/privacy" prefetch={false}>
           <a className="underline" onClick={closeBanner}>
@@ -27,14 +25,19 @@ const CookieBanner = () => {
           </a>
         </Link>
         .
+        <button
+          className="bg-gray-100 text-gray-800 rounded font-semibold px-2 ml-2"
+          onClick={closeBanner}
+        >
+          OK
+        </button>
       </p>
-      <Icon
-        path={mdiClose}
-        size={1}
-        className="cursor-pointer ml-4"
-        color="#F7FAFC"
-        onClick={closeBanner}
-      />
+
+      <style jsx>{`
+        .container {
+          max-width: calc(100vw - 95px);
+        }
+      `}</style>
     </div>
   );
 };
