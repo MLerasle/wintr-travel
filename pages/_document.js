@@ -59,6 +59,8 @@ class MyDocument extends Document {
               />
             </>
           )}
+
+          <script src="/scripts/webchat.js" />
         </Head>
         <body className="font-body">
           <Main />
