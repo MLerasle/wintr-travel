@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import MainSection from '@/UI/MainSection';
 import Question from '@/App/Faq/Question';
@@ -19,10 +20,15 @@ const Faq = () => {
       <MainSection>
         <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
           <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
-            Aide de Wintr Travel.
+            Les questions fréquentes
           </h1>
           <p className="md:text-xl text-gray-300">
-            Trouvez les réponses à vos questions.
+            Vous ne trouvez pas la réponse que vous cherchez?{' '}
+            <Link href="/contact">
+              <a className="text-primary-green cursor-pointer hover:underline">
+                Contactez-nous.
+              </a>
+            </Link>
           </p>
         </header>
 
