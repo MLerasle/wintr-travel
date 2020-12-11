@@ -36,11 +36,11 @@ const Brand = () => {
           </p>
         </header>
 
-        <section className="px-4 xl:px-0 md:text-lg pb-10 sm:pb-16 max-w-screen-lg mx-auto mt-10 text-gray-700 leading-loose">
+        <section className="px-4 xl:px-0 md:text-lg pb-10 sm:pb-16 max-w-screen-lg mx-auto mt-10 text-gray-700">
           <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
             1. L'origine de la marque
           </h2>
-          <p className="pt-3 pb-6">
+          <p className="pt-3 pb-6 leading-loose">
             Né en 2016 par des passionnés de skis travaillant dans cette
             industrie depuis 15 ans, Wintr a pour origine une volonté de ses 4
             fondateurs, Bruno, Stéphane, Maxime et Adrien de démocratiser les
@@ -57,7 +57,7 @@ const Brand = () => {
           <h2 className="mt-6 pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
             2. La fabrication
           </h2>
-          <p className="py-3">
+          <p className="py-3 leading-loose">
             Imaginé en Europe et disposant des certifications ISO/TC 83/SC 4,
             nous avons veillé à ce que l’équipement Wintr réponde à toutes les
             normes de sécurité tout en fournissant un confort d’utilisation
@@ -76,7 +76,7 @@ const Brand = () => {
           <h2 className="mt-6 pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
             3. Les engagements
           </h2>
-          <ul className="list-disc px-6 md:px-10 mt-2 pb-4">
+          <ul className="list-disc px-6 md:px-10 mt-2 pb-4 leading-loose">
             <li>S'engager pour un monde plus solidaire</li>
             <li>Diminuer activement notre empreinte carbone</li>
             <li>
@@ -92,7 +92,7 @@ const Brand = () => {
             quotidien. Tout faire pour la préserver est au cœur de notre
             démarche depuis le premier jour.
           </Quote>
-          <p className="py-3">
+          <p className="py-3 leading-loose">
             Notre engagement depuis la création a toujours été de respecter les
             exigences de nos utilisateurs et de proposer un prix juste pour des
             équipements de qualité, modernes et sécurisés. Nous mettons tout en

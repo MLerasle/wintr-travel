@@ -57,7 +57,7 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="about-image-3 overflow-hidden"></div>
+            <div className="about-image-3 overflow-hidden img-container"></div>
             <div className="flex justify-center items-center">
               <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-3">
                 <h2 className="heading">Notre philosophie</h2>

@@ -15,7 +15,7 @@ const Cta = () => {
 
   return (
     <section className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-dark-blue">
-      <h2 className="text-3xl sm:text-4xl font-bold pb-2 text-white leading-tight">
+      <h2 className="text-3xl sm:text-4xl font-bold pb-2 text-white">
         En piste !
       </h2>
       <p className="text-lg lg:text-xl text-white mb-6">

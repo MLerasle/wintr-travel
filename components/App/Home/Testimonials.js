@@ -3,7 +3,7 @@ import Testimonial from '@/App/Home/Testimonial';
 const Testimonials = () => (
   <section className="flex justify-center items-center text-center px-4 sm:px-10 py-10 sm:py-16">
     <div className="max-w-screen-xxl">
-      <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight mb-6 sm:mb-10">
+      <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-6 sm:mb-10">
         Demandez l'avis de nos clients.
       </h2>
       <article className="flex flex-col sm:flex-row justify-between items-center tracking-wide">

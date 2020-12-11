@@ -14,7 +14,7 @@ const PriceCard = ({ category, price }) => (
       <span className="rounded-full py-1 px-5 text-dark-blue bg-light-blue bg-opacity-75 uppercase tracking-wide font-semibold text-lg">
         {category}
       </span>
-      <h2 className="text-6xl font-bold">
+      <h2 className="text-6xl font-bold py-4">
         {price}€{' '}
         <span className="text-2xl font-medium text-gray-600">/semaine</span>
       </h2>
