@@ -29,6 +29,8 @@ import { getLastDay, getPrices } from 'helpers/booking';
 import { twoDaysBefore } from 'helpers/dates';
 import { isoCountries } from 'data/countries';
 
+const headers = { 'Content-Type': 'application/json' };
+
 const CheckoutForm = ({ intent }) => {
   const _isMounted = useRef(true);
   const stripe = useStripe();
@@ -129,10 +131,30 @@ const CheckoutForm = ({ intent }) => {
     // Send booking infos to the backend
     await fetch('/api/booking/publish', {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(updatedBooking),
+    });
+
+    const customerResp = await fetch('/api/customer/create', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(updatedBooking),
+    });
+    const customer = await customerResp.json();
+
+    await fetch('/api/invoice/create', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ ...updatedBooking, customerId: customer.id }),
+    });
+
+    await fetch('/api/paymentIntent/update', {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({
+        paymentIntentId: updatedBooking.paymentIntentId,
+        customerId: customer.id,
+      }),
     });
 
     destroyCookie(null, 'paymentIntentId');
