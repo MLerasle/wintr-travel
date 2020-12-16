@@ -30,7 +30,7 @@ const Prices = () => {
             Un tarif simple
           </h1>
           <p className="md:text-xl text-gray-300">
-            Budgéter ses vacances n'a jamais été aussi facile.
+            Pré-réservez pour 5€. Payez le reste la veille de votre arrivée.
           </p>
         </header>
 

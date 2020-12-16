@@ -2,7 +2,7 @@ import { parseCookies } from 'nookies';
 import Stripe from 'stripe';
 const Sentry = require('@sentry/node');
 
-import { getPrices, getLastDay } from 'helpers/booking';
+import { getLastDay } from 'helpers/booking';
 
 export default async (req, res) => {
   try {
@@ -14,21 +14,21 @@ export default async (req, res) => {
       typeof window === 'undefined' ? { req } : {}
     );
 
-    const prices = getPrices(booking.adults.length, booking.children.length);
-    const amount = Math.round(+prices.total * 100);
+    // const prices = getPrices(booking.adults.length, booking.children.length);
+    // const amount = Math.round(+prices.total * 100);
 
     // If we already have an unconfirmed paymentIntent we reuse it
     if (paymentIntentId) {
       paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
       // Update its amount if it changed
-      if (amount !== paymentIntent.amount) {
-        await stripe.paymentIntents.update(paymentIntentId, {
-          amount,
-        });
-      }
+      // if (amount !== paymentIntent.amount) {
+      //   await stripe.paymentIntents.update(paymentIntentId, {
+      //     amount,
+      //   });
+      // }
     } else {
       paymentIntent = await stripe.paymentIntents.create({
-        amount,
+        amount: '500',
         currency: 'eur',
         payment_method_types: ['card'],
         receipt_email: booking.email,
