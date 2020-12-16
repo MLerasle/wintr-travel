@@ -135,12 +135,12 @@ const CheckoutForm = ({ intent }) => {
       body: JSON.stringify(updatedBooking),
     });
 
-    const customerResp = await fetch('/api/customer/create', {
+    const resp = await fetch('/api/customer/create', {
       method: 'POST',
       headers,
       body: JSON.stringify(updatedBooking),
     });
-    const customer = await customerResp.json();
+    const customer = await resp.json();
 
     await fetch('/api/invoice/create', {
       method: 'POST',
@@ -400,7 +400,7 @@ const CheckoutForm = ({ intent }) => {
           disabled={loading}
           classes="my-4 w-full uppercase tracking-wide bg-primary-green text-white"
         >
-          {loading ? <Loader /> : `Payer ${prices.total.toFixed(2)} €`}
+          {loading ? <Loader /> : 'Pré-réserver pour 5€'}
         </Button>
       </form>
     </div>

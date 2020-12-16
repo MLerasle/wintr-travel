@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 const Sentry = require('@sentry/node');
 
 import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from 'data/booking';
+import { dayBeforeTimestamp } from 'helpers/dates';
 
 export default async (req, res) => {
   try {
@@ -38,7 +39,8 @@ export default async (req, res) => {
 
     const invoice = await stripe.invoices.create({
       customer: booking.customerId,
-      // collection_method: 'send_invoice',
+      collection_method: 'send_invoice',
+      due_date: dayBeforeTimestamp(booking.firstDay),
     });
 
     res.status(201).json(invoice);
