@@ -128,19 +128,19 @@ const CheckoutForm = ({ intent }) => {
   };
 
   const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
-    // Send booking infos to the backend
-    await fetch('/api/booking/publish', {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify(updatedBooking),
-    });
-
     const resp = await fetch('/api/customer/create', {
       method: 'POST',
       headers,
       body: JSON.stringify(updatedBooking),
     });
     const customer = await resp.json();
+
+    // Send booking infos to the backend
+    await fetch('/api/booking/publish', {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({ ...updatedBooking, customerId: customer.id }),
+    });
 
     await fetch('/api/invoice/create', {
       method: 'POST',
