@@ -2,12 +2,13 @@ import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Firestore from '@google-cloud/firestore';
+// import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
-import * as SentryNode from '@sentry/node';
+// import * as SentryNode from '@sentry/node';
 
 import BookingValidatedInfos from '@/App/BookingEdit/BookingValidatedInfos';
 import BookingDeliveryInfos from '@/App/BookingEdit/BookingDeliveryInfos';
+import BookingCancel from '@/App/BookingEdit/BookingCancel';
 import BookingFormSizes from '@/App/Details/BookingFormSizes';
 import BookingFormValidate from '@/App/Details/BookingFormValidate';
 import MainSection from '@/UI/MainSection';
@@ -17,10 +18,11 @@ import SizeSkis from '@/App/Sizes/SizeSkis';
 import SizeShoes from '@/App/Sizes/SizeShoes';
 import SizeHelmet from '@/App/Sizes/SizeHelmet';
 import Alert from '@/UI/Alert';
+import Button from '@/UI/Button';
 
 import * as gtag from 'lib/gtag';
 import { setSkiers, initializeBooking } from 'store/actions';
-import { GCP_CREDENTIALS } from 'lib/gcp';
+// import { GCP_CREDENTIALS } from 'lib/gcp';
 
 const Booking = ({ fetchedBooking }) => {
   const router = useRouter();
@@ -28,6 +30,9 @@ const Booking = ({ fetchedBooking }) => {
   const _isMounted = useRef(true);
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
+  const [isConfirmCancelModalOpened, setIsConfirmCancelModalOpened] = useState(
+    false
+  );
   const [alert, setAlert] = useState(null);
   const dispatch = useDispatch();
   const booking = useSelector((state) => state, shallowEqual);
@@ -118,6 +123,15 @@ const Booking = ({ fetchedBooking }) => {
     });
   };
 
+  const toggleConfirmCancel = () => {
+    setIsConfirmCancelModalOpened(!isConfirmCancelModalOpened);
+  };
+
+  const cancelBooking = () => {
+    toggleConfirmCancel();
+    console.log('Cancel booking');
+  };
+
   return (
     <>
       <Head>
@@ -129,6 +143,19 @@ const Booking = ({ fetchedBooking }) => {
             <SizeSkis />
             <SizeShoes withDetails />
             <SizeHelmet withDetails />
+          </section>
+        </Modal>
+        <Modal open={isConfirmCancelModalOpened} closed={toggleConfirmCancel}>
+          <section className="md:text-md px-6 py-6 text-center">
+            <p className="text-gray-800 text-lg my-6 font-semibold">
+              Êtes-vous sûr de vouloir annuler votre réservation?
+            </p>
+            <Button
+              classes="uppercase tracking-wide w-full md:w-64 bg-primary-red text-white"
+              onClick={cancelBooking}
+            >
+              Confirmer
+            </Button>
           </section>
         </Modal>
         {alert && (
@@ -153,36 +180,53 @@ const Booking = ({ fetchedBooking }) => {
           booking={booking}
           loading={loading}
           onValidate={validateBookingDetails}
+          onCancel={toggleConfirmCancel}
           buttonLabel={`Enregistrer`}
+          token={token}
         />
+        <BookingCancel onCancel={toggleConfirmCancel} />
       </MainSection>
     </>
   );
 };
 
 export async function getServerSideProps(context) {
-  const db = new Firestore(GCP_CREDENTIALS);
-  const token = context.params.token;
-  const docRef = db
-    .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
-    .doc(token);
-  let fetchedBooking;
+  // const db = new Firestore(GCP_CREDENTIALS);
+  // const token = context.params.token;
+  // const docRef = db
+  //   .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
+  //   .doc(token);
+  // let fetchedBooking;
 
-  try {
-    const doc = await docRef.get();
-    if (doc.exists) {
-      fetchedBooking = doc.data();
-    } else {
-      return {
-        notFound: true,
-      };
-    }
-  } catch (error) {
-    SentryNode.captureException(error);
-    return {
-      notFound: true,
-    };
-  }
+  // try {
+  //   const doc = await docRef.get();
+  //   if (doc.exists) {
+  //     fetchedBooking = doc.data();
+  //   } else {
+  //     return {
+  //       notFound: true,
+  //     };
+  //   }
+  // } catch (error) {
+  //   SentryNode.captureException(error);
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
+
+  const fetchedBooking = {
+    firstDay: '2021-02-06',
+    adults: [{ label: 'Adulte' }, { label: 'Adulte' }],
+    children: [],
+    email: 'maxlerasle@test.com',
+    name: 'Maxime Lerasle',
+    phoneNumber: '+33612345678',
+    countryCode: 'FR',
+    deliveryAddress: '',
+    placeId: null,
+    isRegisteredToNewsletter: true,
+    paymentIntentId: 'pi_1Hzg9PExu4LJSLGA40xfXZh2',
+  };
 
   return {
     props: {
