@@ -236,7 +236,7 @@ export async function getServerSideProps(context) {
     deliveryAddress: '',
     placeId: null,
     isRegisteredToNewsletter: true,
-    paymentIntentId: 'pi_1I6vtPExu4LJSLGAlUMp5XlF',
+    paymentIntentId: 'pi_1I6z5NExu4LJSLGAqJt6nTDH',
     customerId: 'cus_IiMdlcFLOKSvXs',
     // canceled: true,
   };

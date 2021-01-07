@@ -19,7 +19,7 @@ export default async (req, res) => {
     const booking = req.body;
 
     refundPaymentIntent(booking);
-    refundInvoice(booking);
+    refundOrVoidInvoice(booking);
     markBookingAsCanceled(booking);
     sendConfirmationEmail(booking);
 
@@ -38,9 +38,10 @@ const refundPaymentIntent = async (booking) => {
   });
 };
 
-const refundInvoice = async (booking) => {
+const refundOrVoidInvoice = async (booking) => {
   const invoices = await stripe.invoices.list({
     customer: booking.customerId,
+    status: 'open',
   });
 
   const invoice = invoices.data[0];
@@ -49,6 +50,8 @@ const refundInvoice = async (booking) => {
     await stripe.refunds.create({
       payment_intent: invoice.payment_intent,
     });
+  } else {
+    await stripe.invoices.voidInvoice(invoice.id);
   }
 };
 
