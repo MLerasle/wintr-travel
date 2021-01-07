@@ -55,7 +55,8 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
         <li className="text-sm">
           <span className="font-bold">Pré-réservez votre séjour pour 5€</span>{' '}
           seulement dès maintenant. Vous recevrez une facture du reste à régler
-          d'ici la veille de votre arrivée sur place.{' '}
+          d'ici la veille de votre arrivée sur place.
+          <br />
           <span className="font-bold">
             Remboursement intégral en cas d'annulation.
           </span>

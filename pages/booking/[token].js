@@ -127,9 +127,13 @@ const Booking = ({ fetchedBooking }) => {
     setIsConfirmCancelModalOpened(!isConfirmCancelModalOpened);
   };
 
-  const cancelBooking = () => {
+  const cancelBooking = async () => {
     toggleConfirmCancel();
-    console.log('Cancel booking');
+    await fetch('/api/booking/cancel', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(booking),
+    });
   };
 
   return (
@@ -216,7 +220,7 @@ export async function getServerSideProps(context) {
 
   const fetchedBooking = {
     firstDay: '2021-02-06',
-    adults: [{ label: 'Adulte' }, { label: 'Adulte' }],
+    adults: [{ label: 'Adulte 1' }, { label: 'Adulte 2' }],
     children: [],
     email: 'maxlerasle@test.com',
     name: 'Maxime Lerasle',
@@ -225,7 +229,8 @@ export async function getServerSideProps(context) {
     deliveryAddress: '',
     placeId: null,
     isRegisteredToNewsletter: true,
-    paymentIntentId: 'pi_1Hzg9PExu4LJSLGA40xfXZh2',
+    paymentIntentId: 'pi_1I6vtPExu4LJSLGAlUMp5XlF',
+    customerId: 'cus_IiMdlcFLOKSvXs',
   };
 
   return {
