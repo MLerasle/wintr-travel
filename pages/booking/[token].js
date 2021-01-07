@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
 // import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
@@ -128,11 +128,18 @@ const Booking = ({ fetchedBooking }) => {
   };
 
   const cancelBooking = async () => {
+    setIsLoading(true);
     toggleConfirmCancel();
     await fetch('/api/booking/cancel', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(booking),
+    });
+    Router.push('/').then(() => {
+      if (_isMounted.current) {
+        setIsLoading(false);
+      }
+      window.scrollTo(0, 0);
     });
   };
 
