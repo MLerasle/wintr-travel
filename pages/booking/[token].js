@@ -238,7 +238,13 @@ export async function getServerSideProps(context) {
     isRegisteredToNewsletter: true,
     paymentIntentId: 'pi_1I6vtPExu4LJSLGAlUMp5XlF',
     customerId: 'cus_IiMdlcFLOKSvXs',
+    // canceled: true,
   };
+
+  if (fetchedBooking.canceled) {
+    context.res.writeHead(302, { Location: '/' });
+    context.res.end();
+  }
 
   return {
     props: {
