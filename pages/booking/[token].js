@@ -195,7 +195,7 @@ const Booking = ({ fetchedBooking }) => {
           buttonLabel={`Enregistrer`}
           token={token}
         />
-        <BookingCancel onCancel={toggleConfirmCancel} />
+        {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />}
       </MainSection>
     </>
   );
@@ -238,7 +238,7 @@ export async function getServerSideProps(context) {
     isRegisteredToNewsletter: true,
     paymentIntentId: 'pi_1I6z5NExu4LJSLGAqJt6nTDH',
     customerId: 'cus_IiMdlcFLOKSvXs',
-    // canceled: true,
+    canceled: true,
   };
 
   if (fetchedBooking.canceled) {

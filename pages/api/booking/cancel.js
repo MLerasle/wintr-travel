@@ -18,6 +18,10 @@ export default async (req, res) => {
   try {
     const booking = req.body;
 
+    if (booking.canceled) {
+      return res.status(204).end();
+    }
+
     refundPaymentIntent(booking);
     refundOrVoidInvoice(booking);
     markBookingAsCanceled(booking);
