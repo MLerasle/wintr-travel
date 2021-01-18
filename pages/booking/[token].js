@@ -2,13 +2,13 @@ import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
-// import Firestore from '@google-cloud/firestore';
+import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
-// import * as SentryNode from '@sentry/node';
+import * as SentryNode from '@sentry/node';
 
 import BookingValidatedInfos from '@/App/BookingEdit/BookingValidatedInfos';
 import BookingDeliveryInfos from '@/App/BookingEdit/BookingDeliveryInfos';
-import BookingCancel from '@/App/BookingEdit/BookingCancel';
+// import BookingCancel from '@/App/BookingEdit/BookingCancel';
 import BookingFormSizes from '@/App/Details/BookingFormSizes';
 import BookingFormValidate from '@/App/Details/BookingFormValidate';
 import MainSection from '@/UI/MainSection';
@@ -22,7 +22,7 @@ import Button from '@/UI/Button';
 
 import * as gtag from 'lib/gtag';
 import { setSkiers, initializeBooking } from 'store/actions';
-// import { GCP_CREDENTIALS } from 'lib/gcp';
+import { GCP_CREDENTIALS } from 'lib/gcp';
 
 const Booking = ({ fetchedBooking }) => {
   const router = useRouter();
@@ -195,62 +195,67 @@ const Booking = ({ fetchedBooking }) => {
           buttonLabel={`Enregistrer`}
           token={token}
         />
-        {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />}
+        {/* {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />} */}
       </MainSection>
     </>
   );
 };
 
 export async function getServerSideProps(context) {
-  // const db = new Firestore(GCP_CREDENTIALS);
-  // const token = context.params.token;
-  // const docRef = db
-  //   .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
-  //   .doc(token);
-  // let fetchedBooking;
-
-  // try {
-  //   const doc = await docRef.get();
-  //   if (doc.exists) {
-  //     fetchedBooking = doc.data();
-  //   } else {
-  //     return {
-  //       notFound: true,
-  //     };
-  //   }
-  // } catch (error) {
-  //   SentryNode.captureException(error);
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
-
-  const fetchedBooking = {
-    firstDay: '2021-02-06',
-    adults: [{ label: 'Adulte 1' }, { label: 'Adulte 2' }],
-    children: [],
-    email: 'maxlerasle@test.com',
-    name: 'Maxime Lerasle',
-    phoneNumber: '+33612345678',
-    countryCode: 'FR',
-    deliveryAddress: '',
-    placeId: null,
-    isRegisteredToNewsletter: true,
-    paymentIntentId: 'pi_1I6z5NExu4LJSLGAqJt6nTDH',
-    customerId: 'cus_IiMdlcFLOKSvXs',
-    canceled: true,
-  };
-
-  if (fetchedBooking.canceled) {
-    context.res.writeHead(302, { Location: '/' });
-    context.res.end();
+  const db = new Firestore(GCP_CREDENTIALS);
+  const token = context.params.token;
+  const docRef = db
+    .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
+    .doc(token);
+  let fetchedBooking;
+  try {
+    const doc = await docRef.get();
+    if (doc.exists) {
+      fetchedBooking = doc.data();
+      if (fetchedBooking.canceled) {
+        context.res.writeHead(302, { Location: '/' });
+        context.res.end();
+      }
+      return {
+        props: {
+          fetchedBooking,
+        },
+      };
+    } else {
+      return {
+        notFound: true,
+      };
+    }
+  } catch (error) {
+    SentryNode.captureException(error);
+    return {
+      notFound: true,
+    };
   }
-
-  return {
-    props: {
-      fetchedBooking,
-    },
-  };
+  // const fetchedBooking = {
+  //   firstDay: '2021-02-06',
+  //   adults: [{ label: 'Adulte 1' }, { label: 'Adulte 2' }],
+  //   children: [],
+  //   email: 'maxlerasle@test.com',
+  //   name: 'Maxime Lerasle',
+  //   phoneNumber: '+33612345678',
+  //   countryCode: 'FR',
+  //   deliveryAddress: '',
+  //   placeId: null,
+  //   isRegisteredToNewsletter: true,
+  //   paymentIntentId: 'pi_1I6z5NExu4LJSLGAqJt6nTDH',
+  //   customerId: 'cus_IiMdlcFLOKSvXs',
+  //   canceled: true,
+  // };
+  // if (fetchedBooking.canceled) {
+  //   context.res.writeHead(302, { Location: '/' });
+  //   context.res.end();
+  // }
+  // return {
+  //   props: {
+  //     fetchedBooking,
+  //   },
+  // };
 }
 
 export default Booking;
