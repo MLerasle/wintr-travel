@@ -17,7 +17,7 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
     >
       <Header>
         <Heading className="text-xl mb-2 md:mb-0">
-          Votre séjour à Flaine
+          Votre séjour à Praz sur Arly
         </Heading>
         {!token && (
           <button

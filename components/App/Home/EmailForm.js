@@ -71,7 +71,7 @@ const EmailForm = () => {
       )}
       <Header>
         <Heading className="hidden md:block text-xl sm:text-3xl">
-          Vos skis livrés à Flaine pour une semaine.
+          Vos skis livrés à Praz sur Arly pour une semaine.
         </Heading>
       </Header>
       <Separator className="my-6 hidden md:block" />
