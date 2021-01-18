@@ -25,3 +25,8 @@ export const twoDaysBefore = (day) => {
   const date = dayjs(day, 'YYYY-MM-DD').subtract(2, 'days');
   return date.format('DD MMM YYYY');
 };
+
+export const dayBeforeTimestamp = (day) => {
+  const date = dayjs(day, 'YYYY-MM-DD').subtract(1, 'day').hour(10).minute(0);
+  return date.unix();
+};

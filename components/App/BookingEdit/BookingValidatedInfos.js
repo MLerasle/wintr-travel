@@ -55,7 +55,7 @@ const BookingValidatedInfos = ({ booking }) => {
         </p>
         <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-primary-green">
           <Icon path={mdiCreditCardCheckOutline} size={1} />
-          <span className="ml-1">Payé {prices.total.toFixed(2)} €</span>
+          <span className="ml-1">Tarif {prices.total.toFixed(2)} €</span>
         </p>
       </div>
     </header>

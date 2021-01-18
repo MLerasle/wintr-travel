@@ -40,10 +40,8 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
           </span>
           .
         </li>
-        <li>
-          Pour {booking.adults.length}{' '}
-          <span className="font-bold">{adults}</span> (
-          {prices.adults.toFixed(2)} €)
+        <li className="pb-2">
+          Pour {booking.adults.length} {adults} ({prices.adults.toFixed(2)} €)
           {booking.children.length > 0 && (
             <>
               {' '}
@@ -53,6 +51,15 @@ const Recap = ({ booking, prices, onEditBooking, token }) => {
             </>
           )}
           .
+        </li>
+        <li className="text-sm">
+          <span className="font-bold">Pré-réservez votre séjour pour 5€</span>{' '}
+          seulement dès maintenant. Vous recevrez une facture du reste à régler
+          d'ici la veille de votre arrivée sur place.
+          <br />
+          <span className="font-bold">
+            Remboursement intégral en cas d'annulation.
+          </span>
         </li>
       </ul>
     </Card>

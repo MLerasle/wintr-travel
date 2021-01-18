@@ -29,6 +29,8 @@ import { getLastDay, getPrices } from 'helpers/booking';
 import { twoDaysBefore } from 'helpers/dates';
 import { isoCountries } from 'data/countries';
 
+const headers = { 'Content-Type': 'application/json' };
+
 const CheckoutForm = ({ intent }) => {
   const _isMounted = useRef(true);
   const stripe = useStripe();
@@ -126,13 +128,33 @@ const CheckoutForm = ({ intent }) => {
   };
 
   const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
+    const resp = await fetch('/api/customer/create', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(updatedBooking),
+    });
+    const customer = await resp.json();
+
     // Send booking infos to the backend
     await fetch('/api/booking/publish', {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedBooking),
+      headers,
+      body: JSON.stringify({ ...updatedBooking, customerId: customer.id }),
+    });
+
+    await fetch('/api/invoice/create', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ ...updatedBooking, customerId: customer.id }),
+    });
+
+    await fetch('/api/paymentIntent/update', {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({
+        paymentIntentId: updatedBooking.paymentIntentId,
+        customerId: customer.id,
+      }),
     });
 
     destroyCookie(null, 'paymentIntentId');
@@ -378,7 +400,7 @@ const CheckoutForm = ({ intent }) => {
           disabled={loading}
           classes="my-4 w-full uppercase tracking-wide bg-primary-green text-white"
         >
-          {loading ? <Loader /> : `Payer ${prices.total.toFixed(2)} €`}
+          {loading ? <Loader /> : 'Pré-réserver pour 5€'}
         </Button>
       </form>
     </div>
