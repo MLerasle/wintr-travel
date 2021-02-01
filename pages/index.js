@@ -3,8 +3,8 @@ import Head from 'next/head';
 
 import MobileImage from '@/UI/MobileImage';
 import Hero from '@/UI/Hero';
-import BookingForm from '@/App/Home/BookingForm';
-// import EmailForm from '@/App/Home/EmailForm';
+// import BookingForm from '@/App/Home/BookingForm';
+import EmailForm from '@/App/Home/EmailForm';
 import HomeArgs from '@/App/Home/Args';
 import Testimonials from '@/App/Home/Testimonials';
 import HomeCta from '@/App/Home/Cta';
@@ -22,17 +22,17 @@ const Index = () => {
         <title>Location et livraison de skis et forfaits - Wintr Travel</title>
         <meta
           name="description"
-          content="Faites-vous livrer vos skis et votre forfait dans votre résidence à Praz sur Arly avec Wintr Travel.
+          content="Faites-vous livrer vos skis et votre forfait dans votre résidence avec Wintr Travel.
             Réservez dès maintenant vos prochaines vacances au ski!"
         />
       </Head>
       <MobileImage />
       <Hero type="full">
-        {/* <EmailForm /> */}
-        <BookingForm />
+        <EmailForm />
+        {/* <BookingForm /> */}
       </Hero>
       <HomeArgs />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <HomeCta />
     </>
   );

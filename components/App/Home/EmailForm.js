@@ -63,15 +63,13 @@ const EmailForm = () => {
       {isSubmitted && !error && (
         <Alert
           type="success"
-          message={
-            "Vous allez recevoir un email de confirmation d'ici quelques minutes.\n Veuillez cliquer sur le lien contenu dans cet email pour valider votre inscription."
-          }
+          message={'Merci! Votre inscription a bien été prise en compte.'}
           onClearMessage={() => setIsSubmitted(false)}
         />
       )}
       <Header>
         <Heading className="hidden md:block text-xl sm:text-3xl">
-          Vos skis livrés à Praz sur Arly pour une semaine.
+          Livraison de skis au pied des pistes.
         </Heading>
       </Header>
       <Separator className="my-6 hidden md:block" />
@@ -86,7 +84,7 @@ const EmailForm = () => {
         <p className="mt-4">
           <span className="font-bold">Les places étant limitées</span>, vous
           pouvez renseigner votre email ci-dessous pour être tenu informé de la
-          réouverture de celui-ci:
+          réouverture de celui-ci pour la saison 2021/2022:
         </p>
       </section>
       <form className="md:mt-4">

@@ -6,7 +6,7 @@ const MobileImage = () => (
       <div className="h-48 w-full bg-black bg-opacity-25"></div>
     </div>
     <Heading className="homeTitle">
-      Vos skis livrés à Praz sur Arly pour une semaine.
+      Livraison de skis au pied des pistes.
     </Heading>
   </div>
 );
