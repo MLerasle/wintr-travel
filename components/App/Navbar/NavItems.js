@@ -16,10 +16,6 @@ const NavItems = (props) => {
       name: '',
       key: 'main',
       links: [
-        {
-          label: 'La Marque',
-          href: '/brand',
-        },
         // {
         //   label: 'Notre offre',
         //   href: '/offer',
