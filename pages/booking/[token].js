@@ -205,7 +205,7 @@ export async function getServerSideProps(context) {
   const db = new Firestore(GCP_CREDENTIALS);
   const token = context.params.token;
   const docRef = db
-    .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
+    .collection(process.env.GOOGLE_FIRESTORE_BOOKINGS)
     .doc(token);
   let fetchedBooking;
   try {

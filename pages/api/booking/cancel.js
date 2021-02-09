@@ -64,7 +64,7 @@ const markBookingAsCanceled = async (booking) => {
   db.settings({ ignoreUndefinedProperties: true });
 
   const docRef = db
-    .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
+    .collection(process.env.GOOGLE_FIRESTORE_BOOKINGS)
     .doc(booking.paymentIntentId);
 
   await docRef.update({ canceled: true });

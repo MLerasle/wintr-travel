@@ -11,7 +11,7 @@ export default async (req, res) => {
 
   try {
     const docRef = db
-      .collection(process.env.GOOGLE_FIRESTORE_COLLECTION)
+      .collection(process.env.GOOGLE_FIRESTORE_BOOKINGS)
       .doc(bookingdata.pid);
 
     // Update booking in db
