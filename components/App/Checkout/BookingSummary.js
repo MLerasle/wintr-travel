@@ -1,16 +1,17 @@
-import { useSelector, shallowEqual } from 'react-redux';
+import { useContext } from 'react';
 
 import BookingSummaryLine from '@/App/Checkout/BookingSummaryLine';
 import BookingSummaryLineSkier from '@/App/Checkout/BookingSummaryLineSkier';
 import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 
+import BookingContext from 'context/booking-context';
 import { formatDate } from 'helpers/dates';
 import { getPrices, getLastDay } from 'helpers/booking';
 import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from 'data/booking';
 
 const BookingSummary = () => {
-  const booking = useSelector((state) => state, shallowEqual);
+  const booking = useContext(BookingContext);
   const prices = getPrices(booking.adults.length, booking.children.length);
 
   return (

@@ -1,10 +1,9 @@
-import { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useEffect, useState, useContext } from 'react';
 import Router, { useRouter } from 'next/router';
 import Head from 'next/head';
-import Firestore from '@google-cloud/firestore';
+// import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
-import * as SentryNode from '@sentry/node';
+// import * as SentryNode from '@sentry/node';
 
 import BookingValidatedInfos from '@/App/BookingEdit/BookingValidatedInfos';
 import BookingDeliveryInfos from '@/App/BookingEdit/BookingDeliveryInfos';
@@ -20,33 +19,25 @@ import SizeHelmet from '@/App/Sizes/SizeHelmet';
 import Alert from '@/UI/Alert';
 import Button from '@/UI/Button';
 
+import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
-import { setSkiers, initializeBooking } from 'store/actions';
-import { GCP_CREDENTIALS } from 'lib/gcp';
+// import { GCP_CREDENTIALS } from 'lib/gcp';
 
 const Booking = ({ fetchedBooking }) => {
   const router = useRouter();
   const { token } = router.query;
-  const _isMounted = useRef(true);
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [isConfirmCancelModalOpened, setIsConfirmCancelModalOpened] = useState(
     false
   );
   const [alert, setAlert] = useState(null);
-  const dispatch = useDispatch();
-  const booking = useSelector((state) => state, shallowEqual);
+  const booking = useContext(BookingContext);
 
   const skiers = [...fetchedBooking.adults, ...fetchedBooking.children];
 
   useEffect(() => {
-    return () => {
-      _isMounted.current = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    dispatch(initializeBooking(fetchedBooking));
+    localStorage.setItem('booking', JSON.stringify(fetchedBooking));
   }, []);
 
   const toggleSizesHelp = () => {
@@ -64,9 +55,9 @@ const Booking = ({ fetchedBooking }) => {
     person[attribute] = event.target.value;
 
     if (skier.label.startsWith('Adulte')) {
-      dispatch(setSkiers(skiers, booking.children));
+      booking.update('adults', skiers);
     } else {
-      dispatch(setSkiers(booking.adults, skiers));
+      booking.update('children', skiers);
     }
   };
 
@@ -136,9 +127,7 @@ const Booking = ({ fetchedBooking }) => {
       body: JSON.stringify(booking),
     });
     Router.push('/').then(() => {
-      if (_isMounted.current) {
-        setIsLoading(false);
-      }
+      setIsLoading(false);
       window.scrollTo(0, 0);
     });
   };
@@ -202,60 +191,61 @@ const Booking = ({ fetchedBooking }) => {
 };
 
 export async function getServerSideProps(context) {
-  const db = new Firestore(GCP_CREDENTIALS);
-  const token = context.params.token;
-  const docRef = db
-    .collection(process.env.GOOGLE_FIRESTORE_BOOKINGS)
-    .doc(token);
-  let fetchedBooking;
-  try {
-    const doc = await docRef.get();
-    if (doc.exists) {
-      fetchedBooking = doc.data();
-      if (fetchedBooking.canceled) {
-        context.res.writeHead(302, { Location: '/' });
-        context.res.end();
-      }
-      return {
-        props: {
-          fetchedBooking,
-        },
-      };
-    } else {
-      return {
-        notFound: true,
-      };
-    }
-  } catch (error) {
-    SentryNode.captureException(error);
-    return {
-      notFound: true,
-    };
-  }
-  // const fetchedBooking = {
-  //   firstDay: '2021-02-06',
-  //   adults: [{ label: 'Adulte 1' }, { label: 'Adulte 2' }],
-  //   children: [],
-  //   email: 'maxlerasle@test.com',
-  //   name: 'Maxime Lerasle',
-  //   phoneNumber: '+33612345678',
-  //   countryCode: 'FR',
-  //   deliveryAddress: '',
-  //   placeId: null,
-  //   isRegisteredToNewsletter: true,
-  //   paymentIntentId: 'pi_1I6z5NExu4LJSLGAqJt6nTDH',
-  //   customerId: 'cus_IiMdlcFLOKSvXs',
-  //   canceled: true,
-  // };
-  // if (fetchedBooking.canceled) {
-  //   context.res.writeHead(302, { Location: '/' });
-  //   context.res.end();
+  // const db = new Firestore(GCP_CREDENTIALS);
+  // const token = context.params.token;
+  // const docRef = db
+  //   .collection(process.env.GOOGLE_FIRESTORE_BOOKINGS)
+  //   .doc(token);
+  // let fetchedBooking;
+  // try {
+  //   const doc = await docRef.get();
+  //   if (doc.exists) {
+  //     fetchedBooking = doc.data();
+  //     if (fetchedBooking.canceled) {
+  //       context.res.writeHead(302, { Location: '/' });
+  //       context.res.end();
+  //     }
+  //     return {
+  //       props: {
+  //         fetchedBooking,
+  //       },
+  //     };
+  //   } else {
+  //     return {
+  //       notFound: true,
+  //     };
+  //   }
+  // } catch (error) {
+  //   SentryNode.captureException(error);
+  //   return {
+  //     notFound: true,
+  //   };
   // }
-  // return {
-  //   props: {
-  //     fetchedBooking,
-  //   },
-  // };
+  const fetchedBooking = {
+    firstDay: '2021-02-06',
+    adults: [{ label: 'Adulte 1' }, { label: 'Adulte 2' }],
+    children: [],
+    email: 'maxlerasle@test.com',
+    name: 'Maxime Lerasle',
+    phoneNumber: '+33612345678',
+    countryCode: 'FR',
+    deliveryAddress: '',
+    placeId: null,
+    isRegisteredToNewsletter: true,
+    paymentIntentId: 'pi_1I6z5NExu4LJSLGAqJt6nTDH',
+    stripeInvoiceId: null,
+    stripeCustomerId: 'cus_IiMdlcFLOKSvXs',
+    state: 'prepaid',
+  };
+  if (fetchedBooking.state === 'canceled') {
+    context.res.writeHead(302, { Location: '/' });
+    context.res.end();
+  }
+  return {
+    props: {
+      fetchedBooking,
+    },
+  };
 }
 
 export default Booking;

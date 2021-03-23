@@ -1,5 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useState, useContext } from 'react';
 import Router from 'next/router';
 
 import Card from '@/UI/Card';
@@ -13,29 +12,21 @@ import RadioButtons from '@/UI/RadioButtons';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
 
+import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
-import { setArrivalDate, setSkiers } from 'store/actions';
 import { formatDateLong } from 'helpers/dates';
 import { isValid, getLastDay } from 'helpers/booking';
 import { FEBRUARY_DATES } from 'data/booking';
 
 const BookingForm = ({ isEditing, onUpdate }) => {
-  const _isMounted = useRef(true);
-  const booking = useSelector((state) => state, shallowEqual);
-  const dispatch = useDispatch();
+  const booking = useContext(BookingContext);
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    return () => {
-      _isMounted.current = false;
-    };
-  }, []);
 
   const handleArrivalDate = (event) => {
     setError(null);
     const date = event.target.value;
-    dispatch(setArrivalDate(date));
+    booking.update('firstDay', date);
   };
 
   const handleSkierChange = (category, event) => {
@@ -52,10 +43,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       };
       skiersArray.push(newSkier);
     }
-    const adults = category === 'adults' ? skiersArray : [...booking.adults];
-    const children =
-      category === 'children' ? skiersArray : [...booking.children];
-    dispatch(setSkiers(adults, children));
+    booking.update(category, skiersArray);
   };
 
   const validateSearch = (e) => {
@@ -82,12 +70,9 @@ const BookingForm = ({ isEditing, onUpdate }) => {
 
     Router.push('/booking/details')
       .then(() => {
-        if (_isMounted.current) {
-          setIsLoading(false);
-          setError(null);
-        }
+        setIsLoading(false);
+        setError(null);
         onUpdate && onUpdate();
-        window.scrollTo(0, 0);
       })
       .catch((error) => {
         console.log('ERROR pushing new route', error);

@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useEffect, useState, useContext } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 import { parseCookies, setCookie } from 'nookies';
@@ -18,19 +17,17 @@ import SizeShoes from '@/App/Sizes/SizeShoes';
 import SizeHelmet from '@/App/Sizes/SizeHelmet';
 import Alert from '@/UI/Alert';
 
+import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
-import { setSkiers, setEmail, setRegisteredToNewsLetter } from 'store/actions';
 import { EMAIL_PATTERN } from 'helpers/email';
 import { getPrices, isValid } from 'helpers/booking';
 
 const Details = () => {
-  const _isMounted = useRef(true);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
-  const booking = useSelector((state) => state, shallowEqual);
-  const dispatch = useDispatch();
+  const booking = useContext(BookingContext);
   const [formError, setFormError] = useState(
     !EMAIL_PATTERN.test(booking.email)
       ? 'Vous devez saisir une adresse email valide.'
@@ -45,9 +42,6 @@ const Details = () => {
     if (!isValid(booking)) {
       setIsEditing(true);
     }
-    return () => {
-      _isMounted.current = false;
-    };
   }, []);
 
   const toggleSizesHelp = () => {
@@ -73,9 +67,9 @@ const Details = () => {
     person[attribute] = event.target.value;
 
     if (skier.label.startsWith('Adulte')) {
-      dispatch(setSkiers(skiers, booking.children));
+      booking.update('adults', skiers);
     } else {
-      dispatch(setSkiers(booking.adults, skiers));
+      booking.update('children', skiers);
     }
   };
 
@@ -86,12 +80,12 @@ const Details = () => {
         ? 'Vous devez saisir une adresse email valide.'
         : '';
     setFormError(error);
-    dispatch(setEmail(email));
+    booking.update('email', email);
   };
 
   const updateNewsletterRegistration = () => {
     const register = !booking.isRegisteredToNewsletter;
-    dispatch(setRegisteredToNewsLetter(register));
+    booking.update('isRegisteredToNewsletter', register);
   };
 
   const validateBookingDetails = async () => {
@@ -123,10 +117,7 @@ const Details = () => {
         });
 
         Router.push('/booking/checkout').then(() => {
-          if (_isMounted.current) {
-            setIsLoading(false);
-          }
-          window.scrollTo(0, 0);
+          setIsLoading(false);
         });
       } catch (err) {
         setIsLoading(false);

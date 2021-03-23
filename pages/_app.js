@@ -1,10 +1,7 @@
 import * as Sentry from '@sentry/node';
-import { Provider } from 'react-redux';
-import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
 
 import Layout from '@/Layout/Layout';
-import { useStore } from 'store/config';
+import { BookingContextProvider } from 'context/booking-context';
 
 import 'styles/fonts.css';
 import 'styles/tailwind.css';
@@ -18,21 +15,12 @@ if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   });
 }
 
-const MyApp = ({ Component, pageProps, err }) => {
-  const store = useStore();
-  const persistor = persistStore(store, {}, function () {
-    persistor.persist();
-  });
-
-  return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <Layout>
-          <Component {...pageProps} err={err} />
-        </Layout>
-      </PersistGate>
-    </Provider>
-  );
-};
+const MyApp = ({ Component, pageProps, err }) => (
+  <BookingContextProvider>
+    <Layout>
+      <Component {...pageProps} err={err} />
+    </Layout>
+  </BookingContextProvider>
+);
 
 export default MyApp;
