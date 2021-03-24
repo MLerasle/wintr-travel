@@ -4,8 +4,8 @@ import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { parseCookies } from 'nookies';
-import Icon from '@mdi/react';
-import { mdiLock } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { MdLock } from 'react-icons/md';
 
 import CheckoutForm from '@/App/Checkout/CheckoutForm';
 import PaymentIcons from '@/App/Checkout/PaymentIcons';
@@ -34,7 +34,9 @@ const Checkout = ({ paymentIntent }) => {
       >
         <Header className="px-4 lg:px-2 xl:px-0">
           <Heading className="text-3xl">
-            <Icon path={mdiLock} size={1} color="#424242" />
+            <IconContext.Provider value={{ color: '#1F2937', size: '1.5rem' }}>
+              <MdLock />
+            </IconContext.Provider>
             <span className="ml-1">Paiement Sécurisé</span>
           </Heading>
           <PaymentIcons className="hidden sm:flex" />

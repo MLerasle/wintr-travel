@@ -1,5 +1,5 @@
-import Icon from '@mdi/react';
-import { mdiClose } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { IoCloseOutline } from 'react-icons/io5';
 
 const Modal = (props) => (
   <div
@@ -29,13 +29,17 @@ const Modal = (props) => (
         aria-labelledby="modal-headline"
       >
         <div className="absolute top-3/4 right-3/4">
-          <Icon
-            path={mdiClose}
-            size={1.5}
-            className="cursor-pointer"
-            color="#2D3748"
-            onClick={props.closed}
-          />
+          <IconContext.Provider
+            value={{
+              color: '#2d3748',
+              size: '2rem',
+              className: 'cursor-pointer',
+            }}
+          >
+            <div onClick={props.closed}>
+              <IoCloseOutline />
+            </div>
+          </IconContext.Provider>
         </div>
         {props.children}
       </div>

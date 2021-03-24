@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Icon from '@mdi/react';
-import { mdiChevronRight, mdiChevronDown } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { MdChevronRight, MdExpandMore } from 'react-icons/md';
 
 import Separator from '@/UI/Separator';
 
@@ -17,11 +17,16 @@ const Question = (props) => {
       onClick={toggleOpen}
     >
       <p className="flex items-center text-gray-900">
-        <Icon
-          path={isOpened ? mdiChevronDown : mdiChevronRight}
-          size={1}
-          className="mr-1"
-        />
+        <IconContext.Provider
+          value={{
+            size: '1.3rem',
+            className: 'mr-1 text-gray-700',
+          }}
+        >
+          <div onClick={props.closed}>
+            {isOpened ? <MdExpandMore /> : <MdChevronRight />}
+          </div>
+        </IconContext.Provider>
         <span className="w-full">{props.query}</span>
       </p>
       {isOpened && (

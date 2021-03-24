@@ -1,12 +1,12 @@
-import Icon from '@mdi/react';
+import { IconContext } from 'react-icons';
 import {
-  mdiAccountCheckOutline,
-  mdiEmailCheckOutline,
-  mdiCalendarCheckOutline,
-  mdiAccountMultipleCheckOutline,
-  mdiMapMarkerCheckOutline,
-  mdiCreditCardCheckOutline,
-} from '@mdi/js';
+  MdPerson,
+  MdEmail,
+  MdPlace,
+  MdPayment,
+  MdDateRange,
+  MdPeople,
+} from 'react-icons/md';
 
 import { getPrices, getLastDay } from 'helpers/booking';
 import { formatDate } from 'helpers/dates';
@@ -20,29 +20,39 @@ const BookingValidatedInfos = ({ booking }) => {
     <header className="px-4 py-2 lg:px-0">
       <h1 className="heading">Mettre à jour votre réservation</h1>
       <div className="md:flex mt-4">
-        <p className="argument flex items-center pb-3 md:pb-1 text-primary-green">
-          <Icon path={mdiAccountCheckOutline} size={1} />
+        <p className="argument flex items-center pb-3 md:pb-1 text-gray-800">
+          <IconContext.Provider value={{ size: '1rem' }}>
+            <MdPerson />
+          </IconContext.Provider>
           <span className="ml-1">{booking.name}</span>
         </p>
-        <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-primary-green">
-          <Icon path={mdiEmailCheckOutline} size={1} />
+        <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-gray-800">
+          <IconContext.Provider value={{ size: '1rem' }}>
+            <MdEmail />
+          </IconContext.Provider>
           <span className="ml-1">{booking.email}</span>
         </p>
       </div>
       <div className="md:flex md:mt-2">
-        <p className="argument flex items-center pb-3 md:pb-1 text-primary-green">
-          <Icon path={mdiMapMarkerCheckOutline} size={1} />
+        <p className="argument flex items-center pb-3 md:pb-1 text-gray-800">
+          <IconContext.Provider value={{ size: '1rem' }}>
+            <MdPlace />
+          </IconContext.Provider>
           <span className="ml-1">Praz sur Arly</span>
         </p>
-        <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-primary-green">
-          <Icon path={mdiCalendarCheckOutline} size={1} />
+        <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-gray-800">
+          <IconContext.Provider value={{ size: '1rem' }}>
+            <MdDateRange />
+          </IconContext.Provider>
           <span className="ml-1">
             Du {formatDate(booking.firstDay)} au{' '}
             {formatDate(getLastDay(booking.firstDay))}.
           </span>
         </p>
-        <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-primary-green">
-          <Icon path={mdiAccountMultipleCheckOutline} size={1} />
+        <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-gray-800">
+          <IconContext.Provider value={{ size: '1rem' }}>
+            <MdPeople />
+          </IconContext.Provider>
           <span className="ml-1">
             {booking.adults.length} {adults}
             {booking.children.length > 0 && (
@@ -53,8 +63,10 @@ const BookingValidatedInfos = ({ booking }) => {
             )}
           </span>
         </p>
-        <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-primary-green">
-          <Icon path={mdiCreditCardCheckOutline} size={1} />
+        <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-gray-800">
+          <IconContext.Provider value={{ size: '1rem' }}>
+            <MdPayment />
+          </IconContext.Provider>
           <span className="ml-1">Tarif {prices.total.toFixed(2)} €</span>
         </p>
       </div>

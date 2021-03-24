@@ -1,5 +1,5 @@
-import Icon from '@mdi/react';
-import { mdiClose } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { IoCloseOutline } from 'react-icons/io5';
 
 import Backdrop from '@/UI/Backdrop';
 
@@ -16,13 +16,11 @@ const BottomDrawer = (props) => (
         onClick={props.closed}
       ></div>
       <div className="absolute top-3/4 right-3/4">
-        <Icon
-          path={mdiClose}
-          size={1.2}
-          className="cursor-pointer"
-          color="#718096"
-          onClick={props.closed}
-        />
+        <IconContext.Provider value={{ color: '#2d3748', size: '2rem' }}>
+          <div onClick={props.closed}>
+            <IoCloseOutline />
+          </div>
+        </IconContext.Provider>
       </div>
       {props.children}
     </div>

@@ -1,4 +1,5 @@
-import Icon from '@mdi/react';
+import React from 'react';
+import { IconContext } from 'react-icons';
 
 const SocialLink = (props) => (
   <a
@@ -8,7 +9,9 @@ const SocialLink = (props) => (
     target="_blank"
     rel="noreferrer"
   >
-    <Icon path={props.icon} size={1} color={props.color} />
+    <IconContext.Provider value={{ color: props.color, size: '1.5rem' }}>
+      {React.createElement(props.icon)}
+    </IconContext.Provider>
   </a>
 );
 

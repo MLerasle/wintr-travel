@@ -1,5 +1,5 @@
-import Icon from '@mdi/react';
-import { mdiClose } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { IoCloseOutline } from 'react-icons/io5';
 
 const Alert = ({ type, message, onClearMessage }) => (
   <div
@@ -9,13 +9,17 @@ const Alert = ({ type, message, onClearMessage }) => (
         : 'border-primary-green bg-lighter-green text-primary-green'
     }`}
   >
-    <Icon
-      path={mdiClose}
-      size={0.9}
-      className="absolute top-1/4 right-1/4 cursor-pointer"
-      color={`${type === 'error' ? '#CA463F' : '#389469'}`}
-      onClick={onClearMessage}
-    />
+    <IconContext.Provider
+      value={{
+        color: type === 'error' ? '#CA463F' : '#389469',
+        size: '1.5rem',
+        className: 'absolute top-1/4 right-1/4 cursor-pointer',
+      }}
+    >
+      <div onClick={onClearMessage}>
+        <IoCloseOutline />
+      </div>
+    </IconContext.Provider>
     {message}
   </div>
 );

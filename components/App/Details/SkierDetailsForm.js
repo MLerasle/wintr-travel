@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Icon from '@mdi/react';
-import { mdiHelpCircle } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { IoHelpCircleOutline } from 'react-icons/io5';
 
 import Label from '@/UI/Label';
 import Input from '@/UI/Input';
@@ -48,13 +48,17 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
           <div className="flex">
             <Label for={`shoe-size-${skier.label}`}>Taille du pied</Label>
             {index === 0 && (
-              <Icon
-                path={mdiHelpCircle}
-                size={0.8}
-                className="mx-1 md:hidden"
-                color="#1381F6"
-                onClick={toggleShoeHelper}
-              />
+              <IconContext.Provider
+                value={{
+                  color: '#1381F6',
+                  size: '1.3rem',
+                  className: 'mx-1 md:hidden',
+                }}
+              >
+                <div onClick={toggleShoeHelper}>
+                  <IoHelpCircleOutline />
+                </div>
+              </IconContext.Provider>
             )}
           </div>
           <Input
@@ -70,13 +74,17 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
           <div className="flex">
             <Label for={`head-size-${skier.label}`}>Taille du casque</Label>
             {index === 0 && (
-              <Icon
-                path={mdiHelpCircle}
-                size={0.8}
-                className="mx-1 md:hidden"
-                color="#1381F6"
-                onClick={toggleHelmetHelper}
-              />
+              <IconContext.Provider
+                value={{
+                  color: '#1381F6',
+                  size: '1.3rem',
+                  className: 'mx-1 md:hidden',
+                }}
+              >
+                <div onClick={toggleShoeHelper}>
+                  <IoHelpCircleOutline />
+                </div>
+              </IconContext.Provider>
             )}
           </div>
           <RadioButtons
