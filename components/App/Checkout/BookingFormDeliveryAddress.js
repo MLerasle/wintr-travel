@@ -7,10 +7,10 @@ import Input from '@/UI/Input';
 let autoComplete;
 
 const handleScriptLoad = (updateQuery, updatePlaceId, deliveryAddressRef) => {
-  // Create a circle of 2km radius around Praz sur Arly
+  // Create a circle of 2km radius around Flaine
   const resortCoordinates = {
-    lat: 45.83763,
-    lng: 6.57057,
+    lat: 46.006538,
+    lng: 6.68953,
   };
   const circle = new window.google.maps.Circle({
     center: resortCoordinates,
@@ -20,7 +20,7 @@ const handleScriptLoad = (updateQuery, updatePlaceId, deliveryAddressRef) => {
   autoComplete = new window.google.maps.places.Autocomplete(
     deliveryAddressRef.current,
     {
-      origin: new window.google.maps.LatLng(45.83763, 6.57057),
+      origin: new window.google.maps.LatLng(46.006538, 6.68953),
       bounds: circle.getBounds(),
       strictBounds: true,
       componentRestrictions: { country: 'fr' },
