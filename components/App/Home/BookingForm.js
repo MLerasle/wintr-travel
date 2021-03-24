@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 import Card from '@/UI/Card';
 import FormRow from '@/UI/FormRow';
@@ -20,6 +20,7 @@ import { FEBRUARY_DATES } from 'data/booking';
 
 const BookingForm = ({ isEditing, onUpdate }) => {
   const booking = useContext(BookingContext);
+  const router = useRouter();
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -68,7 +69,8 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       label: 'Submission OK',
     });
 
-    Router.push('/booking/details')
+    router
+      .push('/booking/details')
       .then(() => {
         setIsLoading(false);
         setError(null);

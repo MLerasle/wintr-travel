@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { parseCookies, setCookie } from 'nookies';
 import * as Sentry from '@sentry/browser';
@@ -23,6 +23,7 @@ import { EMAIL_PATTERN } from 'helpers/email';
 import { getPrices, isValid } from 'helpers/booking';
 
 const Details = () => {
+  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
@@ -116,7 +117,7 @@ const Details = () => {
           label: 'Submission OK',
         });
 
-        Router.push('/booking/checkout').then(() => {
+        router.push('/booking/checkout').then(() => {
           setIsLoading(false);
         });
       } catch (err) {

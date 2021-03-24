@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import {
   CardElement,
   PaymentRequestButtonElement,
@@ -31,6 +31,7 @@ import { isoCountries } from 'data/countries';
 const headers = { 'Content-Type': 'application/json' };
 
 const CheckoutForm = ({ intent }) => {
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
   const booking = useContext(BookingContext);
@@ -157,12 +158,14 @@ const CheckoutForm = ({ intent }) => {
       label: paymentMethod,
     });
 
-    Router.push({
-      pathname: '/booking/confirmation',
-      query: { pid: updatedBooking.paymentIntentId },
-    }).then(() => {
-      setIsLoading(false);
-    });
+    router
+      .push({
+        pathname: '/booking/confirmation',
+        query: { pid: updatedBooking.paymentIntentId },
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
   };
 
   // Handle one click payment

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
@@ -126,7 +126,7 @@ const Booking = ({ fetchedBooking }) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(booking),
     });
-    Router.push('/').then(() => {
+    router.push('/').then(() => {
       setIsLoading(false);
       window.scrollTo(0, 0);
     });
