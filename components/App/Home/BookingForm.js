@@ -115,7 +115,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           </Heading>
         ) : (
           <Heading className="hidden md:block text-xl sm:text-3xl">
-            Vos skis livrés à Praz sur Arly pour une semaine.
+            Vos skis livrés à Flaine pour une semaine.
           </Heading>
         )}
       </Header>
@@ -127,7 +127,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           </h3>
           <FormRow className="w-full md:flex">
             <div className="flex-grow mt-2 md:mt-0">
-              <Label for="name">Février 2021</Label>
+              <Label for="name">Février 2022</Label>
               <RadioButtons
                 items={FEBRUARY_DATES}
                 onChange={handleArrivalDate}

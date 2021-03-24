@@ -32,7 +32,7 @@ const BookingValidatedInfos = ({ booking }) => {
       <div className="md:flex md:mt-2">
         <p className="argument flex items-center pb-3 md:pb-1 text-primary-green">
           <Icon path={mdiMapMarkerCheckOutline} size={1} />
-          <span className="ml-1">Praz sur Arly</span>
+          <span className="ml-1">Flaine</span>
         </p>
         <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-primary-green">
           <Icon path={mdiCalendarCheckOutline} size={1} />
