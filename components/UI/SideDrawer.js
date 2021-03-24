@@ -1,7 +1,7 @@
 import { IconContext } from 'react-icons';
 import { IoCloseOutline } from 'react-icons/io5';
 
-import NavItems from '@/App/Navbar/NavItems';
+import NavItems from '@/Layout/Navbar/NavItems';
 import Backdrop from '@/UI/Backdrop';
 
 const SideDrawer = (props) => (

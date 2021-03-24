@@ -1,5 +1,5 @@
-import Navbar from '@/App/Navbar';
-import Footer from '@/App/Footer';
+import Navbar from '@/Layout/Navbar';
+import Footer from '@/Layout/Footer';
 import CookieBanner from '@/UI/CookieBanner';
 
 const Layout = (props) => (
