@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Icon from '@mdi/react';
-import { mdiMenu } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { IoMenuOutline } from 'react-icons/io5';
 
 import SideDrawer from '@/UI/SideDrawer';
 import NavItems from './NavItems';
@@ -34,13 +34,17 @@ const Nav = (props) => {
           </Link>
         </div>
         <div className="md:hidden flex items-center">
-          <Icon
-            path={mdiMenu}
-            size={1.5}
-            className="cursor-pointer"
-            color="#2d3748"
-            onClick={toggleIsMenuOpen}
-          />
+          <IconContext.Provider
+            value={{
+              color: '#2d3748',
+              size: '2rem',
+              className: 'cursor-pointer',
+            }}
+          >
+            <div onClick={toggleIsMenuOpen}>
+              <IoMenuOutline />
+            </div>
+          </IconContext.Provider>
           <SideDrawer open={isMenuOpen} closed={toggleIsMenuOpen} />
         </div>
         <div className="hidden md:block">

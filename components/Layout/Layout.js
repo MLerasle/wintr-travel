@@ -1,5 +1,5 @@
-import Navbar from '@/App/Navbar';
-import Footer from '@/App/Footer';
+import Navbar from '@/Layout/Navbar';
+import Footer from '@/Layout/Footer';
 import CookieBanner from '@/UI/CookieBanner';
 
 const Layout = (props) => (
@@ -7,7 +7,8 @@ const Layout = (props) => (
     {!props.withoutNavbar && <Navbar classes="bg-white" />}
     <main>{props.children}</main>
     {!props.withoutFooter && <Footer maxWidth={props.footerMaxWidth} />}
-    <CookieBanner />
+    {/* Ensures that localStorage is available to render the cookie banner */}
+    {typeof window !== 'undefined' && <CookieBanner />}
   </>
 );
 

@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect, useContext } from 'react';
 import Head from 'next/head';
 import 'react-phone-number-input/style.css';
 
@@ -8,12 +7,11 @@ import MainSection from '@/UI/MainSection';
 import PhoneNumberStep from '@/App/Confirmation/PhoneNumberStep';
 import ShareStep from '@/App/Confirmation/ShareStep';
 
-import { setPhoneNumber } from 'store/actions';
-
+import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 
 const Confirmation = ({ pid }) => {
-  const dispatch = useDispatch();
+  const booking = useContext(BookingContext);
   const [isPhoneNumberSubmitted, setIsPhoneNumberSubmitted] = useState(false);
 
   useEffect(() => {
@@ -22,7 +20,7 @@ const Confirmation = ({ pid }) => {
 
   const updateBooking = async (phoneNumber) => {
     try {
-      dispatch(setPhoneNumber(phoneNumber));
+      booking.update('phoneNumber', phoneNumber);
       await fetch('/api/booking/update', {
         method: 'PUT',
         headers: {
@@ -63,14 +61,14 @@ const Confirmation = ({ pid }) => {
 export async function getServerSideProps(context) {
   // /confirmation is reachable only after checkout
   const pid = context.query.pid;
-  let prevPath;
-  if (context.req.headers.referer) {
-    prevPath = context.req.headers.referer.split('/').reverse()[0];
-  }
-  if (!pid || !prevPath || prevPath !== 'checkout') {
-    context.res.writeHead(302, { Location: '/' });
-    context.res.end();
-  }
+  // let prevPath;
+  // if (context.req.headers.referer) {
+  //   prevPath = context.req.headers.referer.split('/').reverse()[0];
+  // }
+  // if (!pid || !prevPath || prevPath !== 'checkout') {
+  //   context.res.writeHead(302, { Location: '/' });
+  //   context.res.end();
+  // }
   return {
     props: {
       pid,

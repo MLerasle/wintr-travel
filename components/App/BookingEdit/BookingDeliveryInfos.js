@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import 'react-phone-number-input/style.css';
 
 import BookingDeliveryAddress from '@/App/Checkout/BookingFormDeliveryAddress';
@@ -8,17 +7,14 @@ import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 import InputPhone from '@/UI/InputPhone';
 
-import { setDeliveryAddress, setPhoneNumber } from 'store/actions';
-
 const BookingDeliveryInfos = ({ booking, token, phoneError }) => {
-  const dispatch = useDispatch();
-
   const onDeliveryAddressUpdate = (address, placeId) => {
-    dispatch(setDeliveryAddress(address, placeId));
+    booking.update('deliveryAddress', address);
+    booking.update('placeId', placeId);
   };
 
   const onPhoneNumberUpdate = (phoneNumber) => {
-    dispatch(setPhoneNumber(phoneNumber));
+    booking.update('phoneNumber', phoneNumber);
   };
 
   return (

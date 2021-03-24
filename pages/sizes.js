@@ -28,7 +28,7 @@ const Sizes = () => {
           <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
             Guide des tailles
           </h1>
-          <p className="md:text-xl text-gray-300">
+          <p className="md:text-xl text-gray-200">
             Ce que vous devez savoir pour ne pas vous tromper.
           </p>
         </header>

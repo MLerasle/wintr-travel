@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Router from 'next/router';
+import { useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
 import {
   CardElement,
   PaymentRequestButtonElement,
@@ -23,8 +22,8 @@ import Separator from '@/UI/Separator';
 import Loader from '@/UI/Loader';
 import Alert from '@/UI/Alert';
 
+import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
-import { setName, setCountryCode, setDeliveryAddress } from 'store/actions';
 import { getLastDay, getPrices } from 'helpers/booking';
 import { twoDaysBefore } from 'helpers/dates';
 import { isoCountries } from 'data/countries';
@@ -32,11 +31,10 @@ import { isoCountries } from 'data/countries';
 const headers = { 'Content-Type': 'application/json' };
 
 const CheckoutForm = ({ intent }) => {
-  const _isMounted = useRef(true);
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
-  const booking = useSelector((state) => state);
-  const dispatch = useDispatch();
+  const booking = useContext(BookingContext);
   const [paymentRequest, setPaymentRequest] = useState(null);
   const countries = Object.entries(isoCountries()).sort((a, b) =>
     a[1] > b[1] ? 1 : b[1] > a[1] ? -1 : 0
@@ -52,12 +50,6 @@ const CheckoutForm = ({ intent }) => {
   });
   const [loading, setIsLoading] = useState(false);
   const prices = getPrices(booking.adults.length, booking.children.length);
-
-  useEffect(() => {
-    return () => {
-      _isMounted.current = false;
-    };
-  }, []);
 
   useEffect(() => {
     if (stripe) {
@@ -94,7 +86,7 @@ const CheckoutForm = ({ intent }) => {
 
   const onNameUpdate = (event) => {
     const updatedName = event.target.value;
-    dispatch(setName(updatedName));
+    booking.update('name', updatedName);
     setFormErrors({
       ...formErrors,
       name: updatedName.trim() === '' ? 'Vous devez renseigner votre nom.' : '',
@@ -104,7 +96,7 @@ const CheckoutForm = ({ intent }) => {
 
   const onCountryCodeUpdate = (event) => {
     const updatedCountry = event ? event.value : null;
-    dispatch(setCountryCode(updatedCountry));
+    booking.update('countryCode', updatedCountry);
     setFormErrors({
       ...formErrors,
       country: !updatedCountry
@@ -115,7 +107,8 @@ const CheckoutForm = ({ intent }) => {
   };
 
   const onDeliveryAddressUpdate = (address, placeId) => {
-    dispatch(setDeliveryAddress(address, placeId));
+    booking.update('deliveryAddress', address);
+    booking.update('placeId', placeId);
   };
 
   const onToggleAcceptTerms = () => {
@@ -165,14 +158,14 @@ const CheckoutForm = ({ intent }) => {
       label: paymentMethod,
     });
 
-    Router.push({
-      pathname: '/booking/confirmation',
-      query: { pid: updatedBooking.paymentIntentId },
-    }).then(() => {
-      if (_isMounted.current) {
+    router
+      .push({
+        pathname: '/booking/confirmation',
+        query: { pid: updatedBooking.paymentIntentId },
+      })
+      .then(() => {
         setIsLoading(false);
-      }
-    });
+      });
   };
 
   // Handle one click payment

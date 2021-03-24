@@ -6,7 +6,7 @@ const FooterLinks = () => (
       © {new Date().getFullYear()} Wintr Travel, Tous droits réservés{' '}
     </p>
     <ul className="flex items-center mb-4 md:mb-0">
-      <FooterLink href="about">À propos</FooterLink>
+      <FooterLink href="/about">À propos</FooterLink>
       {/* <FooterLink href="terms">CGV</FooterLink> */}
       <FooterLink href="/privacy">Confidentialité</FooterLink>
       <FooterLink href="/contact">Contact</FooterLink>

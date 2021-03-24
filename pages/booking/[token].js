@@ -1,6 +1,5 @@
-import { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import Router, { useRouter } from 'next/router';
+import { useEffect, useState, useContext } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
@@ -20,33 +19,25 @@ import SizeHelmet from '@/App/Sizes/SizeHelmet';
 import Alert from '@/UI/Alert';
 import Button from '@/UI/Button';
 
+import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
-import { setSkiers, initializeBooking } from 'store/actions';
 import { GCP_CREDENTIALS } from 'lib/gcp';
 
 const Booking = ({ fetchedBooking }) => {
   const router = useRouter();
   const { token } = router.query;
-  const _isMounted = useRef(true);
   const [loading, setIsLoading] = useState(false);
   const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
   const [isConfirmCancelModalOpened, setIsConfirmCancelModalOpened] = useState(
     false
   );
   const [alert, setAlert] = useState(null);
-  const dispatch = useDispatch();
-  const booking = useSelector((state) => state, shallowEqual);
+  const booking = useContext(BookingContext);
 
   const skiers = [...fetchedBooking.adults, ...fetchedBooking.children];
 
   useEffect(() => {
-    return () => {
-      _isMounted.current = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    dispatch(initializeBooking(fetchedBooking));
+    localStorage.setItem('booking', JSON.stringify(fetchedBooking));
   }, []);
 
   const toggleSizesHelp = () => {
@@ -64,9 +55,9 @@ const Booking = ({ fetchedBooking }) => {
     person[attribute] = event.target.value;
 
     if (skier.label.startsWith('Adulte')) {
-      dispatch(setSkiers(skiers, booking.children));
+      booking.update('adults', skiers);
     } else {
-      dispatch(setSkiers(booking.adults, skiers));
+      booking.update('children', skiers);
     }
   };
 
@@ -135,10 +126,8 @@ const Booking = ({ fetchedBooking }) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(booking),
     });
-    Router.push('/').then(() => {
-      if (_isMounted.current) {
-        setIsLoading(false);
-      }
+    router.push('/').then(() => {
+      setIsLoading(false);
       window.scrollTo(0, 0);
     });
   };
@@ -244,10 +233,11 @@ export async function getServerSideProps(context) {
   //   placeId: null,
   //   isRegisteredToNewsletter: true,
   //   paymentIntentId: 'pi_1I6z5NExu4LJSLGAqJt6nTDH',
-  //   customerId: 'cus_IiMdlcFLOKSvXs',
-  //   canceled: true,
+  //   stripeInvoiceId: null,
+  //   stripeCustomerId: 'cus_IiMdlcFLOKSvXs',
+  //   state: 'prepaid',
   // };
-  // if (fetchedBooking.canceled) {
+  // if (fetchedBooking.state === 'canceled') {
   //   context.res.writeHead(302, { Location: '/' });
   //   context.res.end();
   // }

@@ -29,7 +29,7 @@ const Prices = () => {
           <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
             Un tarif simple
           </h1>
-          <p className="md:text-xl text-gray-300">
+          <p className="md:text-xl text-gray-200">
             Pré-réservez pour 5€. Payez le reste la veille de votre arrivée.
           </p>
         </header>

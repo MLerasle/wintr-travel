@@ -1,7 +1,7 @@
-import Icon from '@mdi/react';
-import { mdiClose } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { IoCloseOutline } from 'react-icons/io5';
 
-import NavItems from '@/App/Navbar/NavItems';
+import NavItems from '@/Layout/Navbar/NavItems';
 import Backdrop from '@/UI/Backdrop';
 
 const SideDrawer = (props) => (
@@ -14,13 +14,17 @@ const SideDrawer = (props) => (
     >
       <nav>
         <header className="flex justify-end items-center h-16 px-4">
-          <Icon
-            path={mdiClose}
-            size={1.5}
-            className="cursor-pointer"
-            color="#2D3748"
-            onClick={props.closed}
-          />
+          <IconContext.Provider
+            value={{
+              color: '#2d3748',
+              size: '2rem',
+              className: 'cursor-pointer',
+            }}
+          >
+            <div onClick={props.closed}>
+              <IoCloseOutline />
+            </div>
+          </IconContext.Provider>
         </header>
         <NavItems onItemClick={props.closed} />
       </nav>

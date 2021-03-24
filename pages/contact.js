@@ -75,7 +75,7 @@ const Contact = () => {
           <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
             Contactez-nous
           </h1>
-          <p className="md:text-xl text-gray-300">
+          <p className="md:text-xl text-gray-200">
             Nous vous répondrons sous 48 heures.
           </p>
         </header>

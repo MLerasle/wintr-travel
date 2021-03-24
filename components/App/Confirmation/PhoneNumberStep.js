@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Icon from '@mdi/react';
-import { mdiCheck } from '@mdi/js';
+import { IconContext } from 'react-icons';
+import { MdDone } from 'react-icons/md';
 import 'react-phone-number-input/style.css';
 import { isValidPhoneNumber } from 'react-phone-number-input';
 
@@ -43,8 +43,12 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
   return (
     <>
       <div className="flex flex-col items-center -mt-4">
-        <Icon path={mdiCheck} size={4} color="#0CB3FA" />
-        <h1 className="md:mb-8 text-2xl sm:text-3xl leading-tight font-semibold text-gray-800">
+        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+          <IconContext.Provider value={{ color: '#389469', size: '1.5rem' }}>
+            <MdDone />
+          </IconContext.Provider>
+        </div>
+        <h1 className="mt-4 md:mb-8 text-2xl sm:text-3xl leading-tight font-semibold text-gray-800">
           Commande validée
         </h1>
       </div>

@@ -18,5 +18,7 @@ export const getPrices = (adults, children) => {
 };
 
 export const isValid = (booking) => {
+  console.log(!!booking.firstDay);
+  console.log(booking.adults.length);
   return booking.adults.length > 0 && !!booking.firstDay;
 };

@@ -22,10 +22,10 @@ const Faq = () => {
           <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
             Les questions fréquentes
           </h1>
-          <p className="md:text-xl text-gray-300">
+          <p className="md:text-xl text-gray-200">
             Vous ne trouvez pas la réponse que vous cherchez?{' '}
             <Link href="/contact">
-              <a className="text-primary-green cursor-pointer hover:underline">
+              <a className="cursor-pointer hover:text-gray-300">
                 Contactez-nous.
               </a>
             </Link>
