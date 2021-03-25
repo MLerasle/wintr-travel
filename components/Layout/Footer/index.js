@@ -1,16 +1,15 @@
 import FooterLinks from './FooterLinks';
 import SocialLinks from './SocialLinks';
 
-const Footer = (props) => {
+const Footer = () => {
   return (
-    <footer className="flex md:justify-center md:items-center px-4">
-      <div
-        className={`flex flex-col md:flex-row md:justify-between md:items-center text-gray-700 py-6 md:py-0 w-full h-32 md:h-16 ${
-          props.maxWidth ? props.maxWidth : 'max-w-screen-xl'
-        }`}
-      >
+    <footer className="bg-gray-800">
+      <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
         <FooterLinks />
         <SocialLinks />
+        <p className="mt-8 text-center text-base text-gray-400">
+          &copy; {new Date().getFullYear()} Wintr Travel. Tous droits réservés.
+        </p>
       </div>
     </footer>
   );

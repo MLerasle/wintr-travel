@@ -1,17 +1,21 @@
 import FooterLink from './FooterLink';
 
+const links = [
+  { title: 'À propos', href: '/about' },
+  // { title: 'CGV', href: '/terms' },
+  { title: 'Confidentialité', href: '/privacy' },
+  { title: 'Contact', href: '/contact' },
+];
+
 const FooterLinks = () => (
-  <section className="md:flex md:flex-row md:items-center text-sm">
-    <p className="mb-1 md:mb-0 md:mr-4">
-      © {new Date().getFullYear()} Wintr Travel, Tous droits réservés{' '}
-    </p>
-    <ul className="flex items-center mb-4 md:mb-0">
-      <FooterLink href="/about">À propos</FooterLink>
-      {/* <FooterLink href="terms">CGV</FooterLink> */}
-      <FooterLink href="/privacy">Confidentialité</FooterLink>
-      <FooterLink href="/contact">Contact</FooterLink>
-    </ul>
-  </section>
+  <nav
+    className="-mx-5 -my-2 flex flex-wrap justify-center"
+    aria-label="Footer"
+  >
+    {links.map((link) => (
+      <FooterLink key={link.title} title={link.title} href={link.href} />
+    ))}
+  </nav>
 );
 
 export default FooterLinks;

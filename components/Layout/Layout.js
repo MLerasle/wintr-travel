@@ -6,7 +6,7 @@ const Layout = (props) => (
   <>
     {!props.withoutNavbar && <Navbar classes="bg-white" />}
     <main>{props.children}</main>
-    {!props.withoutFooter && <Footer maxWidth={props.footerMaxWidth} />}
+    <Footer />
     {/* Ensures that localStorage is available to render the cookie banner */}
     {typeof window !== 'undefined' && <CookieBanner />}
   </>

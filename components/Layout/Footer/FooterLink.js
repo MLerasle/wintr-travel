@@ -1,13 +1,11 @@
 import Link from 'next/link';
 
-const FooterLink = (props) => {
-  return (
-    <li className="mr-3 md:mr-4 tracking-wide">
-      <Link href={props.href} prefetch={false}>
-        <a className="hover:underline">{props.children}</a>
-      </Link>
-    </li>
-  );
-};
+const FooterLink = ({ title, href }) => (
+  <div className="px-5 py-2">
+    <Link href={href} prefetch={false}>
+      <a className="text-base text-gray-300 hover:text-white">{title}</a>
+    </Link>
+  </div>
+);
 
 export default FooterLink;
