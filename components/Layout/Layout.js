@@ -4,7 +4,7 @@ import CookieBanner from '@/UI/CookieBanner';
 
 const Layout = (props) => (
   <>
-    {!props.withoutNavbar && <Navbar classes="bg-white" />}
+    <Navbar />
     <main>{props.children}</main>
     <Footer />
     {/* Ensures that localStorage is available to render the cookie banner */}
