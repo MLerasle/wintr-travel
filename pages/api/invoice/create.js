@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-const Sentry = require('@sentry/node');
+import Sentry from '@sentry/node';
 
 import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from 'data/booking';
 import { dayBeforeTimestamp } from 'helpers/dates';
@@ -13,7 +13,7 @@ export default async (req, res) => {
     const childrenPackQuantity = booking.children.length;
 
     await stripe.invoiceItems.create({
-      customer: booking.customerId,
+      customer: booking.stripeCustomerId,
       currency: 'eur',
       quantity: adultsPackQuantity,
       unit_amount: UNIT_ADULT_PRICE * 100,
@@ -22,7 +22,7 @@ export default async (req, res) => {
 
     if (childrenPackQuantity > 0) {
       await stripe.invoiceItems.create({
-        customer: booking.customerId,
+        customer: booking.stripeCustomerId,
         currency: 'eur',
         quantity: childrenPackQuantity,
         unit_amount: UNIT_CHILD_PRICE * 100,
@@ -31,14 +31,14 @@ export default async (req, res) => {
     }
 
     await stripe.invoiceItems.create({
-      customer: booking.customerId,
+      customer: booking.stripeCustomerId,
       currency: 'eur',
       amount: '-500',
       description: 'Pré-réservation',
     });
 
     const invoice = await stripe.invoices.create({
-      customer: booking.customerId,
+      customer: booking.stripeCustomerId,
       collection_method: 'send_invoice',
       due_date: dayBeforeTimestamp(booking.firstDay),
     });

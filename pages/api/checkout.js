@@ -1,6 +1,6 @@
 import { parseCookies } from 'nookies';
 import Stripe from 'stripe';
-const Sentry = require('@sentry/node');
+import Sentry from '@sentry/node';
 
 import { getLastDay } from 'helpers/booking';
 

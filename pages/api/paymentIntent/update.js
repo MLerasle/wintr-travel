@@ -1,13 +1,13 @@
 import Stripe from 'stripe';
-const Sentry = require('@sentry/node');
+import Sentry from '@sentry/node';
 
 export default async (req, res) => {
   try {
     const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
-    const { paymentIntentId, customerId } = req.body;
+    const { paymentIntentId, stripeCustomerId } = req.body;
 
     await stripe.paymentIntents.update(paymentIntentId, {
-      customer: customerId,
+      customer: stripeCustomerId,
     });
 
     res.status(201).json({});

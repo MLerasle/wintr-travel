@@ -1,10 +1,12 @@
 import { createContext, useState, useEffect } from 'react';
 
 const initalBooking = {
+  resort: 'Flaine',
   firstDay: null,
   adults: [],
   children: [],
-  name: '',
+  firstname: '',
+  lastname: '',
   email: '',
   phoneNumber: '',
   countryCode: null,
@@ -14,6 +16,7 @@ const initalBooking = {
   stripeInvoiceId: null,
   stripeCustomerId: null,
   state: '',
+  season: '2021-2022',
 };
 
 const BookingContext = createContext({
@@ -32,7 +35,8 @@ export function BookingContextProvider(props) {
     firstDay: booking.firstDay,
     adults: booking.adults,
     children: booking.children,
-    name: booking.name,
+    firstname: booking.firstname,
+    lastname: booking.lastname,
     email: booking.email,
     phoneNumber: booking.phoneNumber,
     countryCode: booking.countryCode || 'FR',

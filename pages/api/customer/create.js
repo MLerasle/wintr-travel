@@ -1,10 +1,10 @@
 import Stripe from 'stripe';
-const Sentry = require('@sentry/node');
+import Sentry from '@sentry/node';
 
 export default async (req, res) => {
   try {
     const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
-    const { name, email } = req.body;
+    const { firstname, lastname, email } = req.body;
 
     const customers = await stripe.customers.list({ email });
     let customer;
@@ -13,7 +13,7 @@ export default async (req, res) => {
       customer = customers.data[0];
     } else {
       customer = await stripe.customers.create({
-        name,
+        name: `${firstname} ${lastname}`,
         email,
       });
     }

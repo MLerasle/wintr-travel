@@ -44,7 +44,7 @@ const refundPaymentIntent = async (booking) => {
 
 const refundOrVoidInvoice = async (booking) => {
   const invoices = await stripe.invoices.list({
-    customer: booking.customerId,
+    customer: booking.stripeCustomerId,
     status: 'open',
   });
 

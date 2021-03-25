@@ -44,7 +44,8 @@ const CheckoutForm = ({ intent }) => {
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
   const [paymentError, setPaymentError] = useState();
   const [formErrors, setFormErrors] = useState({
-    name: 'Vous devez renseigner votre nom.',
+    firstname: 'Vous devez renseigner votre prénom.',
+    lastname: 'Vous devez renseigner votre nom.',
     country: '',
     acceptTerms: 'Invalide',
   });
@@ -84,14 +85,38 @@ const CheckoutForm = ({ intent }) => {
     }
   }, [stripe]);
 
-  const onNameUpdate = (event) => {
-    const updatedName = event.target.value;
-    booking.update('name', updatedName);
+  const onFirstNameUpdate = (event) => {
+    const updatedFirstName = event.target.value;
+    booking.update('firstname', updatedFirstName);
     setFormErrors({
       ...formErrors,
-      name: updatedName.trim() === '' ? 'Vous devez renseigner votre nom.' : '',
+      firstname:
+        updatedFirstName.trim() === ''
+          ? 'Vous devez renseigner votre prénom.'
+          : '',
     });
-    setFormIsValid(updatedName && !!booking.countryCode && acceptTerms);
+    setFormIsValid(
+      updatedFirstName &&
+        !!booking.lastname &&
+        !!booking.countryCode &&
+        acceptTerms
+    );
+  };
+
+  const onLastNameUpdate = (event) => {
+    const updatedLastName = event.target.value;
+    booking.update('lastname', updatedLastName);
+    setFormErrors({
+      ...formErrors,
+      lastname:
+        updatedLastName.trim() === '' ? 'Vous devez renseigner votre nom.' : '',
+    });
+    setFormIsValid(
+      !!booking.firstname &&
+        updatedLastName &&
+        !!booking.countryCode &&
+        acceptTerms
+    );
   };
 
   const onCountryCodeUpdate = (event) => {
@@ -103,7 +128,9 @@ const CheckoutForm = ({ intent }) => {
         ? 'Veuillez renseigner votre pays de résidence.'
         : '',
     });
-    setFormIsValid(!!booking.name && updatedCountry && acceptTerms);
+    setFormIsValid(
+      !!booking.firstname && !!booking.lastname && updatedCountry && acceptTerms
+    );
   };
 
   const onDeliveryAddressUpdate = (address, placeId) => {
@@ -117,28 +144,41 @@ const CheckoutForm = ({ intent }) => {
       ...formErrors,
       acceptTerms: !acceptTerms ? 'Invalide' : '',
     });
-    setFormIsValid(!!booking.name && !!booking.countryCode && !acceptTerms);
+    setFormIsValid(
+      !!booking.firstname &&
+        !!booking.lastname &&
+        !!booking.countryCode &&
+        !acceptTerms
+    );
   };
 
   const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
-    const resp = await fetch('/api/customer/create', {
+    const customerResp = await fetch('/api/customer/create', {
       method: 'POST',
       headers,
       body: JSON.stringify(updatedBooking),
     });
-    const customer = await resp.json();
+    const customer = await customerResp.json();
+
+    const invoiceResp = await fetch('/api/invoice/create', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        ...updatedBooking,
+        stripeCustomerId: customer.id,
+      }),
+    });
+    const invoice = invoiceResp.json();
 
     // Send booking infos to the backend
     await fetch('/api/booking/publish', {
       method: 'PUT',
       headers,
-      body: JSON.stringify({ ...updatedBooking, customerId: customer.id }),
-    });
-
-    await fetch('/api/invoice/create', {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ ...updatedBooking, customerId: customer.id }),
+      body: JSON.stringify({
+        ...updatedBooking,
+        stripeCustomerId: customer.id,
+        stripeInvoiceId: invoice.id,
+      }),
     });
 
     await fetch('/api/paymentIntent/update', {
@@ -146,7 +186,7 @@ const CheckoutForm = ({ intent }) => {
       headers,
       body: JSON.stringify({
         paymentIntentId: updatedBooking.paymentIntentId,
-        customerId: customer.id,
+        stripeCustomerId: customer.id,
       }),
     });
 
@@ -250,7 +290,7 @@ const CheckoutForm = ({ intent }) => {
           payment_method: {
             card: elements.getElement(CardElement),
             billing_details: {
-              name: booking.name,
+              name: `${booking.firstname} ${booking.lastname}`,
               email: booking.email,
               address: {
                 country: booking.countryCode,
@@ -316,20 +356,37 @@ const CheckoutForm = ({ intent }) => {
       <form className="flex flex-col max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
         <Heading className="text-xl mb-4">Informations Client</Heading>
         <FormRow>
-          <Label for="name">Prénom et Nom</Label>
+          <Label for="firstname">Prénom</Label>
           <Input
             type="text"
-            id="name"
-            name="name"
-            onChange={onNameUpdate}
+            id="firstname"
+            name="firstname"
+            onChange={onFirstNameUpdate}
             className={`w-full ${
-              formErrors.name && formWasSubmitted
+              formErrors.firstname && formWasSubmitted
                 ? 'border-primary-red bg-light-red'
                 : ''
             }`}
           />
           <div className="error text-primary-red pt-1 pl-1" role="alert">
-            {formWasSubmitted && formErrors.name}
+            {formWasSubmitted && formErrors.firstname}
+          </div>
+        </FormRow>
+        <FormRow>
+          <Label for="lastname">Nom</Label>
+          <Input
+            type="text"
+            id="lastname"
+            name="lastname"
+            onChange={onLastNameUpdate}
+            className={`w-full ${
+              formErrors.lastname && formWasSubmitted
+                ? 'border-primary-red bg-light-red'
+                : ''
+            }`}
+          />
+          <div className="error text-primary-red pt-1 pl-1" role="alert">
+            {formWasSubmitted && formErrors.lastname}
           </div>
         </FormRow>
         <FormRow>
