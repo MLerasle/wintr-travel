@@ -18,7 +18,7 @@
     "@sentry/webpack-plugin": "^1.14.2",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.2",
-    "@tailwindcss/forms": "^0.3.0",
+    "@tailwindcss/typography": "^0.4.0",
     "@zeit/next-source-maps": "^0.0.3",
     "dayjs": "1.10.4",
     "i18n-iso-countries": "^6.6.0",

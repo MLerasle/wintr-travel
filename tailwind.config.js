@@ -55,6 +55,7 @@ module.exports = {
       },
     },
   },
+  plugins: [require('@tailwindcss/typography')],
   variants: {
     borderColor: ['responsive', 'hover', 'focus', 'active', 'focus-within'],
     backgroundColor: ['responsive', 'hover', 'focus', 'active'],

@@ -29,34 +29,27 @@ const SizeHelmet = (props) => {
 
   return (
     <>
-      {props.withDetails && (
-        <h2 className="text-xl md:text-2xl font-bold text-gray-800 pb-2 md:pb-4 pt-4 md:pt-8">
-          3. Casque
-        </h2>
-      )}
-      <p className="text-gray-700 py-1 leading-loose">
-        Vous devez{' '}
-        <span className="font-bold text-primary-blue">
-          mesurer votre tour de tête en centimètres
-        </span>
-        .
+      {props.withDetails && <h2>Taille du casque</h2>}
+      <p>
+        Vous devez <strong>mesurer votre tour de tête en centimètres</strong>.
       </p>
-      <p className="text-gray-700 py-1 leading-loose">
+      <p>
         Pour ce faire,{' '}
-        <span className="font-bold text-primary-blue">
+        <strong>
           prenez un mètre ruban et faites le tour de votre crâne au niveau du
           front
-        </span>
+        </strong>
         , juste au-dessus de vos sourcils.
       </p>
-      <br />
-      <p className="text-gray-700 py-1 leading-loose">
+      <p>
         Reportez la valeur ainsi mesurée ci-dessous pour connaitre la taille de
         casque qu'il vous faut.
       </p>
       <div className="mt-6">
-        <div className="flex flex-col w-2/5 md:w-1/4">
-          <Label for="head-size">Votre tour de tête:</Label>
+        <div className="flex flex-col">
+          <Label for="head-size">
+            Votre tour de tête (comprise entre 52 et 62cm):
+          </Label>
           <Input
             type="number"
             min="52"
@@ -67,8 +60,11 @@ const SizeHelmet = (props) => {
             onChange={(event) => updateHeadSize(event)}
           />
           {helmet && (
-            <p className="text-primary-blue mt-2">
-              Taille du casque: <span className="font-semibold">{helmet}</span>
+            <p>
+              <strong>
+                Taille du casque:{' '}
+                <span className="font-semibold">{helmet}</span>
+              </strong>
             </p>
           )}
         </div>

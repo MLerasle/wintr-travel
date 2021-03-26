@@ -76,7 +76,7 @@ const Contact = () => {
           Nous vous répondrons sous 48 heures.
         </PageHeader>
 
-        <Card subclasses="p-4 md:p-8 md:max-w-2xl bg-gray-100 md:bg-white">
+        <Card subclasses="p-4 md:p-8 md:max-w-xl bg-gray-100 md:bg-white">
           {error && (
             <Alert
               type="error"

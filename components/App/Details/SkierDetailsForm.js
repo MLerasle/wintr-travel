@@ -26,10 +26,14 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
   return (
     <article key={skier.label} className={`${index + 1 !== total && 'mb-6'}`}>
       <BottomDrawer open={isShoeHelperOpened} closed={toggleShoeHelper}>
-        <SizeShoes />
+        <div className="pt-2 prose prose-blue prose-lg text-gray-500 mx-auto">
+          <SizeShoes />
+        </div>
       </BottomDrawer>
       <BottomDrawer open={isHelmetHelperOpened} closed={toggleHelmetHelper}>
-        <SizeHelmet />
+        <div className="pt-2 prose prose-blue prose-lg text-gray-500 mx-auto">
+          <SizeHelmet />
+        </div>
       </BottomDrawer>
       <h4 className="font-semibold pb-2">{skier.label}</h4>
       <div className="flex flex-wrap items-center">
@@ -81,7 +85,7 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
                   className: 'mx-1 md:hidden',
                 }}
               >
-                <div onClick={toggleShoeHelper}>
+                <div onClick={toggleHelmetHelper}>
                   <IoHelpCircleOutline />
                 </div>
               </IconContext.Provider>

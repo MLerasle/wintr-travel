@@ -1,32 +1,21 @@
 const SizeShoes = (props) => (
   <>
-    {props.withDetails && (
-      <h2 className="text-xl md:text-2xl font-bold text-gray-800 pb-2 md:pb-4 pt-4 md:pt-8">
-        2. Chaussures
-      </h2>
-    )}
-    <p className="text-gray-700 py-1 leading-loose">
+    {props.withDetails && <h2>Taille des chaussures</h2>}
+    <p>
       La pointure des chaussures de skis se mesure en Mondopoint, ce qui
-      correspond à la{' '}
-      <span className="font-bold text-primary-blue">
-        taille de votre pied en centimètres
-      </span>
-      .
+      correspond à la <strong>taille de votre pied en centimètres</strong>.
     </p>
-    <p className="text-gray-700 py-1 leading-loose">
+    <p>
       Pour connaitre celle-ci,{' '}
-      <span className="font-bold text-primary-blue">
+      <strong>
         placez une feuille au sol contre un mur et posez votre pied dessus en
         collant votre talon au mur
-      </span>
+      </strong>
       .
     </p>
-    <p className="text-gray-700 py-1 leading-loose">
+    <p>
       Tracez un trait devant le plus long doigt de pied,{' '}
-      <span className="font-bold text-primary-blue">
-        mesurez et ajoutez un centimètre
-      </span>
-      .
+      <strong>mesurez et ajoutez un centimètre</strong>.
     </p>
   </>
 );

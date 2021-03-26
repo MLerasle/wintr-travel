@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
+import ContentBackground from '@/UI/ContentBackground';
 import SizeSkis from '@/App/Sizes/SizeSkis';
 import SizeShoes from '@/App/Sizes/SizeShoes';
 import SizeHelmet from '@/App/Sizes/SizeHelmet';
@@ -28,11 +29,14 @@ const Sizes = () => {
         <PageHeader title="Guide des tailles">
           Ce que vous devez savoir pour ne pas vous tromper.
         </PageHeader>
-        <section className="px-4 xl:px-0 md:text-lg pb-10 max-w-screen-lg mx-auto">
-          <SizeSkis />
-          <SizeShoes withDetails />
-          <SizeHelmet withDetails />
-        </section>
+        <div className="pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+          <ContentBackground />
+          <div className="prose prose-blue prose-lg text-gray-500 mx-auto">
+            <SizeSkis />
+            <SizeShoes withDetails />
+            <SizeHelmet withDetails />
+          </div>
+        </div>
       </MainSection>
     </>
   );
