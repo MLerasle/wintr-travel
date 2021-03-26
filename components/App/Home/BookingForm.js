@@ -57,7 +57,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       });
       setError({
         message:
-          'Vous devez choisir une date de livraison et sélectionner au moins un adulte pour pouvoir poursuivre votre réservation.',
+          'Veuillez sélectionner une date de livraison et au moins un adulte avant de poursuivre.',
       });
       return;
     }
@@ -89,11 +89,13 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       }`}
     >
       {error && (
-        <Alert
-          type="error"
-          message={error.message}
-          onClearMessage={() => setError(null)}
-        />
+        <div className="mb-4 md:mb-8">
+          <Alert
+            type="error"
+            message={error.message}
+            onClearMessage={() => setError(null)}
+          />
+        </div>
       )}
       <Header>
         {isEditing ? (
