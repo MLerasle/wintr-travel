@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { IconContext } from 'react-icons';
+import { IoCloseOutline } from 'react-icons/io5';
 
 const CookieBanner = () => {
   const [cookiePolicy, setCookiePolicy] = useState(
@@ -13,31 +15,44 @@ const CookieBanner = () => {
 
   return (
     <div
-      className={`fixed w-full left-0 bottom-0 bg-gray-900 text-gray-100 flex md:justify-center px-4 md:px-16 py-2 transition-opacity duration-300 ease-in-out ${
-        cookiePolicy === 'shown' ? 'opacity-0 hidden' : 'opacity-75'
+      className={`fixed bottom-0 inset-x-0 pb-2 sm:pb-5 ${
+        cookiePolicy === 'shown' ? 'hidden' : 'block'
       }`}
     >
-      <p className="container">
-        En utilisant notre site, vous acceptez notre{' '}
-        <Link href="/privacy" prefetch={false}>
-          <a className="underline" onClick={closeBanner}>
-            Politique de confidentialité
-          </a>
-        </Link>
-        .
-        <button
-          className="bg-gray-100 text-gray-800 rounded font-semibold px-2 ml-2"
-          onClick={closeBanner}
-        >
-          OK
-        </button>
-      </p>
-
-      <style jsx>{`
-        .container {
-          max-width: calc(100vw - 95px);
-        }
-      `}</style>
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div className="p-2 rounded-lg bg-gray-800 shadow-lg sm:p-3">
+          <div className="flex items-center justify-between flex-wrap">
+            <div className="w-0 flex-1 flex items-center">
+              <p className="ml-3 font-medium text-white">
+                <span>
+                  En utilisant notre site, vous acceptez notre{' '}
+                  <Link href="/privacy" prefetch={false}>
+                    <a className="underline" onClick={closeBanner}>
+                      Politique de confidentialité
+                    </a>
+                  </Link>
+                  .
+                </span>
+              </p>
+            </div>
+            <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
+              <button
+                type="button"
+                className="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                <span className="sr-only">Dismiss</span>
+                <IconContext.Provider
+                  value={{ className: 'h-6 w-6 text-white' }}
+                >
+                  <div onClick={closeBanner}>
+                    <IoCloseOutline />
+                  </div>
+                </IconContext.Provider>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
