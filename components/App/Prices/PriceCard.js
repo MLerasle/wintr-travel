@@ -9,7 +9,7 @@ const PriceCard = ({ category, price }) => (
     subclasses="rounded-lg shadow-md"
   >
     <header className="px-4 md:px-8 pt-6">
-      <span className="rounded-full py-1 px-5 text-dark-blue bg-light-blue bg-opacity-75 uppercase tracking-wide font-semibold text-lg">
+      <span className="rounded-full py-1 px-5 text-primary-green bg-green-50 uppercase tracking-wide font-semibold text-lg">
         {category}
       </span>
       <h2 className="text-6xl font-bold py-4">

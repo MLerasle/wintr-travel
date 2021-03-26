@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 
 import MainSection from '@/UI/MainSection';
+import PageHeader from '@/UI/PageHeader';
 import Card from '@/UI/Card';
 import FormRow from '@/UI/FormRow';
 import Label from '@/UI/Label';
@@ -71,19 +72,11 @@ const Contact = () => {
         <meta name="description" content="Contact Wintr Travel" />
       </Head>
       <MainSection>
-        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
-          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
-            Contactez-nous
-          </h1>
-          <p className="md:text-xl text-gray-200">
-            Nous vous répondrons sous 48 heures.
-          </p>
-        </header>
+        <PageHeader title="Contactez-nous">
+          Nous vous répondrons sous 48 heures.
+        </PageHeader>
 
-        <Card
-          classes="md:py-6 md:-mt-14"
-          subclasses="p-4 md:p-8 md:max-w-2xl bg-gray-100"
-        >
+        <Card subclasses="p-4 md:p-8 md:max-w-2xl bg-gray-100 md:bg-white">
           {error && (
             <Alert
               type="error"

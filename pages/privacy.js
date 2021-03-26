@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import MainSection from '@/UI/MainSection';
+import PageHeader from '@/UI/PageHeader';
 
 import * as gtag from 'lib/gtag';
 
@@ -21,13 +22,9 @@ const Privacy = () => {
         />
       </Head>
       <MainSection>
-        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
-          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold md:pb-3 leading-tight text-gray-100">
-            Politique de confidentialité
-          </h1>
-        </header>
+        <PageHeader title="Politique de confidentialité" />
 
-        <article className="md:text-lg pb-10 sm:pb-16 px-4 xl:px-0 text-gray-700 leading-loose max-w-screen-lg mx-auto mt-6 md:mt-10">
+        <article className="md:text-lg pb-10 sm:pb-16 px-4 xl:px-0 text-gray-700 leading-loose max-w-screen-lg mx-auto">
           <section className="mb-6 md:mb-10">
             <h2 className="pb-2 md:py-4 text-xl md:text-2xl font-bold text-gray-900">
               ARTICLE 1 : PRÉAMBULE

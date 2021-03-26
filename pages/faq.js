@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import MainSection from '@/UI/MainSection';
+import PageHeader from '@/UI/PageHeader';
 import Question from '@/App/Faq/Question';
 
 import * as gtag from 'lib/gtag';
@@ -18,21 +19,16 @@ const Faq = () => {
         <title>FAQ - Wintr Travel</title>
       </Head>
       <MainSection>
-        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
-          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
-            Les questions fréquentes
-          </h1>
-          <p className="md:text-xl text-gray-200">
-            Vous ne trouvez pas la réponse que vous cherchez?{' '}
-            <Link href="/contact">
-              <a className="cursor-pointer hover:text-gray-300">
-                Contactez-nous.
-              </a>
-            </Link>
-          </p>
-        </header>
+        <PageHeader title="Questions fréquentes">
+          Vous ne trouvez pas la réponse que vous cherchez?{' '}
+          <Link href="/contact">
+            <a className="cursor-pointer hover:text-gray-600">
+              Contactez-nous.
+            </a>
+          </Link>
+        </PageHeader>
 
-        <ul className="px-4 xl:px-0 max-w-screen-lg mx-auto mt-6 md:mt-10">
+        <ul className="px-4 xl:px-0 max-w-screen-lg mx-auto">
           <Question query="Où en est ma commande ?">
             <p className="py-1">
               Nous travaillons avec notre propre transporteur pour nous assurer

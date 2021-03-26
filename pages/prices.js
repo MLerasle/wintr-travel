@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import PriceCard from '@/App/Prices/PriceCard';
 import MainSection from '@/UI/MainSection';
+import PageHeader from '@/UI/PageHeader';
+import PriceCard from '@/App/Prices/PriceCard';
 import Button from '@/UI/Button';
 
 import * as gtag from 'lib/gtag';
@@ -25,16 +26,11 @@ const Prices = () => {
       </Head>
 
       <MainSection>
-        <header className="md:text-center px-4 md:px-10 py-6 md:py-16 bg-dark-blue">
-          <h1 className="text-2xl md:text-4xl font-semibold md:font-bold pb-1 md:pb-3 leading-tight text-gray-100">
-            Un tarif simple
-          </h1>
-          <p className="md:text-xl text-gray-200">
-            Pré-réservez pour 5€. Payez le reste la veille de votre arrivée.
-          </p>
-        </header>
+        <PageHeader title="Un tarif simple">
+          Pré-réservez pour 5€. Payez le reste la veille de votre arrivée.
+        </PageHeader>
 
-        <article className="sm:flex sm:justify-between sm:items-center max-w-screen-lg mx-auto mt-10">
+        <article className="sm:flex sm:justify-between sm:items-center max-w-screen-lg mx-auto">
           <PriceCard category="Adulte" price={UNIT_ADULT_PRICE} />
           <PriceCard category="Enfant" price={UNIT_CHILD_PRICE} />
         </article>
