@@ -1,10 +1,6 @@
 import { useState } from 'react';
-import { IconContext } from 'react-icons';
-import { MdChevronRight, MdExpandMore } from 'react-icons/md';
 
-import Separator from '@/UI/Separator';
-
-const Question = (props) => {
+const Question = ({ query, children }) => {
   const [isOpened, setIsOpened] = useState(false);
 
   const toggleOpen = () => {
@@ -12,30 +8,43 @@ const Question = (props) => {
   };
 
   return (
-    <li
-      className="bg-white rounded-md shadow px-2 py-4 mb-4 cursor-pointer"
-      onClick={toggleOpen}
-    >
-      <p className="flex items-center text-gray-900">
-        <IconContext.Provider
-          value={{
-            size: '1.3rem',
-            className: 'mr-1 text-gray-700',
-          }}
+    <div className="pt-6">
+      <dt className="text-lg">
+        <button
+          type="button"
+          className="text-left w-full flex justify-between items-start text-gray-400"
+          aria-controls="faq-0"
+          aria-expanded="false"
+          onClick={toggleOpen}
         >
-          <div onClick={props.closed}>
-            {isOpened ? <MdExpandMore /> : <MdChevronRight />}
-          </div>
-        </IconContext.Provider>
-        <span className="w-full">{props.query}</span>
-      </p>
+          <span className="font-medium text-gray-900">{query}</span>
+          <span className="ml-6 h-7 flex items-center">
+            <svg
+              className={`rotate ${
+                isOpened ? '-rotate-180' : 'rotate-0'
+              } h-6 w-6 transform`}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </span>
+        </button>
+      </dt>
       {isOpened && (
-        <>
-          <Separator className="mt-4" />
-          <div className="px-4 mt-4 text-gray-700">{props.children}</div>
-        </>
+        <dd className="mt-2 pr-12" id="faq-0">
+          {children}
+        </dd>
       )}
-    </li>
+    </div>
   );
 };
 
