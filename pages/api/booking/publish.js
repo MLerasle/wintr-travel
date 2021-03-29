@@ -1,5 +1,6 @@
 const { PubSub } = require('@google-cloud/pubsub');
-const Sentry = require('@sentry/node');
+import Sentry from '@sentry/node';
+import Firestore from '@google-cloud/firestore';
 
 import { GCP_CREDENTIALS } from 'lib/gcp';
 
@@ -8,20 +9,29 @@ const pubSubClient = new PubSub(GCP_CREDENTIALS);
 
 import { getPrices } from 'helpers/booking';
 
+const db = new Firestore(GCP_CREDENTIALS);
+
 export default async (req, res) => {
   try {
     const prices = getPrices(req.body.adults.length, req.body.children.length);
     const amount = prices.total;
 
     // Create the booking payload we want to store
-    delete req.body['_persist'];
     const booking = {
       ...req.body,
       amount,
     };
 
-    // Publish message to Pub/Sub topic
-    await publishMessage(booking);
+    if (process.env.VERCEL_ENV === 'development') {
+      // Save the booking directly into Firestore
+      const docRef = db
+        .collection(process.env.GOOGLE_FIRESTORE_BOOKINGS)
+        .doc(booking.paymentIntentId);
+      await docRef.set(booking);
+    } else {
+      // Publish message to Pub/Sub topic
+      await publishMessage(booking);
+    }
 
     res.status(201).json({ booking });
   } catch (error) {

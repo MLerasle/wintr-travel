@@ -38,7 +38,7 @@ const CookieBanner = () => {
             <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
               <button
                 type="button"
-                className="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white"
+                className="-mr-1 flex p-2 rounded-md hover:bg-primary-green focus:outline-none focus:ring-2 focus:ring-white"
               >
                 <span className="sr-only">Dismiss</span>
                 <IconContext.Provider
