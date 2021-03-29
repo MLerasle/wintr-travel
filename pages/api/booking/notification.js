@@ -46,10 +46,7 @@ export default async (req, res) => {
         amount: bookingdata.amount,
         paymentIntentId: bookingdata.paymentIntentId,
         deliveryAddress: bookingdata.deliveryAddress,
-        link:
-          process.env.VERCEL_ENV === 'preview'
-            ? `https://beta.wintr.travel/booking/${bookingdata.paymentIntentId}`
-            : `https://www.wintr.travel/booking/${bookingdata.paymentIntentId}`,
+        link: `${process.env.VERCEL_URL}/booking/${bookingdata.paymentIntentId}`,
       },
       subject: `Votre réservation ${bookingdata.paymentIntentId} est confirmée`,
       tags: ['booking'],
