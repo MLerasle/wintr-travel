@@ -1,4 +1,3 @@
-const withOptimizedImages = require('next-optimized-images');
 const withSourceMaps = require('@zeit/next-source-maps');
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const {
@@ -13,35 +12,33 @@ const {
 process.env.SENTRY_DSN = SENTRY_DSN;
 const basePath = '';
 
-module.exports = withOptimizedImages(
-  withSourceMaps({
-    serverRuntimeConfig: {
-      rootDir: __dirname,
-    },
-    webpack: (config, options) => {
-      if (!options.isServer) {
-        config.resolve.alias['@sentry/node'] = '@sentry/browser';
-      }
-      if (
-        SENTRY_DSN &&
-        SENTRY_ORG &&
-        SENTRY_PROJECT &&
-        SENTRY_AUTH_TOKEN &&
-        VERCEL_GITHUB_COMMIT_SHA &&
-        NODE_ENV === 'production'
-      ) {
-        config.plugins.push(
-          new SentryWebpackPlugin({
-            include: '.next',
-            ignore: ['node_modules'],
-            stripPrefix: ['webpack://_N_E/'],
-            urlPrefix: `~${basePath}/_next`,
-            release: VERCEL_GITHUB_COMMIT_SHA,
-          })
-        );
-      }
-      return config;
-    },
-    basePath,
-  })
-);
+module.exports = withSourceMaps({
+  serverRuntimeConfig: {
+    rootDir: __dirname,
+  },
+  webpack: (config, options) => {
+    if (!options.isServer) {
+      config.resolve.alias['@sentry/node'] = '@sentry/browser';
+    }
+    if (
+      SENTRY_DSN &&
+      SENTRY_ORG &&
+      SENTRY_PROJECT &&
+      SENTRY_AUTH_TOKEN &&
+      VERCEL_GITHUB_COMMIT_SHA &&
+      NODE_ENV === 'production'
+    ) {
+      config.plugins.push(
+        new SentryWebpackPlugin({
+          include: '.next',
+          ignore: ['node_modules'],
+          stripPrefix: ['webpack://_N_E/'],
+          urlPrefix: `~${basePath}/_next`,
+          release: VERCEL_GITHUB_COMMIT_SHA,
+        })
+      );
+    }
+    return config;
+  },
+  basePath,
+});

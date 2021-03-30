@@ -8,7 +8,7 @@ import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import Separator from '@/UI/Separator';
 import Label from '@/UI/Label';
-import RadioButtons from '@/UI/RadioButtons';
+import RadioButton from '@/UI/RadioButton';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
 
@@ -16,6 +16,7 @@ import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 import { formatDateLong } from 'helpers/dates';
 import { isValid, getLastDay } from 'helpers/booking';
+import { getDayNumber } from 'helpers/dates';
 import { FEBRUARY_DATES } from 'data/booking';
 
 const BookingForm = ({ isEditing, onUpdate }) => {
@@ -117,13 +118,22 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           <FormRow className="w-full md:flex">
             <div className="flex-grow mt-2 md:mt-0">
               <Label for="name">Février 2022</Label>
-              <RadioButtons
-                items={FEBRUARY_DATES}
-                onChange={handleArrivalDate}
-                name="arrival"
-                selected={booking.firstDay}
-                withDateFormatting
-              />
+              <div className="flex space-x-2 md:space-x-4">
+                {FEBRUARY_DATES.map((date) => (
+                  <RadioButton
+                    key={date}
+                    name="arrival_date"
+                    value={date}
+                    selected={booking.firstDay}
+                    onChange={handleArrivalDate}
+                  >
+                    <div className="w-full text-center">
+                      <p className="text-gray-600">Samedi</p>
+                      <p className="text-2xl font-bold">{getDayNumber(date)}</p>
+                    </div>
+                  </RadioButton>
+                ))}
+              </div>
             </div>
           </FormRow>
           {booking.firstDay && (
@@ -138,24 +148,38 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           <h3 className="text-lg md:text-xl leading-tight font-bold text-gray-800 mt-8 mb-2">
             Pour combien de personnes?
           </h3>
-          <FormRow className="w-full md:flex">
-            <div className="flex-grow md:mr-2">
+          <FormRow className="w-full md:flex md:space-x-6">
+            <div className="flex-grow">
               <Label for="name">Adultes</Label>
-              <RadioButtons
-                items={[1, 2, 3, 4]}
-                name="adults"
-                selected={booking.adults.length}
-                onChange={(event) => handleSkierChange('adults', event)}
-              />
+              <div className="flex space-x-1">
+                {[1, 2, 3, 4].map((i) => (
+                  <RadioButton
+                    key={i}
+                    name="adults"
+                    value={i}
+                    selected={booking.adults.length}
+                    onChange={(event) => handleSkierChange('adults', event)}
+                  >
+                    <div className="w-full text-center text-gray-800">{i}</div>
+                  </RadioButton>
+                ))}
+              </div>
             </div>
             <div className="flex-grow mt-2 md:mt-0 md:ml-2">
               <Label for="name">Enfants</Label>
-              <RadioButtons
-                items={[0, 1, 2, 3, 4]}
-                name="children"
-                selected={booking.children.length}
-                onChange={(event) => handleSkierChange('children', event)}
-              />
+              <div className="flex space-x-0.5">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <RadioButton
+                    key={i}
+                    name="children"
+                    value={i}
+                    selected={booking.children.length}
+                    onChange={(event) => handleSkierChange('children', event)}
+                  >
+                    <div className="w-full text-center text-gray-800">{i}</div>
+                  </RadioButton>
+                ))}
+              </div>
             </div>
           </FormRow>
         </section>

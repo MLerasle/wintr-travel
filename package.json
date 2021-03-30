@@ -22,10 +22,7 @@
     "@zeit/next-source-maps": "^0.0.3",
     "dayjs": "1.10.4",
     "i18n-iso-countries": "^6.6.0",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-svgo": "^9.0.0",
-    "next": "10.0.9",
-    "next-optimized-images": "^2.6.2",
+    "next": "10.1.2",
     "nookies": "^2.5.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -37,8 +34,7 @@
     "sib-api-v3-sdk": "^8.2.0",
     "smoothscroll-polyfill": "^0.4.4",
     "stripe": "^8.140.0",
-    "vercel": "^21.3.3",
-    "webp-loader": "^0.6.0"
+    "vercel": "^21.3.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
@@ -48,7 +44,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.23.1",
-    "next-sitemap": "^1.6.9",
+    "next-sitemap": "^1.6.18",
     "postcss": "^8.2.8",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",

@@ -24,7 +24,9 @@ const BookingValidatedInfos = ({ booking }) => {
           <IconContext.Provider value={{ size: '1rem' }}>
             <MdPerson />
           </IconContext.Provider>
-          <span className="ml-1">{booking.name}</span>
+          <span className="ml-1">
+            {booking.firstname} {booking.lastname}
+          </span>
         </p>
         <p className="argument md:ml-6 flex items-center pb-3 md:pb-1 text-gray-800">
           <IconContext.Provider value={{ size: '1rem' }}>
