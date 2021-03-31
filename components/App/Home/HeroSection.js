@@ -7,10 +7,10 @@ const HeroSection = () => (
       <Image
         className="h-full w-full object-cover"
         src="/images/home-wintr-travel-lg.jpg"
-        alt="People working on laptops"
+        alt="Chalet et skis au pied des pistes"
         layout="fill"
         objectFit="cover"
-        quality={100}
+        quality={80}
       />
       <div
         className="absolute inset-0 bg-gray-800 opacity-80"
@@ -25,10 +25,10 @@ const HeroSection = () => (
               <Image
                 className="h-full w-full object-cover"
                 src="/images/home-wintr-travel-lg.jpg"
-                alt="People working on laptops"
+                alt="Chalet et skis au pied des pistes"
                 layout="fill"
                 objectFit="cover"
-                quality={100}
+                quality={70}
               />
               <div
                 className="absolute inset-0 bg-gray-800 opacity-75"

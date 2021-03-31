@@ -196,20 +196,20 @@ const BookingForm = ({ isEditing, onUpdate }) => {
             </div>
           </FormRow>
         </section>
-        <section className="mt-8 md:mt-10">
-          <Button
-            type="submit"
-            id="searchButton"
-            classes={`w-full uppercase tracking-wide bg-primary-green text-white ${
-              isEditing && 'md:w-64'
-            }`}
-            name="validate"
-            disabled={loading}
-            onClick={validateSearch}
-          >
-            {loading ? <Loader /> : isEditing ? 'Valider' : 'Suivant'}
-          </Button>
-        </section>
+        {!isEditing && (
+          <section className="mt-8 md:mt-10">
+            <Button
+              type="submit"
+              id="searchButton"
+              classes="w-full uppercase tracking-wide bg-primary-green text-white"
+              name="validate"
+              disabled={loading}
+              onClick={validateSearch}
+            >
+              {loading ? <Loader /> : 'Suivant'}
+            </Button>
+          </section>
+        )}
       </form>
     </>
   );
