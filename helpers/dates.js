@@ -21,6 +21,11 @@ export const getDayNumber = (day) => {
   return date.format('DD');
 };
 
+export const getMonthAndYear = (day) => {
+  const date = dayjs(day, 'YYYY-MM-DD');
+  return date.format('MMM YYYY');
+};
+
 export const twoDaysBefore = (day) => {
   const date = dayjs(day, 'YYYY-MM-DD').subtract(2, 'days');
   return date.format('DD MMM YYYY');

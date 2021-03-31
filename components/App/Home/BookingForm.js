@@ -1,12 +1,8 @@
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 
-import Card from '@/UI/Card';
 import FormRow from '@/UI/FormRow';
-import Header from '@/UI/Header';
-import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
-import Separator from '@/UI/Separator';
 import Label from '@/UI/Label';
 import RadioButton from '@/UI/RadioButton';
 import Alert from '@/UI/Alert';
@@ -16,12 +12,13 @@ import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 import { formatDateLong } from 'helpers/dates';
 import { isValid, getLastDay } from 'helpers/booking';
-import { getDayNumber } from 'helpers/dates';
-import { FEBRUARY_DATES } from 'data/booking';
+import { getDayNumber, getMonthAndYear } from 'helpers/dates';
+import { HOLIDAYS } from 'data/booking';
 
 const BookingForm = ({ isEditing, onUpdate }) => {
   const booking = useContext(BookingContext);
   const router = useRouter();
+  const [currentHolidayTab, setCurrentHolidayTab] = useState('Noël');
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -83,12 +80,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
   };
 
   return (
-    <Card
-      classes="md:py-6"
-      subclasses={`p-4 md:p-8 ${
-        isEditing ? 'bg-gray-100 md:bg-white' : 'md:max-w-3xl bg-white'
-      }`}
-    >
+    <>
       {error && (
         <div className="mb-4 md:mb-8">
           <Alert
@@ -98,57 +90,78 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           />
         </div>
       )}
-      <Header>
-        {isEditing ? (
-          <Heading className="text-xl mb-2 md:mb-0">
-            Modifier votre séjour
-          </Heading>
-        ) : (
-          <Heading className="hidden md:block text-xl sm:text-3xl">
-            Vos skis livrés à Flaine pour une semaine.
-          </Heading>
-        )}
-      </Header>
-      <Separator className="my-6 hidden md:block" />
-      <form className="md:mt-4">
+      <form>
         <section>
-          <h3 className="text-lg md:text-xl leading-tight font-bold text-gray-800 mt-2 mb-2">
+          <h3 className="text-lg md:text-xl leading-tight font-bold text-gray-800 mb-2">
             Quand souhaitez-vous être livré?
           </h3>
-          <FormRow className="w-full md:flex">
-            <div className="flex-grow mt-2 md:mt-0">
-              <Label for="name">Février 2022</Label>
-              <div className="flex space-x-2 md:space-x-4">
-                {FEBRUARY_DATES.map((date) => (
-                  <RadioButton
-                    key={date}
-                    name="arrival_date"
-                    value={date}
-                    selected={booking.firstDay}
-                    onChange={handleArrivalDate}
-                  >
-                    <div className="w-full text-center">
-                      <p className="text-gray-600">Samedi</p>
-                      <p className="text-2xl font-bold">{getDayNumber(date)}</p>
-                    </div>
-                  </RadioButton>
-                ))}
+
+          <div className="border-b border-gray-100">
+            <nav className="-mb-px flex space-x-8" aria-label="Tabs">
+              {HOLIDAYS.map((holiday) => (
+                <a
+                  href="#"
+                  key={holiday.name}
+                  className={`whitespace-nowrap py-2 px-1 border-b-2 font-semibold text-base ${
+                    holiday.name === currentHolidayTab
+                      ? 'border-green-500 text-green-600'
+                      : 'border-transparent text-gray-800 hover:text-gray-900 hover:border-gray-200'
+                  }`}
+                  onClick={() => setCurrentHolidayTab(holiday.name)}
+                >
+                  {holiday.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {HOLIDAYS.map((holiday) => {
+            if (holiday.name === currentHolidayTab) {
+              return (
+                <FormRow key={holiday.name} className="w-full flex mt-2">
+                  <div className="flex-grow flex space-x-2 md:space-x-4">
+                    {holiday.dates.map((date) => (
+                      <RadioButton
+                        key={date}
+                        name="arrival_date"
+                        value={date}
+                        selected={booking.firstDay}
+                        onChange={handleArrivalDate}
+                      >
+                        <div className="w-full text-center">
+                          <p className="text-gray-500 text-sm">Samedi</p>
+                          <p className="text-2xl font-bold">
+                            {getDayNumber(date)}
+                          </p>
+                          <p className="text-gray-500 text-sm">
+                            {getMonthAndYear(date)}
+                          </p>
+                        </div>
+                      </RadioButton>
+                    ))}
+                  </div>
+                </FormRow>
+              );
+            } else {
+              return null;
+            }
+          })}
+
+          <div>
+            {booking.firstDay && (
+              <div className="text-primary-blue text-sm mb-4 md:mb-0">
+                Nous récupérons le matériel le{' '}
+                <span className="font-semibold">
+                  {formatDateLong(getLastDay(booking.firstDay))}
+                </span>
+                .
               </div>
-            </div>
-          </FormRow>
-          {booking.firstDay && (
-            <p className="text-primary-blue mb-4 md:mb-0">
-              Nous récupérons le matériel le{' '}
-              <span className="font-semibold">
-                {formatDateLong(getLastDay(booking.firstDay))}
-              </span>
-              .
-            </p>
-          )}
+            )}
+          </div>
           <h3 className="text-lg md:text-xl leading-tight font-bold text-gray-800 mt-8 mb-2">
             Pour combien de personnes?
           </h3>
-          <FormRow className="w-full md:flex md:space-x-6">
+          <FormRow className="w-full">
             <div className="flex-grow">
               <Label for="name">Adultes</Label>
               <div className="flex space-x-1">
@@ -165,7 +178,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
                 ))}
               </div>
             </div>
-            <div className="flex-grow mt-2 md:mt-0 md:ml-2">
+            <div className="mt-2">
               <Label for="name">Enfants</Label>
               <div className="flex space-x-0.5">
                 {[0, 1, 2, 3, 4].map((i) => (
@@ -198,7 +211,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           </Button>
         </section>
       </form>
-    </Card>
+    </>
   );
 };
 

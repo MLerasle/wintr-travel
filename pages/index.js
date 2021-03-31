@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
-import MobileImage from '@/UI/MobileImage';
-import Hero from '@/UI/Hero';
-import BookingForm from '@/App/Home/BookingForm';
 // import EmailForm from '@/App/Home/EmailForm';
 import HomeArgs from '@/App/Home/Args';
 // import Testimonials from '@/App/Home/Testimonials';
 import HomeCta from '@/App/Home/Cta';
 
 import * as gtag from 'lib/gtag';
+import HeroSection from '@/App/Home/HeroSection';
 
 const Index = () => {
   useEffect(() => {
@@ -26,11 +24,7 @@ const Index = () => {
             Réservez dès maintenant vos prochaines vacances au ski!"
         />
       </Head>
-      <MobileImage />
-      <Hero type="full">
-        {/* <EmailForm /> */}
-        <BookingForm />
-      </Hero>
+      <HeroSection />
       <HomeArgs />
       {/* <Testimonials /> */}
       <HomeCta />
