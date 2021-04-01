@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
-import Question from '@/App/Faq/Question';
+import Question from '@/App/Static/Question';
 
 import * as gtag from 'lib/gtag';
 

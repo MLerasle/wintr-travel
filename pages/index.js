@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
-// import EmailForm from '@/App/Home/EmailForm';
-import HomeArgs from '@/App/Home/Args';
-// import Testimonials from '@/App/Home/Testimonials';
-import HomeCta from '@/App/Home/Cta';
+// import EmailForm from '@/App/Static/EmailForm';
+import HeroSection from '@/App/Static/HeroSection';
+import HomeArgs from '@/App/Static/Args';
+// import Testimonials from '@/App/Static/Testimonials';
+import HomeCta from '@/App/Static/Cta';
 
 import * as gtag from 'lib/gtag';
-import HeroSection from '@/App/Home/HeroSection';
 
 const Index = () => {
   useEffect(() => {

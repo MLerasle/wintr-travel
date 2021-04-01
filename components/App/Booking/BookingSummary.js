@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
-import BookingSummaryLine from '@/App/Checkout/BookingSummaryLine';
-import BookingSummaryLineSkier from '@/App/Checkout/BookingSummaryLineSkier';
+import BookingSummaryLine from '@/App/Booking/BookingSummaryLine';
+import BookingSummaryLineSkier from '@/App/Booking/BookingSummaryLineSkier';
 import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 
@@ -15,7 +15,7 @@ const BookingSummary = () => {
   const prices = getPrices(booking.adults.length, booking.children.length);
 
   return (
-    <div className="max-w-md lg:max-w-lg mx-auto xl:mx-0 md:bg-white md:p-6 md:mt-4 xl:mt-0 lg:w-1/2 text-gray-800">
+    <div className="mx-auto xl:mx-0 md:bg-white px-4 md:p-6 md:mt-4 xl:mt-0 text-gray-800">
       <Separator className="my-6 md:hidden" />
       <Heading className="text-xl mb-4">Votre réservation</Heading>
       <p>

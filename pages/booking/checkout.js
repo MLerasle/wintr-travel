@@ -9,7 +9,7 @@ import { MdLock } from 'react-icons/md';
 
 import CheckoutForm from '@/App/Checkout/CheckoutForm';
 import PaymentIcons from '@/App/Checkout/PaymentIcons';
-import BookingSummary from '@/App/Checkout/BookingSummary';
+import BookingSummary from '@/App/Booking/BookingSummary';
 import MainSection from '@/UI/MainSection';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';

@@ -4,8 +4,8 @@ import 'react-phone-number-input/style.css';
 
 import Card from '@/UI/Card';
 import MainSection from '@/UI/MainSection';
-import PhoneNumberStep from '@/App/Confirmation/PhoneNumberStep';
-import ShareStep from '@/App/Confirmation/ShareStep';
+import PhoneNumberStep from '@/App/Checkout/PhoneNumberStep';
+import ShareStep from '@/App/Checkout/ShareStep';
 
 import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';

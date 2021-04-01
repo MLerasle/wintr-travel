@@ -4,9 +4,9 @@ import Head from 'next/head';
 import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
 import ContentBackground from '@/UI/ContentBackground';
-import SizeSkis from '@/App/Sizes/SizeSkis';
-import SizeShoes from '@/App/Sizes/SizeShoes';
-import SizeHelmet from '@/App/Sizes/SizeHelmet';
+import SizeSkis from '@/App/Static/SizeSkis';
+import SizeShoes from '@/App/Static/SizeShoes';
+import SizeHelmet from '@/App/Static/SizeHelmet';
 
 import * as gtag from 'lib/gtag';
 

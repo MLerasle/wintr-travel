@@ -6,8 +6,8 @@ import Label from '@/UI/Label';
 import Input from '@/UI/Input';
 import RadioButton from '@/UI/RadioButton';
 import BottomDrawer from '@/UI/BottomDrawer';
-import SizeShoes from '@/App/Sizes/SizeShoes';
-import SizeHelmet from '../Sizes/SizeHelmet';
+import SizeShoes from '@/App/Static/SizeShoes';
+import SizeHelmet from '../Static/SizeHelmet';
 
 const HEAD_SIZES = ['XS', 'S', 'M', 'L', 'XL'];
 

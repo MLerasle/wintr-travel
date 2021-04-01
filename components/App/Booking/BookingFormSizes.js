@@ -3,9 +3,9 @@ import { IconContext } from 'react-icons';
 import { IoHelpCircle } from 'react-icons/io5';
 
 import BookingFormSizesSkier from '@/App/Booking/BookingFormSizesSkier';
-import SizeSkis from '@/App/Sizes/SizeSkis';
-import SizeShoes from '@/App/Sizes/SizeShoes';
-import SizeHelmet from '@/App/Sizes/SizeHelmet';
+import SizeSkis from '@/App/Static/SizeSkis';
+import SizeShoes from '@/App/Static/SizeShoes';
+import SizeHelmet from '@/App/Static/SizeHelmet';
 
 const BookingFormSizes = ({ booking, bookingIsPrepaid }) => {
   const [isFormDisplayed, setIsFormDisplayed] = useState(bookingIsPrepaid);

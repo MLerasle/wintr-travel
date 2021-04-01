@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
-import PriceCard from '@/App/Prices/PriceCard';
+import PriceCard from '@/App/Static/PriceCard';
 import Button from '@/UI/Button';
 
 import * as gtag from 'lib/gtag';

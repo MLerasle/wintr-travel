@@ -1,5 +1,5 @@
 import Card from '@/UI/Card';
-import PriceItem from '@/App/Prices/PriceItem';
+import PriceItem from '@/App/Static/PriceItem';
 
 const PriceCard = ({ category, price }) => (
   <Card
