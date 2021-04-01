@@ -5,73 +5,46 @@ import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
 import * as SentryNode from '@sentry/node';
 
-import BookingValidatedInfos from '@/App/BookingEdit/BookingValidatedInfos';
-import BookingDeliveryInfos from '@/App/BookingEdit/BookingDeliveryInfos';
-// import BookingCancel from '@/App/BookingEdit/BookingCancel';
-import BookingFormSizes from '@/App/Details/BookingFormSizes';
-import BookingFormValidate from '@/App/Details/BookingFormValidate';
+import BookingMainInfos from '@/App/Booking/BookingMainInfos';
+import BookingFormDeliveryInfos from '@/App/Booking/BookingFormDeliveryInfos';
+// import BookingCancel from '@/App/Booking/BookingCancel';
+import BookingFormSizes from '@/App/Booking/BookingFormSizes';
 import MainSection from '@/UI/MainSection';
-import Separator from '@/UI/Separator';
-import Modal from '@/UI/Modal';
-import SizeSkis from '@/App/Sizes/SizeSkis';
-import SizeShoes from '@/App/Sizes/SizeShoes';
-import SizeHelmet from '@/App/Sizes/SizeHelmet';
+import PageHeader from '@/UI/PageHeader';
 import Alert from '@/UI/Alert';
 import Button from '@/UI/Button';
+import Loader from '@/UI/Loader';
 
 import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 import { GCP_CREDENTIALS } from 'lib/gcp';
+import { isValid } from 'helpers/booking';
 
 const Booking = ({ fetchedBooking }) => {
   const router = useRouter();
+  const booking = useContext(BookingContext);
   const { token } = router.query;
   const [loading, setIsLoading] = useState(false);
-  const [isSizesModalOpened, setIsModalSizesOpened] = useState(false);
-  const [isConfirmCancelModalOpened, setIsConfirmCancelModalOpened] = useState(
-    false
-  );
+  // const [isConfirmCancelModalOpened, setIsConfirmCancelModalOpened] = useState(
+  //   false
+  // );
   const [alert, setAlert] = useState(null);
-  const booking = useContext(BookingContext);
-
-  const skiers = [...fetchedBooking.adults, ...fetchedBooking.children];
 
   useEffect(() => {
     localStorage.setItem('booking', JSON.stringify(fetchedBooking));
   }, []);
 
-  const toggleSizesHelp = () => {
-    setIsModalSizesOpened(!isSizesModalOpened);
-  };
-
-  const updateSkier = (skier, attribute, event) => {
-    let skiers;
-    if (skier.label.startsWith('Adulte')) {
-      skiers = [...booking.adults];
-    } else {
-      skiers = [...booking.children];
-    }
-    const person = skiers.find((s) => s.label === skier.label);
-    person[attribute] = event.target.value;
-
-    if (skier.label.startsWith('Adulte')) {
-      booking.update('adults', skiers);
-    } else {
-      booking.update('children', skiers);
-    }
-  };
-
   const validateBookingDetails = async () => {
     setIsLoading(true);
     try {
-      console.log('Payment intent id', booking.paymentIntentId);
+      console.log('Payment intent id', fetchedBooking.paymentIntentId);
       const response = await fetch('/api/booking/update', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          pid: booking.paymentIntentId,
+          pid: fetchedBooking.paymentIntentId,
           prevPhoneNumber: fetchedBooking.phoneNumber,
           phoneNumber: booking.phoneNumber,
           deliveryAddress: booking.deliveryAddress,
@@ -114,23 +87,23 @@ const Booking = ({ fetchedBooking }) => {
     });
   };
 
-  const toggleConfirmCancel = () => {
-    setIsConfirmCancelModalOpened(!isConfirmCancelModalOpened);
-  };
+  // const toggleConfirmCancel = () => {
+  //   setIsConfirmCancelModalOpened(!isConfirmCancelModalOpened);
+  // };
 
-  const cancelBooking = async () => {
-    setIsLoading(true);
-    toggleConfirmCancel();
-    await fetch('/api/booking/cancel', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(booking),
-    });
-    router.push('/').then(() => {
-      setIsLoading(false);
-      window.scrollTo(0, 0);
-    });
-  };
+  // const cancelBooking = async () => {
+  //   setIsLoading(true);
+  //   toggleConfirmCancel();
+  //   await fetch('/api/booking/cancel', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(booking),
+  //   });
+  //   router.push('/').then(() => {
+  //     setIsLoading(false);
+  //     window.scrollTo(0, 0);
+  //   });
+  // };
 
   return (
     <>
@@ -138,14 +111,7 @@ const Booking = ({ fetchedBooking }) => {
         <title>Votre réservation - Wintr Travel</title>
       </Head>
       <MainSection className="py-2 md:py-6 max-w-screen-lg mx-auto">
-        <Modal open={isSizesModalOpened} closed={toggleSizesHelp}>
-          <section className="md:text-md p-6">
-            <SizeSkis />
-            <SizeShoes withDetails />
-            <SizeHelmet withDetails />
-          </section>
-        </Modal>
-        <Modal open={isConfirmCancelModalOpened} closed={toggleConfirmCancel}>
+        {/* <Modal open={isConfirmCancelModalOpened} closed={toggleConfirmCancel}>
           <section className="md:text-md px-6 py-6 text-center">
             <p className="text-gray-800 text-lg my-6 font-semibold">
               Êtes-vous sûr de vouloir annuler votre réservation?
@@ -157,7 +123,7 @@ const Booking = ({ fetchedBooking }) => {
               Confirmer
             </Button>
           </section>
-        </Modal>
+        </Modal> */}
         {alert && (
           <Alert
             type={alert.type}
@@ -165,26 +131,22 @@ const Booking = ({ fetchedBooking }) => {
             onClearMessage={() => setAlert(null)}
           />
         )}
-        <BookingValidatedInfos booking={booking} />
-        <Separator className="md:hidden my-2" />
-        <BookingDeliveryInfos booking={booking} token={token} />
-        <Separator className="md:hidden my-2" />
-        <BookingFormSizes
-          skiers={skiers}
-          onUpdateSkier={updateSkier}
-          onToggleSizesHelp={toggleSizesHelp}
-          token={token}
-        />
-        <Separator className="md:hidden my-2" />
-        <BookingFormValidate
-          booking={booking}
-          loading={loading}
-          onValidate={validateBookingDetails}
-          onCancel={toggleConfirmCancel}
-          buttonLabel={`Enregistrer`}
-          token={token}
-        />
-        {/* {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />} */}
+
+        <PageHeader title="Votre réservation">Numéro: {token}</PageHeader>
+        <div className="space-y-6">
+          <BookingMainInfos booking={booking} bookingIsPrepaid />
+          <BookingFormDeliveryInfos booking={booking} token={token} />
+          <BookingFormSizes booking={booking} bookingIsPrepaid />
+          <Button
+            classes="uppercase tracking-wide w-full md:w-64 bg-primary-green text-white"
+            name="save"
+            disabled={!isValid(booking) || loading}
+            onClick={validateBookingDetails}
+          >
+            {loading ? <Loader /> : 'Enregistrer'}
+          </Button>
+          {/* {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />} */}
+        </div>
       </MainSection>
     </>
   );

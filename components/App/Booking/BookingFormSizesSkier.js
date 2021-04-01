@@ -11,7 +11,7 @@ import SizeHelmet from '../Sizes/SizeHelmet';
 
 const HEAD_SIZES = ['XS', 'S', 'M', 'L', 'XL'];
 
-const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
+const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
   const [isShoeHelperOpened, setIsShoeHelperOpened] = useState(false);
   const [isHelmetHelperOpened, setIsHelmetHelperOpened] = useState(false);
 
@@ -110,4 +110,4 @@ const SkierDetailsForm = ({ skier, index, total, onUpdateSkier }) => {
   );
 };
 
-export default SkierDetailsForm;
+export default BookingFormSizesSkier;

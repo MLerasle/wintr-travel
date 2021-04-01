@@ -119,7 +119,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
             if (holiday.name === currentHolidayTab) {
               return (
                 <FormRow key={holiday.name} className="w-full flex mt-2">
-                  <div className="flex-grow flex space-x-2 md:space-x-4">
+                  <div className="flex-grow flex space-x-1">
                     {holiday.dates.map((date) => (
                       <RadioButton
                         key={date}
@@ -180,7 +180,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
             </div>
             <div className="mt-2">
               <Label for="name">Enfants</Label>
-              <div className="flex space-x-0.5">
+              <div className="flex space-x-1">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <RadioButton
                     key={i}

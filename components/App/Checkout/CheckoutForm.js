@@ -9,7 +9,7 @@ import {
 import { destroyCookie } from 'nookies';
 import * as Sentry from '@sentry/browser';
 
-import BookingDeliveryAddress from '@/App/Checkout/BookingFormDeliveryAddress';
+import BookingDeliveryAddress from '@/App/Booking/BookingFormDeliveryAddress';
 import StripeCardElement from '@/App/Checkout/StripeCardElement';
 import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
@@ -339,7 +339,7 @@ const CheckoutForm = ({ intent }) => {
   }
 
   return (
-    <div className="xl:w-1/2 pt-6 max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
+    <div className="pt-6 px-4">
       {paymentError && (
         <Alert
           type="error"
@@ -353,7 +353,7 @@ const CheckoutForm = ({ intent }) => {
           <Separator label="Ou" className="my-10" />
         </>
       ) : null}
-      <form className="flex flex-col max-w-md lg:max-w-lg xl:max-w-md mx-auto xl:mx-0">
+      <form className="flex flex-col">
         <Heading className="text-xl mb-4">Informations Client</Heading>
         <FormRow>
           <Label for="firstname">Prénom</Label>

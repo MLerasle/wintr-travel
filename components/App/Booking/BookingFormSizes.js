@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { IconContext } from 'react-icons';
 import { IoHelpCircle } from 'react-icons/io5';
 
-import SkierDetailsForm from '@/App/Details/SkierDetailsForm';
+import BookingFormSizesSkier from '@/App/Booking/BookingFormSizesSkier';
 import SizeSkis from '@/App/Sizes/SizeSkis';
 import SizeShoes from '@/App/Sizes/SizeShoes';
 import SizeHelmet from '@/App/Sizes/SizeHelmet';
 
-const BookingFormSizes = ({ booking }) => {
-  const [isFormDisplayed, setIsFormDisplayed] = useState(false);
+const BookingFormSizes = ({ booking, bookingIsPrepaid }) => {
+  const [isFormDisplayed, setIsFormDisplayed] = useState(bookingIsPrepaid);
   const [isHelpDisplayed, setIsHelpDisplayed] = useState(false);
   const skiers = [...booking.adults, ...booking.children];
 
@@ -32,7 +32,7 @@ const BookingFormSizes = ({ booking }) => {
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-900 flex">
+        <h3 className="text-lg leading-6 font-semibold text-gray-800 flex">
           <span>Mensurations des skieurs</span>
           <IconContext.Provider
             value={{
@@ -46,7 +46,7 @@ const BookingFormSizes = ({ booking }) => {
             </div>
           </IconContext.Provider>
         </h3>
-        {isFormDisplayed ? (
+        {isFormDisplayed && !bookingIsPrepaid ? (
           <button
             type="button"
             className="mt-1 bg-white rounded-md font-medium underline text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -63,16 +63,24 @@ const BookingFormSizes = ({ booking }) => {
             Masquer l'aide
           </button>
         ) : (
-          <p className="mt-1 max-w-2xl text-gray-500">
-            Vous pouvez choisir de passer cette étape pour le moment.
-          </p>
+          !bookingIsPrepaid && (
+            <p className="mt-1 max-w-2xl text-gray-500">
+              Vous pouvez choisir de passer cette étape pour le moment.
+            </p>
+          )
         )}
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
         <div className="sm:px-6 py-4 sm:py-5">
-          {isFormDisplayed ? (
+          {isHelpDisplayed ? (
+            <div className="prose prose-blue text-gray-500 mx-auto">
+              <SizeSkis />
+              <SizeShoes withDetails />
+              <SizeHelmet withDetails />
+            </div>
+          ) : isFormDisplayed ? (
             skiers.map((skier, index) => (
-              <SkierDetailsForm
+              <BookingFormSizesSkier
                 key={skier.label}
                 skier={skier}
                 index={index}
@@ -80,12 +88,6 @@ const BookingFormSizes = ({ booking }) => {
                 onUpdateSkier={updateSkier}
               />
             ))
-          ) : isHelpDisplayed ? (
-            <div className="prose prose-blue text-gray-500 mx-auto">
-              <SizeSkis />
-              <SizeShoes withDetails />
-              <SizeHelmet withDetails />
-            </div>
           ) : (
             <button
               type="button"

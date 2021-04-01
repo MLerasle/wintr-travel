@@ -43,7 +43,7 @@ const Checkout = ({ paymentIntent }) => {
         </Header>
         <PaymentIcons className="sm:hidden mt-1 px-4" />
         <Separator className="mt-6" />
-        <div className="px-4 lg:px-2 xl:px-0 xl:flex xl:justify-between">
+        <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2">
           <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
             <CheckoutForm intent={paymentIntent} />
           </Elements>
