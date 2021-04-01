@@ -168,7 +168,7 @@ const CheckoutForm = ({ intent }) => {
         stripeCustomerId: customer.id,
       }),
     });
-    const invoice = invoiceResp.json();
+    const invoice = await invoiceResp.json();
 
     // Send booking infos to the backend
     await fetch('/api/booking/publish', {
@@ -178,6 +178,9 @@ const CheckoutForm = ({ intent }) => {
         ...updatedBooking,
         stripeCustomerId: customer.id,
         stripeInvoiceId: invoice.id,
+        stripeInvoiceUrl: invoice.hosted_invoice_url,
+        stripeInvoicePdf: invoice.invoice_pdf,
+        state: 'prepaid',
       }),
     });
 

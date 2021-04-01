@@ -15,6 +15,8 @@ const initalBooking = {
   isRegisteredToNewsletter: true,
   stripeInvoiceId: null,
   stripeCustomerId: null,
+  stripeInvoiceUrl: null,
+  stripeInvoicePdf: null,
   state: '',
   season: '2021-2022',
 };
@@ -45,6 +47,8 @@ export function BookingContextProvider(props) {
     isRegisteredToNewsletter: booking.isRegisteredToNewsletter,
     stripeCustomerId: booking.stripeCustomerId,
     stripeInvoiceId: booking.stripeInvoiceId,
+    stripeInvoiceUrl: booking.stripeInvoiceUrl,
+    stripeInvoicePdf: booking.stripeInvoicePdf,
     state: booking.state,
     update: updateBookingHandler,
   };

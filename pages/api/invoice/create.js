@@ -37,11 +37,13 @@ export default async (req, res) => {
       description: 'Pré-réservation',
     });
 
-    const invoice = await stripe.invoices.create({
+    let invoice = await stripe.invoices.create({
       customer: booking.stripeCustomerId,
       collection_method: 'send_invoice',
       due_date: dayBeforeTimestamp(booking.firstDay),
     });
+
+    invoice = await stripe.invoices.finalizeInvoice(invoice.id);
 
     res.status(201).json(invoice);
   } catch (error) {

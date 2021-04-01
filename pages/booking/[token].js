@@ -132,7 +132,29 @@ const Booking = ({ fetchedBooking }) => {
           />
         )}
 
-        <PageHeader title="Votre réservation">Numéro: {token}</PageHeader>
+        <PageHeader title="Votre réservation">
+          <p>Numéro: {token}</p>
+          <div className="mt-3 space-y-3 md:space-x-3">
+            {booking.state === 'prepaid' && (
+              <a
+                href={booking.stripeInvoiceUrl}
+                target="_blank"
+                type="button"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-green hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green"
+                rel="noreferrer"
+              >
+                Payer la facture en ligne
+              </a>
+            )}
+            <a
+              href={booking.stripeInvoicePdf}
+              type="button"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green"
+            >
+              Télécharger la facture
+            </a>
+          </div>
+        </PageHeader>
         <div className="space-y-6">
           <BookingMainInfos booking={booking} bookingIsPrepaid />
           <BookingFormDeliveryInfos booking={booking} token={token} />
@@ -159,13 +181,18 @@ export async function getServerSideProps(context) {
     .collection(process.env.GOOGLE_FIRESTORE_BOOKINGS)
     .doc(token);
   let fetchedBooking;
+
   try {
     const doc = await docRef.get();
     if (doc.exists) {
       fetchedBooking = doc.data();
       if (fetchedBooking.canceled) {
-        context.res.writeHead(302, { Location: '/' });
-        context.res.end();
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        };
       }
       return {
         props: {
