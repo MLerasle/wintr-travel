@@ -19,63 +19,66 @@ const ShareStep = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center -mt-4">
+      <div className="flex flex-col items-center">
         <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
           <IconContext.Provider value={{ color: '#389469', size: '1.5rem' }}>
             <MdDone />
           </IconContext.Provider>
         </div>
-        <h1 className="mt-4 md:mb-8 text-2xl sm:text-3xl leading-tight font-semibold text-gray-800">
+        <h1 className="mt-4 md:mb-8 text-3xl font-bold text-gray-800 leading-tight sm:text-4xl">
           Numéro enregistré
         </h1>
 
-        <div className="text-center md:text-left text-gray-700 text-lg">
+        <div className="text-center text-gray-500 text-lg">
           <p className="my-8 md:my-4">Merci beaucoup pour votre commande!</p>
           <p className="my-8 md:my-4">
-            Nous reviendrons vers vous très prochainement pour préparer au mieux
+            Nous reviendrons vers vous prochainement pour préparer au mieux
             votre séjour.
           </p>
           <p className="my-8 md:my-4">
             Si vous nous aimez autant que nous vous aimons, n'hésitez pas à
             parler de nous à vos amis et à les inviter à tenter l'expérience!
           </p>
-          <section className="my-10 md:my-4">
-            <h3 className="mb-4 font-bold">Partager sur les réseaux</h3>
+          <section className="my-10 md:mb-4">
             <p>
               <FacebookShareButton
                 url={SHARE_URL}
                 quote={TITLE}
                 className="mr-3"
               >
-                <FacebookIcon size={38} round />
+                <FacebookIcon size={30} round />
               </FacebookShareButton>
-              <WhatsappShareButton
-                url={SHARE_URL}
-                title={TITLE}
-                className="mr-3"
-              >
-                <WhatsappIcon size={38} round />
-              </WhatsappShareButton>
               <TwitterShareButton
                 url={SHARE_URL}
                 title={TITLE}
                 className="mr-3"
               >
-                <TwitterIcon size={38} round />
+                <TwitterIcon size={30} round />
               </TwitterShareButton>
+              <WhatsappShareButton
+                url={SHARE_URL}
+                title={TITLE}
+                className="mr-3"
+              >
+                <WhatsappIcon size={30} round />
+              </WhatsappShareButton>
               <TelegramShareButton
                 url={SHARE_URL}
                 title={TITLE}
                 className="mr-3"
               >
-                <TelegramIcon size={38} round />
+                <TelegramIcon size={30} round />
               </TelegramShareButton>
               <EmailShareButton url={SHARE_URL} subject={TITLE}>
-                <EmailIcon size={38} round />
+                <EmailIcon
+                  size={30}
+                  round
+                  bgStyle={{ fill: '#4B5563' }}
+                  iconFillColor="#F9FAFB"
+                />
               </EmailShareButton>
             </p>
           </section>
-          <p className="text-gray-800 font-semibold">À bientôt!</p>
         </div>
       </div>
     </>

@@ -61,14 +61,18 @@ const Confirmation = ({ pid }) => {
 export async function getServerSideProps(context) {
   // /confirmation is reachable only after checkout
   const pid = context.query.pid;
-  // let prevPath;
-  // if (context.req.headers.referer) {
-  //   prevPath = context.req.headers.referer.split('/').reverse()[0];
-  // }
-  // if (!pid || !prevPath || prevPath !== 'checkout') {
-  //   context.res.writeHead(302, { Location: '/' });
-  //   context.res.end();
-  // }
+  let prevPath;
+  if (context.req.headers.referer) {
+    prevPath = context.req.headers.referer.split('/').reverse()[0];
+  }
+  if (!pid || !prevPath || prevPath !== 'checkout') {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
       pid,
