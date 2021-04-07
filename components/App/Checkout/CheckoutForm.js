@@ -208,6 +208,7 @@ const CheckoutForm = ({ intent }) => {
       })
       .then(() => {
         setIsLoading(false);
+        booking.clear();
       });
   };
 

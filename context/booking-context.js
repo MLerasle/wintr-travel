@@ -24,6 +24,7 @@ const initalBooking = {
 const BookingContext = createContext({
   ...initalBooking,
   update: () => {},
+  clear: () => {},
 });
 
 export function BookingContextProvider(props) {
@@ -31,6 +32,10 @@ export function BookingContextProvider(props) {
 
   function updateBookingHandler(key, value) {
     setBooking({ ...booking, [key]: value });
+  }
+
+  function clearBookingHandler() {
+    setBooking(initalBooking);
   }
 
   let context = {
@@ -51,16 +56,17 @@ export function BookingContextProvider(props) {
     stripeInvoicePdf: booking.stripeInvoicePdf,
     state: booking.state,
     update: updateBookingHandler,
+    clear: clearBookingHandler,
   };
 
   useEffect(() => {
-    if (localStorage.getItem('booking')) {
-      setBooking(JSON.parse(localStorage.getItem('booking')));
+    if (sessionStorage.getItem('booking')) {
+      setBooking(JSON.parse(sessionStorage.getItem('booking')));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('booking', JSON.stringify(context));
+    sessionStorage.setItem('booking', JSON.stringify(context));
   }, [context]);
 
   return (

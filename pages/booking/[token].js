@@ -31,13 +31,16 @@ const Booking = ({ fetchedBooking }) => {
   const [alert, setAlert] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem('booking', JSON.stringify(fetchedBooking));
+    sessionStorage.setItem('booking', JSON.stringify(fetchedBooking));
+    return () => {
+      // Clear booking context and session storage before leaving the page
+      booking.clear();
+    };
   }, []);
 
   const validateBookingDetails = async () => {
     setIsLoading(true);
     try {
-      console.log('Payment intent id', fetchedBooking.paymentIntentId);
       const response = await fetch('/api/booking/update', {
         method: 'PUT',
         headers: {
@@ -134,7 +137,7 @@ const Booking = ({ fetchedBooking }) => {
 
         <PageHeader title="Votre réservation">
           <p>Numéro: {token}</p>
-          <div className="mt-3 space-y-3 md:space-x-3">
+          <p className="mt-3 space-y-3 md:space-x-3">
             {booking.state === 'prepaid' && (
               <a
                 href={booking.stripeInvoiceUrl}
@@ -153,7 +156,7 @@ const Booking = ({ fetchedBooking }) => {
             >
               Télécharger la facture
             </a>
-          </div>
+          </p>
         </PageHeader>
         <div className="space-y-6">
           <BookingMainInfos booking={booking} bookingIsPrepaid />
@@ -210,31 +213,6 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
-  // const fetchedBooking = {
-  //   firstDay: '2021-02-06',
-  //   adults: [{ label: 'Adulte 1' }, { label: 'Adulte 2' }],
-  //   children: [],
-  //   email: 'maxlerasle@test.com',
-  //   name: 'Maxime Lerasle',
-  //   phoneNumber: '+33612345678',
-  //   countryCode: 'FR',
-  //   deliveryAddress: '',
-  //   placeId: null,
-  //   isRegisteredToNewsletter: true,
-  //   paymentIntentId: 'pi_1I6z5NExu4LJSLGAqJt6nTDH',
-  //   stripeInvoiceId: null,
-  //   stripeCustomerId: 'cus_IiMdlcFLOKSvXs',
-  //   state: 'prepaid',
-  // };
-  // if (fetchedBooking.state === 'canceled') {
-  //   context.res.writeHead(302, { Location: '/' });
-  //   context.res.end();
-  // }
-  // return {
-  //   props: {
-  //     fetchedBooking,
-  //   },
-  // };
 }
 
 export default Booking;

@@ -4,9 +4,9 @@ const PageHeader = ({ title, children }) => (
       <h1 className="text-3xl leading-10 font-extrabold tracking-tight text-gray-800 text-center sm:text-4xl sm:leading-none lg:text-5xl">
         {title}
       </h1>
-      <p className="mt-4 max-w-3xl mx-auto text-xl leading-normal text-gray-500 text-center">
+      <div className="mt-4 max-w-3xl mx-auto text-xl leading-normal text-gray-500 text-center">
         {children}
-      </p>
+      </div>
     </div>
   </div>
 );

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import 'react-phone-number-input/style.css';
 
@@ -7,11 +7,9 @@ import MainSection from '@/UI/MainSection';
 import PhoneNumberStep from '@/App/Checkout/PhoneNumberStep';
 import ShareStep from '@/App/Checkout/ShareStep';
 
-import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 
 const Confirmation = ({ pid }) => {
-  const booking = useContext(BookingContext);
   const [isPhoneNumberSubmitted, setIsPhoneNumberSubmitted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +18,6 @@ const Confirmation = ({ pid }) => {
 
   const updateBooking = async (phoneNumber) => {
     try {
-      booking.update('phoneNumber', phoneNumber);
       await fetch('/api/booking/update', {
         method: 'PUT',
         headers: {
@@ -32,7 +29,6 @@ const Confirmation = ({ pid }) => {
     } catch (error) {
       console.log('ERROR while updating phone number');
     }
-    window.scrollTo(0, 0);
   };
 
   const view = isPhoneNumberSubmitted ? (
