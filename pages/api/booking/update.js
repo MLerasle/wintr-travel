@@ -1,11 +1,13 @@
-const Sentry = require('@sentry/node');
-const Firestore = require('@google-cloud/firestore');
+import Sentry from '@sentry/node';
+import Firestore from '@google-cloud/firestore';
+import Stripe from 'stripe';
 
 import { GCP_CREDENTIALS } from 'lib/gcp';
 
 export default async (req, res) => {
   const db = new Firestore(GCP_CREDENTIALS);
   db.settings({ ignoreUndefinedProperties: true });
+  const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
 
   const bookingdata = req.body;
 
@@ -23,9 +25,14 @@ export default async (req, res) => {
       children: bookingdata.children,
     });
 
-    // Send confirmation SMS if needed
+    // Send confirmation SMS and update Stripe customer if needed
     if (bookingdata.prevPhoneNumber !== bookingdata.phoneNumber) {
       sendConfirmationSms(bookingdata.phoneNumber);
+      const doc = await docRef.get();
+      const docData = doc.data();
+      await stripe.customers.update(docData.stripeCustomerId, {
+        phone: bookingdata.phoneNumber,
+      });
     }
 
     res.status(200).json({ bookingdata });
