@@ -29,7 +29,7 @@ const Checkout = ({ paymentIntent }) => {
         <title>Paiement - Wintr Travel</title>
       </Head>
       <MainSection
-        className="py-4 md:py-8 max-w-screen-lg mx-auto"
+        className="pt-4 pb-8 md:py-8 max-w-screen-lg mx-auto"
         layoutWithoutNavbarAndFooter
       >
         <Header className="px-4 lg:px-2 xl:px-0">

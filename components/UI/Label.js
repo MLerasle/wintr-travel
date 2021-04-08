@@ -1,8 +1,5 @@
 const Label = (props) => (
-  <label
-    className="text-gray-800 font-semibold inline-block mb-1"
-    htmlFor={props.for}
-  >
+  <label className="block font-medium text-gray-700 mb-1" htmlFor={props.for}>
     {props.children}
   </label>
 );

@@ -11,7 +11,6 @@ import * as Sentry from '@sentry/browser';
 
 import BookingDeliveryAddress from '@/App/Booking/BookingFormDeliveryAddress';
 import StripeCardElement from '@/App/Checkout/StripeCardElement';
-import Heading from '@/UI/Heading';
 import Button from '@/UI/Button';
 import FormRow from '@/UI/FormRow';
 import Label from '@/UI/Label';
@@ -358,7 +357,9 @@ const CheckoutForm = ({ intent }) => {
         </>
       ) : null}
       <form className="flex flex-col">
-        <Heading className="text-xl mb-4">Informations Client</Heading>
+        <h3 className="text-lg leading-6 font-semibold text-gray-800 mb-4">
+          Informations Client
+        </h3>
         <FormRow>
           <Label for="firstname">Prénom</Label>
           <Input
@@ -422,14 +423,18 @@ const CheckoutForm = ({ intent }) => {
             {formWasSubmitted && formErrors.country}
           </div>
         </FormRow>
-        <Heading className="text-xl my-4">Addresse de Livraison</Heading>
+        <h3 className="text-lg leading-6 font-semibold text-gray-800 mt-2 mb-4">
+          Addresse de Livraison
+        </h3>
         <FormRow>
           <BookingDeliveryAddress
             booking={booking}
             onDeliveryAddressUpdate={onDeliveryAddressUpdate}
           />
         </FormRow>
-        <Heading className="text-xl my-4">Méthode de Règlement</Heading>
+        <h3 className="text-lg leading-6 font-semibold text-gray-800 mt-2 mb-4">
+          Méthode de Règlement
+        </h3>
         <FormRow>
           <Label for="card-element">Données de votre carte</Label>
           <StripeCardElement CardElement={CardElement} />

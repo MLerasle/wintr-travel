@@ -92,7 +92,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       )}
       <form>
         <section>
-          <h3 className="text-lg md:text-xl leading-tight font-bold text-gray-800 mb-2">
+          <h3 className="text-lg leading-6 font-semibold text-gray-800 mb-2">
             Quand souhaitez-vous être livré?
           </h3>
 
@@ -158,7 +158,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
               </div>
             )}
           </div>
-          <h3 className="text-lg md:text-xl leading-tight font-bold text-gray-800 mt-8 mb-2">
+          <h3 className="text-lg leading-6 font-semibold text-gray-800 mt-8 mb-2">
             Pour combien de personnes?
           </h3>
           <FormRow className="w-full">
