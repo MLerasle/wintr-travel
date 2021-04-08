@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useMemo } from 'react';
+
+import { getBookingSeason } from 'helpers/dates';
 
 const initalBooking = {
   resort: 'Flaine',
@@ -18,7 +20,7 @@ const initalBooking = {
   stripeInvoiceUrl: null,
   stripeInvoicePdf: null,
   state: '',
-  season: '2021-2022',
+  season: '',
 };
 
 const BookingContext = createContext({
@@ -29,6 +31,9 @@ const BookingContext = createContext({
 
 export function BookingContextProvider(props) {
   const [booking, setBooking] = useState(initalBooking);
+  const bookingSeason = useMemo(() => getBookingSeason(booking.firstDay), [
+    booking.firstDay,
+  ]);
 
   function updateBookingHandler(key, value) {
     setBooking({ ...booking, [key]: value });
@@ -55,6 +60,7 @@ export function BookingContextProvider(props) {
     stripeInvoiceUrl: booking.stripeInvoiceUrl,
     stripeInvoicePdf: booking.stripeInvoicePdf,
     state: booking.state,
+    season: bookingSeason,
     update: updateBookingHandler,
     clear: clearBookingHandler,
   };
