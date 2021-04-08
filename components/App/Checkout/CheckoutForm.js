@@ -344,11 +344,13 @@ const CheckoutForm = ({ intent }) => {
   return (
     <div className="pt-6 px-4">
       {paymentError && (
-        <Alert
-          type="error"
-          message={paymentError}
-          onClearMessage={() => setPaymentError(null)}
-        />
+        <div className="pb-6">
+          <Alert
+            type="error"
+            message={paymentError}
+            onClearMessage={() => setPaymentError(null)}
+          />
+        </div>
       )}
       {paymentRequestButton ? (
         <>
