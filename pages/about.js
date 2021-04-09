@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
+import Image from 'next/image';
 
 import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
@@ -23,13 +23,14 @@ const About = () => {
       </Head>
       <MainSection>
         <PageHeader title="À propos de Wintr Travel" />
-        <div className="flex justify-center bg-gray-100">
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2">
-            <div className="about-image-1 overflow-hidden img-container"></div>
-            <div className="flex justify-center items-center">
-              <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-1">
-                <h2 className="heading">Qui sommes-nous?</h2>
-                <p className="text-gray-600 text-lg leading-loose mt-4">
+        <div className="pb-16 bg-gray-100 overflow-hidden lg:pb-24">
+          <div className="relative max-w-xl mx-auto px-4 lg:max-w-7xl">
+            <div className="relative lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+              <div className="relative">
+                <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
+                  Qui sommes-nous?
+                </h3>
+                <p className="mt-3 text-lg text-gray-500">
                   Wintr Travel est une marque audacieuse, qui, depuis 3 ans,
                   façonne en France des équipements pensés pour le grand public.
                   Wintr Travel réinvente l'industrie de l’équipement de ski en
@@ -38,27 +39,48 @@ const About = () => {
                   territoires.
                 </p>
               </div>
-            </div>
-            <div className="about-image-2 overflow-hidden img-container"></div>
-            <div className="flex justify-center items-center">
-              <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-2">
-                <h2 className="heading">Notre offre</h2>
-                <p className="text-gray-600 text-lg leading-loose mt-4">
-                  Wintr Travel propose la location clé en main de l’équipement
-                  de ski au travers de sa marque{' '}
-                  <Link href="/brand">
-                    <a className="font-semibold underline">Wintr</a>
-                  </Link>{' '}
-                  conçue pour répondre aux exigences des amateurs de skis
-                  alliant sécurité, simplicité et nouvelles technologies.
-                </p>
+
+              <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
+                <Image
+                  className="relative mx-auto sm:rounded-xl"
+                  src="/images/about-wintr-travel-1-lg.jpg"
+                  alt="Un skiman qui fabrique des skis."
+                  width={600}
+                  height={400}
+                />
               </div>
             </div>
-            <div className="about-image-3 overflow-hidden img-container"></div>
-            <div className="flex justify-center items-center">
-              <div className="max-w-md mx-8 sm:mx-auto py-10 home-args-desc-3">
-                <h2 className="heading">Notre philosophie</h2>
-                <p className="text-gray-600 text-lg leading-loose mt-4">
+            <div className="relative mt-12 sm:mt-16 lg:mt-24">
+              <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
+                <div className="lg:col-start-2">
+                  <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
+                    Notre offre
+                  </h3>
+                  <p className="mt-3 text-lg text-gray-500">
+                    Wintr Travel propose la location clé en main de l’équipement
+                    de ski au travers de sa marque Wintr conçue pour répondre
+                    aux exigences des amateurs de skis alliant sécurité,
+                    simplicité et nouvelles technologies.
+                  </p>
+                </div>
+
+                <div className="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
+                  <Image
+                    className="relative mx-auto sm:rounded-xl"
+                    src="/images/about-wintr-travel-2-lg.jpg"
+                    alt="Une femme s'équipe avant d'aller skier."
+                    width={600}
+                    height={400}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative mt-12 sm:mt-16 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+              <div className="relative">
+                <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
+                  Notre philosophie
+                </h3>
+                <p className="mt-3 text-lg text-gray-500">
                   Notre philosophie est simple : proposer à tous nos clients des
                   articles de qualité et modernes, quels que soient leur profil
                   et leur pouvoir d'achat. Nous avons à coeur de vous guider en
@@ -66,71 +88,20 @@ const About = () => {
                   toutes les étapes de votre séjour.
                 </p>
               </div>
+
+              <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
+                <Image
+                  className="relative mx-auto sm:rounded-xl"
+                  src="/images/about-wintr-travel-3-lg.jpg"
+                  alt="Des skieurs profitent de leurs vacances au ski."
+                  width={600}
+                  height={400}
+                />
+              </div>
             </div>
           </div>
         </div>
       </MainSection>
-
-      <style jsx>
-        {`
-          .img-container {
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-          }
-          .grid {
-            max-width: 1520px;
-            grid-auto-rows: 250px auto 250px auto 250px auto;
-            grid-template-areas:
-              'arg1img'
-              'arg1desc'
-              'arg2img'
-              'arg2desc'
-              'arg3img'
-              'arg3desc';
-          }
-          .about-image-1 {
-            grid-area: arg1img;
-          }
-          .home-args-desc-1 {
-            grid-area: arg1desc;
-          }
-          .about-image-2 {
-            grid-area: arg2img;
-          }
-          .home-args-desc-2 {
-            grid-area: arg2desc;
-          }
-          .about-image-3 {
-            grid-area: arg3img;
-          }
-          .home-args-desc-3 {
-            grid-area: arg3desc;
-          }
-
-          @media (min-width: 640px) {
-            .grid {
-              grid-auto-rows: 350px;
-              grid-template-areas:
-                'arg1img arg1desc'
-                'arg2desc arg2img'
-                'arg3img arg3desc';
-            }
-          }
-
-          @media (min-width: 1024px) {
-            .grid {
-              grid-auto-rows: 400px;
-            }
-          }
-
-          @media (min-width: 1280px) {
-            .grid {
-              grid-auto-rows: 500px;
-            }
-          }
-        `}
-      </style>
     </>
   );
 };
