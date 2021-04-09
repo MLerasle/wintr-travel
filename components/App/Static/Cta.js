@@ -15,10 +15,10 @@ const Cta = () => {
 
   return (
     <section className="text-center px-4 sm:px-10 py-10 sm:py-16 bg-white">
-      <h2 className="text-3xl sm:text-4xl font-bold pb-2 text-gray-800">
+      <h2 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         En piste !
       </h2>
-      <p className="text-lg lg:text-xl text-gray-700 mb-6">
+      <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500 mb-6">
         Découvrez le plaisir du ski sans contraintes.
       </p>
       <Button
