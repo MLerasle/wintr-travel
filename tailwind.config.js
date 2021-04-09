@@ -19,19 +19,8 @@ module.exports = {
         'primary-red': '#CA463F',
         'light-red': '#FBF0EF',
       },
-      opacity: {
-        40: '.4',
-        90: '.9',
-      },
-      fontSize: {
-        '12xl': '10rem',
-        '16xl': '14rem',
-      },
       fontFamily: {
         body: ['Source Sans Pro'],
-      },
-      margin: {
-        '-14': '-3.5rem',
       },
       inset: {
         '-2': '-2rem',
