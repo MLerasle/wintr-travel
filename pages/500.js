@@ -1,19 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Custom404 = () => (
+const Custom500 = () => (
   <>
     <div className="error-container">
       <Image
-        src="/images/error-404.svg"
+        src="/images/error-500.svg"
         alt="Une voiture se rend au pied des pistes de skis."
         width={400}
         height={300}
         priority={true}
       />
-      <h1 className="error-header">Vous vous êtes perdus.</h1>
+      <h1 className="error-header">Une erreur interne est survenue.</h1>
       <p className="error-message">
-        Laissez nous vous ramener en terrain connu.
+        Nous faisons notre possible pour corriger le problème au plus vite.
       </p>
       <Link href="/">
         <a>Retour à la page d'accueil</a>
@@ -36,6 +36,7 @@ const Custom404 = () => (
         text-align: center;
         font-size: 30px;
         font-weight: 500;
+        margin-top: 3rem;
       }
 
       .error-message {
@@ -63,4 +64,4 @@ const Custom404 = () => (
   </>
 );
 
-export default Custom404;
+export default Custom500;
