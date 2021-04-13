@@ -1,4 +1,5 @@
 import BookingForm from '@/App/Booking/BookingForm';
+// import EmailForm from '@/App/Static/EmailForm';
 import Image from 'next/image';
 
 const HeroSection = () => (
@@ -53,6 +54,7 @@ const HeroSection = () => (
             <div className="bg-white sm:max-w-md sm:w-full sm:mx-auto sm:rounded-lg sm:overflow-hidden">
               <div className="px-4 py-8 sm:px-10">
                 <BookingForm />
+                {/* <EmailForm /> */}
               </div>
             </div>
           </div>

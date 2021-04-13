@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
-// import EmailForm from '@/App/Static/EmailForm';
 import HeroSection from '@/App/Static/HeroSection';
 import HomeArgs from '@/App/Static/Args';
 import Testimonials from '@/App/Static/Testimonials';

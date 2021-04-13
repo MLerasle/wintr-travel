@@ -7,7 +7,6 @@ import Card from '@/UI/Card';
 import FormRow from '@/UI/FormRow';
 import Label from '@/UI/Label';
 import Input from '@/UI/Input';
-import Textarea from '@/UI/Textarea';
 import Button from '@/UI/Button';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
@@ -126,18 +125,18 @@ const Contact = () => {
             </FormRow>
             <FormRow className="w-full mt-4">
               <Label for="message">Votre message</Label>
-              <Textarea
+              <textarea
                 id="message"
                 name="message"
                 rows="6"
-                className={`my-0 w-full ${
+                className={`border border-gray-300 rounded-lg px-2 py-2 text-gray-800 appearance-none my-0 w-full focus:outline-none focus:border-primary-green ${
                   error &&
                   error.type === 'empty_message' &&
                   'border-primary-red bg-light-red'
                 }`}
                 onChange={(event) => setMessage(event.target.value)}
                 value={message}
-              ></Textarea>
+              ></textarea>
             </FormRow>
             <Button
               type="submit"

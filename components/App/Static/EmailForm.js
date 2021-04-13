@@ -1,9 +1,6 @@
 import { useState } from 'react';
 
-import Card from '@/UI/Card';
 import FormRow from '@/UI/FormRow';
-import Header from '@/UI/Header';
-import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
 import Label from '@/UI/Label';
 import Input from '@/UI/Input';
@@ -52,26 +49,30 @@ const EmailForm = () => {
   };
 
   return (
-    <Card classes="md:py-6" subclasses="p-4 md:p-8 md:max-w-2xl bg-gray-100">
+    <>
       {error && (
-        <Alert
-          type="error"
-          message={error.message}
-          onClearMessage={() => setError('')}
-        />
+        <div className="mb-4 md:mb-8">
+          <Alert
+            type="error"
+            message={error.message}
+            onClearMessage={() => setError('')}
+          />
+        </div>
       )}
       {isSubmitted && !error && (
-        <Alert
-          type="success"
-          message={'Merci! Votre inscription a bien été prise en compte.'}
-          onClearMessage={() => setIsSubmitted(false)}
-        />
+        <div className="mb-4 md:mb-8">
+          <Alert
+            type="success"
+            message={'Merci! Votre inscription a bien été prise en compte.'}
+            onClearMessage={() => setIsSubmitted(false)}
+          />
+        </div>
       )}
-      <Header>
-        <Heading className="hidden md:block text-xl sm:text-3xl">
+      <header className="flex justify-between items-baseline">
+        <h2 className="items-center leading-tight font-bold text-gray-800 hidden md:flex text-xl sm:text-3xl">
           Livraison de skis au pied des pistes.
-        </Heading>
-      </Header>
+        </h2>
+      </header>
       <Separator className="my-6 hidden md:block" />
       <section className="text-gray-700 text-lg">
         <p>
@@ -115,7 +116,7 @@ const EmailForm = () => {
           {isLoading ? <Loader /> : 'Soumettre'}
         </Button>
       </form>
-    </Card>
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ const Custom500 = () => (
     <div className="error-container">
       <Image
         src="/images/error-500.svg"
-        alt="Une voiture se rend au pied des pistes de skis."
+        alt="Un écran est sur le point d'être rebranché au secteur."
         width={400}
         height={300}
         priority={true}
