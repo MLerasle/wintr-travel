@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-import { ADULT_PRICE, CHILD_PRICE } from '../data/booking';
+import { ADULT_PRICE, CHILD_PRICE } from '../data/pack';
 
 export const getLastDay = (firstDay) => {
   return dayjs(firstDay).add(6, 'day').format('YYYY-MM-DD');

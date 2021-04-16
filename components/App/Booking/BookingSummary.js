@@ -6,7 +6,7 @@ import Separator from '@/UI/Separator';
 import BookingContext from 'context/booking-context';
 import { formatDate } from 'helpers/dates';
 import { getPrices, getLastDay } from 'helpers/booking';
-import { ADULT_PRICE, CHILD_PRICE } from 'data/booking';
+import { ADULT_PRICE, CHILD_PRICE } from 'data/pack';
 
 const BookingSummary = () => {
   const booking = useContext(BookingContext);
