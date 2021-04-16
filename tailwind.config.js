@@ -9,7 +9,8 @@ module.exports = {
         'custom-outline': '0 0 0 3px rgba(56,148,105,0.5)',
       },
       colors: {
-        'primary-green': '#389469',
+        // 'primary-green': '#389469',
+        'primary-green': '#059669',
         'light-green': '#A6DDC4',
         'lighter-green': '#F0F9F5',
         'primary-blue': '#1381F6',

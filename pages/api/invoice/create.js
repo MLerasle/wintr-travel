@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
 import Sentry from '@sentry/node';
 
-import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from 'data/booking';
+import { ADULT_PRICE, CHILD_PRICE } from 'data/pack';
 import { dayBeforeTimestamp } from 'helpers/dates';
 
 export default async (req, res) => {
@@ -16,7 +16,7 @@ export default async (req, res) => {
       customer: booking.stripeCustomerId,
       currency: 'eur',
       quantity: adultsPackQuantity,
-      unit_amount: UNIT_ADULT_PRICE * 100,
+      unit_amount: ADULT_PRICE * 100,
       description: 'Pack Adulte',
     });
 
@@ -25,7 +25,7 @@ export default async (req, res) => {
         customer: booking.stripeCustomerId,
         currency: 'eur',
         quantity: childrenPackQuantity,
-        unit_amount: UNIT_CHILD_PRICE * 100,
+        unit_amount: CHILD_PRICE * 100,
         description: 'Pack Enfant',
       });
     }

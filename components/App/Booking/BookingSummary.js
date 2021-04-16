@@ -6,7 +6,7 @@ import Separator from '@/UI/Separator';
 import BookingContext from 'context/booking-context';
 import { formatDate } from 'helpers/dates';
 import { getPrices, getLastDay } from 'helpers/booking';
-import { UNIT_ADULT_PRICE, UNIT_CHILD_PRICE } from 'data/booking';
+import { ADULT_PRICE, CHILD_PRICE } from 'data/booking';
 
 const BookingSummary = () => {
   const booking = useContext(BookingContext);
@@ -37,7 +37,7 @@ const BookingSummary = () => {
         <div key={skier.label}>
           <BookingSummaryLine
             label={skier.label}
-            value={`${UNIT_ADULT_PRICE.toFixed(2)} €`}
+            value={`${ADULT_PRICE.toFixed(2)} €`}
           />
         </div>
       ))}
@@ -46,7 +46,7 @@ const BookingSummary = () => {
           <div key={skier.label}>
             <BookingSummaryLine
               label={skier.label}
-              value={`${UNIT_CHILD_PRICE.toFixed(2)} €`}
+              value={`${CHILD_PRICE.toFixed(2)} €`}
             />
           </div>
         ))}
