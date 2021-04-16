@@ -25,7 +25,7 @@ import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 import { getLastDay, getPrices } from 'helpers/booking';
 import { twoDaysBefore } from 'helpers/dates';
-import { isoCountries } from 'data/countries';
+import { countries } from 'data/countries';
 
 const headers = { 'Content-Type': 'application/json' };
 
@@ -35,9 +35,6 @@ const CheckoutForm = ({ intent }) => {
   const elements = useElements();
   const booking = useContext(BookingContext);
   const [paymentRequest, setPaymentRequest] = useState(null);
-  const countries = Object.entries(isoCountries()).sort((a, b) =>
-    a[1] > b[1] ? 1 : b[1] > a[1] ? -1 : 0
-  );
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);
   const [formWasSubmitted, setFormWasSubmitted] = useState(false);
