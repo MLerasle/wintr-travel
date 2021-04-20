@@ -1,9 +1,6 @@
 import { useRef, useEffect } from 'react';
 import PhoneInput from 'react-phone-number-input';
 
-import Label from '@/UI/Label';
-import Input from '@/UI/Input';
-
 const InputPhone = ({
   value,
   focus,
@@ -25,20 +22,23 @@ const InputPhone = ({
 
   return (
     <div className={className}>
-      {withLabel && <Label for="phoneInput">Numéro de téléphone</Label>}
+      {withLabel && (
+        <label className="label" htmlFor="phoneInput">
+          Numéro de téléphone
+        </label>
+      )}
       <PhoneInput
         placeholder="+33 6 12 34 56 78"
         defaultCountry="FR"
         country="FR"
         international
         withCountryCallingCode
-        inputComponent={Input}
         ref={phoneNumberInputRef}
         value={value}
         onChange={onChange}
         onBlur={onBlur}
       />
-      <div className="error text-primary-red pt-1 pl-1" role="alert">
+      <div className="input-error-message" role="alert">
         {error && error}
       </div>
     </div>

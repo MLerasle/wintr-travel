@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import Input from '@/UI/Input';
 import Checkbox from '@/UI/Checkbox';
 
 import { EMAIL_PATTERN } from 'helpers/email';
@@ -40,11 +39,11 @@ const BookingFormEmail = ({ booking, formWasSubmitted }) => {
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
         <div className="sm:px-6 py-4 sm:py-5">
-          <Input
+          <input
             type="email"
             id="email-address"
             name="email-address"
-            className={`my-4 md:my-0 w-full lg:w-1/2 ${
+            className={`input my-4 md:my-0 w-full lg:w-1/2 ${
               formWasSubmitted && error && 'border-primary-red bg-light-red'
             }`}
             placeholder="Email"

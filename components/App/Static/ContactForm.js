@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import FormRow from '@/UI/FormRow';
-import Label from '@/UI/Label';
 import Button from '@/UI/Button';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
@@ -70,7 +69,9 @@ const ContactForm = () => {
         onSubmit={handleSubmit(submitContactForm)}
       >
         <FormRow>
-          <Label for="firstname">Prénom</Label>
+          <label className="label" htmlFor="firstname">
+            Prénom
+          </label>
           <input
             type="text"
             id="firstname"
@@ -84,7 +85,9 @@ const ContactForm = () => {
           )}
         </FormRow>
         <FormRow>
-          <Label for="lastname">Nom</Label>
+          <label className="label" htmlFor="lastname">
+            Nom
+          </label>
           <input
             type="text"
             id="lastname"
@@ -98,7 +101,9 @@ const ContactForm = () => {
           )}
         </FormRow>
         <FormRow className="sm:col-span-2">
-          <Label for="email">Email</Label>
+          <label className="label" htmlFor="email">
+            Email
+          </label>
           <input
             type="email"
             id="email"
@@ -113,7 +118,9 @@ const ContactForm = () => {
           )}
         </FormRow>
         <FormRow className="sm:col-span-2">
-          <Label for="message">Votre message</Label>
+          <label className="label" htmlFor="message">
+            Votre message
+          </label>
           <textarea
             id="message"
             {...register('message', { required: true })}

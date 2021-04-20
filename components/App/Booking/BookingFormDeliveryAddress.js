@@ -1,9 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import useScript from 'react-script-hook';
 
-import Label from '@/UI/Label';
-import Input from '@/UI/Input';
-
 let autoComplete;
 
 const handleScriptLoad = (updateQuery, updatePlaceId, deliveryAddressRef) => {
@@ -68,16 +65,18 @@ const BookingFormDeliveryAddress = ({
 
   return (
     <>
-      <Label for="deliveryAddress">Adresse de livraison</Label>
+      <label className="label" htmlFor="deliveryAddress">
+        Adresse de livraison
+      </label>
       {!token && (
         <p className="text-primary-blue text-sm md:text-base">
           Vous pouvez renseigner cette information ultérieurement.
         </p>
       )}
-      <Input
+      <input
         ref={deliveryAddressRef}
         name="deliveryAddress"
-        className={`w-full mt-2 ${className}`}
+        className={`input w-full mt-2 ${className}`}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Saisissez l'adresse complète ici"
         value={query}

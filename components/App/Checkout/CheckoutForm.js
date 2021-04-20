@@ -13,8 +13,6 @@ import BookingDeliveryAddress from '@/App/Booking/BookingFormDeliveryAddress';
 import StripeCardElement from '@/App/Checkout/StripeCardElement';
 import Button from '@/UI/Button';
 import FormRow from '@/UI/FormRow';
-import Label from '@/UI/Label';
-import Input from '@/UI/Input';
 import Checkbox from '@/UI/Checkbox';
 import SelectInput from '@/UI/SelectInput';
 import Separator from '@/UI/Separator';
@@ -360,36 +358,36 @@ const CheckoutForm = ({ intent }) => {
           Informations Client
         </h3>
         <FormRow>
-          <Label for="firstname">Prénom</Label>
-          <Input
+          <label className="label" htmlFor="firstname">
+            Prénom
+          </label>
+          <input
             type="text"
             id="firstname"
             name="firstname"
             onChange={onFirstNameUpdate}
-            className={`w-full ${
-              formErrors.firstname && formWasSubmitted
-                ? 'border-primary-red bg-light-red'
-                : ''
+            className={`input w-full ${
+              formErrors.firstname && formWasSubmitted && 'input-error'
             }`}
           />
-          <div className="error text-primary-red pt-1 pl-1" role="alert">
+          <div className="input-error-message" role="alert">
             {formWasSubmitted && formErrors.firstname}
           </div>
         </FormRow>
         <FormRow>
-          <Label for="lastname">Nom</Label>
-          <Input
+          <label className="label" htmlFor="firstname">
+            Nom
+          </label>
+          <input
             type="text"
             id="lastname"
             name="lastname"
             onChange={onLastNameUpdate}
-            className={`w-full ${
-              formErrors.lastname && formWasSubmitted
-                ? 'border-primary-red bg-light-red'
-                : ''
+            className={`input w-full ${
+              formErrors.lastname && formWasSubmitted && 'input-error'
             }`}
           />
-          <div className="error text-primary-red pt-1 pl-1" role="alert">
+          <div className="input-error-message" role="alert">
             {formWasSubmitted && formErrors.lastname}
           </div>
         </FormRow>
@@ -435,7 +433,9 @@ const CheckoutForm = ({ intent }) => {
           Méthode de Règlement
         </h3>
         <FormRow>
-          <Label for="card-element">Données de votre carte</Label>
+          <label className="label" htmlFor="card-element">
+            Données de votre carte
+          </label>
           <StripeCardElement CardElement={CardElement} />
         </FormRow>
         <FormRow>

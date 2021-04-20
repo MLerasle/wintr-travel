@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { IconContext } from 'react-icons';
 import { IoHelpCircleOutline } from 'react-icons/io5';
 
-import Label from '@/UI/Label';
-import Input from '@/UI/Input';
 import RadioButtons from '@/UI/RadioButtons';
 import BottomDrawer from '@/UI/BottomDrawer';
 import SizeShoes from '@/App/Static/SizeShoes';
@@ -38,11 +36,14 @@ const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
       <h4 className="font-semibold pb-2">{skier.label}</h4>
       <div className="flex flex-wrap items-center">
         <div className="flex flex-col w-1/2 pr-1 md:w-1/3 md:pr-2">
-          <Label for={`size-${skier.label}`}>Taille</Label>
-          <Input
+          <label className="label" htmlFor={`size-${skier.label}`}>
+            Taille
+          </label>
+          <input
             type="number"
             id={`size-${skier.label}`}
             name={`size-${skier.label}`}
+            className="input"
             placeholder="Taille en cm"
             onChange={(event) => onUpdateSkier(skier, 'size', event)}
             value={skier.size}
@@ -50,7 +51,9 @@ const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
         </div>
         <div className="flex flex-col w-1/2 pl-1 md:w-1/3 md:px-2">
           <div className="flex">
-            <Label for={`shoe-size-${skier.label}`}>Taille du pied</Label>
+            <label className="label" htmlFor={`shoe-size-${skier.label}`}>
+              Taille du pied
+            </label>
             {index === 0 && (
               <IconContext.Provider
                 value={{
@@ -65,10 +68,11 @@ const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
               </IconContext.Provider>
             )}
           </div>
-          <Input
+          <input
             type="number"
             id={`shoe-size-${skier.label}`}
             name={`shoe-size-${skier.label}`}
+            className="input"
             placeholder="En cm"
             onChange={(event) => onUpdateSkier(skier, 'shoeSize', event)}
             value={skier.shoeSize}
@@ -76,7 +80,9 @@ const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
         </div>
         <div className="flex flex-col w-full md:w-1/3 mt-2 md:mt-0 md:pl-2">
           <div className="flex">
-            <Label for={`head-size-${skier.label}`}>Taille du casque</Label>
+            <label className="label" htmlFor={`head-size-${skier.label}`}>
+              Taille du casque
+            </label>
             {index === 0 && (
               <IconContext.Provider
                 value={{

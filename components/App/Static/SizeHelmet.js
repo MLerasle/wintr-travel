@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import Label from '@/UI/Label';
-
 import { HELMET } from 'data/sizes';
 
 const SizeHelmet = (props) => {
@@ -47,9 +45,9 @@ const SizeHelmet = (props) => {
       <div className="mt-6">
         <div className="flex flex-col">
           <form>
-            <Label for="head-size">
+            <label className="label" htmlFor="head-size">
               Votre tour de tête (comprise entre 52 et 62cm):
-            </Label>
+            </label>
             <input
               type="number"
               className="input w-full"

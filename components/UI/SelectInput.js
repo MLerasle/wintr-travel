@@ -1,7 +1,5 @@
 import Select from 'react-select';
 
-import Label from '@/UI/Label';
-
 const customStyles = {
   control: (base) => ({
     ...base,
@@ -29,7 +27,9 @@ const customStyles = {
 
 const SelectInput = (props) => (
   <div>
-    <Label for={`react-select-${props.label}-input`}>{props.label}</Label>
+    <label className="label" htmlFor={`react-select-${props.label}-input`}>
+      {props.label}
+    </label>
     <Select
       instanceId={props.label}
       autofocus

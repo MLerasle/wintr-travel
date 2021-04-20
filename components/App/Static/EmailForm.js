@@ -2,8 +2,6 @@ import { useState } from 'react';
 
 import FormRow from '@/UI/FormRow';
 import Separator from '@/UI/Separator';
-import Label from '@/UI/Label';
-import Input from '@/UI/Input';
 import Button from '@/UI/Button';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
@@ -90,15 +88,15 @@ const EmailForm = () => {
       </section>
       <form className="md:mt-4">
         <FormRow className="w-full mt-4">
-          <Label for="email-address">Votre adresse email</Label>
-          <Input
+          <label className="label" htmlFor="email-address">
+            Votre adresse email
+          </label>
+          <input
             type="email"
             id="email-address"
             name="email-address"
-            className={`my-0 w-full ${
-              error &&
-              error.type === 'invalid_email' &&
-              'border-primary-red bg-light-red'
+            className={`input my-0 w-full ${
+              error && error.type === 'invalid_email' && 'input-error'
             }`}
             placeholder="Email"
             onChange={(event) => setEmail(event.target.value)}
