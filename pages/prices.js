@@ -37,7 +37,7 @@ const Prices = () => {
             <div className="absolute inset-y-0 right-0 w-1/2 bg-green-700"></div>
           </div>
           <div className="relative max-w-7xl mx-auto lg:px-8 lg:grid lg:grid-cols-2">
-            <div className="bg-gray-100 py-16 px-4 sm:py-24 sm:px-6 lg:px-0 lg:pr-8">
+            <div className="bg-gray-100 pb-16 px-4 sm:py-24 sm:px-6 lg:px-0 lg:pr-8">
               <div className="max-w-lg mx-auto lg:mx-0">
                 <h2 className="text-base font-semibold tracking-wide text-primary-green uppercase">
                   Une offre complète
