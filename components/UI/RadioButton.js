@@ -1,20 +1,17 @@
-const RadioButton = (props) => (
-  <label
-    className={`relative p-3 flex cursor-pointer rounded border shadow-sm flex-1 ${
-      props.selected === props.value
-        ? 'border-green-600 bg-green-50'
-        : 'border-gray-200'
-    } hover:shadow`}
-  >
-    <input
-      type="radio"
-      name={props.name}
-      value={props.value}
-      className="absolute invisible"
-      onChange={props.onChange}
-    />
-    {props.children}
-  </label>
+import { getDayNumber, getMonthAndYear } from 'helpers/dates';
+
+const RadioButton = ({ value, isDate }) => (
+  <div className="w-full text-center text-gray-800">
+    {isDate ? (
+      <>
+        <p className="text-gray-500 text-sm">Samedi</p>
+        <p className="text-2xl font-bold">{getDayNumber(value)}</p>
+        <p className="text-gray-500 text-sm">{getMonthAndYear(value)}</p>
+      </>
+    ) : (
+      value
+    )}
+  </div>
 );
 
 export default RadioButton;

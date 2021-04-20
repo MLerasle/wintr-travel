@@ -20,7 +20,11 @@ const BookingFormSizes = ({ booking, bookingIsPrepaid }) => {
       skiers = [...booking.children];
     }
     const person = skiers.find((s) => s.label === skier.label);
-    person[attribute] = event.target.value;
+    if (attribute === 'headSize') {
+      person[attribute] = event;
+    } else {
+      person[attribute] = event.target.value;
+    }
 
     if (skier.label.startsWith('Adulte')) {
       booking.update('adults', skiers);

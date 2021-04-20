@@ -4,7 +4,7 @@ import { IoHelpCircleOutline } from 'react-icons/io5';
 
 import Label from '@/UI/Label';
 import Input from '@/UI/Input';
-import RadioButton from '@/UI/RadioButton';
+import RadioButtons from '@/UI/RadioButtons';
 import BottomDrawer from '@/UI/BottomDrawer';
 import SizeShoes from '@/App/Static/SizeShoes';
 import SizeHelmet from '../Static/SizeHelmet';
@@ -91,19 +91,11 @@ const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
               </IconContext.Provider>
             )}
           </div>
-          <div className="flex space-x-1">
-            {HEAD_SIZES.map((size) => (
-              <RadioButton
-                key={size}
-                name="helmet"
-                value={size}
-                selected={skier.headSize}
-                onChange={(event) => onUpdateSkier(skier, 'headSize', event)}
-              >
-                <div className="w-full text-center text-gray-800">{size}</div>
-              </RadioButton>
-            ))}
-          </div>
+          <RadioButtons
+            value={skier.headSize}
+            onChange={(size) => onUpdateSkier(skier, 'headSize', size)}
+            options={HEAD_SIZES}
+          />
         </div>
       </div>
     </article>

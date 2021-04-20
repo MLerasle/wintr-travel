@@ -3,16 +3,14 @@ import { useRouter } from 'next/router';
 
 import FormRow from '@/UI/FormRow';
 import Button from '@/UI/Button';
-import Label from '@/UI/Label';
-import RadioButton from '@/UI/RadioButton';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
+import RadioButtons from '@/UI/RadioButtons';
 
 import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 import { formatDateLong } from 'helpers/dates';
 import { isValid, getLastDay } from 'helpers/booking';
-import { getDayNumber, getMonthAndYear } from 'helpers/dates';
 import { HOLIDAYS } from 'data/booking';
 
 const BookingForm = ({ isEditing, onUpdate }) => {
@@ -22,18 +20,16 @@ const BookingForm = ({ isEditing, onUpdate }) => {
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleArrivalDate = (event) => {
+  const handleArrivalDate = (date) => {
     setError(null);
-    const date = event.target.value;
     booking.update('firstDay', date);
   };
 
-  const handleSkierChange = (category, event) => {
+  const handleSkierChange = (category, quantity) => {
     setError(null);
     const label = category === 'adults' ? 'Adulte' : 'Enfant';
-    const number = +event.target.value;
     const skiersArray = [];
-    for (let i = 0; i < number; i++) {
+    for (let i = 0; i < quantity; i++) {
       const newSkier = {
         label: `${label} ${i + 1}`,
         size: '',
@@ -118,28 +114,13 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           {HOLIDAYS.map((holiday) => {
             if (holiday.name === currentHolidayTab) {
               return (
-                <FormRow key={holiday.name} className="w-full flex mt-2">
-                  <div className="flex-grow flex space-x-1">
-                    {holiday.dates.map((date) => (
-                      <RadioButton
-                        key={date}
-                        name="arrival_date"
-                        value={date}
-                        selected={booking.firstDay}
-                        onChange={handleArrivalDate}
-                      >
-                        <div className="w-full text-center">
-                          <p className="text-gray-500 text-sm">Samedi</p>
-                          <p className="text-2xl font-bold">
-                            {getDayNumber(date)}
-                          </p>
-                          <p className="text-gray-500 text-sm">
-                            {getMonthAndYear(date)}
-                          </p>
-                        </div>
-                      </RadioButton>
-                    ))}
-                  </div>
+                <FormRow key={holiday.name} className="mt-2">
+                  <RadioButtons
+                    value={booking.firstDay}
+                    onChange={handleArrivalDate}
+                    options={holiday.dates}
+                    isDate
+                  />
                 </FormRow>
               );
             } else {
@@ -161,39 +142,20 @@ const BookingForm = ({ isEditing, onUpdate }) => {
           <h3 className="text-lg leading-6 font-semibold text-gray-800 mt-8 mb-2">
             Pour combien de personnes?
           </h3>
-          <FormRow className="w-full">
-            <div className="flex-grow">
-              <Label for="name">Adultes</Label>
-              <div className="flex space-x-1">
-                {[1, 2, 3, 4].map((i) => (
-                  <RadioButton
-                    key={i}
-                    name="adults"
-                    value={i}
-                    selected={booking.adults.length}
-                    onChange={(event) => handleSkierChange('adults', event)}
-                  >
-                    <div className="w-full text-center text-gray-800">{i}</div>
-                  </RadioButton>
-                ))}
-              </div>
-            </div>
-            <div className="mt-2">
-              <Label for="name">Enfants</Label>
-              <div className="flex space-x-1">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <RadioButton
-                    key={i}
-                    name="children"
-                    value={i}
-                    selected={booking.children.length}
-                    onChange={(event) => handleSkierChange('children', event)}
-                  >
-                    <div className="w-full text-center text-gray-800">{i}</div>
-                  </RadioButton>
-                ))}
-              </div>
-            </div>
+          <FormRow>
+            <RadioButtons
+              value={booking.adults.length}
+              onChange={(quantity) => handleSkierChange('adults', quantity)}
+              options={[1, 2, 3, 4]}
+              label="Adultes"
+            />
+            <RadioButtons
+              value={booking.children.length}
+              onChange={(quantity) => handleSkierChange('children', quantity)}
+              options={[0, 1, 2, 3, 4]}
+              label="Enfants"
+              className="mt-2"
+            />
           </FormRow>
         </section>
         {!isEditing && (
