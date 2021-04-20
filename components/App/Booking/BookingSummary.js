@@ -13,7 +13,7 @@ const BookingSummary = () => {
   const prices = getPrices(booking.adults.length, booking.children.length);
 
   return (
-    <div className="mx-auto xl:mx-0 md:bg-white px-4 md:p-6 md:mt-4 xl:mt-0 text-gray-800">
+    <div className="md:mx-auto xl:mx-0 md:bg-white md:p-6 md:mt-4 xl:mt-0 text-gray-800">
       <h3 className="text-lg leading-6 font-semibold text-gray-800 mb-4">
         Votre réservation
       </h3>

@@ -81,30 +81,32 @@ const Details = () => {
       <Head>
         <title>Votre réservation - Wintr Travel</title>
       </Head>
-      <MainSection className="py-2 md:py-6 max-w-screen-lg mx-auto">
-        <div className="space-y-6">
-          {error && (
-            <Alert
-              type="error"
-              message={error.message}
-              onClearMessage={() => setError(null)}
+      <MainSection>
+        <div className="max-w-7xl mx-auto px-4 pt-8 pb-16 sm:pb-24 sm:px-6 lg:px-8">
+          <div className="space-y-6">
+            {error && (
+              <Alert
+                type="error"
+                message={error.message}
+                onClearMessage={() => setError(null)}
+              />
+            )}
+            <BookingMainInfos booking={booking} />
+            <BookingFormSizes booking={booking} />
+            <BookingFormEmail
+              booking={booking}
+              formWasSubmitted={formWasSubmitted}
             />
-          )}
-          <BookingMainInfos booking={booking} />
-          <BookingFormSizes booking={booking} />
-          <BookingFormEmail
-            booking={booking}
-            formWasSubmitted={formWasSubmitted}
-          />
 
-          <Button
-            classes="uppercase tracking-wide w-full md:w-64 bg-primary-green text-white"
-            name="confirm"
-            disabled={!isValid(booking) || loading}
-            onClick={validateBookingDetails}
-          >
-            {loading ? <Loader /> : 'Suivant'}
-          </Button>
+            <Button
+              classes="uppercase tracking-wide w-full md:w-64 bg-primary-green text-white"
+              name="confirm"
+              disabled={!isValid(booking) || loading}
+              onClick={validateBookingDetails}
+            >
+              {loading ? <Loader /> : 'Suivant'}
+            </Button>
+          </div>
         </div>
       </MainSection>
     </>

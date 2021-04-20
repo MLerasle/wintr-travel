@@ -339,7 +339,7 @@ const CheckoutForm = ({ intent }) => {
   }
 
   return (
-    <div className="pt-6 px-4">
+    <div className="pt-6">
       {paymentError && (
         <div className="pb-6">
           <Alert

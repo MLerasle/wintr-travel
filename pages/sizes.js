@@ -28,11 +28,13 @@ const Sizes = () => {
         <PageHeader title="Guide des tailles">
           Ce que vous devez savoir pour ne pas vous tromper.
         </PageHeader>
-        <div className="pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-          <div className="prose prose-blue prose-lg text-gray-500 mx-auto">
-            <SizeSkis />
-            <SizeShoes withDetails />
-            <SizeHelmet withDetails />
+        <div className="max-w-7xl mx-auto px-4 pb-16 sm:pb-24 sm:px-6 lg:px-8">
+          <div className="lg:bg-white lg:pt-14 lg:pb-20 lg:shadow-xl">
+            <div className="prose prose-blue prose-lg text-gray-500 mx-auto">
+              <SizeSkis />
+              <SizeShoes withDetails />
+              <SizeHelmet withDetails />
+            </div>
           </div>
         </div>
       </MainSection>

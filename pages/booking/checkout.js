@@ -26,26 +26,27 @@ const Checkout = ({ paymentIntent }) => {
       <Head>
         <title>Paiement - Wintr Travel</title>
       </Head>
-      <MainSection
-        className="pt-4 pb-8 md:py-8 max-w-screen-lg mx-auto"
-        layoutWithoutNavbarAndFooter
-      >
-        <header className="flex justify-between items-baseline px-4 lg:px-2 xl:px-0">
-          <h1 className="flex items-center leading-tight font-bold text-gray-800 text-3xl">
-            <IconContext.Provider value={{ color: '#1F2937', size: '1.5rem' }}>
-              <MdLock />
-            </IconContext.Provider>
-            <span className="ml-1">Paiement Sécurisé</span>
-          </h1>
-          <PaymentIcons className="hidden sm:flex" />
-        </header>
-        <PaymentIcons className="sm:hidden mt-1 px-4" />
-        <Separator className="mt-6" />
-        <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2">
-          <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
-            <CheckoutForm intent={paymentIntent} />
-          </Elements>
-          <BookingSummary />
+      <MainSection>
+        <div className="max-w-7xl mx-auto px-4 pt-8 pb-16 sm:pb-24 sm:px-6 lg:px-8">
+          <header className="flex justify-between items-baseline">
+            <h1 className="flex items-center leading-tight font-bold text-gray-800 text-3xl">
+              <IconContext.Provider
+                value={{ color: '#1F2937', size: '1.5rem' }}
+              >
+                <MdLock />
+              </IconContext.Provider>
+              <span className="ml-1">Paiement Sécurisé</span>
+            </h1>
+            <PaymentIcons className="hidden sm:flex" />
+          </header>
+          <PaymentIcons className="sm:hidden mt-1" />
+          <Separator className="mt-6" />
+          <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:gap-x-12">
+            <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
+              <CheckoutForm intent={paymentIntent} />
+            </Elements>
+            <BookingSummary />
+          </div>
         </div>
       </MainSection>
     </>
