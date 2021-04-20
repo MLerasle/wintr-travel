@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import Label from '@/UI/Label';
-import Input from '@/UI/Input';
 
 import { HELMET } from 'data/sizes';
 
@@ -47,18 +46,21 @@ const SizeHelmet = (props) => {
       </p>
       <div className="mt-6">
         <div className="flex flex-col">
-          <Label for="head-size">
-            Votre tour de tête (comprise entre 52 et 62cm):
-          </Label>
-          <Input
-            type="number"
-            min="52"
-            max="62"
-            id="head-size"
-            name="head-size"
-            placeholder="En cm"
-            onChange={(event) => updateHeadSize(event)}
-          />
+          <form>
+            <Label for="head-size">
+              Votre tour de tête (comprise entre 52 et 62cm):
+            </Label>
+            <input
+              type="number"
+              className="input w-full"
+              min="52"
+              max="62"
+              id="head-size"
+              name="head-size"
+              placeholder="En cm"
+              onChange={(event) => updateHeadSize(event)}
+            />
+          </form>
           {helmet && (
             <p>
               <strong>

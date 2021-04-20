@@ -3,7 +3,6 @@ import Head from 'next/head';
 
 import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
-import ContentBackground from '@/UI/ContentBackground';
 import SizeSkis from '@/App/Static/SizeSkis';
 import SizeShoes from '@/App/Static/SizeShoes';
 import SizeHelmet from '@/App/Static/SizeHelmet';
@@ -30,7 +29,6 @@ const Sizes = () => {
           Ce que vous devez savoir pour ne pas vous tromper.
         </PageHeader>
         <div className="pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-          <ContentBackground />
           <div className="prose prose-blue prose-lg text-gray-500 mx-auto">
             <SizeSkis />
             <SizeShoes withDetails />
