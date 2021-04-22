@@ -8,7 +8,7 @@
   }
 
   .input-error {
-    @apply border-primary-red bg-light-red focus:border-primary-red;
+    @apply border-primary-red bg-light-red focus:border-primary-red focus:ring-2 focus:ring-offset-2 focus:ring-primary-red;
   }
 
   .input-error-message {

@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import Sentry from '@sentry/node';
+import * as Sentry from '@sentry/node';
 
 import { ADULT_PRICE, CHILD_PRICE } from 'data/pack';
 import { dayBeforeTimestamp } from 'helpers/dates';

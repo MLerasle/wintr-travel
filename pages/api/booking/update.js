@@ -1,4 +1,4 @@
-import Sentry from '@sentry/node';
+import * as Sentry from '@sentry/node';
 import Firestore from '@google-cloud/firestore';
 import Stripe from 'stripe';
 

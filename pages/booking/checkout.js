@@ -57,16 +57,18 @@ export async function getServerSideProps(context) {
   const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
   let paymentIntent;
 
-  const { paymentIntentId } = parseCookies(
-    typeof window === 'undefined' ? context : {}
-  );
+  const { paymentIntentId } = parseCookies(context);
 
   if (paymentIntentId) {
     paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
   } else {
     // Go back to previous step if paymentIntent id is missing
-    context.res.writeHead(302, { Location: '/booking/details' });
-    context.res.end();
+    return {
+      redirect: {
+        destination: '/booking/details',
+        permanent: false,
+      },
+    };
   }
 
   return {

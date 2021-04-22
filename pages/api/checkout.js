@@ -1,16 +1,13 @@
 import { parseCookies } from 'nookies';
 import Stripe from 'stripe';
-import Sentry from '@sentry/node';
+import * as Sentry from '@sentry/node';
 
 export default async (req, res) => {
   try {
     const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);
     const { email, firstDay, adults, children } = req.body;
     let paymentIntent;
-
-    const { paymentIntentId } = parseCookies(
-      typeof window === 'undefined' ? { req } : {}
-    );
+    const { paymentIntentId } = parseCookies({ req });
 
     // If we already have an unconfirmed paymentIntent we reuse it
     if (paymentIntentId) {
