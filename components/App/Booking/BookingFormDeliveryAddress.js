@@ -69,7 +69,7 @@ const BookingFormDeliveryAddress = ({
         Adresse de livraison
       </label>
       {!token && (
-        <p className="text-primary-blue text-sm md:text-base">
+        <p className="text-blue-600 text-sm md:text-base">
           Vous pouvez renseigner cette information ultérieurement.
         </p>
       )}

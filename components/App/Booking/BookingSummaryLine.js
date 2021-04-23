@@ -3,7 +3,7 @@ const BookingSummaryLine = ({ label, value }) => (
     <dt className="font-medium text-gray-600">{label}</dt>
     <dd
       className={`font-semibold whitespace-no-wrap ${
-        value === 'GRATUITE' ? 'text-primary-green' : ''
+        value === 'GRATUITE' ? 'text-green-600' : ''
       }`}
     >
       {value}

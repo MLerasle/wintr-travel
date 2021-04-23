@@ -9,7 +9,7 @@ const Confirm = () => (
       <title>Commande validée - Wintr Travel</title>
     </Head>
     <MainSection
-      parentClass="bg-dark-blue"
+      parentClass="bg-blue-900"
       className="py-2 md:py-6 flex justify-center items-center"
     >
       <Card classes="mx-4 max-w-2xl" subclasses="bg-white p-4 md:p-8">

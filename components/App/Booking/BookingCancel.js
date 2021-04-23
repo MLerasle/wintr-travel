@@ -7,7 +7,7 @@ import Button from '@/UI/Button';
 const BookingCancel = ({ onCancel }) => (
   <Card
     classes="lg:px-0 md:py-6"
-    subclasses="bg-gray-100 md:bg-white md:border md:border-primary-red p-4 md:p-8"
+    subclasses="bg-gray-100 md:bg-white md:border md:border-red-600 p-4 md:p-8"
   >
     <Header>
       <Heading className="text-xl">Annuler la réservation</Heading>
@@ -17,7 +17,7 @@ const BookingCancel = ({ onCancel }) => (
     </h3>
     <Separator className="hidden md:block my-6" />
     <Button
-      classes="uppercase tracking-wide w-full md:w-64 text-primary-red border border-primary-red hover:bg-light-red"
+      classes="uppercase tracking-wide w-full md:w-64 text-red-600 border border-red-600 hover:bg-red-50"
       name="cancel"
       onClick={onCancel}
     >

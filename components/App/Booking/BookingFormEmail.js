@@ -135,7 +135,7 @@ const BookingFormEmail = ({ booking }) => {
         </div>
         <Button
           type="submit"
-          classes="uppercase tracking-wide w-full md:w-64 bg-primary-green text-white mt-6"
+          classes="uppercase tracking-wide w-full md:w-64 bg-green-600 text-white mt-6"
           name="confirm"
           disabled={loading}
         >

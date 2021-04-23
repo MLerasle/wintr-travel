@@ -2,7 +2,7 @@ const Testimonial = ({ person, children }) => (
   <blockquote className="md:flex-grow md:flex md:flex-col">
     <div className="relative text-lg font-medium text-gray-700 md:flex-grow">
       <svg
-        className="h-8 w-8 text-primary-green"
+        className="h-8 w-8 text-green-600"
         fill="currentColor"
         viewBox="0 0 32 32"
       >

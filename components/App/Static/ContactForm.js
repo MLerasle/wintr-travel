@@ -139,7 +139,7 @@ const ContactForm = () => {
           <Button
             type="submit"
             id="submitButton"
-            classes="mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-green focus:outline-none sm:w-44"
+            classes="mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 focus:outline-none sm:w-44"
             name="validate"
             disabled={isLoading}
           >

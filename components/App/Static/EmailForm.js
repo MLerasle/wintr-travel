@@ -106,7 +106,7 @@ const EmailForm = () => {
         <Button
           type="submit"
           id="submitButton"
-          classes="w-full uppercase tracking-wide bg-primary-green text-white mt-2"
+          classes="w-full uppercase tracking-wide bg-green-600 text-white mt-2"
           name="validate"
           disabled={isLoading}
           onClick={submitEmailForm}

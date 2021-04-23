@@ -39,7 +39,7 @@ const Prices = () => {
           <div className="relative max-w-7xl mx-auto lg:px-8 lg:grid lg:grid-cols-2">
             <div className="bg-gray-100 pb-16 px-4 sm:py-24 sm:px-6 lg:px-0 lg:pr-8">
               <div className="max-w-lg mx-auto lg:mx-0">
-                <h2 className="text-base font-semibold tracking-wide text-primary-green uppercase">
+                <h2 className="text-base font-semibold tracking-wide text-green-600 uppercase">
                   Une offre complète
                 </h2>
                 <p className="mt-2 text-2xl font-extrabold text-gray-900 sm:text-3xl">
@@ -77,7 +77,7 @@ const Prices = () => {
                   ))}
                 </ul>
                 <Link href="/">
-                  <a className="bg-white border border-transparent rounded-md w-full px-8 py-4 flex items-center justify-center text-lg leading-6 font-medium text-primary-green hover:bg-green-50 md:px-10">
+                  <a className="bg-white border border-transparent rounded-md w-full px-8 py-4 flex items-center justify-center text-lg leading-6 font-medium text-green-600 hover:bg-green-50 md:px-10">
                     Réservez maintenant
                   </a>
                 </Link>

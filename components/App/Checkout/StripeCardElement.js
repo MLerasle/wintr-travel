@@ -4,9 +4,9 @@ const CARD_ELEMENT_OPTIONS = {
   classes: {
     base:
       'border border-gray-300 rounded-lg px-2 py-3 h-12 w-full appearance-none bg-white',
-    focus: 'outline-none border-primary-green',
+    focus: 'outline-none border-green-600',
     invalid:
-      'border border-primary-red bg-light-red rounded-lg px-2 py-3 h-12 w-full appearance-none',
+      'border border-red-600 bg-red-50 rounded-lg px-2 py-3 h-12 w-full appearance-none',
   },
   style: {
     base: {
@@ -45,7 +45,7 @@ const StripeCardElement = ({ CardElement }) => {
         onChange={handleCardChange}
       />
       <div
-        className="card-errors text-primary-red pt-1 pl-1 font-sans"
+        className="card-errors text-red-600 pt-1 pl-1 font-sans"
         role="alert"
       >
         {error}

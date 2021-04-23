@@ -39,7 +39,7 @@ const HeroSection = () => (
             <div className="relative">
               <h1 className="pt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
                 <span className="block">Vos skis livrés à Flaine</span>
-                <span className="sm:text-primary-green block">
+                <span className="sm:text-green-600 block">
                   pour une semaine
                 </span>
               </h1>

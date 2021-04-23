@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons';
 const PackItemDesc = ({ name, icon, description }) => (
   <div className="relative">
     <dt>
-      <div className="absolute h-12 w-12 flex items-center justify-center bg-primary-green rounded-md">
+      <div className="absolute h-12 w-12 flex items-center justify-center bg-green-600 rounded-md">
         <IconContext.Provider value={{ className: 'h-6 w-6 text-white' }}>
           {createElement(icon)}
         </IconContext.Provider>

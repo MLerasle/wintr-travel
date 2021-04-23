@@ -113,14 +113,14 @@ const Booking = ({ fetchedBooking }) => {
       <Head>
         <title>Votre réservation - Wintr Travel</title>
       </Head>
-      <MainSection className="py-2 md:py-6 max-w-screen-lg mx-auto">
+      <MainSection>
         {/* <Modal open={isConfirmCancelModalOpened} closed={toggleConfirmCancel}>
           <section className="md:text-md px-6 py-6 text-center">
             <p className="text-gray-800 text-lg my-6 font-semibold">
               Êtes-vous sûr de vouloir annuler votre réservation?
             </p>
             <Button
-              classes="uppercase tracking-wide w-full md:w-64 bg-primary-red text-white"
+              classes="uppercase tracking-wide w-full md:w-64 bg-red-600 text-white"
               onClick={cancelBooking}
             >
               Confirmer
@@ -143,7 +143,7 @@ const Booking = ({ fetchedBooking }) => {
                 href={booking.stripeInvoiceUrl}
                 target="_blank"
                 type="button"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-green hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600"
                 rel="noreferrer"
               >
                 Payer la facture en ligne
@@ -152,25 +152,27 @@ const Booking = ({ fetchedBooking }) => {
             <a
               href={booking.stripeInvoicePdf}
               type="button"
-              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-green"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600"
             >
               Télécharger la facture
             </a>
           </p>
         </PageHeader>
-        <div className="space-y-6">
-          <BookingMainInfos booking={booking} bookingIsPrepaid />
-          <BookingFormDeliveryInfos booking={booking} token={token} />
-          <BookingFormSizes booking={booking} bookingIsPrepaid />
-          <Button
-            classes="uppercase tracking-wide w-full md:w-64 bg-primary-green text-white"
-            name="save"
-            disabled={!isValid(booking) || loading}
-            onClick={validateBookingDetails}
-          >
-            {loading ? <Loader /> : 'Enregistrer'}
-          </Button>
-          {/* {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />} */}
+        <div className="max-w-7xl mx-auto px-4 pt-8 pb-16 sm:pb-24 sm:px-6 lg:px-8">
+          <div className="space-y-6">
+            <BookingMainInfos booking={booking} bookingIsPrepaid />
+            <BookingFormDeliveryInfos booking={booking} token={token} />
+            <BookingFormSizes booking={booking} bookingIsPrepaid />
+            <Button
+              classes="uppercase tracking-wide w-full md:w-64 bg-green-600 text-white"
+              name="save"
+              disabled={!isValid(booking) || loading}
+              onClick={validateBookingDetails}
+            >
+              {loading ? <Loader /> : 'Enregistrer'}
+            </Button>
+            {/* {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />} */}
+          </div>
         </div>
       </MainSection>
     </>

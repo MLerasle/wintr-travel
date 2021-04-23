@@ -130,7 +130,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
 
           <div>
             {booking.firstDay && (
-              <div className="text-primary-blue text-sm mb-4 md:mb-0">
+              <div className="text-blue-600 text-sm mb-4 md:mb-0">
                 Nous récupérons le matériel le{' '}
                 <span className="font-semibold">
                   {formatDateLong(getLastDay(booking.firstDay))}
@@ -163,7 +163,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
             <Button
               type="submit"
               id="searchButton"
-              classes="w-full uppercase tracking-wide bg-primary-green text-white"
+              classes="w-full uppercase tracking-wide bg-green-600 text-white"
               name="validate"
               disabled={loading}
               onClick={validateSearch}
