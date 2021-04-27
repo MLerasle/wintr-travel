@@ -29,7 +29,7 @@ const Sizes = () => {
           Ce que vous devez savoir pour ne pas vous tromper.
         </PageHeader>
         <div className="max-w-7xl mx-auto px-4 pb-16 sm:pb-24 sm:px-6 lg:px-8">
-          <div className="lg:bg-white lg:pt-14 lg:pb-20 lg:shadow-xl">
+          <div className="lg:bg-gray-50 lg:pt-14 lg:pb-20 lg:shadow">
             <div className="prose prose-blue prose-lg text-gray-500 mx-auto">
               <SizeSkis />
               <SizeShoes withDetails />

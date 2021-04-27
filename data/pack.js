@@ -1,6 +1,6 @@
 import {
   HiOutlineTruck,
-  HiOutlineDocument,
+  HiIdentification,
   HiShieldCheck,
 } from 'react-icons/hi';
 import { GiSkis } from 'react-icons/gi';
@@ -14,7 +14,7 @@ export const packItems = [
   'Chaussures',
   'Casque',
   'Forfait',
-  'Assurance Casse/Vol',
+  'Assurance',
 ];
 
 export const packPrices = [
@@ -27,24 +27,24 @@ export const packItemDescriptions = [
     name: 'Matériel Moderne',
     icon: GiSkis,
     description:
-      "Nous vous offrons du matériel récent et de qualité afin d'allier plaisir de glisse et sécurité.",
-  },
-  {
-    name: 'Assurance',
-    icon: HiShieldCheck,
-    description:
-      'Il peut arriver que votre matériel se casse ou soit volé. Soyez tranquille, notre assurance contre la casse et le vol couvre vos frais si cela arrive.',
+      "Nous vous offrons du matériel récent et de qualité afin d'allier plaisir et sécurité.",
   },
   {
     name: 'Forfait',
-    icon: HiOutlineDocument,
+    icon: HiIdentification,
     description:
-      'Ne perdez pas de temps à chercher vos forfaits en ligne ou en station, ils sont inclus dans notre offre pour toute la durée de votre séjour.',
+      'Pas de ski sans forfait. Bonne nouvelle, il est inclus dans notre offre pour toute la durée de votre séjour.',
   },
   {
     name: 'Livraison',
     icon: HiOutlineTruck,
     description:
       'Indiquez-nous où vous logez et nous livrerons votre matériel à votre arrivée.',
+  },
+  {
+    name: 'Assurance',
+    icon: HiShieldCheck,
+    description:
+      "Nous couvrons l'intégralité de vos frais en cas de casse ou de vol de votre matériel.",
   },
 ];

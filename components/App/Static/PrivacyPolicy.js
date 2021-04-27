@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const PrivacyPolicy = () => (
   <div className="max-w-7xl mx-auto px-4 pb-16 sm:pb-24 sm:px-6 lg:px-8">
-    <div className="lg:bg-white lg:pt-14 lg:pb-20 lg:shadow-xl">
+    <div className="lg:bg-gray-50 lg:pt-14 lg:pb-20 lg:shadow">
       <div className="relative pb-16 px-4 sm:px-6 lg:px-8">
         <div className="text-lg max-w-prose mx-auto prose prose-blue md:prose-lg text-gray-500">
           <h2>ARTICLE 1 : PRÉAMBULE</h2>

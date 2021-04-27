@@ -4,7 +4,7 @@ import { faqs } from 'data/faqs';
 
 const Questions = () => (
   <div className="max-w-7xl mx-auto px-4 pb-16 sm:pb-24 sm:px-6 lg:px-8">
-    <div className="lg:bg-white lg:pt-14 lg:pb-20 lg:shadow-xl">
+    <div className="lg:bg-gray-50 lg:pt-14 lg:pb-20 lg:shadow">
       <div className="max-w-3xl mx-auto divide-y-2 divide-gray-200">
         <div className="space-y-6 divide-y divide-gray-200">
           {faqs.map((faq) => (

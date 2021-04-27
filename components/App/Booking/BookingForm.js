@@ -98,7 +98,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
                 <a
                   href="#"
                   key={holiday.name}
-                  className={`whitespace-nowrap py-2 px-1 border-b-2 font-semibold text-base ${
+                  className={`link whitespace-nowrap py-2 px-1 border-b-2 font-semibold text-base ${
                     holiday.name === currentHolidayTab
                       ? 'border-green-500 text-green-600'
                       : 'border-transparent text-gray-800 hover:text-gray-900 hover:border-gray-200'

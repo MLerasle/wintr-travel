@@ -5,7 +5,7 @@ const SocialLink = ({ name, icon, href }) => (
   <a
     href={href}
     target="_blank"
-    className="text-gray-400 hover:text-gray-300"
+    className="link text-gray-400 hover:text-gray-300"
     rel="noreferrer"
   >
     <span className="sr-only">{name}</span>

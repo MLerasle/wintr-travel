@@ -22,7 +22,7 @@ const Faq = () => {
         <PageHeader title="Questions fréquentes">
           Vous ne trouvez pas la réponse que vous cherchez?{' '}
           <Link href="/contact">
-            <a className="cursor-pointer hover:text-gray-600">
+            <a className="link cursor-pointer hover:text-gray-600">
               Contactez-nous.
             </a>
           </Link>

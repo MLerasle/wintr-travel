@@ -18,7 +18,11 @@ const RadioButtons = ({
     )}
     <div className="flex space-x-1">
       {options.map((option) => (
-        <RadioGroup.Option key={option} value={option} className="flex-grow">
+        <RadioGroup.Option
+          key={option}
+          value={option}
+          className="flex-grow rounded link focus:ring-1"
+        >
           {({ checked }) => (
             <div
               className={`relative p-3 flex cursor-pointer rounded border shadow-sm flex-1 hover:shadow ${

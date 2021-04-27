@@ -36,7 +36,7 @@ const Nav = () => {
             </div>
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <a className="flex items-center">
+                <a className="link flex items-center">
                   <Image
                     src="/images/logo.svg"
                     alt="Logo Wintr Travel"
