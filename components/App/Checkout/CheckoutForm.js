@@ -11,7 +11,6 @@ import * as Sentry from '@sentry/browser';
 
 import BookingDeliveryAddress from '@/App/Booking/BookingFormDeliveryAddress';
 import StripeCardElement from '@/App/Checkout/StripeCardElement';
-import Button from '@/UI/Button';
 import FormRow from '@/UI/FormRow';
 import Checkbox from '@/UI/Checkbox';
 import SelectInput from '@/UI/SelectInput';
@@ -81,7 +80,7 @@ const CheckoutForm = ({ intent }) => {
 
   const onFirstNameUpdate = (event) => {
     const updatedFirstName = event.target.value;
-    booking.update('firstname', updatedFirstName);
+    booking.update({ firstname: updatedFirstName });
     setFormErrors({
       ...formErrors,
       firstname:
@@ -99,7 +98,7 @@ const CheckoutForm = ({ intent }) => {
 
   const onLastNameUpdate = (event) => {
     const updatedLastName = event.target.value;
-    booking.update('lastname', updatedLastName);
+    booking.update({ lastname: updatedLastName });
     setFormErrors({
       ...formErrors,
       lastname:
@@ -115,7 +114,7 @@ const CheckoutForm = ({ intent }) => {
 
   const onCountryCodeUpdate = (event) => {
     const updatedCountry = event ? event.value : null;
-    booking.update('countryCode', updatedCountry);
+    booking.update({ countryCode: updatedCountry });
     setFormErrors({
       ...formErrors,
       country: !updatedCountry
@@ -128,8 +127,10 @@ const CheckoutForm = ({ intent }) => {
   };
 
   const onDeliveryAddressUpdate = (address, placeId) => {
-    booking.update('deliveryAddress', address);
-    booking.update('placeId', placeId);
+    booking.update({
+      deliveryAddress: address,
+      placeId: placeId,
+    });
   };
 
   const onToggleAcceptTerms = () => {
@@ -451,15 +452,17 @@ const CheckoutForm = ({ intent }) => {
         <p className="text-green-600 font-semibold text-center my-2">
           Annulation GRATUITE jusqu'au {twoDaysBefore(booking.firstDay)}
         </p>
-        <Button
+        <button
           type="submit"
           name="pay"
           onClick={handlePaymentSubmit}
           disabled={loading}
-          classes="my-4 w-full uppercase tracking-wide bg-green-600 text-white"
+          className={`my-4 w-full btn btn-primary btn-large ${
+            loading && 'btn-disabled'
+          }`}
         >
           {loading ? <Loader /> : 'Pré-réserver pour 5€'}
-        </Button>
+        </button>
       </form>
     </div>
   );

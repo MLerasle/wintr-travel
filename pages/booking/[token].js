@@ -12,7 +12,6 @@ import BookingFormSizes from '@/App/Booking/BookingFormSizes';
 import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
 import Alert from '@/UI/Alert';
-import Button from '@/UI/Button';
 import Loader from '@/UI/Loader';
 
 import BookingContext from 'context/booking-context';
@@ -143,7 +142,7 @@ const Booking = ({ fetchedBooking }) => {
                 href={booking.stripeInvoiceUrl}
                 target="_blank"
                 type="button"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600"
+                className="btn btn-small btn-primary"
                 rel="noreferrer"
               >
                 Payer la facture en ligne
@@ -152,7 +151,7 @@ const Booking = ({ fetchedBooking }) => {
             <a
               href={booking.stripeInvoicePdf}
               type="button"
-              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600"
+              className="btn btn-small btn-white"
             >
               Télécharger la facture
             </a>
@@ -163,14 +162,14 @@ const Booking = ({ fetchedBooking }) => {
             <BookingMainInfos booking={booking} bookingIsPrepaid />
             <BookingFormDeliveryInfos booking={booking} token={token} />
             <BookingFormSizes booking={booking} bookingIsPrepaid />
-            <Button
-              classes="uppercase tracking-wide w-full md:w-64 bg-green-600 text-white"
+            <button
+              className="btn btn-primary btn-large w-full md:w-64"
               name="save"
               disabled={!isValid(booking) || loading}
               onClick={validateBookingDetails}
             >
               {loading ? <Loader /> : 'Enregistrer'}
-            </Button>
+            </button>
             {/* {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />} */}
           </div>
         </div>

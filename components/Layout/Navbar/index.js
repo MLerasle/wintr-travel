@@ -55,9 +55,7 @@ const Nav = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link href="/">
-                <a className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold uppercase rounded-md text-white bg-green-600 shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
-                  Réserver
-                </a>
+                <a className="relative btn btn-small btn-primary">Réserver</a>
               </Link>
             </div>
           </div>

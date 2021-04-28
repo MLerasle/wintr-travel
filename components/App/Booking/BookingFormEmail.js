@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { parseCookies, setCookie } from 'nookies';
 import * as Sentry from '@sentry/browser';
 
-import Button from '@/UI/Button';
 import Loader from '@/UI/Loader';
 import Alert from '@/UI/Alert';
 
@@ -25,8 +24,10 @@ const BookingFormEmail = ({ booking }) => {
     // Send a request to /api/checkout which will handle Stripe Payment Intent creation
     try {
       setIsLoading(true);
-      booking.update('email', data.email);
-      booking.update('isRegisteredToNewsletter', data.registerToNewsletter);
+      booking.update({
+        email: data.email,
+        isRegisteredToNewsletter: data.registerToNewsletter,
+      });
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: {
@@ -133,14 +134,16 @@ const BookingFormEmail = ({ booking }) => {
             </div>
           </div>
         </div>
-        <Button
+        <button
           type="submit"
-          classes="uppercase tracking-wide w-full md:w-64 bg-green-600 text-white mt-6"
+          className={`btn btn-large btn-primary w-full md:w-64 mt-6 ${
+            loading && 'btn-disabled'
+          }`}
           name="confirm"
           disabled={loading}
         >
           {loading ? <Loader /> : 'Suivant'}
-        </Button>
+        </button>
       </form>
     </>
   );

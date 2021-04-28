@@ -27,9 +27,9 @@ const BookingFormSizes = ({ booking, bookingIsPrepaid }) => {
     }
 
     if (skier.label.startsWith('Adulte')) {
-      booking.update('adults', skiers);
+      booking.update({ adults: skiers });
     } else {
-      booking.update('children', skiers);
+      booking.update({ children: skiers });
     }
   };
 

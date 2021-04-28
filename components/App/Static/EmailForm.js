@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import FormRow from '@/UI/FormRow';
 import Separator from '@/UI/Separator';
-import Button from '@/UI/Button';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
 
@@ -103,16 +102,16 @@ const EmailForm = () => {
             value={email}
           />
         </FormRow>
-        <Button
+        <button
           type="submit"
           id="submitButton"
-          classes="w-full uppercase tracking-wide bg-green-600 text-white mt-2"
+          className="btn w-full mt-2"
           name="validate"
           disabled={isLoading}
           onClick={submitEmailForm}
         >
           {isLoading ? <Loader /> : 'Soumettre'}
-        </Button>
+        </button>
       </form>
     </>
   );

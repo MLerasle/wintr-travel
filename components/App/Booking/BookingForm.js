@@ -2,7 +2,6 @@ import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 
 import FormRow from '@/UI/FormRow';
-import Button from '@/UI/Button';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
 import RadioButtons from '@/UI/RadioButtons';
@@ -22,7 +21,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
 
   const handleArrivalDate = (date) => {
     setError(null);
-    booking.update('firstDay', date);
+    booking.update({ firstDay: date });
   };
 
   const handleSkierChange = (category, quantity) => {
@@ -38,7 +37,7 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       };
       skiersArray.push(newSkier);
     }
-    booking.update(category, skiersArray);
+    booking.update({ [category]: skiersArray });
   };
 
   const validateSearch = (e) => {
@@ -160,16 +159,18 @@ const BookingForm = ({ isEditing, onUpdate }) => {
         </section>
         {!isEditing && (
           <section className="mt-8 md:mt-10">
-            <Button
+            <button
               type="submit"
               id="searchButton"
-              classes="w-full uppercase tracking-wide bg-green-600 text-white"
-              name="validate"
+              className={`btn btn-primary btn-large w-full ${
+                loading && 'btn-disabled'
+              }`}
+              name="submit"
               disabled={loading}
               onClick={validateSearch}
             >
               {loading ? <Loader /> : 'Suivant'}
-            </Button>
+            </button>
           </section>
         )}
       </form>

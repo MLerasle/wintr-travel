@@ -2,7 +2,6 @@ import Card from '@/UI/Card';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
 import Separator from '@/UI/Separator';
-import Button from '@/UI/Button';
 
 const BookingCancel = ({ onCancel }) => (
   <Card
@@ -16,13 +15,13 @@ const BookingCancel = ({ onCancel }) => (
       Nous vous rembourserons intégralement sous 48 heures.
     </h3>
     <Separator className="hidden md:block my-6" />
-    <Button
+    {/* <Button
       classes="uppercase tracking-wide w-full md:w-64 text-red-600 border border-red-600 hover:bg-red-50"
       name="cancel"
       onClick={onCancel}
     >
       Annuler
-    </Button>
+    </Button> */}
   </Card>
 );
 

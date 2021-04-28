@@ -5,7 +5,6 @@ import 'react-phone-number-input/style.css';
 import { isValidPhoneNumber } from 'react-phone-number-input';
 
 import InputPhone from '@/UI/InputPhone';
-import Button from '@/UI/Button';
 import Loader from '@/UI/Loader';
 
 import * as gtag from 'lib/gtag';
@@ -65,7 +64,7 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
           Renseignez dès maintenant votre numéro de mobile pour rester informé
           en temps réel de la livraison de votre matériel.
         </p>
-        <form className="md:mx-auto md:max-w-lg md:flex">
+        <form className="md:mx-auto md:max-w-xs">
           <div className="min-w-0 flex-1">
             <InputPhone
               value={phoneNumber}
@@ -74,15 +73,15 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
               error={error}
             />
           </div>
-          <Button
+          <button
             type="submit"
-            classes="uppercase tracking-wide bg-green-600 text-white mt-6 w-full md:w-auto md:mt-0 md:ml-3"
+            className="btn btn-primary mt-6 w-full md:mt-4"
             name="validate"
             disabled={isLoading}
             onClick={submitPhoneNumber}
           >
             {isLoading ? <Loader /> : 'Valider'}
-          </Button>
+          </button>
         </form>
       </div>
     </>

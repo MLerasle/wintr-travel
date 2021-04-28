@@ -1,7 +1,5 @@
 import smoothscroll from 'smoothscroll-polyfill';
 
-import Button from '@/UI/Button';
-
 const Cta = () => {
   const scrollToTop = () => {
     // Polyfill that fixes smooth scroll bug in Safari
@@ -21,12 +19,9 @@ const Cta = () => {
       <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500 mb-6">
         Découvrez le plaisir du ski sans contraintes.
       </p>
-      <Button
-        classes="w-auto px-4 uppercase tracking-wide bg-green-600 text-white"
-        onClick={scrollToTop}
-      >
+      <button className="btn btn-primary btn-large" onClick={scrollToTop}>
         Réservez maintenant
-      </Button>
+      </button>
     </section>
   );
 };

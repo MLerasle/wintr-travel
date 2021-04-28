@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import FormRow from '@/UI/FormRow';
-import Button from '@/UI/Button';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
 
@@ -136,15 +135,17 @@ const ContactForm = () => {
           )}
         </FormRow>
         <div className="sm:col-span-2 sm:flex sm:justify-end">
-          <Button
+          <button
             type="submit"
             id="submitButton"
-            classes="mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 focus:outline-none sm:w-44"
+            className={`btn btn-primary btn-large mt-2 w-full sm:w-44 ${
+              isLoading && 'btn-disabled'
+            }`}
             name="validate"
             disabled={isLoading}
           >
             {isLoading ? <Loader /> : 'Envoyer'}
-          </Button>
+          </button>
         </div>
       </form>
     </>

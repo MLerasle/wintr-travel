@@ -35,8 +35,8 @@ export function BookingContextProvider(props) {
     booking.firstDay,
   ]);
 
-  function updateBookingHandler(key, value) {
-    setBooking({ ...booking, [key]: value });
+  function updateBookingHandler(fields) {
+    setBooking({ ...booking, ...fields });
   }
 
   function clearBookingHandler() {

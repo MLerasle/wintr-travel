@@ -5,12 +5,14 @@ import InputPhone from '@/UI/InputPhone';
 
 const BookingFormDeliveryInfos = ({ booking, token, phoneError }) => {
   const onDeliveryAddressUpdate = (address, placeId) => {
-    booking.update('deliveryAddress', address);
-    booking.update('placeId', placeId);
+    booking.update({
+      deliveryAddress: address,
+      placeId: placeId,
+    });
   };
 
   const onPhoneNumberUpdate = (phoneNumber) => {
-    booking.update('phoneNumber', phoneNumber);
+    booking.update({ phoneNumber: phoneNumber });
   };
 
   return (
