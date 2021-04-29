@@ -12,9 +12,8 @@ import * as Sentry from '@sentry/browser';
 import BookingDeliveryAddress from '@/App/Booking/BookingFormDeliveryAddress';
 import StripeCardElement from '@/App/Checkout/StripeCardElement';
 import FormRow from '@/UI/FormRow';
-import Checkbox from '@/UI/Checkbox';
 import SelectInput from '@/UI/SelectInput';
-import Separator from '@/UI/Separator';
+import Divider from '@/UI/Divider';
 import Loader from '@/UI/Loader';
 import Alert from '@/UI/Alert';
 
@@ -351,7 +350,7 @@ const CheckoutForm = ({ intent }) => {
       {paymentRequestButton ? (
         <>
           {paymentRequestButton}
-          <Separator label="Ou" className="my-10" />
+          <Divider label="Ou" className="py-10" />
         </>
       ) : null}
       <form className="flex flex-col">
@@ -440,14 +439,25 @@ const CheckoutForm = ({ intent }) => {
           <StripeCardElement CardElement={CardElement} />
         </FormRow>
         <FormRow>
-          <Checkbox
-            name="acceptTerms"
-            value={acceptTerms}
-            onChange={onToggleAcceptTerms}
-            error={formWasSubmitted && !acceptTerms}
-          >
-            J'accepte les Conditions Générales de Vente.
-          </Checkbox>
+          <div className="flex items-center">
+            <input
+              id="acceptTerms"
+              name="acceptTerms"
+              type="checkbox"
+              className={`checkbox ${
+                formWasSubmitted && !acceptTerms && 'checkbox-error'
+              }`}
+              onChange={onToggleAcceptTerms}
+            />
+            <label
+              htmlFor="acceptTerms"
+              className={`checkbox-label ${
+                formWasSubmitted && !acceptTerms && 'checkbox-label-error'
+              }`}
+            >
+              J'accepte les Conditions Générales de Vente.
+            </label>
+          </div>
         </FormRow>
         <p className="text-green-600 font-semibold text-center my-2">
           Annulation GRATUITE jusqu'au {twoDaysBefore(booking.firstDay)}

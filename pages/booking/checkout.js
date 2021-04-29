@@ -11,7 +11,7 @@ import CheckoutForm from '@/App/Checkout/CheckoutForm';
 import PaymentIcons from '@/App/Checkout/PaymentIcons';
 import BookingSummary from '@/App/Booking/BookingSummary';
 import MainSection from '@/UI/MainSection';
-import Separator from '@/UI/Separator';
+import Divider from '@/UI/Divider';
 
 import * as gtag from 'lib/gtag';
 
@@ -40,7 +40,7 @@ const Checkout = ({ paymentIntent }) => {
             <PaymentIcons className="hidden sm:flex" />
           </header>
           <PaymentIcons className="sm:hidden mt-1" />
-          <Separator className="mt-6" />
+          <Divider className="pt-6" />
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:gap-x-12">
             <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
               <CheckoutForm intent={paymentIntent} />

@@ -122,7 +122,7 @@ const BookingFormEmail = ({ booking }) => {
                   id="registerToNewsletter"
                   {...register('registerToNewsletter')}
                   type="checkbox"
-                  className="h-5 w-5 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                  className="checkbox"
                 />
                 <label
                   htmlFor="registerToNewsletter"

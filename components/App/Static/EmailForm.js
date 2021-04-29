@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import FormRow from '@/UI/FormRow';
-import Separator from '@/UI/Separator';
+import Divider from '@/UI/Divider';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
 
@@ -70,7 +70,7 @@ const EmailForm = () => {
           Livraison de skis au pied des pistes.
         </h2>
       </header>
-      <Separator className="my-6 hidden md:block" />
+      <Divider className="py-6 hidden md:block" />
       <section className="text-gray-700 text-lg">
         <p>
           En raison de la situation liée à la pandémie de COVID-19,{' '}

@@ -1,7 +1,7 @@
 import Card from '@/UI/Card';
 import Header from '@/UI/Header';
 import Heading from '@/UI/Heading';
-import Separator from '@/UI/Separator';
+import Divider from '@/UI/Divider';
 
 const BookingCancel = ({ onCancel }) => (
   <Card
@@ -14,7 +14,7 @@ const BookingCancel = ({ onCancel }) => (
     <h3 className="py-2">
       Nous vous rembourserons intégralement sous 48 heures.
     </h3>
-    <Separator className="hidden md:block my-6" />
+    <Divider className="hidden md:block py-6" />
     {/* <Button
       classes="uppercase tracking-wide w-full md:w-64 text-red-600 border border-red-600 hover:bg-red-50"
       name="cancel"

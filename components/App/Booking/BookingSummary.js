@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import BookingSummaryLine from '@/App/Booking/BookingSummaryLine';
-import Separator from '@/UI/Separator';
+import Divider from '@/UI/Divider';
 
 import BookingContext from 'context/booking-context';
 import { formatDate } from 'helpers/dates';
@@ -22,7 +22,7 @@ const BookingSummary = () => {
         <span className="font-bold">{booking.email}</span> juste après le
         paiement.
       </p>
-      <Separator className="my-6" />
+      <Divider className="py-6" />
       <BookingSummaryLine label="Station" value="Flaine" />
       <BookingSummaryLine
         label="Arrivée"
@@ -32,7 +32,7 @@ const BookingSummary = () => {
         label="Départ"
         value={formatDate(getLastDay(booking.firstDay))}
       />
-      <Separator className="my-6" />
+      <Divider className="py-6" />
       {booking.adults.map((skier) => (
         <div key={skier.label}>
           <BookingSummaryLine
@@ -50,7 +50,7 @@ const BookingSummary = () => {
             />
           </div>
         ))}
-      <Separator className="my-6" />
+      <Divider className="py-6" />
       <BookingSummaryLine
         label="Total Prix Adulte"
         value={`${prices.adults.toFixed(2)} €`}
@@ -62,7 +62,7 @@ const BookingSummary = () => {
         />
       )}
       <BookingSummaryLine label="Livraison" value="GRATUITE" />
-      <Separator className="my-6" />
+      <Divider className="py-6" />
       <BookingSummaryLine
         label="Total"
         value={`${prices.total.toFixed(2)} €`}
