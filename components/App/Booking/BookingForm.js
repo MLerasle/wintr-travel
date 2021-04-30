@@ -95,7 +95,6 @@ const BookingForm = ({ isEditing, onUpdate }) => {
             <nav className="-mb-px flex space-x-8" aria-label="Tabs">
               {HOLIDAYS.map((holiday) => (
                 <a
-                  href="#"
                   key={holiday.name}
                   className={`link whitespace-nowrap py-2 px-1 border-b-2 font-semibold text-base ${
                     holiday.name === currentHolidayTab
