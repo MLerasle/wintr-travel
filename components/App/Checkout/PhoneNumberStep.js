@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { IconContext } from 'react-icons';
 import { MdDone } from 'react-icons/md';
-import 'react-phone-number-input/style.css';
 import { isValidPhoneNumber } from 'react-phone-number-input';
 
 import InputPhone from '@/UI/InputPhone';

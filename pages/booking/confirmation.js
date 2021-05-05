@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import 'react-phone-number-input/style.css';
 
 import Card from '@/UI/Card';
 import MainSection from '@/UI/MainSection';
