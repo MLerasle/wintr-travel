@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { IconContext } from 'react-icons';
 import { MdDone } from 'react-icons/md';
-import { isValidPhoneNumber } from 'react-phone-number-input';
 
 import InputPhone from '@/UI/InputPhone';
 import Loader from '@/UI/Loader';
@@ -22,14 +21,14 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted }) => {
     e.preventDefault();
     setIsLoading(true);
     let gtagLabel;
-    if (isValidPhoneNumber(phoneNumber)) {
-      // Send it to the backend
-      gtagLabel = 'Phone number OK';
-      onPhoneNumberSubmitted(phoneNumber);
-    } else {
-      gtagLabel = 'Phone number incorrect';
-      setError('Le numéro saisi est incorrect.');
-    }
+    // if (isValidPhoneNumber(phoneNumber)) {
+    //   // Send it to the backend
+    //   gtagLabel = 'Phone number OK';
+    //   onPhoneNumberSubmitted(phoneNumber);
+    // } else {
+    //   gtagLabel = 'Phone number incorrect';
+    //   setError('Le numéro saisi est incorrect.');
+    // }
     gtag.event({
       action: 'submit_phone_number',
       category: 'Booking',
