@@ -28,7 +28,7 @@
   }
 
   .input {
-    @apply border border-gray-300 rounded-lg px-2 py-2 h-12 text-gray-800 appearance-none focus:outline-none focus:ring-green-500 focus:border-green-500;
+    @apply border border-gray-300 rounded-lg p-2 h-12 text-gray-800 appearance-none focus:outline-none focus:ring-green-500 focus:border-green-500;
   }
 
   .input-error {

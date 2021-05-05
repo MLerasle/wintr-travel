@@ -1,28 +1,17 @@
-import { useRef, useEffect } from 'react';
-import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
+import { useEffect } from 'react';
+import PhoneInput from 'react-phone-input-2';
+import fr from 'react-phone-input-2/lang/fr.json';
 
-const InputPhone = ({
-  value,
-  focus,
-  withLabel,
-  error,
-  className,
-  onChange,
-  onBlur,
-}) => {
-  const phoneNumberInputRef = useRef();
-
+const InputPhone = ({ value, onChange, withLabel, focus }) => {
+  // Workaround before implementing this with react-hook-form through ref
   useEffect(() => {
     if (focus) {
-      phoneNumberInputRef.current.focus();
-      phoneNumberInputRef.current.selectionStart = phoneNumberInputRef.current.selectionEnd =
-        phoneNumberInputRef.current.value.length;
+      document.getElementById('phone_number').focus();
     }
   }, [focus]);
 
   return (
-    <div className={className}>
+    <div>
       {withLabel && (
         <>
           <label
@@ -38,19 +27,17 @@ const InputPhone = ({
         </>
       )}
       <PhoneInput
-        placeholder="+33 6 12 34 56 78"
-        defaultCountry="FR"
-        country="FR"
-        international
-        withCountryCallingCode
-        ref={phoneNumberInputRef}
+        country={'fr'}
+        localization={fr}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
+        enableSearch
+        inputProps={{
+          name: 'phone_number',
+          id: 'phone_number',
+        }}
+        searchPlaceholder="Recherche"
       />
-      <div className="input-error-message" role="alert">
-        {error && error}
-      </div>
     </div>
   );
 };

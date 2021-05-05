@@ -147,29 +147,6 @@ const Booking = ({ fetchedBooking }) => {
           />
         )}
 
-        {/* <PageHeader title="Votre réservation">
-          <p>Numéro: {token}</p>
-          <p className="mt-3 space-y-3 md:space-x-3">
-            {booking.state === 'prepaid' && (
-              <a
-                href={booking.stripeInvoiceUrl}
-                target="_blank"
-                type="button"
-                className="btn btn-small btn-primary"
-                rel="noreferrer"
-              >
-                Payer la facture en ligne
-              </a>
-            )}
-            <a
-              href={booking.stripeInvoicePdf}
-              type="button"
-              className="btn btn-small btn-white"
-            >
-              Télécharger la facture
-            </a>
-          </p>
-        </PageHeader> */}
         <div className="max-w-7xl mx-auto px-4 pt-8 pb-16 sm:pb-24 sm:px-6 lg:px-8">
           <header className="lg:flex justify-between items-baseline">
             <section>
@@ -215,7 +192,6 @@ const Booking = ({ fetchedBooking }) => {
                 <InputPhone
                   value={booking.phoneNumber}
                   onChange={onPhoneNumberUpdate}
-                  className="w-full"
                   withLabel
                 />
               </FormRow>

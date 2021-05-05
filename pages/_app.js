@@ -6,6 +6,7 @@ import { BookingContextProvider } from 'context/booking-context';
 import 'styles/fonts.css';
 import 'styles/tailwind.css';
 import 'styles/google-searchbox.css';
+import 'styles/phone-input.css';
 
 if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
   Sentry.init({
