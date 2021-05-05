@@ -354,7 +354,7 @@ const CheckoutForm = ({ intent }) => {
         </>
       ) : null}
       <form className="flex flex-col">
-        <h3 className="text-lg leading-6 font-semibold text-gray-800 mb-4">
+        <h3 className="text-lg leading-6 font-semibold text-gray-800 mb-2">
           Informations Client
         </h3>
         <FormRow>
@@ -420,16 +420,13 @@ const CheckoutForm = ({ intent }) => {
             {formWasSubmitted && formErrors.country}
           </div>
         </FormRow>
-        <h3 className="text-lg leading-6 font-semibold text-gray-800 mt-2 mb-4">
-          Addresse de Livraison
-        </h3>
-        <FormRow>
+        <FormRow className="mt-4">
           <BookingDeliveryAddress
             booking={booking}
             onDeliveryAddressUpdate={onDeliveryAddressUpdate}
           />
         </FormRow>
-        <h3 className="text-lg leading-6 font-semibold text-gray-800 mt-2 mb-4">
+        <h3 className="text-lg leading-6 font-semibold text-gray-800 mt-4 mb-2">
           Méthode de Règlement
         </h3>
         <FormRow>
@@ -467,7 +464,7 @@ const CheckoutForm = ({ intent }) => {
           name="pay"
           onClick={handlePaymentSubmit}
           disabled={loading}
-          className={`my-4 w-full btn btn-primary btn-large ${
+          className={`mt-4 w-full btn btn-primary btn-large ${
             loading && 'btn-disabled'
           }`}
         >

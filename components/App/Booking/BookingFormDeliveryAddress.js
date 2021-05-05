@@ -65,7 +65,10 @@ const BookingFormDeliveryAddress = ({
 
   return (
     <>
-      <label className="label" htmlFor="deliveryAddress">
+      <label
+        className="text-lg leading-6 font-semibold text-gray-800"
+        htmlFor="deliveryAddress"
+      >
         Adresse de livraison
       </label>
       {!token && (
@@ -76,7 +79,7 @@ const BookingFormDeliveryAddress = ({
       <input
         ref={deliveryAddressRef}
         name="deliveryAddress"
-        className={`input w-full mt-2 ${className}`}
+        className={`input mt-4 w-full ${className && className}`}
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Saisissez l'adresse complète ici"
         value={query}

@@ -30,7 +30,7 @@ const Details = () => {
             </h1>
           </header>
           <Divider className="pt-6" />
-          <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:gap-x-12">
+          <div className="grid grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2 lg:gap-x-12">
             <div className="space-y-6 pt-6">
               <BookingFormEmail booking={booking} />
               <BookingFormSizes booking={booking} />

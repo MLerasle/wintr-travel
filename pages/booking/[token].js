@@ -5,14 +5,16 @@ import Firestore from '@google-cloud/firestore';
 import * as Sentry from '@sentry/browser';
 import * as SentryNode from '@sentry/node';
 
-import BookingMainInfos from '@/App/Booking/BookingMainInfos';
-import BookingFormDeliveryInfos from '@/App/Booking/BookingFormDeliveryInfos';
+import BookingSummary from '@/App/Booking/BookingSummary';
+import BookingDeliveryAddress from '@/App/Booking/BookingFormDeliveryAddress';
 // import BookingCancel from '@/App/Booking/BookingCancel';
 import BookingFormSizes from '@/App/Booking/BookingFormSizes';
 import MainSection from '@/UI/MainSection';
-import PageHeader from '@/UI/PageHeader';
 import Alert from '@/UI/Alert';
 import Loader from '@/UI/Loader';
+import FormRow from '@/UI/FormRow';
+import InputPhone from '@/UI/InputPhone';
+import Divider from '@/UI/Divider';
 
 import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
@@ -36,6 +38,17 @@ const Booking = ({ fetchedBooking }) => {
       booking.clear();
     };
   }, []);
+
+  const onDeliveryAddressUpdate = (address, placeId) => {
+    booking.update({
+      deliveryAddress: address,
+      placeId: placeId,
+    });
+  };
+
+  const onPhoneNumberUpdate = (phoneNumber) => {
+    booking.update({ phoneNumber: phoneNumber });
+  };
 
   const validateBookingDetails = async () => {
     setIsLoading(true);
@@ -134,7 +147,7 @@ const Booking = ({ fetchedBooking }) => {
           />
         )}
 
-        <PageHeader title="Votre réservation">
+        {/* <PageHeader title="Votre réservation">
           <p>Numéro: {token}</p>
           <p className="mt-3 space-y-3 md:space-x-3">
             {booking.state === 'prepaid' && (
@@ -156,23 +169,70 @@ const Booking = ({ fetchedBooking }) => {
               Télécharger la facture
             </a>
           </p>
-        </PageHeader>
+        </PageHeader> */}
         <div className="max-w-7xl mx-auto px-4 pt-8 pb-16 sm:pb-24 sm:px-6 lg:px-8">
-          <div className="space-y-6">
-            <BookingMainInfos booking={booking} bookingIsPrepaid />
-            <BookingFormDeliveryInfos booking={booking} token={token} />
-            <BookingFormSizes booking={booking} bookingIsPrepaid />
-            <button
-              className="btn btn-primary btn-large w-full md:w-64"
-              name="save"
-              disabled={!isValid(booking) || loading}
-              onClick={validateBookingDetails}
-            >
-              {loading ? <Loader /> : 'Enregistrer'}
-            </button>
-            {/* {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />} */}
+          <header className="lg:flex justify-between items-baseline">
+            <section>
+              <h1 className="leading-tight font-bold text-gray-800 text-3xl">
+                Informations sur votre réservation
+              </h1>
+              <p className="max-w-3xl text-lg md:text-xl leading-normal text-gray-500">
+                Numéro: {token}
+              </p>
+            </section>
+            <section className="mt-3 md:space-x-3 space-y-3 md:space-y-0">
+              {booking.state === 'prepaid' && (
+                <a
+                  href={booking.stripeInvoiceUrl}
+                  target="_blank"
+                  type="button"
+                  className="btn btn-small btn-primary w-full md:w-auto"
+                  rel="noreferrer"
+                >
+                  Payer la facture en ligne
+                </a>
+              )}
+              <a
+                href={booking.stripeInvoicePdf}
+                type="button"
+                className="btn btn-small btn-white w-full md:w-auto"
+              >
+                Télécharger la facture
+              </a>
+            </section>
+          </header>
+          <Divider className="pt-6" />
+          <div className="grid grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2 lg:gap-x-12">
+            <div className="pt-6">
+              <FormRow>
+                <BookingDeliveryAddress
+                  booking={booking}
+                  token={token}
+                  onDeliveryAddressUpdate={onDeliveryAddressUpdate}
+                />
+              </FormRow>
+              <FormRow className="pt-6">
+                <InputPhone
+                  value={booking.phoneNumber}
+                  onChange={onPhoneNumberUpdate}
+                  className="w-full"
+                  withLabel
+                />
+              </FormRow>
+              <BookingFormSizes booking={booking} bookingIsPrepaid />
+              <button
+                className="btn btn-primary btn-large w-full mt-8"
+                name="save"
+                disabled={!isValid(booking) || loading}
+                onClick={validateBookingDetails}
+              >
+                {loading ? <Loader /> : 'Enregistrer'}
+              </button>
+            </div>
+            <BookingSummary page="edit" />
           </div>
         </div>
+        {/* {!booking.canceled && <BookingCancel onCancel={toggleConfirmCancel} />} */}
       </MainSection>
     </>
   );

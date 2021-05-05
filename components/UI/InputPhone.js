@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 const InputPhone = ({
   value,
@@ -23,9 +24,18 @@ const InputPhone = ({
   return (
     <div className={className}>
       {withLabel && (
-        <label className="label" htmlFor="phoneInput">
-          Numéro de téléphone
-        </label>
+        <>
+          <label
+            className="block text-lg leading-6 font-semibold text-gray-800 mb-4"
+            htmlFor="phoneInput"
+          >
+            Numéro de téléphone
+          </label>
+          <p className="max-w-2xl text-gray-500 mb-4">
+            Renseignez votre numéro de téléphone pour être informé en temps réel
+            du suivi de votre livraison.
+          </p>
+        </>
       )}
       <PhoneInput
         placeholder="+33 6 12 34 56 78"
