@@ -459,7 +459,7 @@ const CheckoutForm = ({ intent }) => {
             </label>
           </div>
         </FormRow>
-        <p className="text-green-600 font-semibold text-center my-2">
+        <p className="text-green-600 font-semibold my-2">
           Annulation GRATUITE jusqu'au {twoDaysBefore(booking.firstDay)}
         </p>
         <button

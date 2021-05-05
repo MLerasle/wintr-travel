@@ -71,7 +71,7 @@ const About = () => {
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
                   Vous n'avez pas besoin de créer un compte pour réserver. Nous
-                  proposons un modèle unique de skis opur que vous n'ayez plus à
+                  proposons un modèle unique de skis pour que vous n'ayez plus à
                   choisir. Nous vous livrons vos skis pour que vous n'ayez plus
                   à chercher un magasin en station. Et nous vous livrons même le
                   forfait pour que vous ne perdiez plus de temps.

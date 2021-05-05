@@ -21,7 +21,7 @@ const RadioButtons = ({
         <RadioGroup.Option
           key={option}
           value={option}
-          className="flex-grow rounded link focus:ring-1"
+          className="flex-grow rounded link focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white"
         >
           {({ checked }) => (
             <div

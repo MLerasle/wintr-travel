@@ -35,7 +35,7 @@ const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
       </BottomDrawer>
       <h4 className="font-semibold pb-2">{skier.label}</h4>
       <div className="flex flex-wrap items-center">
-        <div className="flex flex-col w-1/2 pr-1 md:w-1/3 md:pr-2">
+        <div className="flex flex-col w-1/2 pr-1 md:w-1/4 md:pr-2">
           <label className="label" htmlFor={`size-${skier.label}`}>
             Taille
           </label>
@@ -44,12 +44,12 @@ const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
             id={`size-${skier.label}`}
             name={`size-${skier.label}`}
             className="input"
-            placeholder="Taille en cm"
+            placeholder="En cm"
             onChange={(event) => onUpdateSkier(skier, 'size', event)}
             value={skier.size}
           />
         </div>
-        <div className="flex flex-col w-1/2 pl-1 md:w-1/3 md:px-2">
+        <div className="flex flex-col w-1/2 pl-1 md:w-1/4 md:px-2">
           <div className="flex">
             <label className="label" htmlFor={`shoe-size-${skier.label}`}>
               Taille du pied
@@ -78,7 +78,7 @@ const BookingFormSizesSkier = ({ skier, index, total, onUpdateSkier }) => {
             value={skier.shoeSize}
           />
         </div>
-        <div className="flex flex-col w-full md:w-1/3 mt-2 md:mt-0 md:pl-2">
+        <div className="flex flex-col w-full md:w-1/2 mt-2 md:mt-0 md:pl-2">
           <div className="flex">
             <label className="label" htmlFor={`head-size-${skier.label}`}>
               Taille du casque

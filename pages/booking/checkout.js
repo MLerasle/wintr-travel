@@ -45,7 +45,7 @@ const Checkout = ({ paymentIntent }) => {
             <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
               <CheckoutForm intent={paymentIntent} />
             </Elements>
-            <BookingSummary />
+            <BookingSummary page="checkout" />
           </div>
         </div>
       </MainSection>

@@ -35,7 +35,7 @@ class MyDocument extends Document {
             as="font"
             crossOrigin="true"
           />
-          <script src="/scripts/modernizr-webp.js" />
+          <script async src="/scripts/modernizr-webp.js" />
 
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {process.env.NODE_ENV === 'production' && (
@@ -57,7 +57,7 @@ class MyDocument extends Document {
               `,
                 }}
               />
-              <script src="/scripts/webchat.js" />
+              <script defer src="/scripts/webchat.js" />
             </>
           )}
         </Head>

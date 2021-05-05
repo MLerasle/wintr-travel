@@ -34,75 +34,62 @@ const BookingFormSizes = ({ booking, bookingIsPrepaid }) => {
   };
 
   return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-      <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-lg leading-6 font-semibold text-gray-800 flex">
-          <span>Mensurations des skieurs</span>
-          <IconContext.Provider
-            value={{
-              size: '1.4rem',
-              className:
-                'mx-1 text-blue-600 hover:text-blue-500 cursor-pointer hidden md:block',
-            }}
-          >
-            <div onClick={() => setIsHelpDisplayed(!isHelpDisplayed)}>
-              <IoHelpCircle />
-            </div>
-          </IconContext.Provider>
-        </h3>
-        {isFormDisplayed && !bookingIsPrepaid ? (
-          <button
-            type="button"
-            className="mt-1 bg-white rounded-md font-medium underline text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            onClick={() => setIsFormDisplayed(false)}
-          >
-            Valider et continuer
-          </button>
-        ) : isHelpDisplayed ? (
-          <button
-            type="button"
-            className="mt-1 bg-white rounded-md font-medium underline text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            onClick={() => setIsHelpDisplayed(false)}
-          >
-            Masquer l'aide
-          </button>
-        ) : (
-          !bookingIsPrepaid && (
-            <p className="mt-1 max-w-2xl text-gray-500">
-              Vous pouvez choisir de passer cette étape pour le moment.
-            </p>
-          )
-        )}
-      </div>
-      <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
-        <div className="sm:px-6 py-4 sm:py-5">
-          {isHelpDisplayed ? (
-            <div className="prose prose-blue text-gray-500 mx-auto">
-              <SizeSkis />
-              <SizeShoes withDetails />
-              <SizeHelmet withDetails />
-            </div>
-          ) : isFormDisplayed ? (
-            skiers.map((skier, index) => (
-              <BookingFormSizesSkier
-                key={skier.label}
-                skier={skier}
-                index={index}
-                total={skiers.length}
-                onUpdateSkier={updateSkier}
-              />
-            ))
-          ) : (
+    <div className="pt-6">
+      <h3 className="text-lg leading-6 font-semibold text-gray-800 flex mb-4">
+        <span>Mensurations des skieurs</span>
+        <IconContext.Provider
+          value={{
+            size: '1.4rem',
+            className:
+              'mx-1 text-blue-600 hover:text-blue-500 cursor-pointer hidden md:block',
+          }}
+        >
+          <div onClick={() => setIsHelpDisplayed(!isHelpDisplayed)}>
+            <IoHelpCircle />
+          </div>
+        </IconContext.Provider>
+      </h3>
+      {!bookingIsPrepaid && !isFormDisplayed && !isHelpDisplayed && (
+        <p className="mt-1 max-w-2xl text-gray-500">
+          Vous pouvez renseigner cette information ultérieurement.
+        </p>
+      )}
+      {isHelpDisplayed ? (
+        <div className="prose prose-blue text-gray-500">
+          <SizeSkis />
+          <SizeShoes withDetails />
+          <SizeHelmet withDetails />
+        </div>
+      ) : isFormDisplayed ? (
+        <>
+          {skiers.map((skier, index) => (
+            <BookingFormSizesSkier
+              key={skier.label}
+              skier={skier}
+              index={index}
+              total={skiers.length}
+              onUpdateSkier={updateSkier}
+            />
+          ))}
+          {!bookingIsPrepaid && (
             <button
               type="button"
-              className="bg-white rounded-md font-medium underline text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              onClick={() => setIsFormDisplayed(true)}
+              className="btn btn-primary mt-6"
+              onClick={() => setIsFormDisplayed(false)}
             >
-              Renseigner maintenant
+              Valider
             </button>
           )}
-        </div>
-      </div>
+        </>
+      ) : (
+        <button
+          type="button"
+          className="mt-1 font-medium underline text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          onClick={() => setIsFormDisplayed(true)}
+        >
+          Renseigner maintenant
+        </button>
+      )}
     </div>
   );
 };

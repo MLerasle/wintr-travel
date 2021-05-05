@@ -84,59 +84,51 @@ const BookingFormEmail = ({ booking }) => {
         </div>
       )}
       <form onSubmit={handleSubmit(validateBookingDetails)}>
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-          <div className="px-4 py-5 sm:px-6">
-            <h3 className="text-lg leading-6 font-semibold text-gray-800">
-              Informations de contact
-            </h3>
-            <p className="mt-1 max-w-2xl text-gray-500">
-              Pour vous tenir informé de l'état de votre réservation et
-              effectuer les opérations d'après-vente.
-            </p>
-          </div>
-          <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
-            <div className="sm:px-6 py-4 sm:py-5">
-              <input
-                type="email"
-                id="email"
-                {...register('email', {
-                  required: true,
-                  pattern: EMAIL_PATTERN,
-                })}
-                className={`input my-4 md:my-0 w-full lg:w-1/2 ${
-                  errors.email && 'input-error'
-                }`}
-                placeholder="Email"
-              />
-              {errors.email && (
-                <p className="input-error-message">
-                  L'email saisi est invalide.
-                </p>
-              )}
-              <p className="text-gray-700 mt-4">
-                Nous vous enverrons des codes de réduction et offres
-                exceptionnelles.
-              </p>
-              <div className="flex items-center mt-2">
-                <input
-                  id="registerToNewsletter"
-                  {...register('registerToNewsletter')}
-                  type="checkbox"
-                  className="checkbox"
-                />
-                <label
-                  htmlFor="registerToNewsletter"
-                  className="ml-2 block text-gray-700"
-                >
-                  Cochez cette case si vous ne souhaitez pas en recevoir.
-                </label>
-              </div>
-            </div>
+        <h3 className="text-lg leading-6 font-semibold text-gray-800 mb-4">
+          Adresse Email
+        </h3>
+        <p className="mt-1 max-w-2xl text-gray-500">
+          Pour vous tenir informé de l'état de votre réservation et effectuer
+          les opérations d'après-vente.
+        </p>
+        <div className="py-4 sm:py-5">
+          <input
+            type="email"
+            id="email"
+            {...register('email', {
+              required: true,
+              pattern: EMAIL_PATTERN,
+            })}
+            className={`input my-4 md:my-0 w-full ${
+              errors.email && 'input-error'
+            }`}
+            placeholder="Saisissez votre email ici"
+          />
+          {errors.email && (
+            <p className="input-error-message">L'email saisi est invalide.</p>
+          )}
+          <p className="text-gray-700 mt-4">
+            Nous vous enverrons des codes de réduction et offres
+            exceptionnelles.
+          </p>
+          <div className="flex items-center mt-2">
+            <input
+              id="registerToNewsletter"
+              {...register('registerToNewsletter')}
+              type="checkbox"
+              className="checkbox"
+            />
+            <label
+              htmlFor="registerToNewsletter"
+              className="ml-2 block text-gray-700"
+            >
+              Cochez cette case si vous ne souhaitez pas en recevoir.
+            </label>
           </div>
         </div>
         <button
           type="submit"
-          className={`btn btn-large btn-primary w-full md:w-64 mt-6 ${
+          className={`btn btn-large btn-primary w-full mt-6 ${
             loading && 'btn-disabled'
           }`}
           name="confirm"
