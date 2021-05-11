@@ -16,6 +16,7 @@ import SelectInput from '@/UI/SelectInput';
 import Divider from '@/UI/Divider';
 import Loader from '@/UI/Loader';
 import Alert from '@/UI/Alert';
+import Toggle from '@/UI/Toggle';
 
 import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
@@ -436,25 +437,12 @@ const CheckoutForm = ({ intent }) => {
           <StripeCardElement CardElement={CardElement} />
         </FormRow>
         <FormRow>
-          <div className="flex items-center">
-            <input
-              id="acceptTerms"
-              name="acceptTerms"
-              type="checkbox"
-              className={`checkbox ${
-                formWasSubmitted && !acceptTerms && 'checkbox-error'
-              }`}
-              onChange={onToggleAcceptTerms}
-            />
-            <label
-              htmlFor="acceptTerms"
-              className={`checkbox-label ${
-                formWasSubmitted && !acceptTerms && 'checkbox-label-error'
-              }`}
-            >
-              J'accepte les Conditions Générales de Vente.
-            </label>
-          </div>
+          <Toggle
+            label="J'accepte les Conditions Générales de Vente."
+            onChange={onToggleAcceptTerms}
+            value={acceptTerms}
+            className={`${formWasSubmitted && !acceptTerms && 'toggle-error'}`}
+          />
         </FormRow>
         <p className="text-green-600 font-semibold my-2">
           Annulation GRATUITE jusqu'au {twoDaysBefore(booking.firstDay)}

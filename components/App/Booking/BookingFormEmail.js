@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { parseCookies, setCookie } from 'nookies';
 import * as Sentry from '@sentry/browser';
 
 import Loader from '@/UI/Loader';
 import Alert from '@/UI/Alert';
+import Toggle from '@/UI/Toggle';
 
 import { EMAIL_PATTERN } from 'helpers/email';
 import * as gtag from 'lib/gtag';
@@ -18,7 +19,26 @@ const BookingFormEmail = ({ booking }) => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+    control,
+    reset,
+  } = useForm({
+    reValidateMode: 'onChange',
+    defaultValues: useMemo(() => {
+      return {
+        email: booking.email,
+        isRegisteredToNewsletter: booking.isRegisteredToNewsletter,
+      };
+    }, [booking.email, booking.isRegisteredToNewsletter]),
+  });
+
+  useEffect(() => {
+    if (booking.email) {
+      reset({
+        email: booking.email,
+        isRegisteredToNewsletter: booking.isRegisteredToNewsletter,
+      });
+    }
+  }, [booking.email, booking.isRegisteredToNewsletter]);
 
   const validateBookingDetails = async (data) => {
     // Send a request to /api/checkout which will handle Stripe Payment Intent creation
@@ -26,7 +46,7 @@ const BookingFormEmail = ({ booking }) => {
       setIsLoading(true);
       booking.update({
         email: data.email,
-        isRegisteredToNewsletter: data.registerToNewsletter,
+        isRegisteredToNewsletter: data.isRegisteredToNewsletter,
       });
       const response = await fetch('/api/checkout', {
         method: 'POST',
@@ -36,7 +56,7 @@ const BookingFormEmail = ({ booking }) => {
         body: JSON.stringify({
           ...booking,
           email: data.email,
-          isRegisteredToNewsletter: data.registerToNewsletter,
+          isRegisteredToNewsletter: data.isRegisteredToNewsletter,
         }),
       });
       const respData = await response.json();
@@ -107,24 +127,18 @@ const BookingFormEmail = ({ booking }) => {
           {errors.email && (
             <p className="input-error-message">L'email saisi est invalide.</p>
           )}
-          <p className="text-gray-700 mt-4">
-            Nous vous enverrons des codes de réduction et offres
-            exceptionnelles.
-          </p>
-          <div className="flex items-center mt-2">
-            <input
-              id="registerToNewsletter"
-              {...register('registerToNewsletter')}
-              type="checkbox"
-              className="checkbox"
-            />
-            <label
-              htmlFor="registerToNewsletter"
-              className="ml-2 block text-gray-700"
-            >
-              Cochez cette case si vous ne souhaitez pas en recevoir.
-            </label>
-          </div>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <Toggle
+                label="Je souhaite recevoir des codes de réduction et offres exceptionnelles."
+                onChange={onChange}
+                value={value}
+                containerClassName="mt-6"
+              />
+            )}
+            control={control}
+            name="isRegisteredToNewsletter"
+          />
         </div>
         <button
           type="submit"

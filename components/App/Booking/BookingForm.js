@@ -102,6 +102,10 @@ const BookingForm = ({ isEditing, onUpdate }) => {
                       : 'border-transparent text-gray-800 hover:text-gray-900 hover:border-gray-200'
                   }`}
                   onClick={() => setCurrentHolidayTab(holiday.name)}
+                  aria-current={
+                    holiday.name === currentHolidayTab ? 'page' : undefined
+                  }
+                  href="#"
                 >
                   {holiday.name}
                 </a>

@@ -75,33 +75,26 @@ const BookingSummary = ({ page }) => {
           <Divider className="py-6" />
           {page !== 'edit' && (
             <>
-              {booking.adults.map((skier) => (
-                <div key={skier.label}>
-                  <BookingSummaryLine
-                    label={skier.label}
-                    value={`${ADULT_PRICE.toFixed(2)} €`}
-                  />
-                </div>
-              ))}
-              {booking.children.length > 0 &&
-                booking.children.map((skier) => (
-                  <div key={skier.label}>
-                    <BookingSummaryLine
-                      label={skier.label}
-                      value={`${CHILD_PRICE.toFixed(2)} €`}
-                    />
-                  </div>
-                ))}
+              <BookingSummaryLine
+                label="Prix par adulte"
+                value={`${ADULT_PRICE.toFixed(2)} €`}
+              />
+              {booking.children.length > 0 && (
+                <BookingSummaryLine
+                  label="Prix par enfant"
+                  value={`${CHILD_PRICE.toFixed(2)} €`}
+                />
+              )}
               <Divider className="py-6" />
             </>
           )}
           <BookingSummaryLine
-            label="Total Prix Adulte"
+            label={`Total Prix Adulte (${booking.adults.length})`}
             value={`${prices.adults.toFixed(2)} €`}
           />
           {booking.children.length > 0 && (
             <BookingSummaryLine
-              label="Total Prix Enfant"
+              label={`Total Prix Enfant (${booking.children.length})`}
               value={`${prices.children.toFixed(2)} €`}
             />
           )}

@@ -747,7 +747,11 @@
   --tw-ring-color: rgba(16, 185, 129, var(--tw-ring-opacity));
 }
 .react-tel-input .form-control:focus + .flag-dropdown {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
   border: 1px solid #10b981;
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(16, 185, 129, var(--tw-ring-opacity));
 }
 .react-tel-input .form-control.invalid-number {
   border: 1px solid #d79f9f;
