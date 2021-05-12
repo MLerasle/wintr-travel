@@ -106,7 +106,7 @@ const BookingSummary = ({ page }) => {
           />
           {page === 'details' && (
             <p className="text-gray-500 mt-6 text-sm">
-              Pré-réservez votre séjour pour 5€ dès aujourd'hui et payez le
+              Pré-réservez votre séjour pour 50€ dès aujourd'hui et payez le
               reste d'ici la veille de votre arrivée sur place.
               <br />
               Remboursement intégral en cas d'annulation.

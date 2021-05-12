@@ -217,14 +217,12 @@ const CheckoutForm = ({ intent }) => {
       const pintent = intent;
 
       // Confirm the PaymentIntent without handling potential next actions (yet).
-      const {
-        paymentIntent,
-        error: confirmError,
-      } = await stripe.confirmCardPayment(
-        intent.client_secret,
-        { payment_method: ev.paymentMethod.id },
-        { handleActions: false }
-      );
+      const { paymentIntent, error: confirmError } =
+        await stripe.confirmCardPayment(
+          intent.client_secret,
+          { payment_method: ev.paymentMethod.id },
+          { handleActions: false }
+        );
 
       if (confirmError) {
         // Report to the browser that the payment failed, prompting it to
@@ -456,7 +454,7 @@ const CheckoutForm = ({ intent }) => {
             loading && 'btn-disabled'
           }`}
         >
-          {loading ? <Loader /> : 'Pré-réserver pour 5€'}
+          {loading ? <Loader /> : 'Pré-réserver pour 50€'}
         </button>
       </form>
     </div>

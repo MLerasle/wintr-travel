@@ -29,7 +29,7 @@ const Prices = () => {
 
       <MainSection>
         <PageHeader title="Un tarif simple">
-          Pré-réservez pour 5€. Payez le reste la veille de votre arrivée.
+          Pré-réservez pour 50€. Payez le reste la veille de votre arrivée.
         </PageHeader>
 
         <div className="relative bg-gray-100">

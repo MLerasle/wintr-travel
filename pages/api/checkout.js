@@ -14,7 +14,7 @@ export default async (req, res) => {
       paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
     } else {
       paymentIntent = await stripe.paymentIntents.create({
-        amount: '500',
+        amount: '5000',
         currency: 'eur',
         payment_method_types: ['card'],
         receipt_email: email,

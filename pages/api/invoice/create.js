@@ -33,7 +33,7 @@ export default async (req, res) => {
     await stripe.invoiceItems.create({
       customer: booking.stripeCustomerId,
       currency: 'eur',
-      amount: '-500',
+      amount: '-5000',
       description: 'Pré-réservation',
     });
 

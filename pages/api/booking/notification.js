@@ -23,9 +23,6 @@ export default async (req, res) => {
       const buffer = Buffer.from(message.data, 'base64');
       const data = buffer && buffer.toString();
       bookingdata = data && JSON.parse(data);
-
-      console.log(`Received message ${message.messageId}:`);
-      console.log(`Data: ${JSON.stringify(bookingdata)}`);
     }
 
     sendSmtpEmail = {
@@ -59,18 +56,15 @@ export default async (req, res) => {
 
     await docRef.set(bookingdata);
 
-    console.log('Document written: ', { docRef });
-
     // appelle Sendinblue pour envoie de mail
     await apiInstance.sendTransacEmail(sendSmtpEmail);
-    console.log('Succesfully sent email');
+
     await docRef.update({
       notification_email_timestamp: Math.floor(Date.now() / 1000),
     });
-    console.log('Notification timestamp was updated');
+
     res.status(204).end();
   } catch (error) {
-    console.log({ error });
     Sentry.captureException(error);
     res.status(400).json({
       message: 'Error while sending notification',
