@@ -754,14 +754,22 @@
   --tw-ring-color: rgba(16, 185, 129, var(--tw-ring-opacity));
 }
 .react-tel-input .form-control.invalid-number {
-  border: 1px solid #d79f9f;
-  background-color: #faf0f0;
+  border: 1px solid #dc2626;
+  background-color: #fef2f2;
   border-left-color: #d1d5db;
 }
 .react-tel-input .form-control.invalid-number:focus {
-  border: 1px solid #d79f9f;
+  border: 1px solid #dc2626;
   border-left-color: #d1d5db;
   background-color: #faf0f0;
+  --tw-ring-color: rgba(220, 38, 38, var(--tw-ring-opacity));
+}
+.react-tel-input .form-control.invalid-number:focus + .flag-dropdown {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border: 1px solid #dc2626;
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(220, 38, 38, var(--tw-ring-opacity));
 }
 .react-tel-input .flag-dropdown {
   position: absolute;
@@ -777,7 +785,7 @@
   cursor: pointer;
 }
 .react-tel-input .flag-dropdown.invalid-number {
-  border-color: #d79f9f;
+  border-color: #dc2626;
 }
 .react-tel-input .flag-dropdown.open {
   z-index: 2;

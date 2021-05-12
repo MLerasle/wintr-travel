@@ -33,7 +33,10 @@ const Confirmation = ({ pid }) => {
   const view = isPhoneNumberSubmitted ? (
     <ShareStep />
   ) : (
-    <PhoneNumberStep onPhoneNumberSubmitted={updateBooking} />
+    <PhoneNumberStep
+      onPhoneNumberSubmitted={updateBooking}
+      onSkip={() => setIsPhoneNumberSubmitted(true)}
+    />
   );
 
   return (

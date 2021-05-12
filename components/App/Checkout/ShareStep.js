@@ -1,5 +1,5 @@
 import { IconContext } from 'react-icons';
-import { MdDone } from 'react-icons/md';
+import { HiOutlineCheck } from 'react-icons/hi';
 import {
   EmailShareButton,
   EmailIcon,
@@ -22,7 +22,7 @@ const ShareStep = () => {
       <div className="flex flex-col items-center">
         <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
           <IconContext.Provider value={{ color: '#389469', size: '1.5rem' }}>
-            <MdDone />
+            <HiOutlineCheck />
           </IconContext.Provider>
         </div>
         <h1 className="mt-4 md:mb-8 text-3xl font-bold text-gray-800 leading-tight sm:text-4xl">
