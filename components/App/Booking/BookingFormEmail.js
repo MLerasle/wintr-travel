@@ -1,7 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useForm, Controller } from 'react-hook-form';
-import { parseCookies, setCookie } from 'nookies';
 import * as Sentry from '@sentry/browser';
 
 import Loader from '@/UI/Loader';
@@ -48,25 +47,6 @@ const BookingFormEmail = ({ booking }) => {
         email: data.email,
         isRegisteredToNewsletter: data.isRegisteredToNewsletter,
       });
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...booking,
-          email: data.email,
-          isRegisteredToNewsletter: data.isRegisteredToNewsletter,
-        }),
-      });
-      const respData = await response.json();
-      // Store the Payment Intent id in a cookie if we don't already have one
-      const { paymentIntentId } = parseCookies();
-      if (!paymentIntentId) {
-        setCookie(null, 'paymentIntentId', respData.paymentIntent.id, {
-          maxAge: 24 * 60 * 60,
-        });
-      }
 
       gtag.event({
         action: 'submit_details_form',

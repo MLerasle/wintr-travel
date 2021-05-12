@@ -3,9 +3,10 @@ import Head from 'next/head';
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import { parseCookies } from 'nookies';
+import { parseCookies, setCookie } from 'nookies';
 import { IconContext } from 'react-icons';
 import { MdLock } from 'react-icons/md';
+import * as Sentry from '@sentry/node';
 
 import CheckoutForm from '@/App/Checkout/CheckoutForm';
 import PaymentIcons from '@/App/Checkout/PaymentIcons';
@@ -60,16 +61,43 @@ export async function getServerSideProps(context) {
   const { paymentIntentId } = parseCookies(context);
 
   if (paymentIntentId) {
-    paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
-  } else {
-    // Go back to previous step if paymentIntent id is missing
+    try {
+      paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+    } catch (error) {
+      Sentry.captureException(error);
+      return {
+        redirect: {
+          destination: '/details',
+          permanent: false,
+        },
+      };
+    }
+
+    return {
+      props: {
+        paymentIntent,
+      },
+    };
+  }
+
+  try {
+    paymentIntent = await stripe.paymentIntents.create({
+      amount: '5000',
+      currency: 'eur',
+    });
+  } catch (error) {
+    Sentry.captureException(error);
     return {
       redirect: {
-        destination: '/booking/details',
+        destination: '/details',
         permanent: false,
       },
     };
   }
+
+  setCookie(context, 'paymentIntentId', paymentIntent.id, {
+    maxAge: 24 * 60 * 60,
+  });
 
   return {
     props: {
