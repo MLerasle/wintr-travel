@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { parseCookies, setCookie } from 'nookies';
 import { IconContext } from 'react-icons';
-import { MdLock } from 'react-icons/md';
+import { HiLockClosed } from 'react-icons/hi';
 import * as Sentry from '@sentry/node';
 
 import CheckoutForm from '@/App/Checkout/CheckoutForm';
@@ -32,9 +32,9 @@ const Checkout = ({ paymentIntent }) => {
           <header className="flex justify-between items-baseline">
             <h1 className="flex items-center leading-tight font-bold text-gray-800 text-3xl">
               <IconContext.Provider
-                value={{ color: '#1F2937', size: '1.5rem' }}
+                value={{ className: 'text-gray-800 h-6 w-6' }}
               >
-                <MdLock />
+                <HiLockClosed />
               </IconContext.Provider>
               <span className="ml-1">Paiement Sécurisé</span>
             </h1>
@@ -67,7 +67,7 @@ export async function getServerSideProps(context) {
       Sentry.captureException(error);
       return {
         redirect: {
-          destination: '/details',
+          destination: '/booking/details',
           permanent: false,
         },
       };
@@ -89,7 +89,7 @@ export async function getServerSideProps(context) {
     Sentry.captureException(error);
     return {
       redirect: {
-        destination: '/details',
+        destination: '/booking/details',
         permanent: false,
       },
     };

@@ -27,7 +27,7 @@ const EmailForm = () => {
     setIsLoading(true);
     setError('');
 
-    const response = await fetch('/api/createContact', {
+    const response = await fetch('/api/prospects', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email }),

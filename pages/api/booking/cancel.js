@@ -4,11 +4,10 @@ const Firestore = require('@google-cloud/firestore');
 const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 import { GCP_CREDENTIALS } from 'lib/gcp';
-import { SIB_API_KEY } from 'lib/sendinblue';
 
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = SIB_API_KEY;
+apiKey.apiKey = process.env.SIB_API_KEY;
 var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 

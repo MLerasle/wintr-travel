@@ -148,43 +148,13 @@ const CheckoutForm = ({ intent }) => {
   };
 
   const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
-    const customerResp = await fetch('/api/customer/create', {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(updatedBooking),
-    });
-    const customer = await customerResp.json();
-
-    const invoiceResp = await fetch('/api/invoice/create', {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        ...updatedBooking,
-        stripeCustomerId: customer.id,
-      }),
-    });
-    const invoice = await invoiceResp.json();
-
     // Send booking infos to the backend
     await fetch('/api/booking/publish', {
       method: 'PUT',
       headers,
       body: JSON.stringify({
         ...updatedBooking,
-        stripeCustomerId: customer.id,
-        stripeInvoiceId: invoice.id,
-        stripeInvoiceUrl: invoice.hosted_invoice_url,
-        stripeInvoicePdf: invoice.invoice_pdf,
         state: 'prepaid',
-      }),
-    });
-
-    await fetch('/api/paymentIntent/update', {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify({
-        paymentIntentId: updatedBooking.paymentIntentId,
-        stripeCustomerId: customer.id,
       }),
     });
 
