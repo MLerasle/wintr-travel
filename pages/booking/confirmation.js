@@ -17,12 +17,12 @@ const Confirmation = ({ pid }) => {
 
   const updateBooking = async (phoneNumber) => {
     try {
-      await fetch('/api/booking/update', {
+      await fetch(`/api/booking/${pid}`, {
         method: 'PUT',
         headers: {
           'content-type': 'application/json',
         },
-        body: JSON.stringify({ phoneNumber, pid }),
+        body: JSON.stringify({ phoneNumber }),
       });
       setIsPhoneNumberSubmitted(true);
     } catch (error) {

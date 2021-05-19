@@ -53,21 +53,24 @@ const Booking = ({ fetchedBooking }) => {
   const validateBookingDetails = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/booking/update', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          pid: fetchedBooking.paymentIntentId,
-          prevPhoneNumber: fetchedBooking.phoneNumber,
-          phoneNumber: booking.phoneNumber,
-          deliveryAddress: booking.deliveryAddress,
-          placeId: booking.placeId,
-          adults: booking.adults,
-          children: booking.children,
-        }),
-      });
+      const response = await fetch(
+        `/api/booking/${fetchedBooking.paymentIntentId}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            // pid: fetchedBooking.paymentIntentId,
+            prevPhoneNumber: fetchedBooking.phoneNumber,
+            phoneNumber: booking.phoneNumber,
+            deliveryAddress: booking.deliveryAddress,
+            placeId: booking.placeId,
+            adults: booking.adults,
+            children: booking.children,
+          }),
+        }
+      );
       let alert;
       if (response.status === 200) {
         alert = {
