@@ -34,7 +34,7 @@ const Prices = () => {
 
         <div className="relative bg-gray-100">
           <div className="absolute inset-0" aria-hidden="true">
-            <div className="absolute inset-y-0 right-0 w-1/2 bg-green-700"></div>
+            <div className="absolute inset-y-0 right-0 w-1/2 bg-white"></div>
           </div>
           <div className="relative max-w-7xl mx-auto lg:px-8 lg:grid lg:grid-cols-2">
             <div className="bg-gray-100 pb-16 px-4 sm:py-24 sm:px-6 lg:px-0 lg:pr-8">
@@ -57,7 +57,7 @@ const Prices = () => {
                 </dl>
               </div>
             </div>
-            <div className="bg-green-700 py-16 px-4 sm:py-24 sm:px-6 lg:bg-none lg:px-0 lg:pl-8 lg:flex lg:items-center lg:justify-end">
+            <div className="bg-white py-16 px-4 sm:py-24 sm:px-6 lg:bg-none lg:px-0 lg:pl-8 lg:flex lg:items-center lg:justify-end">
               <div className="max-w-lg mx-auto w-full space-y-8 lg:mx-0">
                 <div>
                   <h2 className="sr-only">Prix</h2>
@@ -77,7 +77,7 @@ const Prices = () => {
                   ))}
                 </ul>
                 <Link href="/">
-                  <a className="bg-white border border-transparent rounded-md w-full px-8 py-4 flex items-center justify-center text-lg leading-6 font-medium text-green-600 hover:bg-green-50 md:px-10">
+                  <a className="btn btn-primary btn-large w-full">
                     Réservez maintenant
                   </a>
                 </Link>
