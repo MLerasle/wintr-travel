@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
   CardElement,
@@ -18,7 +18,6 @@ import Loader from '@/UI/Loader';
 import Alert from '@/UI/Alert';
 import Toggle from '@/UI/Toggle';
 
-import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 import { getLastDay, getPrices } from 'helpers/booking';
 import { twoDaysBefore } from 'helpers/dates';
@@ -26,11 +25,10 @@ import { countries } from 'data/countries';
 
 const headers = { 'Content-Type': 'application/json' };
 
-const CheckoutForm = ({ intent }) => {
+const CheckoutForm = ({ booking, intent }) => {
   const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
-  const booking = useContext(BookingContext);
   const [paymentRequest, setPaymentRequest] = useState(null);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);

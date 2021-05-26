@@ -9,15 +9,13 @@ import {
 } from 'lib/stripe';
 
 export default async (req, res) => {
-  let booking;
-
   try {
-    const message = req.body ? req.body.message : null;
+    const { message } = req.body;
     if (!message) {
       throw new Error('No message received');
     }
 
-    booking = extractBookingFromMessage(message);
+    const booking = extractBookingFromMessage(message);
 
     await storeBookingInFirestore(booking);
     const customer = await findOrCreateCustomer(booking);

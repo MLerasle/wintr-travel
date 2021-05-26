@@ -5,6 +5,10 @@ import { refundPaymentIntent, refundOrVoidInvoice } from 'lib/stripe';
 import { sendBookingCancellationEmail } from 'lib/sendinblue';
 
 export default async (req, res) => {
+  if (req.method !== 'POST') {
+    return;
+  }
+
   try {
     const booking = req.body;
 

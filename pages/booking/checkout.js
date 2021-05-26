@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import Head from 'next/head';
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
@@ -14,10 +14,13 @@ import BookingSummary from '@/App/Booking/BookingSummary';
 import MainSection from '@/UI/MainSection';
 import Divider from '@/UI/Divider';
 
+import BookingContext from 'context/booking-context';
 import * as gtag from 'lib/gtag';
 
 const Checkout = ({ paymentIntent }) => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+  const booking = useContext(BookingContext);
+
   useEffect(() => {
     gtag.pageView('Paiement de la réservation', '/booking/checkout');
   }, []);
@@ -44,9 +47,9 @@ const Checkout = ({ paymentIntent }) => {
           <Divider className="pt-6" />
           <div className="grid grid-cols-1 gap-x-4 gap-y-8 lg:grid-cols-2 lg:gap-x-12">
             <Elements stripe={stripePromise} options={{ locale: 'fr' }}>
-              <CheckoutForm intent={paymentIntent} />
+              <CheckoutForm booking={booking} intent={paymentIntent} />
             </Elements>
-            <BookingSummary page="checkout" />
+            <BookingSummary booking={booking} page="checkout" />
           </div>
         </div>
       </MainSection>

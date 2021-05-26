@@ -1,17 +1,15 @@
-import { useContext } from 'react';
 import { useState } from 'react';
 
 import BookingSummaryLine from '@/App/Booking/BookingSummaryLine';
 import BookingForm from '@/App/Booking/BookingForm';
+import BookingCancel from '@/App/Booking/BookingCancel';
 import Divider from '@/UI/Divider';
 
-import BookingContext from 'context/booking-context';
 import { formatDate } from 'helpers/dates';
 import { getPrices, getLastDay } from 'helpers/booking';
 import { ADULT_PRICE, CHILD_PRICE } from 'data/pack';
 
-const BookingSummary = ({ page }) => {
-  const booking = useContext(BookingContext);
+const BookingSummary = ({ booking, page, onCancel }) => {
   const [isEditing, setIsEditing] = useState(false);
   const prices = getPrices(booking.adults.length, booking.children.length);
   const adults = booking.adults.length > 1 ? 'adultes' : 'adulte';
@@ -47,7 +45,7 @@ const BookingSummary = ({ page }) => {
           </p>
         )
       )}
-      <Divider className="py-6" />
+      <Divider className="pb-6" />
       {isEditing ? (
         <BookingForm isEditing />
       ) : (
@@ -111,6 +109,9 @@ const BookingSummary = ({ page }) => {
               <br />
               Remboursement intégral en cas d'annulation.
             </p>
+          )}
+          {page === 'edit' && (
+            <BookingCancel booking={booking} onCancel={onCancel} />
           )}
         </>
       )}
