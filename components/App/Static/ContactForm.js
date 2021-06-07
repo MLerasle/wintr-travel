@@ -23,7 +23,7 @@ const ContactForm = () => {
     setIsLoading(true);
     setError('');
 
-    const response = await fetch('/api/submitContactForm', {
+    const response = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ name, email, message }),

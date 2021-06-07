@@ -1,4 +1,4 @@
-const Loader = () => (
+const Loader = (props) => (
   <div className="sk-circle">
     <div className="sk-circle1 sk-child"></div>
     <div className="sk-circle2 sk-child"></div>
@@ -16,8 +16,8 @@ const Loader = () => (
     <style jsx>{`
       .sk-circle {
         margin: auto;
-        width: 24px;
-        height: 24px;
+        width: ${props.small ? '20px' : '24px'};
+        height: ${props.small ? '20px' : '24px'};
         position: relative;
       }
       .sk-circle .sk-child {

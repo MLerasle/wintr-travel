@@ -36,7 +36,7 @@ const Details = () => {
               <BookingFormSizes booking={booking} />
             </div>
             <div className="space-y-6">
-              <BookingSummary page="details" />
+              <BookingSummary booking={booking} page="details" />
             </div>
           </div>
         </div>

@@ -31,9 +31,10 @@ const BookingContext = createContext({
 
 export function BookingContextProvider(props) {
   const [booking, setBooking] = useState(initalBooking);
-  const bookingSeason = useMemo(() => getBookingSeason(booking.firstDay), [
-    booking.firstDay,
-  ]);
+  const bookingSeason = useMemo(
+    () => getBookingSeason(booking.firstDay),
+    [booking.firstDay]
+  );
 
   function updateBookingHandler(fields) {
     setBooking({ ...booking, ...fields });
