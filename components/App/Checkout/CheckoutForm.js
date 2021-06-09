@@ -146,16 +146,6 @@ const CheckoutForm = ({ booking, intent }) => {
   };
 
   const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
-    // Send booking infos to the backend
-    await fetch('/api/booking/publish', {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify({
-        ...updatedBooking,
-        state: 'prepaid',
-      }),
-    });
-
     destroyCookie(null, 'paymentIntentId');
 
     gtag.event({
@@ -180,6 +170,24 @@ const CheckoutForm = ({ booking, intent }) => {
     paymentRequest.on('paymentmethod', async (ev) => {
       console.log('One click payment', ev);
 
+      // Send booking infos to the backend
+      const updatedBooking = {
+        ...booking,
+        name: ev.payerName,
+        countryCode: ev.paymentMethod.billing_details.address.country,
+        lastDay: getLastDay(booking.firstDay),
+        paymentIntentId: intent.id,
+      };
+
+      await fetch('/api/booking', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          ...updatedBooking,
+          state: 'validated',
+        }),
+      });
+
       // This is necessary to work around a weird Stripe issue at the moment
       // https://github.com/stripe/stripe-payments-demo/issues/101
       const pintent = intent;
@@ -203,12 +211,6 @@ const CheckoutForm = ({ booking, intent }) => {
         // it to close the browser payment method collection interface.
         console.log('Successful one click payment');
         ev.complete('success');
-        const updatedBooking = {
-          ...booking,
-          name: ev.payerName,
-          countryCode: ev.paymentMethod.billing_details.address.country,
-          paymentIntentId: paymentIntent.id,
-        };
 
         if (paymentIntent.status === 'requires_action') {
           // Let Stripe.js handle the rest of the payment flow.
@@ -249,6 +251,21 @@ const CheckoutForm = ({ booking, intent }) => {
     }
 
     try {
+      const updatedBooking = {
+        ...booking,
+        lastDay: getLastDay(booking.firstDay),
+        paymentIntentId: intent.id,
+      };
+
+      await fetch('/api/booking', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          ...updatedBooking,
+          state: 'validated',
+        }),
+      });
+
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         intent.client_secret,
         {
@@ -269,11 +286,6 @@ const CheckoutForm = ({ booking, intent }) => {
       if (error) {
         throw new Error(error.message);
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        const updatedBooking = {
-          ...booking,
-          lastDay: getLastDay(booking.firstDay),
-          paymentIntentId: intent.id,
-        };
         await handlePaymentSucces(updatedBooking, 'creditCard');
       }
     } catch (err) {

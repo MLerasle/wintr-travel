@@ -76,11 +76,15 @@ export async function getServerSideProps(context) {
       };
     }
 
-    return {
-      props: {
-        paymentIntent,
-      },
-    };
+    if (paymentIntent.amount_received > 0) {
+      paymentIntent = null;
+    } else {
+      return {
+        props: {
+          paymentIntent,
+        },
+      };
+    }
   }
 
   try {

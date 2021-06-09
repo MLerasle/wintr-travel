@@ -1,7 +1,14 @@
 import Stripe from 'stripe';
+import * as Sentry from '@sentry/node';
 import { buffer } from 'micro';
 
-import { updateBookingInFirestore } from 'lib/gcp';
+import { sendBookingConfirmationEmail } from 'lib/sendinblue';
+import { getBooking, updateBookingInFirestore } from 'lib/gcp';
+import {
+  findOrCreateCustomer,
+  findOrCreateInvoice,
+  updatePaymentIntent,
+} from 'lib/stripe';
 
 export const config = {
   api: {
@@ -32,16 +39,40 @@ const handler = async (req, res) => {
     }
 
     // Now we know that we have received an event that actually originated from Stripe.
-
-    if (event.type === 'invoice.payment_succeeded') {
-      // Quand une facture a été payée, i.e la réservation est payée intégralement.
+    if (event.type === 'payment_intent.succeeded') {
+      const paymentIntent = event.data.object;
+      // Execute this code only after booking is prepaid
+      if (paymentIntent.amount !== 5000) {
+        return;
+      }
+      try {
+        const booking = await getBooking(paymentIntent.id);
+        const customer = await findOrCreateCustomer(booking);
+        const invoice = await findOrCreateInvoice(booking, customer);
+        await updatePaymentIntent(booking.paymentIntentId, {
+          customer: customer.id,
+        });
+        await updateBookingInFirestore(booking.paymentIntentId, {
+          notification_email_timestamp: Math.floor(Date.now() / 1000),
+          stripeCustomerId: customer.id,
+          stripeInvoiceId: invoice.id,
+          stripeInvoiceUrl: invoice.hosted_invoice_url,
+          stripeInvoicePdf: invoice.invoice_pdf,
+          state: 'prepaid',
+        });
+        await sendBookingConfirmationEmail(booking);
+      } catch (error) {
+        Sentry.captureException(error);
+      }
+    } else if (event.type === 'invoice.payment_succeeded') {
+      // When an invoice is paid, i.e booking is fully paid
       const invoice = event.data.object;
       const bookingId = invoice.metadata.bookingId;
       updateBookingInFirestore(bookingId, {
         state: 'paid',
       });
     } else if (event.type === 'payment_intent.canceled') {
-      // Quand un payment_intent est annulé (à vérifier), i.e une réservation est annulée
+      // When a payment_intent is canceled (verify this), i.e booking is canceled
     }
 
     res.status(200).json({ received: true });

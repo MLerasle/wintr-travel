@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, useMemo } from 'react';
 
 import { getBookingSeason } from 'helpers/dates';
 
-const initalBooking = {
+const initialBooking = {
   resort: 'Flaine',
   firstDay: null,
   adults: [],
@@ -24,13 +24,13 @@ const initalBooking = {
 };
 
 const BookingContext = createContext({
-  ...initalBooking,
+  ...initialBooking,
   update: () => {},
   clear: () => {},
 });
 
 export function BookingContextProvider(props) {
-  const [booking, setBooking] = useState(initalBooking);
+  const [booking, setBooking] = useState(initialBooking);
   const bookingSeason = useMemo(
     () => getBookingSeason(booking.firstDay),
     [booking.firstDay]
@@ -41,7 +41,7 @@ export function BookingContextProvider(props) {
   }
 
   function clearBookingHandler() {
-    setBooking(initalBooking);
+    setBooking(initialBooking);
   }
 
   let context = {
