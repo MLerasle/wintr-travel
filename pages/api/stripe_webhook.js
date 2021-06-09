@@ -42,7 +42,10 @@ const handler = async (req, res) => {
     if (event.type === 'payment_intent.succeeded') {
       const paymentIntent = event.data.object;
       // Execute this code only after booking is prepaid
-      if (paymentIntent.amount !== 5000) {
+      if (
+        paymentIntent.amount !== 5000 ||
+        paymentIntent.amount === paymentIntent.amount_received
+      ) {
         return;
       }
       try {
