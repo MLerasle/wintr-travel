@@ -61,7 +61,7 @@ const BookingFormDeliveryAddress = ({
 
   useEffect(() => {
     onDeliveryAddressUpdate(query, placeId);
-  }, [query, placeId]);
+  }, [onDeliveryAddressUpdate, query, placeId]);
 
   return (
     <>

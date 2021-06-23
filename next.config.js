@@ -5,8 +5,6 @@
 
 const { withSentryConfig } = require('@sentry/nextjs');
 
-const { SENTRY_ORG, SENTRY_PROJECT, SENTRY_AUTH_TOKEN } = process.env;
-
 const moduleExports = {
   experimental: {
     eslint: true,
@@ -21,9 +19,6 @@ const SentryWebpackPluginOptions = {
   //   urlPrefix, include, ignore
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
-  org: SENTRY_ORG,
-  project: SENTRY_PROJECT,
-  authToken: SENTRY_AUTH_TOKEN,
 };
 
 // Make sure adding Sentry options is the last code to run before exporting, to

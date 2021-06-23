@@ -36,7 +36,7 @@ const BookingFormEmail = ({ booking }) => {
         isRegisteredToNewsletter: booking.isRegisteredToNewsletter,
       });
     }
-  }, [booking.email, booking.isRegisteredToNewsletter]);
+  }, [reset, booking.email, booking.isRegisteredToNewsletter]);
 
   const validateBookingDetails = async (data) => {
     // Send a request to /api/checkout which will handle Stripe Payment Intent creation

@@ -73,7 +73,7 @@ const CheckoutForm = ({ booking, intent }) => {
         })
         .catch((error) => console.log(error));
     }
-  }, [stripe]);
+  }, [stripe, prices.total]);
 
   const onFirstNameUpdate = (event) => {
     const updatedFirstName = event.target.value;
