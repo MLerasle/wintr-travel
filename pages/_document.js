@@ -18,19 +18,19 @@ class MyDocument extends Document {
             crossOrigin="true"
           />
           <link
-            rel="preload"
+            rel="preconnect"
             href="https://fonts.gstatic.com/s/sourcesanspro/v14/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2"
             as="font"
             crossOrigin="true"
           />
           <link
-            rel="preload"
+            rel="preconnect"
             href="https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2"
             as="font"
             crossOrigin="true"
           />
           <link
-            rel="preload"
+            rel="preconnect"
             href="https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu3cOWxw.woff2"
             as="font"
             crossOrigin="true"

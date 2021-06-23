@@ -6,7 +6,6 @@
     "dev": "next dev -p 8000",
     "build": "next build",
     "postbuild": "next-sitemap",
-    "lint": "eslint ./components/** ./pages_/** -c .eslintrc.json --fix --ext js,jsx",
     "start": "next start"
   },
   "dependencies": {
@@ -41,9 +40,8 @@
     "babel-eslint": "^10.1.0",
     "cssnano": "5.0.6",
     "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.24.0",
     "next-sitemap": "^1.6.121",
     "postcss": "^8.3.5",
     "postcss-flexbugs-fixes": "^5.0.2",

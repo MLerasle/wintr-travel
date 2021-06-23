@@ -29,7 +29,7 @@ const Booking = ({ fetchedBooking, token }) => {
       // Clear booking context and session storage before leaving the page
       booking.clear();
     };
-  }, []);
+  });
 
   const validateBookingDetails = async () => {
     setIsLoading(true);
