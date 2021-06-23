@@ -2,16 +2,19 @@ import BookingForm from '@/App/Booking/BookingForm';
 // import EmailForm from '@/App/Static/EmailForm';
 import Image from 'next/image';
 
+import chalet from '/public/images/home-wintr-travel-lg.jpg';
+
 const HeroSection = () => (
   <div className="relative sm:min-h-screen">
     <div className="absolute inset-0 hidden sm:block">
       <Image
         className="h-full w-full object-cover"
-        src="/images/home-wintr-travel-lg.jpg"
+        src={chalet}
         alt="Chalet et skis au pied des pistes"
         layout="fill"
         objectFit="cover"
         priority={true}
+        placeholder="blur"
       />
       <div
         className="absolute inset-0 bg-gray-800 opacity-80"
@@ -25,11 +28,12 @@ const HeroSection = () => (
             <div className="absolute inset-0 sm:hidden">
               <Image
                 className="h-full w-full object-cover"
-                src="/images/home-wintr-travel-lg.jpg"
+                src={chalet}
                 alt="Chalet et skis au pied des pistes"
                 layout="fill"
                 objectFit="cover"
                 priority={true}
+                placeholder="blur"
               />
               <div
                 className="absolute inset-0 bg-gray-800 opacity-40"

@@ -1,5 +1,9 @@
 import Image from 'next/image';
 
+import skis from '/public/images/home-wintr-travel-2-lg.jpg';
+import family from '/public/images/home-wintr-travel-3-lg.jpg';
+import people from '/public/images/home-wintr-travel-4-lg.jpg';
+
 const Args = () => (
   <div className="py-16 bg-white overflow-hidden lg:py-24">
     <div className="relative max-w-xl mx-auto px-4 lg:max-w-7xl">
@@ -28,10 +32,11 @@ const Args = () => (
         <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
           <Image
             className="relative mx-auto sm:rounded-xl"
-            src="/images/home-wintr-travel-2-lg.jpg"
+            src={skis}
             alt="Des skis sur la piste"
             width={600}
             height={400}
+            placeholder="blur"
           />
         </div>
       </div>
@@ -50,10 +55,11 @@ const Args = () => (
           <div className="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
             <Image
               className="relative mx-auto sm:rounded-xl"
-              src="/images/home-wintr-travel-3-lg.jpg"
+              src={family}
               alt="Une famille réservant son séjour au ski."
               width={600}
               height={400}
+              placeholder="blur"
             />
           </div>
         </div>
@@ -72,10 +78,11 @@ const Args = () => (
         <div className="mt-10 -mx-4 relative lg:mt-0" aria-hidden="true">
           <Image
             className="relative mx-auto sm:rounded-xl"
-            src="/images/home-wintr-travel-4-lg.jpg"
+            src={people}
             alt="Un couple profite du paysage des montagnes sur une piste de skis."
             width={600}
             height={400}
+            placeholder="blur"
           />
         </div>
       </div>
