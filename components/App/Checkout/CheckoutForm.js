@@ -7,7 +7,6 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import { destroyCookie } from 'nookies';
-import * as Sentry from '@sentry/browser';
 
 import BookingDeliveryAddress from '@/App/Booking/BookingFormDeliveryAddress';
 import StripeCardElement from '@/App/Checkout/StripeCardElement';
@@ -250,54 +249,50 @@ const CheckoutForm = ({ booking, intent }) => {
       return;
     }
 
-    try {
-      const updatedBooking = {
-        ...booking,
-        lastDay: getLastDay(booking.firstDay),
-        paymentIntentId: intent.id,
-      };
+    const updatedBooking = {
+      ...booking,
+      lastDay: getLastDay(booking.firstDay),
+      paymentIntentId: intent.id,
+    };
 
-      await fetch('/api/booking', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          ...updatedBooking,
-          state: 'validated',
-        }),
-      });
+    await fetch('/api/booking', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        ...updatedBooking,
+        state: 'validated',
+      }),
+    });
 
-      const { error, paymentIntent } = await stripe.confirmCardPayment(
-        intent.client_secret,
-        {
-          payment_method: {
-            card: elements.getElement(CardElement),
-            billing_details: {
-              name: `${booking.firstname} ${booking.lastname}`,
-              email: booking.email,
-              address: {
-                country: booking.countryCode,
-              },
+    const { error, paymentIntent } = await stripe.confirmCardPayment(
+      intent.client_secret,
+      {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: `${booking.firstname} ${booking.lastname}`,
+            email: booking.email,
+            address: {
+              country: booking.countryCode,
             },
           },
-          receipt_email: booking.email,
-        }
-      );
-
-      if (error) {
-        throw new Error(error.message);
-      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        await handlePaymentSucces(updatedBooking, 'creditCard');
+        },
+        receipt_email: booking.email,
       }
-    } catch (err) {
-      setPaymentError(err.message);
+    );
+
+    if (error) {
+      setPaymentError(error.message);
       setIsLoading(false);
       window.scrollTo(0, 0);
-      Sentry.captureException(err);
       gtag.event({
         action: 'pay_booking',
         category: 'Booking',
         label: 'Error while paying booking',
       });
+      throw new Error(error.message);
+    } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+      await handlePaymentSucces(updatedBooking, 'creditCard');
     }
   };
 

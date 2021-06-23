@@ -1,51 +1,24 @@
-const withSourceMaps = require('@zeit/next-source-maps');
-const SentryWebpackPlugin = require('@sentry/webpack-plugin');
-const {
-  NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
-  SENTRY_ORG,
-  SENTRY_PROJECT,
-  SENTRY_AUTH_TOKEN,
-  NODE_ENV,
-  VERCEL_GITHUB_COMMIT_SHA,
-} = process.env;
+// This file sets a custom webpack configuration to use your Next.js app
+// with Sentry.
+// https://nextjs.org/docs/api-reference/next.config.js/introduction
+// https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
-process.env.SENTRY_DSN = SENTRY_DSN;
-const basePath = '';
+const { withSentryConfig } = require('@sentry/nextjs');
 
-module.exports = withSourceMaps({
-  serverRuntimeConfig: {
-    rootDir: __dirname,
-  },
-  webpack: (config, options) => {
-    if (!options.isServer) {
-      config.resolve.alias['@sentry/node'] = '@sentry/browser';
-    }
-    if (
-      SENTRY_DSN &&
-      SENTRY_ORG &&
-      SENTRY_PROJECT &&
-      SENTRY_AUTH_TOKEN &&
-      VERCEL_GITHUB_COMMIT_SHA &&
-      NODE_ENV === 'production'
-    ) {
-      config.plugins.push(
-        new SentryWebpackPlugin({
-          include: '.next',
-          ignore: ['node_modules'],
-          stripPrefix: ['webpack://_N_E/'],
-          urlPrefix: `~${basePath}/_next`,
-          release: VERCEL_GITHUB_COMMIT_SHA,
-        })
-      );
-    }
-    config.node = {
-      ...config.node,
-      fs: 'empty',
-      child_process: 'empty',
-      net: 'empty',
-      tls: 'empty',
-    };
-    return config;
-  },
-  basePath,
-});
+const moduleExports = {
+  // Your existing module.exports
+};
+
+const SentryWebpackPluginOptions = {
+  // Additional config options for the Sentry Webpack plugin. Keep in mind that
+  // the following options are set automatically, and overriding them is not
+  // recommended:
+  //   release, url, org, project, authToken, configFile, stripPrefix,
+  //   urlPrefix, include, ignore
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options.
+};
+
+// Make sure adding Sentry options is the last code to run before exporting, to
+// ensure that your source maps include changes from all other Webpack plugins
+module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);

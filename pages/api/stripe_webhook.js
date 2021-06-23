@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import * as Sentry from '@sentry/node';
+import * as Sentry from '@sentry/nextjs';
 import { buffer } from 'micro';
 
 import { sendBookingConfirmationEmail } from 'lib/sendinblue';

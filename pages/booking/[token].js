@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import Head from 'next/head';
-import * as Sentry from '@sentry/browser';
-import * as SentryNode from '@sentry/node';
+import * as Sentry from '@sentry/nextjs';
 
 import BookingStripeLinks from '@/App/Booking/BookingStripeLinks';
 import BookingFormEdit from '@/App/Booking/BookingFormEdit';
@@ -171,7 +170,7 @@ export async function getServerSideProps(context) {
       };
     }
   } catch (error) {
-    SentryNode.captureException(error);
+    Sentry.captureException(error);
     return {
       notFound: true,
     };

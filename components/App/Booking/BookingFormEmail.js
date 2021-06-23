@@ -1,7 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useForm, Controller } from 'react-hook-form';
-import * as Sentry from '@sentry/browser';
 
 import Loader from '@/UI/Loader';
 import Alert from '@/UI/Alert';
@@ -41,35 +40,21 @@ const BookingFormEmail = ({ booking }) => {
 
   const validateBookingDetails = async (data) => {
     // Send a request to /api/checkout which will handle Stripe Payment Intent creation
-    try {
-      setIsLoading(true);
-      booking.update({
-        email: data.email,
-        isRegisteredToNewsletter: data.isRegisteredToNewsletter,
-      });
+    setIsLoading(true);
+    booking.update({
+      email: data.email,
+      isRegisteredToNewsletter: data.isRegisteredToNewsletter,
+    });
 
-      gtag.event({
-        action: 'submit_details_form',
-        category: 'Booking',
-        label: 'Submission OK',
-      });
+    gtag.event({
+      action: 'submit_details_form',
+      category: 'Booking',
+      label: 'Submission OK',
+    });
 
-      router.push('/booking/checkout').then(() => {
-        setIsLoading(false);
-      });
-    } catch (err) {
+    router.push('/booking/checkout').then(() => {
       setIsLoading(false);
-      setError({
-        message:
-          "Une erreur est survenue, veuillez réessayer ou prendre contact avec nous si l'erreur persiste.",
-      });
-      Sentry.captureException(err);
-      gtag.event({
-        action: 'submit_details_form',
-        category: 'Booking',
-        label: 'Error while validating booking details',
-      });
-    }
+    });
   };
 
   return (

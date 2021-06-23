@@ -6,7 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { parseCookies, setCookie } from 'nookies';
 import { IconContext } from 'react-icons';
 import { HiLockClosed } from 'react-icons/hi';
-import * as Sentry from '@sentry/node';
+import * as Sentry from '@sentry/nextjs';
 
 import CheckoutForm from '@/App/Checkout/CheckoutForm';
 import PaymentIcons from '@/App/Checkout/PaymentIcons';
