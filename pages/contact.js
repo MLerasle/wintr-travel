@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 
 import MainSection from '@/UI/MainSection';
@@ -7,13 +6,7 @@ import BackgroundGradient from '@/UI/BackgroundGradient';
 import ContactInformations from '@/App/Static/ContactInformations';
 import ContactForm from '@/App/Static/ContactForm';
 
-import * as gtag from 'lib/gtag';
-
 const Contact = () => {
-  useEffect(() => {
-    gtag.pageView('Contact', '/contact');
-  }, []);
-
   return (
     <>
       <Head>

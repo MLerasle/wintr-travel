@@ -7,7 +7,6 @@ import Alert from '@/UI/Alert';
 import Toggle from '@/UI/Toggle';
 
 import { EMAIL_PATTERN } from 'helpers/email';
-import * as gtag from 'lib/gtag';
 
 const BookingFormEmail = ({ booking }) => {
   const router = useRouter();
@@ -44,12 +43,6 @@ const BookingFormEmail = ({ booking }) => {
     booking.update({
       email: data.email,
       isRegisteredToNewsletter: data.isRegisteredToNewsletter,
-    });
-
-    gtag.event({
-      action: 'submit_details_form',
-      category: 'Booking',
-      label: 'Submission OK',
     });
 
     router.push('/booking/checkout').then(() => {

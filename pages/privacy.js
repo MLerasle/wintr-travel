@@ -1,17 +1,10 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 
 import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
 import PrivacyPolicy from '@/App/Static/PrivacyPolicy';
 
-import * as gtag from 'lib/gtag';
-
 const Privacy = () => {
-  useEffect(() => {
-    gtag.pageView('Confidentialité', '/privacy');
-  }, []);
-
   return (
     <>
       <Head>

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -6,17 +5,12 @@ import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
 import PackItem from '@/App/Static/PackItem';
 
-import * as gtag from 'lib/gtag';
 import PackPrice from '@/App/Static/PackPrice';
 import PackItemDesc from '@/App/Static/PackItemDesc';
 
 import { packItems, packPrices, packItemDescriptions } from 'data/pack';
 
 const Prices = () => {
-  useEffect(() => {
-    gtag.pageView('Tarifs', '/prices');
-  }, []);
-
   return (
     <>
       <Head>

@@ -2,7 +2,6 @@ import Stripe from 'stripe';
 import * as Sentry from '@sentry/nextjs';
 import { buffer } from 'micro';
 
-import { sendBookingConfirmationEmail } from 'lib/sendinblue';
 import { getBooking, updateBookingInFirestore } from 'lib/gcp';
 import {
   findOrCreateCustomer,
@@ -63,7 +62,6 @@ const handler = async (req, res) => {
           stripeInvoicePdf: invoice.invoice_pdf,
           state: 'prepaid',
         });
-        await sendBookingConfirmationEmail(booking);
       } catch (error) {
         Sentry.captureException(error);
       }

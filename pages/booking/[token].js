@@ -10,7 +10,6 @@ import Alert from '@/UI/Alert';
 import Divider from '@/UI/Divider';
 
 import BookingContext from 'context/booking-context';
-import * as gtag from 'lib/gtag';
 import { getBookingDocRef } from 'lib/gcp';
 
 const SUCCESS_MESSAGE =
@@ -65,12 +64,6 @@ const Booking = ({ fetchedBooking, token }) => {
 
     setIsLoading(false);
     window.scrollTo(0, 0);
-
-    gtag.event({
-      action: 'update_booking',
-      category: 'Booking',
-      label: '',
-    });
   };
 
   const onBookingCancel = (status) => {

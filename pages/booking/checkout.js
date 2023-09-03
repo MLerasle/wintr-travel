@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import Head from 'next/head';
 import Stripe from 'stripe';
 import { loadStripe } from '@stripe/stripe-js';
@@ -15,15 +15,10 @@ import MainSection from '@/UI/MainSection';
 import Divider from '@/UI/Divider';
 
 import BookingContext from 'context/booking-context';
-import * as gtag from 'lib/gtag';
 
 const Checkout = ({ paymentIntent }) => {
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
   const booking = useContext(BookingContext);
-
-  useEffect(() => {
-    gtag.pageView('Paiement de la réservation', '/booking/checkout');
-  }, []);
 
   return (
     <>

@@ -17,7 +17,6 @@ import Loader from '@/UI/Loader';
 import Alert from '@/UI/Alert';
 import Toggle from '@/UI/Toggle';
 
-import * as gtag from 'lib/gtag';
 import { getLastDay, getPrices } from 'helpers/booking';
 import { twoDaysBefore } from 'helpers/dates';
 import { countries } from 'data/countries';
@@ -147,12 +146,6 @@ const CheckoutForm = ({ booking, intent }) => {
   const handlePaymentSucces = async (updatedBooking, paymentMethod) => {
     destroyCookie(null, 'paymentIntentId');
 
-    gtag.event({
-      action: 'pay_booking',
-      category: 'Booking',
-      label: paymentMethod,
-    });
-
     router
       .push({
         pathname: '/booking/confirmation',
@@ -240,11 +233,6 @@ const CheckoutForm = ({ booking, intent }) => {
     setFormWasSubmitted(true);
 
     if (!formIsValid) {
-      gtag.event({
-        action: 'pay_booking',
-        category: 'Booking',
-        label: 'Form is not valid',
-      });
       setIsLoading(false);
       return;
     }
@@ -285,11 +273,6 @@ const CheckoutForm = ({ booking, intent }) => {
       setPaymentError(error.message);
       setIsLoading(false);
       window.scrollTo(0, 0);
-      gtag.event({
-        action: 'pay_booking',
-        category: 'Booking',
-        label: 'Error while paying booking',
-      });
       throw new Error(error.message);
     } else if (paymentIntent && paymentIntent.status === 'succeeded') {
       await handlePaymentSucces(updatedBooking, 'creditCard');

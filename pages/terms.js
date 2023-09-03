@@ -1,15 +1,8 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 
 import MainSection from '@/UI/MainSection';
 
-import * as gtag from 'lib/gtag';
-
 const Terms = () => {
-  useEffect(() => {
-    gtag.pageView('CGV', '/terms');
-  }, []);
-
   return (
     <>
       <Head>

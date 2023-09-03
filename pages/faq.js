@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -6,13 +5,7 @@ import MainSection from '@/UI/MainSection';
 import PageHeader from '@/UI/PageHeader';
 import Questions from '@/App/Static/Questions';
 
-import * as gtag from 'lib/gtag';
-
 const Faq = () => {
-  useEffect(() => {
-    gtag.pageView('FAQ', '/faq');
-  }, []);
-
   return (
     <>
       <Head>

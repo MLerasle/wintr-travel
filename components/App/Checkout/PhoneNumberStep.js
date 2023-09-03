@@ -6,8 +6,6 @@ import { isValidPhoneNumber } from 'libphonenumber-js';
 import InputPhone from '@/UI/InputPhone';
 import Loader from '@/UI/Loader';
 
-import * as gtag from 'lib/gtag';
-
 const PhoneNumberStep = ({ onPhoneNumberSubmitted, onSkip }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,20 +23,12 @@ const PhoneNumberStep = ({ onPhoneNumberSubmitted, onSkip }) => {
   const submitPhoneNumber = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    let gtagLabel;
     if (isValidPhoneNumber(`+${phoneNumber}`)) {
       // Send it to the backend
-      gtagLabel = 'Phone number OK';
       onPhoneNumberSubmitted(phoneNumber);
     } else {
-      gtagLabel = 'Phone number incorrect';
       setError('Le numéro saisi est incorrect.');
     }
-    gtag.event({
-      action: 'submit_phone_number',
-      category: 'Booking',
-      label: gtagLabel,
-    });
     setIsLoading(false);
   };
 

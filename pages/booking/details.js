@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import Head from 'next/head';
 
 import BookingSummary from '@/App/Booking/BookingSummary';
@@ -8,14 +8,9 @@ import MainSection from '@/UI/MainSection';
 import Divider from '@/UI/Divider';
 
 import BookingContext from 'context/booking-context';
-import * as gtag from 'lib/gtag';
 
 const Details = () => {
   const booking = useContext(BookingContext);
-
-  useEffect(() => {
-    gtag.pageView('Détails de la réservation', '/booking/details');
-  }, []);
 
   return (
     <>

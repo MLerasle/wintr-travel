@@ -1,5 +1,3 @@
-import { withSentry } from '@sentry/nextjs';
-
 import { createBooking } from 'lib/gcp';
 
 async function handler(req, res) {
@@ -14,4 +12,4 @@ async function handler(req, res) {
   res.status(201).json({ booking });
 }
 
-export default withSentry(handler);
+export default handler;

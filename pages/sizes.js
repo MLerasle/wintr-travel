@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 
 import MainSection from '@/UI/MainSection';
@@ -7,13 +6,7 @@ import SizeSkis from '@/App/Static/SizeSkis';
 import SizeShoes from '@/App/Static/SizeShoes';
 import SizeHelmet from '@/App/Static/SizeHelmet';
 
-import * as gtag from 'lib/gtag';
-
 const Sizes = () => {
-  useEffect(() => {
-    gtag.pageView('Guide des tailles', '/sizes');
-  }, []);
-
   return (
     <>
       <Head>

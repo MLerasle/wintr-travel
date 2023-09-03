@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Head from 'next/head';
 
 import Card from '@/UI/Card';
@@ -6,14 +6,8 @@ import MainSection from '@/UI/MainSection';
 import PhoneNumberStep from '@/App/Checkout/PhoneNumberStep';
 import ShareStep from '@/App/Checkout/ShareStep';
 
-import * as gtag from 'lib/gtag';
-
 const Confirmation = ({ pid }) => {
   const [isPhoneNumberSubmitted, setIsPhoneNumberSubmitted] = useState(false);
-
-  useEffect(() => {
-    gtag.pageView('Confirmation de la réservation', '/booking/confirmation');
-  }, []);
 
   const updateBooking = async (phoneNumber) => {
     try {

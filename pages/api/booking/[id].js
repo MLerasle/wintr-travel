@@ -1,7 +1,4 @@
-import { withSentry } from '@sentry/nextjs';
-
 import { getBookingDocRef, updateBookingInFirestore } from 'lib/gcp';
-import { sendPhoneNumberConfirmationSms } from 'lib/sendinblue';
 import { updateCustomer } from 'lib/stripe';
 
 async function handler(req, res) {
@@ -26,7 +23,6 @@ async function handler(req, res) {
 
   // Send confirmation SMS and update Stripe customer if needed
   if (booking.prevPhoneNumber !== booking.phoneNumber) {
-    await sendPhoneNumberConfirmationSms(booking.phoneNumber);
     const doc = await docRef.get();
     const docData = doc.data();
     await updateCustomer(docData.stripeCustomerId, {
@@ -37,4 +33,4 @@ async function handler(req, res) {
   res.status(200).json({ booking });
 }
 
-export default withSentry(handler);
+export default handler;

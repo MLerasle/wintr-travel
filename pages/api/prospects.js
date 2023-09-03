@@ -1,8 +1,5 @@
-import { withSentry } from '@sentry/nextjs';
-
 // Temporary store contacts in Firestore
 import { storeContactInFirestore } from 'lib/gcp';
-// import { createContact } from 'lib/sendinblue';
 
 async function handler(req, res) {
   if (process.env.NODE_ENV !== 'production') {
@@ -16,9 +13,8 @@ async function handler(req, res) {
 
   const { email } = req.body;
   await storeContactInFirestore(email);
-  // await createContact(email);
 
   res.status(201).end();
 }
 
-export default withSentry(handler);
+export default handler;

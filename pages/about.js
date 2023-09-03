@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,13 +5,7 @@ import { IconContext } from 'react-icons';
 
 import { HiOutlineSparkles, HiOutlineCube } from 'react-icons/hi';
 
-import * as gtag from 'lib/gtag';
-
 const About = () => {
-  useEffect(() => {
-    gtag.pageView('À propos', '/about');
-  }, []);
-
   return (
     <>
       <Head>

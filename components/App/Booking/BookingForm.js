@@ -7,7 +7,6 @@ import Loader from '@/UI/Loader';
 import RadioButtons from '@/UI/RadioButtons';
 
 import BookingContext from 'context/booking-context';
-import * as gtag from 'lib/gtag';
 import { formatDateLong } from 'helpers/dates';
 import { isValid, getLastDay } from 'helpers/booking';
 import { HOLIDAYS } from 'data/booking';
@@ -43,11 +42,6 @@ const BookingForm = ({ isEditing, onUpdate }) => {
   const validateSearch = (e) => {
     e.preventDefault();
     if (!isValid(booking)) {
-      gtag.event({
-        action: 'submit_home_form',
-        category: 'Booking',
-        label: 'Form is not valid',
-      });
       setError({
         message:
           'Veuillez sélectionner une date de livraison et au moins un adulte avant de poursuivre.',
@@ -55,12 +49,6 @@ const BookingForm = ({ isEditing, onUpdate }) => {
       return;
     }
     setIsLoading(true);
-
-    gtag.event({
-      action: 'submit_home_form',
-      category: 'Booking',
-      label: 'Submission OK',
-    });
 
     router
       .push('/booking/details')
