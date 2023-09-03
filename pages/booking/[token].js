@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
 import Head from 'next/head';
-import * as Sentry from '@sentry/nextjs';
 
 import BookingStripeLinks from '@/App/Booking/BookingStripeLinks';
 import BookingFormEdit from '@/App/Booking/BookingFormEdit';
@@ -58,7 +57,6 @@ const Booking = ({ fetchedBooking, token }) => {
         setAlert({ message: ERROR_MESSAGE, type: 'error' });
       }
     } catch (error) {
-      Sentry.captureException(error);
       setAlert({ message: ERROR_MESSAGE, type: 'error' });
     }
 
@@ -163,7 +161,7 @@ export async function getServerSideProps(context) {
       };
     }
   } catch (error) {
-    Sentry.captureException(error);
+    console.error(error);
     return {
       notFound: true,
     };

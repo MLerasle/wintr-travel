@@ -1,5 +1,4 @@
 import Stripe from 'stripe';
-import * as Sentry from '@sentry/nextjs';
 import { buffer } from 'micro';
 
 import { getBooking, updateBookingInFirestore } from 'lib/gcp';
@@ -63,7 +62,7 @@ const handler = async (req, res) => {
           state: 'prepaid',
         });
       } catch (error) {
-        Sentry.captureException(error);
+        console.error(error);
       }
     } else if (event.type === 'invoice.payment_succeeded') {
       // When an invoice is paid, i.e booking is fully paid

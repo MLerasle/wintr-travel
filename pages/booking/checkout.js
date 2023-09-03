@@ -6,7 +6,6 @@ import { Elements } from '@stripe/react-stripe-js';
 import { parseCookies, setCookie } from 'nookies';
 import { IconContext } from 'react-icons';
 import { HiLockClosed } from 'react-icons/hi';
-import * as Sentry from '@sentry/nextjs';
 
 import CheckoutForm from '@/App/Checkout/CheckoutForm';
 import PaymentIcons from '@/App/Checkout/PaymentIcons';
@@ -62,7 +61,7 @@ export async function getServerSideProps(context) {
     try {
       paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
     } catch (error) {
-      Sentry.captureException(error);
+      console.error(error);
       return {
         redirect: {
           destination: '/booking/details',
@@ -88,7 +87,7 @@ export async function getServerSideProps(context) {
       currency: 'eur',
     });
   } catch (error) {
-    Sentry.captureException(error);
+    console.error(error);
     return {
       redirect: {
         destination: '/booking/details',
