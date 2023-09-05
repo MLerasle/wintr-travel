@@ -386,6 +386,12 @@ const CheckoutForm = ({ booking, intent }) => {
         <h3 className="text-lg leading-6 font-semibold text-gray-800 mt-4 mb-2">
           Méthode de Règlement
         </h3>
+        <p className="text-red-500 text-sm mb-2">
+          Ce site utilise Stripe pour le paiement, vous pouvez renseigner 4242
+          4242 4242 4242 comme numéro de carte avec n'importe quelle date future
+          comme date d'expiration et le code CVC de votre choix pour simuler un
+          paiement et aller au bout du processus de réservation.
+        </p>
         <FormRow>
           <label className="label" htmlFor="card-element">
             Données de votre carte
