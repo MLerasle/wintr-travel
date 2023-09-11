@@ -1,28 +1,31 @@
-# Wintr main website 
+# Wintr Travel main website 
 
+Wintr Travel's ambition was to modernize the ski rental industry. With this in mind, one of their main objectives was to offer 
+their customers the most pleasant user experience possible during the booking process for their ski holiday.
 
-### Deployment
+Unfortunately for them, the covid-19 pandemic took its toll on their business, but I kept a demo version of the work I've done here.
 
-Le site est deploy en utilisant la plateforme de [Vercel's](https://vercel.com/wintr).
-L'hebergement est fourni et ils font tourner les fonctions en Function as a Service.
+Visit (Wintr Travel demo website)[https://wintr-travel.vercel.app/]
 
-Une partie backend tourne sur Google Cloud (Pub/Sub pour l'asynchrone et Firestore pour le stockage
-des données).
+### Stack
 
-Le site est en Continuous Deployment : pour chaque commit dans la branche principale ,
-la prod est mise à jour, idem pour la preprod.
+- Next.js 12.1.6
+- React 17.0.2
+- Tailwindcss 2.2
 
 ## Branches
 
-On utilise les branches suivantes :
+Here are the two remaining branches :
 
-* `master` : production visible sur https://www.wintr.travel 
-* `staging` : preprod visible sur https://beta.wintr.travel
+* `main` : demo version
+* `legacy` : the original codebase that used third-party services described below
 
-## Services tiers 
+## Third-party services 
 
-Service | Usage | URL
---- | --- | ---
-Sendinblue | Mail transactionnel (mail/SMS) + campagne mail/facebook + CRM|https://my.sendinblue.com/
-Sentry |Monitoring des erreurs|https://sentry.io/auth/login/
-Google Analytics |Suivi de l'activite sur le site + funnel de conversion|https://analytics.google.com/
+Service | Usage
+--- | ---
+(Sendinblue)[https://my.sendinblue.com/] | Transactional mail (mail/SMS) + mail/facebook campaign + CRM
+(Sentry)[https://sentry.io/] | Error monitoring
+(Google Analytics)[https://analytics.google.com/] | Site activity tracking + conversion funnel
+(Stripe)[https://stripe.com/] | Payment processing
+(Firestore)[https://cloud.google.com/firestore] | Database
